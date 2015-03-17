@@ -5,9 +5,9 @@ require 'bio'
 
 def return_aln_parameters_query (hash)
 	data = Hash.new {|h,k| h[k] = {} }
-	hash.each { |a,b|
-		hash[a].each { |c, d|
-			array = c.split("\t") 
+	hash.each_key { |a|
+		hash[a].each_key { |c|
+			array = c.split("\t")
 			if data[a].key?("alnlength") == true
 				data[a]["alnlength"] = array[3].to_i + data[a]["alnlength"]
 			else
@@ -52,34 +52,34 @@ file = Bio::FastaFormat.open(ARGV[0])
 file.each do |entry|
 	genes[entry.entry_id] = entry.length
 end
-  
+
 lines = File.read(ARGV[1])
 results = lines.split("\n")
 results.each do |string|
-  if string !~ /^#/ 
+  if string !~ /^#/
 	blastdata = string.split("\t")
-
 #=begin
-	geneid = ""
-	if blastdata[0] =~ /^CHAFR/
+	if blastdata[2].to_f > 98.0 and blastdata[3].to_i > 100
 		blast[blastdata[0]][blastdata[1]][string] = 1
 	end
   end
 #=end
-	
+
 =begin
+
 	blast[blastdata[0]][blastdata[1]][string] = 1
 #			qurey id	subject id	  blast-data
   end
 
-# => # Query: comp100013_c0_seq1 len=202 path=[180:0-201]
+  geneid = ""
+	# => # Query: comp100013_c0_seq1 len=202 path=[180:0-201]
   if string =~ /^#\sQuery:\s(\w+)\slen=/
 	geneid = $1
 	if string =~ /^#\sQuery:\s\w+\slen=(\d*)\s/
 		genes[geneid] = $1
 	end
 
-# => # Query: comp12918_c0_seq1 FPKM_all:2.679_FPKM_rel:2.679 len:364 path:[0]
+	# => # Query: comp12918_c0_seq1 FPKM_all:2.679_FPKM_rel:2.679 len:364 path:[0]
   elsif string =~ /^#\sQuery:\s(\w+)\sFPKM\_all:/
 	geneid = $1
 	if string =~ /^#\sQuery:\s\w+\s\S+\slen:(\d*)\s/
@@ -115,8 +115,8 @@ blast.each { |k1,v1|
 #			puts "#{k1}\t#{aln_end}\t#{aln_start}\n"
 			if aln_end < aln_start
 #				outfile.puts "#{subjectid}\tTRINITY\texon\t#{aln_end}\t#{aln_start}\t.\t-\t.\tParent=#{k1};Target=#{k1} #{array2[6].to_i} #{array2[7].to_i}\n"
-				info = "#{subjectid}\tTRINITY\texon\t#{aln_end}\t#{aln_start}\t.\t-\t.\tParent=#{k1};Target=#{k1} #{array2[7].to_i} #{array2[6].to_i};Genelength=#{genes[k1]}".to_s
-				gff[contignum][subjectid][aln_end][k1][:exon][info] = 1
+#				info = "#{subjectid}\tblastn\texon\t#{aln_end}\t#{aln_start}\t.\t-\t.\tParent=#{k1};Target=#{k1} #{array2[7].to_i} #{array2[6].to_i};Genelength=#{genes[k1]}".to_s
+#				gff[contignum][subjectid][aln_end][k1][:exon][info] = 1
 				limits[:strand] = "-"
 				if limits.key?(:start) == true
 					if limits[:start] > aln_end
@@ -134,8 +134,8 @@ blast.each { |k1,v1|
 				end
 			elsif aln_end > aln_start
 #				outfile.puts "#{subjectid}\tTRINITY\texon\t#{aln_start}\t#{aln_end}\t.\t+\t.\tParent=#{k1};Target=#{k1} #{array2[6].to_i} #{array2[7].to_i}\n"
-				info = "#{subjectid}\tTRINITY\texon\t#{aln_start}\t#{aln_end}\t.\t+\t.\tParent=#{k1};Target=#{k1} #{array2[6].to_i} #{array2[7].to_i};Genelength=#{genes[k1]}".to_s
-				gff[contignum][subjectid][aln_start][k1][:exon][info] = 1
+#				info = "#{subjectid}\tblastn\texon\t#{aln_start}\t#{aln_end}\t.\t+\t.\tParent=#{k1};Target=#{k1} #{array2[6].to_i} #{array2[7].to_i};Genelength=#{genes[k1]}".to_s
+#				gff[contignum][subjectid][aln_start][k1][:exon][info] = 1
 				limits[:strand] = "+"
 				if limits.key?(:start) == true
 					if limits[:start] > aln_start
@@ -155,9 +155,9 @@ blast.each { |k1,v1|
 		}
 
 #		outfile.puts "#{subjectid}\tTRINITY\tmRNA\t#{limits[:start]}\t#{limits[:stop]}\t.\t#{limits[:strand]}\t.\tID=#{k1}\n"
-		info = "#{subjectid}\tTRINITY\tmRNA\t#{limits[:start]}\t#{limits[:stop]}\t.\t#{limits[:strand]}\t.\tID=#{k1};Parent=#{k1}".to_s
-		gff[contignum][subjectid][limits[:start]][k1][:mRNA][info] = 1
-		info2 = "#{subjectid}\tTRINITY\tgene\t#{limits[:start]}\t#{limits[:stop]}\t.\t#{limits[:strand]}\t.\tID=#{k1}".to_s
+#		info = "#{subjectid}\tTRINITY\tmRNA\t#{limits[:start]}\t#{limits[:stop]}\t.\t#{limits[:strand]}\t.\tID=#{k1};Parent=#{k1}".to_s
+#		gff[contignum][subjectid][limits[:start]][k1][:mRNA][info] = 1
+		info2 = "#{subjectid}\tblastn\tgene\t#{limits[:start]}\t#{limits[:stop]}\t.\t#{limits[:strand]}\t.\tID=#{k1}\t#{genes[k1]}".to_s
 		gff[contignum][subjectid][limits[:start]][k1][:gene][info2] = 1
 	end
 
