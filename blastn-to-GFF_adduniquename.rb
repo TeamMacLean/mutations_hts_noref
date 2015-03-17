@@ -59,7 +59,7 @@ results.each do |string|
   if string !~ /^#/
 	blastdata = string.split("\t")
 #=begin
-	if blastdata[2].to_f > 98.0 and blastdata[3].to_i > 100
+	if blastdata[2].to_f > 98.0 and blastdata[3].to_i > 200
 		blast[blastdata[0]][blastdata[1]][string] = 1
 	end
   end
