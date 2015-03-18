@@ -90,23 +90,18 @@ def return_best_contig_aln (hash2)
 end
 
 
-#gff = Hash.new {|h,k| h[k] = Hash.new {|h,k| h[k] = Hash.new {|h,k| h[k] ={} } } }
-gff = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) } ## vivified hash
+gff = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
 
 blast.each { |k1,v1|
-  data2 = return_aln_parameters_query(blast[k1])
-  subjectid, numgood = return_best_contig_aln(data2)
-  if subjectid =~ /\w/ and numgood == 1
-	genelen_cov = (100* data2[subjectid]["alnlength"].to_i)/genes[k1].to_i
-	#mismatch_cov = (100* data2[subjectid]["mismatch"].to_i)/genes[k1].to_i
-	if genelen_cov >= 80 and mismatch_cov <=10
-		limits = Hash.new {|h,k| h[k] = {} }
-		contignum = ""
-		if subjectid =~ /\_(\d+)$/
-			contignum = $1.chomp.to_i
-		#	puts contignum
-		end
+	data2 = return_aln_parameters_query(blast[k1])
+	subjectid, numgood = return_best_contig_aln(data2)
+	contignum = 1
+	if subjectid =~ /\w/ and numgood == 1
+	  genelen_cov = (100* data2[subjectid]["alnlength"].to_i)/genes[k1].to_i
+	  # mismatch_cov = (100* data2[subjectid]["mismatch"].to_i)/genes[k1].to_i
+	  # if genelen_cov >= 80 and mismatch_cov <=10
 
+		limits = Hash.new {|h,k| h[k] = {} }
 		blast[k1][subjectid].each { |key2, value2|
 			array2 = key2.split("\t")
 			aln_end = array2[9].to_i
@@ -158,9 +153,9 @@ blast.each { |k1,v1|
 		gff[contignum][subjectid][limits[:start]][k1][:mRNA][info] = 1
 		info2 = "#{subjectid}\tTRINITY\tgene\t#{limits[:start]}\t#{limits[:stop]}\t.\t#{limits[:strand]}\t.\tID=#{k1}".to_s
 		gff[contignum][subjectid][limits[:start]][k1][:gene][info2] = 1
+	  #end
+	  contignum += 1
 	end
-
-  end
 }
 
 # New file is opened to write the gff info
