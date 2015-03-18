@@ -30,60 +30,41 @@ end
 def return_aln_parameters_query (blasth)
 	data = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) } ## vivified hash
 	blasth.each_key { |s_id|		# subject id keys
-		q_start, q_end, s_start, s_end = 0, 0, 0, 0
-		number = 1
-		blasth[s_id]["plus"].keys.sort.each { |sub_start|		# subject aln start keys sorted
-			blasth[s_id]["plus"][sub_start].keys.sort.each { |que_start|		# query aln start keys sorted
-				alninfo = blasth[s_id]["plus"][sub_start][que_start]
-				array = alninfo.split("\t")
-				if q_start == 0 and q_end == 0 and s_start == 0 and s_end == 0
-					block = [s_id, "plus", number].join("_")
-					data[block]["alnlength"] = array[3].to_i
-					data[block]["alns"][alninfo] = 1
-					q_start, q_end, s_start, s_end = array[6], array[7], array[8], array[9]
-				else
-					sub_diff = array[8] - s_end
-					que_diff = array[6] - q_end
-					if sub_diff <  que_diff + 5000
-						block = [s_id, "plus", number].join("_")
-						data[block]["alnlength"] += array[3].to_i
-						data[block]["alns"][alninfo] = 1
-					else
-						number += 1
-						block = [s_id, "plus", number].join("_")
-						data[block]["alnlength"] = array[3].to_i
-						data[block]["alns"][alninfo] = 1
-						q_start, q_end, s_start, s_end = array[6], array[7], array[8], array[9]
-					end
-				end
-			}
-		}
-		q_start, q_end, s_start, s_end = 0, 0, 0, 0
-		number = 1
-		blasth[s_id]["minus"].keys.sort.each { |sub_start|		# subject aln start keys sorted
-			blasth[s_id]["minus"][sub_start].keys.sort.each { |que_start|		# query aln start keys sorted
-				alninfo = blasth[s_id]["minus"][sub_start][que_start]
-				array = alninfo.split("\t")
+		blasth[s_id].each_key { |strand|		# subject aln start keys sorted
+			q_start, q_end, s_start, s_end = 0, 0, 0, 0
+			number = 1
+			blasth[s_id][strand].keys.sort.each { |sub_start|		# subject aln start keys sorted
+				blasth[s_id][strand][sub_start].keys.sort.each { |que_start|		# query aln start keys sorted
+					alninfo = blasth[s_id][strand][sub_start][que_start]
+					array = alninfo.split("\t")
+					block = ''
 					if q_start == 0 and q_end == 0 and s_start == 0 and s_end == 0
-						block = [s_id, "minus", number].join("_")
+						block = [s_id, strand, number].join("_")
 						data[block]["alnlength"] = array[3].to_i
 						data[block]["alns"][alninfo] = 1
 						q_start, q_end, s_start, s_end = array[6], array[7], array[8], array[9]
 					else
-						sub_diff = array[8] - s_end
-						que_diff = array[6] - q_end
+						sub_diff = 0
+						que_diff = 0
+						if strand == "plus"
+							sub_diff = array[8] - s_end
+							que_diff = array[6] - q_end
+						else
+							sub_diff = array[9] - s_start
+							que_diff = q_start - array[7]
+						end
 						if sub_diff <  que_diff + 5000
-							block = [s_id, "minus", number].join("_")
-							data[block]["alnlength"] += array[3].to_i
-							data[block]["alns"][alninfo] = 1
+								data[block]["alnlength"] += array[3].to_i
+								data[block]["alns"][alninfo] = 1
 						else
 							number += 1
-							block = [s_id, "minus", number].join("_")
+							block = [s_id, strand, number].join("_")
 							data[block]["alnlength"] = array[3].to_i
 							data[block]["alns"][alninfo] = 1
 							q_start, q_end, s_start, s_end = array[6], array[7], array[8], array[9]
 						end
 					end
+				}
 			}
 		}
 	}
