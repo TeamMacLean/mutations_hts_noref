@@ -9,78 +9,103 @@ file.each do |entry|
 	genes[entry.entry_id] = entry.length
 end
 
-blast = Hash.new {|h,k| h[k] = Hash.new {|h,k| h[k] ={} } }
+blast = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) } ## vivified hash
 lines = File.read(ARGV[1])
 results = lines.split("\n")
 results.each do |string|
 	if string !~ /^#/
 		alninfo = string.split("\t")
 		if alninfo[2].to_f > 90.0 # % identity selection
-			blast[alninfo[0]][alninfo[1]][alninfo[2].to_f][alninfo[3].to_i][string] = 1
-			#	  qurey id	  subject id  percent			length			blast-data
+			if alninfo[9].to_i > alninfo[8].to_i
+				blast[alninfo[0]][alninfo[1]]["plus"][alninfo[8].to_i][alninfo[6].to_i] = string
+				#	  qurey id	  subject id  strand	subject start	query start		  blast-data
+			else
+				blast[alninfo[0]][alninfo[1]]["minus"][alninfo[8].to_i][alninfo[6].to_i] = string
+				#	  qurey id	  subject id  strand	subject start	query start		  blast-data
+			end
 		end
 	end
 end
 
-def return_aln_parameters_query (blasth, genesh)
-	data = Hash.new {|h,k| h[k] = {} }
+def return_aln_parameters_query (blasth)
+	data = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) } ## vivified hash
 	blasth.each_key { |s_id|		# subject id keys
 		q_start, q_end, s_start, s_end = 0, 0, 0, 0
-		blasth[s_id].keys.sort.reverse.each { |percent|		# percent identity keys sorted and reverse
-			blasth[s_id][percent].keys.sort.reverse.each { |len|		# aln length keys sorted and reverse
-				blasth[s_id][percent][len].each_key { |info|		# alignment strings as keys
-					array = info.split("\t")
-					if q_start= 0 and q_end= 0 and s_start= 0 and s_end = 0
-
-						q_start, q_end, s_start, s_end = array[6], array[7], array[8], array[9]
-									if data[a].key?("alnlength") == true
-										data[a]["alnlength"] = array[3].to_i + data[a]["alnlength"]
-									else
-										data[a]["alnlength"] = array[3].to_i
-									end
-									if data[a].key?("mismatch") == true
-										data[a]["mismatch"] = array[4].to_i + data[a]["mismatch"]
-									else
-										data[a]["mismatch"] = array[4].to_i
-									end
+		number = 1
+		blasth[s_id]["plus"].keys.sort.each { |sub_start|		# subject aln start keys sorted
+			blasth[s_id]["plus"][sub_start].keys.sort.each { |que_start|		# query aln start keys sorted
+				alninfo = blasth[s_id]["plus"][sub_start][que_start]
+				array = alninfo.split("\t")
+				if q_start == 0 and q_end == 0 and s_start == 0 and s_end == 0
+					block = [s_id, "plus", number].join("_")
+					data[block]["alnlength"] = array[3].to_i
+					data[block]["alns"][alninfo] = 1
+					q_start, q_end, s_start, s_end = array[6], array[7], array[8], array[9]
+				else
+					sub_diff = array[8] - s_end
+					que_diff = array[6] - q_end
+					if sub_diff <  que_diff + 5000
+						block = [s_id, "plus", number].join("_")
+						data[block]["alnlength"] += array[3].to_i
+						data[block]["alns"][alninfo] = 1
 					else
-
-									if data[a].key?("alnlength") == true
-										data[a]["alnlength"] = array[3].to_i + data[a]["alnlength"]
-									else
-										data[a]["alnlength"] = array[3].to_i
-									end
-									if data[a].key?("mismatch") == true
-										data[a]["mismatch"] = array[4].to_i + data[a]["mismatch"]
-									else
-										data[a]["mismatch"] = array[4].to_i
-									end
-									if data[a].key?("gap") == true
-										data[a]["gap"] = array[5].to_i + data[a]["gap"]
-									else
-										data[a]["gap"] = array[5].to_i
-									end
-				}
+						number += 1
+						block = [s_id, "plus", number].join("_")
+						data[block]["alnlength"] = array[3].to_i
+						data[block]["alns"][alninfo] = 1
+						q_start, q_end, s_start, s_end = array[6], array[7], array[8], array[9]
+					end
+				end
+			}
+		}
+		q_start, q_end, s_start, s_end = 0, 0, 0, 0
+		number = 1
+		blasth[s_id]["minus"].keys.sort.each { |sub_start|		# subject aln start keys sorted
+			blasth[s_id]["minus"][sub_start].keys.sort.each { |que_start|		# query aln start keys sorted
+				alninfo = blasth[s_id]["minus"][sub_start][que_start]
+				array = alninfo.split("\t")
+					if q_start == 0 and q_end == 0 and s_start == 0 and s_end == 0
+						block = [s_id, "minus", number].join("_")
+						data[block]["alnlength"] = array[3].to_i
+						data[block]["alns"][alninfo] = 1
+						q_start, q_end, s_start, s_end = array[6], array[7], array[8], array[9]
+					else
+						sub_diff = array[8] - s_end
+						que_diff = array[6] - q_end
+						if sub_diff <  que_diff + 5000
+							block = [s_id, "minus", number].join("_")
+							data[block]["alnlength"] += array[3].to_i
+							data[block]["alns"][alninfo] = 1
+						else
+							number += 1
+							block = [s_id, "minus", number].join("_")
+							data[block]["alnlength"] = array[3].to_i
+							data[block]["alns"][alninfo] = 1
+							q_start, q_end, s_start, s_end = array[6], array[7], array[8], array[9]
+						end
+					end
 			}
 		}
 	}
-	data
+	return data
 end
 
 def return_best_contig_aln (hash2)
 	contigid = ""
-	hash2.each { |key, value|
+	goodhits = 0
+	hash2.each_key { |key|
 		if contigid =~ /\w/
-			if hash2[key]["alnlength"] > hash2[contigid]["alnlength"] && hash2[key]["mismatch"] < hash2[contigid]["mismatch"] && hash2[key]["gap"] < hash2[contigid]["gap"]
+			if hash2[key]["alnlength"] > hash2[contigid]["alnlength"]
 				contigid = key
-			elsif hash2[key]["alnlength"] == hash2[contigid]["alnlength"] && hash2[key]["mismatch"] == hash2[contigid]["mismatch"] && hash2[key]["gap"] == hash2[contigid]["gap"]
-				contigid = ""
+				goodhits = 1
+			elsif hash2[key]["alnlength"] == hash2[contigid]["alnlength"]
+				goodhits += 1
 			end
 		else
 			contigid = key
 		end
 	}
-	contigid
+	return contigid, goodhits
 end
 
 
@@ -88,28 +113,26 @@ end
 gff = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) } ## vivified hash
 
 blast.each { |k1,v1|
-
   data2 = return_aln_parameters_query(blast[k1])
-  subjectid = return_best_contig_aln(data2)
-
-  if subjectid =~ /\w/
+  subjectid, numgood = return_best_contig_aln(data2)
+  if subjectid =~ /\w/ and numgood == 1
 	genelen_cov = (100* data2[subjectid]["alnlength"].to_i)/genes[k1].to_i
-	mismatch_cov = (100* data2[subjectid]["mismatch"].to_i)/genes[k1].to_i
+	#mismatch_cov = (100* data2[subjectid]["mismatch"].to_i)/genes[k1].to_i
 	if genelen_cov >= 80 and mismatch_cov <=10
 		limits = Hash.new {|h,k| h[k] = {} }
 		contignum = ""
 		if subjectid =~ /\_(\d+)$/
 			contignum = $1.chomp.to_i
-#			puts contignum
+		#	puts contignum
 		end
 
 		blast[k1][subjectid].each { |key2, value2|
 			array2 = key2.split("\t")
 			aln_end = array2[9].to_i
 			aln_start = array2[8].to_i
-#			puts "#{k1}\t#{aln_end}\t#{aln_start}\n"
+			# puts "#{k1}\t#{aln_end}\t#{aln_start}\n"
 			if aln_end < aln_start
-#				outfile.puts "#{subjectid}\tTRINITY\texon\t#{aln_end}\t#{aln_start}\t.\t-\t.\tParent=#{k1};Target=#{k1} #{array2[6].to_i} #{array2[7].to_i}\n"
+				# outfile.puts "#{subjectid}\tTRINITY\texon\t#{aln_end}\t#{aln_start}\t.\t-\t.\tParent=#{k1};Target=#{k1} #{array2[6].to_i} #{array2[7].to_i}\n"
 				info = "#{subjectid}\tTRINITY\texon\t#{aln_end}\t#{aln_start}\t.\t-\t.\tParent=#{k1};Target=#{k1} #{array2[7].to_i} #{array2[6].to_i};Genelength=#{genes[k1]}".to_s
 				gff[contignum][subjectid][aln_end][k1][:exon][info] = 1
 				limits[:strand] = "-"
@@ -128,7 +151,7 @@ blast.each { |k1,v1|
 					limits[:stop] = aln_start
 				end
 			elsif aln_end > aln_start
-#				outfile.puts "#{subjectid}\tTRINITY\texon\t#{aln_start}\t#{aln_end}\t.\t+\t.\tParent=#{k1};Target=#{k1} #{array2[6].to_i} #{array2[7].to_i}\n"
+				# outfile.puts "#{subjectid}\tTRINITY\texon\t#{aln_start}\t#{aln_end}\t.\t+\t.\tParent=#{k1};Target=#{k1} #{array2[6].to_i} #{array2[7].to_i}\n"
 				info = "#{subjectid}\tTRINITY\texon\t#{aln_start}\t#{aln_end}\t.\t+\t.\tParent=#{k1};Target=#{k1} #{array2[6].to_i} #{array2[7].to_i};Genelength=#{genes[k1]}".to_s
 				gff[contignum][subjectid][aln_start][k1][:exon][info] = 1
 				limits[:strand] = "+"
@@ -149,7 +172,7 @@ blast.each { |k1,v1|
 			end
 		}
 
-#		outfile.puts "#{subjectid}\tTRINITY\tmRNA\t#{limits[:start]}\t#{limits[:stop]}\t.\t#{limits[:strand]}\t.\tID=#{k1}\n"
+		# outfile.puts "#{subjectid}\tTRINITY\tmRNA\t#{limits[:start]}\t#{limits[:stop]}\t.\t#{limits[:strand]}\t.\tID=#{k1}\n"
 		info = "#{subjectid}\tTRINITY\tmRNA\t#{limits[:start]}\t#{limits[:stop]}\t.\t#{limits[:strand]}\t.\tID=#{k1};Parent=#{k1}".to_s
 		gff[contignum][subjectid][limits[:start]][k1][:mRNA][info] = 1
 		info2 = "#{subjectid}\tTRINITY\tgene\t#{limits[:start]}\t#{limits[:stop]}\t.\t#{limits[:strand]}\t.\tID=#{k1}".to_s
@@ -186,7 +209,7 @@ gff.sort.map do |num, v1|
 		  reverse.each { |feature, v5|
 			reverse[feature].each { |key, v6|
 				printfile.puts "#{key}"
-				counter = counter -1
+				counter -= 1
 			}
 		  }
 	  	end
