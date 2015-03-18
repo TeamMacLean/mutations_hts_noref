@@ -30,7 +30,7 @@ end
 
 def return_best_contig_aln (hash2)
 	contigid = ""
-	hash2.each { |key, value|
+	hash2.each_key { |key|
 		if contigid =~ /\w/
 			if hash2[key]["alnlength"] > hash2[contigid]["alnlength"] && hash2[key]["mismatch"] < hash2[contigid]["mismatch"] && hash2[key]["gap"] < hash2[contigid]["gap"]
 				contigid = key
@@ -58,41 +58,22 @@ results = lines.split("\n")
 results.each do |string|
   if string !~ /^#/
 	blastdata = string.split("\t")
-#=begin
-	if blastdata[2].to_f > 98.0 and blastdata[3].to_i > 200
-		blast[blastdata[0]][blastdata[1]][string] = 1
+	#if blastdata[2].to_f > 98.0 and blastdata[11].to_f > 500.0
+	#if blastdata[2].to_f > 96.0 and blastdata[10].to_f == 0.0 and blastdata[3].to_f > 100.0
+	if blastdata[2].to_f > 96.0 and blastdata[10].to_f == 0.0
+		if blastdata[9].to_i > blastdata[8].to_i
+			q_id = [blastdata[1],"+"].join("_")
+			blast[blastdata[0]][q_id][string] = 1
+		else
+			q_id = [blastdata[1],"-"].join("_")
+			blast[blastdata[0]][q_id][string] = 1
+		end
 	end
   end
-#=end
-
-=begin
-
-	blast[blastdata[0]][blastdata[1]][string] = 1
-#			qurey id	subject id	  blast-data
-  end
-
-  geneid = ""
-	# => # Query: comp100013_c0_seq1 len=202 path=[180:0-201]
-  if string =~ /^#\sQuery:\s(\w+)\slen=/
-	geneid = $1
-	if string =~ /^#\sQuery:\s\w+\slen=(\d*)\s/
-		genes[geneid] = $1
-	end
-
-	# => # Query: comp12918_c0_seq1 FPKM_all:2.679_FPKM_rel:2.679 len:364 path:[0]
-  elsif string =~ /^#\sQuery:\s(\w+)\sFPKM\_all:/
-	geneid = $1
-	if string =~ /^#\sQuery:\s\w+\s\S+\slen:(\d*)\s/
-		genes[geneid] = $1
-	end
-  end
-=end
 end
 
-#gff = Hash.new {|h,k| h[k] = Hash.new {|h,k| h[k] = Hash.new {|h,k| h[k] ={} } } }
 gff = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) } ## vivified hash
-
-blast.each { |k1,v1|
+blast.each_key { |k1|
 
   data2 = return_aln_parameters_query(blast[k1])
   subjectid = return_best_contig_aln(data2)
@@ -100,10 +81,11 @@ blast.each { |k1,v1|
   if subjectid =~ /\w/
 	genelen_cov = (100* data2[subjectid]["alnlength"].to_i)/genes[k1].to_i
 	mismatch_cov = (100* data2[subjectid]["mismatch"].to_i)/genes[k1].to_i
-	if genelen_cov >= 80 and mismatch_cov <=10
+	#if genelen_cov >= 40 and mismatch_cov <=10
 		limits = Hash.new {|h,k| h[k] = {} }
+		s_id = subjectid.sub(/\_[+-]$/, '')
 		contignum = ""
-		if subjectid =~ /\_(\d+)$/
+		if s_id =~ /\_(\d+)$/
 			contignum = $1.chomp.to_i
 #			puts contignum
 		end
@@ -157,9 +139,9 @@ blast.each { |k1,v1|
 #		outfile.puts "#{subjectid}\tTRINITY\tmRNA\t#{limits[:start]}\t#{limits[:stop]}\t.\t#{limits[:strand]}\t.\tID=#{k1}\n"
 #		info = "#{subjectid}\tTRINITY\tmRNA\t#{limits[:start]}\t#{limits[:stop]}\t.\t#{limits[:strand]}\t.\tID=#{k1};Parent=#{k1}".to_s
 #		gff[contignum][subjectid][limits[:start]][k1][:mRNA][info] = 1
-		info2 = "#{subjectid}\tblastn\tgene\t#{limits[:start]}\t#{limits[:stop]}\t.\t#{limits[:strand]}\t.\tID=#{k1}\t#{genes[k1]}".to_s
-		gff[contignum][subjectid][limits[:start]][k1][:gene][info2] = 1
-	end
+		info2 = "#{s_id}\tblastn\tgene\t#{limits[:start]}\t#{limits[:stop]}\t.\t#{limits[:strand]}\t.\tID=#{k1}\t#{genes[k1]}".to_s
+		gff[contignum][s_id][limits[:start]][k1][:gene][info2] = 1
+	#end
 
   end
 }
@@ -178,7 +160,7 @@ printfile = open_new_file_to_write(number)
 puts printfile
 counter = 500050
 gff.sort.map do |num, v1|
- gff[num].each { |id, v2|
+ gff[num].each_key { |id|
 	if counter < 50
 	  	number = number + 1
 		printfile = open_new_file_to_write(number)
