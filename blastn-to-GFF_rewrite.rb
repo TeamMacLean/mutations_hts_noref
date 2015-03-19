@@ -15,7 +15,7 @@ results = lines.split("\n")
 results.each do |string|
 	if string !~ /^#/
 		alninfo = string.split("\t")
-		if alninfo[2].to_f > 90.0 # % identity selection
+		if alninfo[2].to_f > 95.0 and alninfo[3].to_i >= 100 and alninfo[11].to_f >= 500.0 # % identity selection
 			if alninfo[9].to_i > alninfo[8].to_i
 				blast[alninfo[0]][alninfo[1]]["plus"][alninfo[8].to_i][alninfo[6].to_i] = string
 				#	  qurey id	  subject id  strand	subject start	query start		  blast-data
@@ -33,35 +33,39 @@ def return_aln_parameters_query (blasth)
 		blasth[s_id].each_key { |strand|		# subject aln start keys sorted
 			q_start, q_end, s_start, s_end = 0, 0, 0, 0
 			number = 1
+			block = ''
 			blasth[s_id][strand].keys.sort.each { |sub_start|		# subject aln start keys sorted
 				blasth[s_id][strand][sub_start].keys.sort.each { |que_start|		# query aln start keys sorted
 					alninfo = blasth[s_id][strand][sub_start][que_start]
+					warn "#{s_id}\t#{strand}\t#{sub_start}\t#{que_start}\t#{alninfo}\n"
 					array = alninfo.split("\t")
-					block = ''
 					if q_start == 0 and q_end == 0 and s_start == 0 and s_end == 0
 						block = [s_id, strand, number].join("_")
 						data[block]["alnlength"] = array[3].to_i
 						data[block]["alns"][alninfo] = 1
-						q_start, q_end, s_start, s_end = array[6], array[7], array[8], array[9]
+						q_start, q_end, s_start, s_end = array[6].to_i, array[7].to_i, array[8].to_i, array[9].to_i
 					else
 						sub_diff = 0
 						que_diff = 0
 						if strand == "plus"
-							sub_diff = array[8] - s_end
-							que_diff = array[6] - q_end
+							sub_diff = array[8].to_i - s_end
+							que_diff = array[6].to_i - q_end
 						else
-							sub_diff = array[9] - s_start
-							que_diff = q_start - array[7]
+							sub_diff = array[9].to_i - s_start
+							que_diff = q_start - array[7].to_i
 						end
-						if sub_diff <  que_diff + 5000
-								data[block]["alnlength"] += array[3].to_i
-								data[block]["alns"][alninfo] = 1
+						if sub_diff <  (que_diff + 5000)
+							warn "#{sub_diff}\t#{que_diff}\n"
+							data[block]["alnlength"] += array[3].to_i
+							data[block]["alns"][alninfo] = 1
+							q_start, q_end, s_start, s_end = array[6].to_i, array[7].to_i, array[8].to_i, array[9].to_i
 						else
+							warn "#{sub_diff}\t#{que_diff}\t#{s_id}\t#{strand}\t#{number}\t#{data[block]["alnlength"]}\t#{data[block]["alns"].length}\n"
 							number += 1
 							block = [s_id, strand, number].join("_")
 							data[block]["alnlength"] = array[3].to_i
 							data[block]["alns"][alninfo] = 1
-							q_start, q_end, s_start, s_end = array[6], array[7], array[8], array[9]
+							q_start, q_end, s_start, s_end = array[6].to_i, array[7].to_i, array[8].to_i, array[9].to_i
 						end
 					end
 				}
@@ -84,6 +88,7 @@ def return_best_contig_aln (hash2)
 			end
 		else
 			contigid = key
+			goodhits = 1
 		end
 	}
 	return contigid, goodhits
@@ -95,22 +100,23 @@ gff = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
 blast.each { |k1,v1|
 	data2 = return_aln_parameters_query(blast[k1])
 	subjectid, numgood = return_best_contig_aln(data2)
+	warn "#{subjectid}\t#{numgood}\n"
 	contignum = 1
 	if subjectid =~ /\w/ and numgood == 1
-	  genelen_cov = (100* data2[subjectid]["alnlength"].to_i)/genes[k1].to_i
+	  # genelen_cov = (100* data2[subjectid]["alnlength"].to_i)/genes[k1].to_i
 	  # mismatch_cov = (100* data2[subjectid]["mismatch"].to_i)/genes[k1].to_i
 	  # if genelen_cov >= 80 and mismatch_cov <=10
 
 		limits = Hash.new {|h,k| h[k] = {} }
-		blast[k1][subjectid].each { |key2, value2|
+		data2[subjectid]["alns"].each_key { |key2|
 			array2 = key2.split("\t")
 			aln_end = array2[9].to_i
 			aln_start = array2[8].to_i
 			# puts "#{k1}\t#{aln_end}\t#{aln_start}\n"
 			if aln_end < aln_start
 				# outfile.puts "#{subjectid}\tTRINITY\texon\t#{aln_end}\t#{aln_start}\t.\t-\t.\tParent=#{k1};Target=#{k1} #{array2[6].to_i} #{array2[7].to_i}\n"
-				info = "#{subjectid}\tTRINITY\texon\t#{aln_end}\t#{aln_start}\t.\t-\t.\tParent=#{k1};Target=#{k1} #{array2[7].to_i} #{array2[6].to_i};Genelength=#{genes[k1]}".to_s
-				gff[contignum][subjectid][aln_end][k1][:exon][info] = 1
+				# info = "#{subjectid}\tTRINITY\texon\t#{aln_end}\t#{aln_start}\t.\t-\t.\tParent=#{k1};Target=#{k1} #{array2[7].to_i} #{array2[6].to_i};Genelength=#{genes[k1]}".to_s
+				# gff[contignum][subjectid][aln_end][k1][:exon][info] = 1
 				limits[:strand] = "-"
 				if limits.key?(:start) == true
 					if limits[:start] > aln_end
@@ -128,8 +134,8 @@ blast.each { |k1,v1|
 				end
 			elsif aln_end > aln_start
 				# outfile.puts "#{subjectid}\tTRINITY\texon\t#{aln_start}\t#{aln_end}\t.\t+\t.\tParent=#{k1};Target=#{k1} #{array2[6].to_i} #{array2[7].to_i}\n"
-				info = "#{subjectid}\tTRINITY\texon\t#{aln_start}\t#{aln_end}\t.\t+\t.\tParent=#{k1};Target=#{k1} #{array2[6].to_i} #{array2[7].to_i};Genelength=#{genes[k1]}".to_s
-				gff[contignum][subjectid][aln_start][k1][:exon][info] = 1
+				# info = "#{subjectid}\tTRINITY\texon\t#{aln_start}\t#{aln_end}\t.\t+\t.\tParent=#{k1};Target=#{k1} #{array2[6].to_i} #{array2[7].to_i};Genelength=#{genes[k1]}".to_s
+				# gff[contignum][subjectid][aln_start][k1][:exon][info] = 1
 				limits[:strand] = "+"
 				if limits.key?(:start) == true
 					if limits[:start] > aln_start
@@ -149,9 +155,9 @@ blast.each { |k1,v1|
 		}
 
 		# outfile.puts "#{subjectid}\tTRINITY\tmRNA\t#{limits[:start]}\t#{limits[:stop]}\t.\t#{limits[:strand]}\t.\tID=#{k1}\n"
-		info = "#{subjectid}\tTRINITY\tmRNA\t#{limits[:start]}\t#{limits[:stop]}\t.\t#{limits[:strand]}\t.\tID=#{k1};Parent=#{k1}".to_s
-		gff[contignum][subjectid][limits[:start]][k1][:mRNA][info] = 1
-		info2 = "#{subjectid}\tTRINITY\tgene\t#{limits[:start]}\t#{limits[:stop]}\t.\t#{limits[:strand]}\t.\tID=#{k1}".to_s
+		# info = "#{subjectid}\tTRINITY\tmRNA\t#{limits[:start]}\t#{limits[:stop]}\t.\t#{limits[:strand]}\t.\tID=#{k1};Parent=#{k1}".to_s
+		# gff[contignum][subjectid][limits[:start]][k1][:mRNA][info] = 1
+		info2 = "#{subjectid}\tTRINITY\tgene\t#{limits[:start]}\t#{limits[:stop]}\t.\t#{limits[:strand]}\t.\tID=#{k1}\t#{genes[k1]}".to_s
 		gff[contignum][subjectid][limits[:start]][k1][:gene][info2] = 1
 	  #end
 	  contignum += 1
