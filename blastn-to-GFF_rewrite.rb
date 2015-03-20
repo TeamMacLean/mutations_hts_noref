@@ -53,7 +53,6 @@ def sort_alignment_blocks (blasth)
 						if param1.between?(-4000, 4000) and param2.between?(-500, 4000)
 							data[block]["alnlength"] += array[3].to_i
 							data[block]["alns"][alninfo] = 1
-							previous_array = array
 						else
 							if number > 1
 								assigned = 0
@@ -62,12 +61,12 @@ def sort_alignment_blocks (blasth)
 									temphash = data[newid]["alns"]
 									alninfo_2 = temphash.keys[temphash.length - 1].split("\t")
 									param_n1, param_n2 = compare_blastn_params(array, alninfo_2)
-									if param_n1.between?(-3000, 3000) and param_n2.between?(-2000, 2000)
+
+									if param_n1.between?(-4000, 4000) and param_n2.between?(-500, 4000)
 										block = newid
 										warn "I am here\t#{param_n1}\t#{param_n2}\t#{block}\n"
-										data[newid]["alnlength"] += array[3].to_i
-										data[newid]["alns"][alninfo] = 1
-										previous_array = array
+										data[block]["alnlength"] += array[3].to_i
+										data[block]["alns"][alninfo] = 1
 										assigned = 1
 										warn "#{param_n1}\t#{param_n2}\t#{s_id}\t#{strand}\t#{i}\t#{data[block]["alnlength"]}\t#{data[block]["alns"].length}\n"
 									end
@@ -78,7 +77,6 @@ def sort_alignment_blocks (blasth)
 									block = [s_id, strand, number].join("_")
 									data[block]["alnlength"] = array[3].to_i
 									data[block]["alns"][alninfo] = 1
-									previous_array = array
 									warn "#{param_n1}\t#{param_n2}\t#{s_id}\t#{strand}\t#{number}\t#{data[block]["alnlength"]}\t#{data[block]["alns"].length}\n"
 								end
 							else
@@ -86,10 +84,10 @@ def sort_alignment_blocks (blasth)
 								block = [s_id, strand, number].join("_")
 								data[block]["alnlength"] = array[3].to_i
 								data[block]["alns"][alninfo] = 1
-								previous_array = array
 								warn "#{param_n1}\t#{param_n2}\t#{s_id}\t#{strand}\t#{number}\t#{data[block]["alnlength"]}\t#{data[block]["alns"].length}\n"
 							end
 						end
+						previous_array = array
 					end
 				}
 			}
@@ -119,11 +117,11 @@ end
 
 # New file is opened to write the gff info
 def open_new_file_to_write (number)
-outfile = ""
+	outfile = ""
 	outfile = File.new("Blastn_to_gff3-#{number}.gff", "w")
 	outfile.puts "##gff-version 3"
 	outfile.puts "##mRNA row have 'Genelength' attribute presenting length of RNA-seq contig and exon rows have 'Target' attibute depicting start and stop mRNA match part"
-outfile
+	outfile
 end
 
 
