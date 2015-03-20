@@ -4,16 +4,22 @@
 require 'bio'
 
 def compare_between_query_distance (current, last_entry, strand)
-	subject_diff, query_diff = 0, 0
+	parameter1, parameter2 = 0, 0
+	subject_diff, query_diff, query_ends = 0, 0, 0
 	if strand == "plus"
 		subject_diff = current[8].to_i - last_entry[9].to_i
 		query_diff = current[6].to_i - last_entry[7].to_i
+		query_ends = current[7].to_i - last_entry[7].to_i
 	else
 		subject_diff = current[9].to_i - last_entry[8].to_i
 		query_diff = last_entry[6].to_i - current[7].to_i
+		query_ends = last_entry[7].to_i - current[7].to_i
 	end
-	warn "#{subject_diff}\t#{query_diff}\n"
-	return subject_diff, query_diff
+	parameter1 = query_diff - subject_diff
+	subject_ends = current[9].to_i - last_entry[9].to_i
+	parameter2 = subject_ends - query_ends
+	warn "#{subject_diff}\t#{query_diff}\t#{subject_ends}\t#{query_ends}\n"
+	return parameter1, parameter2
 end
 
 def return_aln_parameters_query (blasth)
@@ -36,10 +42,9 @@ def return_aln_parameters_query (blasth)
 						previous_array = array
 
 					else
-						sub_diff, que_diff = compare_between_query_distance(array, previous_array, strand)
+						param1, param2 = compare_between_query_distance(array, previous_array, strand)
 
-						if (que_diff - sub_diff  < 3000) and (que_diff - sub_diff  > -3000)
-							warn "#{sub_diff}\t#{que_diff}\n"
+						if param1.between?(-4000, 4000) and param2.between?(-500, 4000)
 							data[block]["alnlength"] += array[3].to_i
 							data[block]["alns"][alninfo] = 1
 							previous_array = array
@@ -50,15 +55,15 @@ def return_aln_parameters_query (blasth)
 									newid = [s_id, strand, i].join("_")
 									temphash = data[newid]["alns"]
 									alninfo_2 = temphash.keys[temphash.length - 1].split("\t")
-									sub_diff2, que_diff2 = compare_between_query_distance(array, alninfo_2, strand)
-									if (que_diff2 - sub_diff2  < 3000) and (que_diff2 - sub_diff2  > -3000)
+									param_n1, param_n2 = compare_between_query_distance(array, alninfo_2, strand)
+									if param_n1.between?(-3000, 3000) and param_n2.between?(-2000, 2000)
 										block = newid
-										warn "I am here\t#{sub_diff2}\t#{que_diff2}\t#{block}\n"
+										warn "I am here\t#{param_n1}\t#{param_n2}\t#{block}\n"
 										data[newid]["alnlength"] += array[3].to_i
 										data[newid]["alns"][alninfo] = 1
 										previous_array = array
 										assigned = 1
-										warn "#{sub_diff2}\t#{que_diff2}\t#{s_id}\t#{strand}\t#{i}\t#{data[block]["alnlength"]}\t#{data[block]["alns"].length}\n"
+										warn "#{param_n1}\t#{param_n2}\t#{s_id}\t#{strand}\t#{i}\t#{data[block]["alnlength"]}\t#{data[block]["alns"].length}\n"
 									end
 									break if assigned == 1
 								end
@@ -68,7 +73,7 @@ def return_aln_parameters_query (blasth)
 									data[block]["alnlength"] = array[3].to_i
 									data[block]["alns"][alninfo] = 1
 									previous_array = array
-									warn "#{sub_diff}\t#{que_diff}\t#{s_id}\t#{strand}\t#{number}\t#{data[block]["alnlength"]}\t#{data[block]["alns"].length}\n"
+									warn "#{param_n1}\t#{param_n2}\t#{s_id}\t#{strand}\t#{number}\t#{data[block]["alnlength"]}\t#{data[block]["alns"].length}\n"
 								end
 							else
 								number += 1
@@ -76,7 +81,7 @@ def return_aln_parameters_query (blasth)
 								data[block]["alnlength"] = array[3].to_i
 								data[block]["alns"][alninfo] = 1
 								previous_array = array
-								warn "#{sub_diff}\t#{que_diff}\t#{s_id}\t#{strand}\t#{number}\t#{data[block]["alnlength"]}\t#{data[block]["alns"].length}\n"
+								warn "#{param_n1}\t#{param_n2}\t#{s_id}\t#{strand}\t#{number}\t#{data[block]["alnlength"]}\t#{data[block]["alns"].length}\n"
 							end
 						end
 					end

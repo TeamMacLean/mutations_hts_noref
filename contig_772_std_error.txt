@@ -1,0 +1,69 @@
+Hymenoscyphus_fraxineus_v2_scaffold_18	plus	870611	109	Cf746836_TGAC_s1v1_scaffold_772	Hymenoscyphus_fraxineus_v2_scaffold_18	100.00	9648	0	0	109	9756	870611	880258	0.0	1.782e+04
+Hymenoscyphus_fraxineus_v2_scaffold_18	plus	880260	9894	Cf746836_TGAC_s1v1_scaffold_772	Hymenoscyphus_fraxineus_v2_scaffold_18	100.00	5158	0	0	9894	15051	880260	885417	0.0	9526
+2	138	5159	5295
+Hymenoscyphus_fraxineus_v2_scaffold_18	plus	885419	15103	Cf746836_TGAC_s1v1_scaffold_772	Hymenoscyphus_fraxineus_v2_scaffold_18	99.90	76955	33	31	15103	92056	885419	962330	0.0	1.417e+05
+2	52	76913	77005
+Hymenoscyphus_fraxineus_v2_scaffold_18	plus	962328	92150	Cf746836_TGAC_s1v1_scaffold_772	Hymenoscyphus_fraxineus_v2_scaffold_18	100.00	25030	0	0	92150	117179	962328	987357	0.0	4.622e+04
+-2	94	25027	25123
+Hymenoscyphus_fraxineus_v2_scaffold_18	plus	987359	117234	Cf746836_TGAC_s1v1_scaffold_772	Hymenoscyphus_fraxineus_v2_scaffold_18	99.59	5884	19	2	117234	123117	987359	993237	0.0	1.076e+04
+2	55	5880	5938
+Hymenoscyphus_fraxineus_v2_scaffold_18	plus	988296	125131	Cf746836_TGAC_s1v1_scaffold_772	Hymenoscyphus_fraxineus_v2_scaffold_18	96.55	319	11	0	125131	125449	988296	988614	6e-147	 529
+-4941	2014	-4623	2332
+		Hymenoscyphus_fraxineus_v2_scaffold_18	plus	2	319	1
+Hymenoscyphus_fraxineus_v2_scaffold_18	plus	993280	123152	Cf746836_TGAC_s1v1_scaffold_772	Hymenoscyphus_fraxineus_v2_scaffold_18	98.51	2618	5	16	123152	125769	993280	995863	0.0	4591
+4666	-2297	7249	320
+43	35	2626	2652
+I am here	-8	-26	Hymenoscyphus_fraxineus_v2_scaffold_18_plus_1
+-8	-26	Hymenoscyphus_fraxineus_v2_scaffold_18	plus	1	125293	6
+Hymenoscyphus_fraxineus_v2_scaffold_18	plus	995865	125822	Cf746836_TGAC_s1v1_scaffold_772	Hymenoscyphus_fraxineus_v2_scaffold_18	100.00	12646	0	0	125822	138467	995865	1008510	0.0	2.335e+04
+2	53	12647	12698
+Hymenoscyphus_fraxineus_v2_scaffold_18	plus	1008553	138568	Cf746836_TGAC_s1v1_scaffold_772	Hymenoscyphus_fraxineus_v2_scaffold_18	100.00	1793	0	0	138568	140360	1008553	1010345	0.0	3312
+43	101	1835	1893
+Hymenoscyphus_fraxineus_v2_scaffold_18	plus	1010621	140395	Cf746836_TGAC_s1v1_scaffold_772	Hymenoscyphus_fraxineus_v2_scaffold_18	100.00	3580	0	0	140395	143974	1010621	1014200	0.0	6612
+276	35	3855	3614
+Hymenoscyphus_fraxineus_v2_scaffold_18	plus	1015270	144013	Cf746836_TGAC_s1v1_scaffold_772	Hymenoscyphus_fraxineus_v2_scaffold_18	100.00	1501	0	0	144013	145513	1015270	1016770	0.0	2772
+1070	39	2570	1539
+Hymenoscyphus_fraxineus_v2_scaffold_18	plus	1017105	145535	Cf746836_TGAC_s1v1_scaffold_772	Hymenoscyphus_fraxineus_v2_scaffold_18	99.25	8804	9	30	145535	154338	1017105	1025851	0.0	1.584e+04
+335	22	9081	8825
+Hymenoscyphus_fraxineus_v2_scaffold_18	plus	1025853	154444	Cf746836_TGAC_s1v1_scaffold_772	Hymenoscyphus_fraxineus_v2_scaffold_18	99.90	1003	0	1	154444	155445	1025853	1026855	0.0	1845
+2	106	1004	1107
+Hymenoscyphus_fraxineus_v2_scaffold_18	plus	1026852	155482	Cf746836_TGAC_s1v1_scaffold_772	Hymenoscyphus_fraxineus_v2_scaffold_18	100.00	1702	0	0	155482	157183	1026852	1028553	0.0	3144
+-3	37	1698	1738
+Hymenoscyphus_fraxineus_v2_scaffold_18	plus	1028925	157484	Cf746836_TGAC_s1v1_scaffold_772	Hymenoscyphus_fraxineus_v2_scaffold_18	99.65	2593	1	3	157484	160076	1028925	1031509	0.0	4734
+372	301	2956	2893
+Hymenoscyphus_fraxineus_v2_scaffold_18	plus	1031511	160142	Cf746836_TGAC_s1v1_scaffold_772	Hymenoscyphus_fraxineus_v2_scaffold_18	100.00	652	0	0	160142	160793	1031511	1032162	0.0	1205
+2	66	653	717
+Hymenoscyphus_fraxineus_v2_scaffold_18	plus	1032217	160844	Cf746836_TGAC_s1v1_scaffold_772	Hymenoscyphus_fraxineus_v2_scaffold_18	100.00	2246	0	0	160844	163089	1032217	1034462	0.0	4148
+55	51	2300	2296
+Hymenoscyphus_fraxineus_v2_scaffold_18	plus	1035037	163633	Cf746836_TGAC_s1v1_scaffold_772	Hymenoscyphus_fraxineus_v2_scaffold_18	100.00	352	0	0	163633	163984	1035037	1035388	0.0	 651
+575	544	926	895
+Hymenoscyphus_fraxineus_v2_scaffold_18	plus	1035680	164497	Cf746836_TGAC_s1v1_scaffold_772	Hymenoscyphus_fraxineus_v2_scaffold_18	99.44	3243	1	2	164497	167739	1035680	1038905	0.0	5875
+292	513	3517	3755
+Hymenoscyphus_fraxineus_v2_scaffold_18	plus	1041941	168149	Cf746836_TGAC_s1v1_scaffold_772	Hymenoscyphus_fraxineus_v2_scaffold_18	99.71	1033	1	2	168149	169179	1041941	1042973	0.0	1890
+3036	410	4068	1440
+Hymenoscyphus_fraxineus_v2_scaffold_18	plus	1042964	169242	Cf746836_TGAC_s1v1_scaffold_772	Hymenoscyphus_fraxineus_v2_scaffold_18	99.81	16018	2	8	169242	185259	1042964	1058953	0.0	2.939e+04
+-9	63	15980	16080
+Hymenoscyphus_fraxineus_v2_scaffold_9	plus	687674	18704	Cf746836_TGAC_s1v1_scaffold_772	Hymenoscyphus_fraxineus_v2_scaffold_9	96.72	335	8	2	18704	19035	687674	688008	9e-155	 555
+Hymenoscyphus_fraxineus_v2_scaffold_9	minus	1021705	125129	Cf746836_TGAC_s1v1_scaffold_772	Hymenoscyphus_fraxineus_v2_scaffold_9	96.58	322	10	1	125129	125449	1021705	1021384	4e-148	 532
+Hymenoscyphus_fraxineus_v2_scaffold_9	minus	1887852	157373	Cf746836_TGAC_s1v1_scaffold_772	Hymenoscyphus_fraxineus_v2_scaffold_9	95.68	324	14	0	157373	157696	1887852	1887529	9e-145	 521
+865824	-32567	866145	-32247
+		Hymenoscyphus_fraxineus_v2_scaffold_9	minus	2	324	1
+Hymenoscyphus_fraxineus_v2_scaffold_19	minus	12960	167900	Cf746836_TGAC_s1v1_scaffold_772	Hymenoscyphus_fraxineus_v2_scaffold_19	96.07	331	13	0	167900	168230	12960	12630	3e-150	 540
+Hymenoscyphus_fraxineus_v2_scaffold_7	minus	1939564	69212	Cf746836_TGAC_s1v1_scaffold_772	Hymenoscyphus_fraxineus_v2_scaffold_7	95.02	582	29	0	69212	69793	1939564	1938983	0.0	 915
+Hymenoscyphus_fraxineus_v2_scaffold_7	minus	2049234	125131	Cf746836_TGAC_s1v1_scaffold_772	Hymenoscyphus_fraxineus_v2_scaffold_7	96.55	319	11	0	125131	125449	2049234	2048916	6e-147	 529
+109352	-56237	109933	-55656
+		Hymenoscyphus_fraxineus_v2_scaffold_7	minus	2	319	1
+Hymenoscyphus_fraxineus_v2_scaffold_7	plus	627271	167864	Cf746836_TGAC_s1v1_scaffold_772	Hymenoscyphus_fraxineus_v2_scaffold_7	95.10	367	16	2	167864	168230	627271	627635	2e-161	 577
+Hymenoscyphus_fraxineus_v2_scaffold_7	plus	1751896	158136	Cf746836_TGAC_s1v1_scaffold_772	Hymenoscyphus_fraxineus_v2_scaffold_7	95.68	370	16	0	158136	158505	1751896	1752265	5e-167	 595
+1124261	-10094	1124630	-9725
+		Hymenoscyphus_fraxineus_v2_scaffold_7	plus	2	370	1
+Hymenoscyphus_fraxineus_v2_scaffold_11	plus	213866	156531	Cf746836_TGAC_s1v1_scaffold_772	Hymenoscyphus_fraxineus_v2_scaffold_11	96.35	411	15	0	156531	156941	213866	214276	0.0	 676
+Hymenoscyphus_fraxineus_v2_scaffold_11	plus	214819	157463	Cf746836_TGAC_s1v1_scaffold_772	Hymenoscyphus_fraxineus_v2_scaffold_11	95.89	681	28	0	157463	158143	214819	215499	0.0	1103
+543	522	1223	1202
+Hymenoscyphus_fraxineus_v2_scaffold_11	plus	217793	160588	Cf746836_TGAC_s1v1_scaffold_772	Hymenoscyphus_fraxineus_v2_scaffold_11	95.43	679	28	2	160588	161263	217793	218471	0.0	1079
+2294	2445	2972	3120
+Hymenoscyphus_fraxineus_v2_scaffold_11	plus	348869	167858	Cf746836_TGAC_s1v1_scaffold_772	Hymenoscyphus_fraxineus_v2_scaffold_11	95.48	376	12	4	167858	168230	348869	349242	5e-167	 595
+130398	6595	130771	6967
+		Hymenoscyphus_fraxineus_v2_scaffold_11	plus	2	376	1
+Hymenoscyphus_fraxineus_v2_scaffold_11	minus	1042181	69212	Cf746836_TGAC_s1v1_scaffold_772	Hymenoscyphus_fraxineus_v2_scaffold_11	95.86	604	25	0	69212	69815	1042181	1041578	0.0	 977
+Hymenoscyphus_fraxineus_v2_scaffold_18_plus_1	1
