@@ -3,36 +3,42 @@
 #
 require 'bio'
 
-def compare_between_query_distance (current, last_entry, strand)
-	parameter1, parameter2 = 0, 0
+## Compare blastn params of current entry and previous entry and make use of strand information
+def compare_blastn_params (current, last_entry)
+	## subject_diff distance of beginning of current block and end of previous block position for subject
+	## query_diff distance of beginning of current block and end of previous block position for query
+	## query_ends distance of current and previous block end positions for query
+	## subject_ends distance of current and previous block end positions for subject
 	subject_diff, query_diff, query_ends = 0, 0, 0
-	if strand == "plus"
+	subject_ends = current[9].to_i - last_entry[9].to_i
+	if current[9].to_i > current[8].to_i  ## check alignments are positive strand
 		subject_diff = current[8].to_i - last_entry[9].to_i
 		query_diff = current[6].to_i - last_entry[7].to_i
 		query_ends = current[7].to_i - last_entry[7].to_i
-	else
+	else  ## for negative strand alignments
 		subject_diff = current[9].to_i - last_entry[8].to_i
 		query_diff = last_entry[6].to_i - current[7].to_i
 		query_ends = last_entry[7].to_i - current[7].to_i
 	end
+	## parameter1 is difference between query_diff and subject_diff
 	parameter1 = query_diff - subject_diff
-	subject_ends = current[9].to_i - last_entry[9].to_i
+	## parameter2 is difference between subject_ends and query_ends
 	parameter2 = subject_ends - query_ends
 	warn "#{subject_diff}\t#{query_diff}\t#{subject_ends}\t#{query_ends}\n"
 	return parameter1, parameter2
 end
 
-def return_aln_parameters_query (blasth)
+def sort_alignment_blocks (blasth)
 	data = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) } ## vivified hash
 	blasth.each_key { |s_id|		# subject id keys
 		blasth[s_id].each_key { |strand|		# subject aln start keys sorted
-			previous_array = ''
 			number = 1
-			block = ''
+			## create empty variables to store previous alingment array and block id
+			previous_array, block = '', ''
 			blasth[s_id][strand].keys.sort.each { |sub_start|		# subject aln start keys sorted
 				blasth[s_id][strand][sub_start].keys.sort.each { |que_start|		# query aln start keys sorted
-
 					alninfo = blasth[s_id][strand][sub_start][que_start]
+
 					warn "#{s_id}\t#{strand}\t#{sub_start}\t#{que_start}\t#{alninfo}\n"
 					array = alninfo.split("\t")
 					if previous_array == ''
@@ -42,7 +48,7 @@ def return_aln_parameters_query (blasth)
 						previous_array = array
 
 					else
-						param1, param2 = compare_between_query_distance(array, previous_array, strand)
+						param1, param2 = compare_blastn_params(array, previous_array)
 
 						if param1.between?(-4000, 4000) and param2.between?(-500, 4000)
 							data[block]["alnlength"] += array[3].to_i
@@ -55,7 +61,7 @@ def return_aln_parameters_query (blasth)
 									newid = [s_id, strand, i].join("_")
 									temphash = data[newid]["alns"]
 									alninfo_2 = temphash.keys[temphash.length - 1].split("\t")
-									param_n1, param_n2 = compare_between_query_distance(array, alninfo_2, strand)
+									param_n1, param_n2 = compare_blastn_params(array, alninfo_2)
 									if param_n1.between?(-3000, 3000) and param_n2.between?(-2000, 2000)
 										block = newid
 										warn "I am here\t#{param_n1}\t#{param_n2}\t#{block}\n"
@@ -148,8 +154,8 @@ end
 
 gff = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
 
-blast.each { |k1,v1|
-	data2 = return_aln_parameters_query(blast[k1])
+blast.each_key { |k1|
+	data2 = sort_alignment_blocks(blast[k1])
 	subjectid, numgood = return_best_contig_aln(data2)
 	warn "#{subjectid}\t#{numgood}\n"
 	contignum = 1
