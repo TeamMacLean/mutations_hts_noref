@@ -1,3 +1,3 @@
 ##gff-version 3
 ##mRNA row have 'Genelength' attribute presenting length of RNA-seq contig and exon rows have 'Target' attibute depicting start and stop mRNA match part
-Hymenoscyphus_fraxineus_v2_scaffold_11_minus_1	TRINITY	gene	866581	1039407	.	-	.	ID=Cf746836_TGAC_s1v1_scaffold_629	242570
+Hymenoscyphus_fraxineus_v2_scaffold_11_minus_1	TRINITY	gene	866581	1110218	.	-	.	ID=Cf746836_TGAC_s1v1_scaffold_629	242570

@@ -3,69 +3,81 @@
 #
 require 'bio'
 
-genes = Hash.new {|h,k| h[k] = {} }
-file = Bio::FastaFormat.open(ARGV[0])
-file.each do |entry|
-	genes[entry.entry_id] = entry.length
-end
-
-blast = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) } ## vivified hash
-lines = File.read(ARGV[1])
-results = lines.split("\n")
-results.each do |string|
-	if string !~ /^#/
-		alninfo = string.split("\t")
-		if alninfo[2].to_f > 95.0 and alninfo[3].to_i >= 100 and alninfo[11].to_f >= 500.0 # % identity selection
-			if alninfo[9].to_i > alninfo[8].to_i
-				blast[alninfo[0]][alninfo[1]]["plus"][alninfo[8].to_i][alninfo[6].to_i] = string
-				#	  qurey id	  subject id  strand	subject start	query start		  blast-data
-			else
-				blast[alninfo[0]][alninfo[1]]["minus"][alninfo[8].to_i][alninfo[6].to_i] = string
-				#	  qurey id	  subject id  strand	subject start	query start		  blast-data
-			end
-		end
+def compare_between_query_distance (current, last_entry, strand)
+	subject_diff, query_diff = 0, 0
+	if strand == "plus"
+		subject_diff = current[8].to_i - last_entry[9].to_i
+		query_diff = current[6].to_i - last_entry[7].to_i
+	else
+		subject_diff = current[9].to_i - last_entry[8].to_i
+		query_diff = last_entry[6].to_i - current[7].to_i
 	end
+	warn "#{subject_diff}\t#{query_diff}\n"
+	return subject_diff, query_diff
 end
 
 def return_aln_parameters_query (blasth)
 	data = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) } ## vivified hash
 	blasth.each_key { |s_id|		# subject id keys
 		blasth[s_id].each_key { |strand|		# subject aln start keys sorted
-			q_start, q_end, s_start, s_end = 0, 0, 0, 0
+			previous_array = ''
 			number = 1
 			block = ''
 			blasth[s_id][strand].keys.sort.each { |sub_start|		# subject aln start keys sorted
 				blasth[s_id][strand][sub_start].keys.sort.each { |que_start|		# query aln start keys sorted
+
 					alninfo = blasth[s_id][strand][sub_start][que_start]
 					warn "#{s_id}\t#{strand}\t#{sub_start}\t#{que_start}\t#{alninfo}\n"
 					array = alninfo.split("\t")
-					if q_start == 0 and q_end == 0 and s_start == 0 and s_end == 0
+					if previous_array == ''
 						block = [s_id, strand, number].join("_")
 						data[block]["alnlength"] = array[3].to_i
 						data[block]["alns"][alninfo] = 1
-						q_start, q_end, s_start, s_end = array[6].to_i, array[7].to_i, array[8].to_i, array[9].to_i
+						previous_array = array
+
 					else
-						sub_diff = 0
-						que_diff = 0
-						if strand == "plus"
-							sub_diff = array[8].to_i - s_end
-							que_diff = array[6].to_i - q_end
-						else
-							sub_diff = array[9].to_i - s_start
-							que_diff = q_start - array[7].to_i
-						end
-						if sub_diff <  (que_diff + 5000)
+						sub_diff, que_diff = compare_between_query_distance(array, previous_array, strand)
+
+						if (que_diff - sub_diff  < 3000) and (que_diff - sub_diff  > -3000)
 							warn "#{sub_diff}\t#{que_diff}\n"
 							data[block]["alnlength"] += array[3].to_i
 							data[block]["alns"][alninfo] = 1
-							q_start, q_end, s_start, s_end = array[6].to_i, array[7].to_i, array[8].to_i, array[9].to_i
+							previous_array = array
 						else
-							warn "#{sub_diff}\t#{que_diff}\t#{s_id}\t#{strand}\t#{number}\t#{data[block]["alnlength"]}\t#{data[block]["alns"].length}\n"
-							number += 1
-							block = [s_id, strand, number].join("_")
-							data[block]["alnlength"] = array[3].to_i
-							data[block]["alns"][alninfo] = 1
-							q_start, q_end, s_start, s_end = array[6].to_i, array[7].to_i, array[8].to_i, array[9].to_i
+							if number > 1
+								assigned = 0
+								for i in 1..number
+									newid = [s_id, strand, i].join("_")
+									temphash = data[newid]["alns"]
+									alninfo_2 = temphash.keys[temphash.length - 1].split("\t")
+									sub_diff2, que_diff2 = compare_between_query_distance(array, alninfo_2, strand)
+									if (que_diff2 - sub_diff2  < 3000) and (que_diff2 - sub_diff2  > -3000)
+										block = newid
+										warn "I am here\t#{sub_diff2}\t#{que_diff2}\t#{block}\n"
+										data[newid]["alnlength"] += array[3].to_i
+										data[newid]["alns"][alninfo] = 1
+										previous_array = array
+										assigned = 1
+										warn "#{sub_diff2}\t#{que_diff2}\t#{s_id}\t#{strand}\t#{i}\t#{data[block]["alnlength"]}\t#{data[block]["alns"].length}\n"
+									end
+									break if assigned == 1
+								end
+								if assigned == 0
+									number += 1
+									block = [s_id, strand, number].join("_")
+									data[block]["alnlength"] = array[3].to_i
+									data[block]["alns"][alninfo] = 1
+									previous_array = array
+									warn "#{sub_diff}\t#{que_diff}\t#{s_id}\t#{strand}\t#{number}\t#{data[block]["alnlength"]}\t#{data[block]["alns"].length}\n"
+								end
+							else
+								number += 1
+								block = [s_id, strand, number].join("_")
+								data[block]["alnlength"] = array[3].to_i
+								data[block]["alns"][alninfo] = 1
+								previous_array = array
+								warn "#{sub_diff}\t#{que_diff}\t#{s_id}\t#{strand}\t#{number}\t#{data[block]["alnlength"]}\t#{data[block]["alns"].length}\n"
+							end
 						end
 					end
 				}
@@ -92,6 +104,40 @@ def return_best_contig_aln (hash2)
 		end
 	}
 	return contigid, goodhits
+end
+
+# New file is opened to write the gff info
+def open_new_file_to_write (number)
+outfile = ""
+	outfile = File.new("Blastn_to_gff3-#{number}.gff", "w")
+	outfile.puts "##gff-version 3"
+	outfile.puts "##mRNA row have 'Genelength' attribute presenting length of RNA-seq contig and exon rows have 'Target' attibute depicting start and stop mRNA match part"
+outfile
+end
+
+
+genes = Hash.new {|h,k| h[k] = {} }
+file = Bio::FastaFormat.open(ARGV[0])
+file.each do |entry|
+	genes[entry.entry_id] = entry.length
+end
+
+blast = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) } ## vivified hash
+lines = File.read(ARGV[1])
+results = lines.split("\n")
+results.each do |string|
+	if string !~ /^#/
+		alninfo = string.split("\t")
+		if alninfo[2].to_f > 95.0 and alninfo[3].to_i >= 100 and alninfo[11].to_f >= 500.0 # % identity selection
+			if alninfo[9].to_i > alninfo[8].to_i
+				blast[alninfo[0]][alninfo[1]]["plus"][alninfo[8].to_i][alninfo[6].to_i] = string
+				#	  qurey id	  subject id  strand	subject start	query start		  blast-data
+			else
+				blast[alninfo[0]][alninfo[1]]["minus"][alninfo[8].to_i][alninfo[6].to_i] = string
+				#	  qurey id	  subject id  strand	subject start	query start		  blast-data
+			end
+		end
+	end
 end
 
 
@@ -163,15 +209,6 @@ blast.each { |k1,v1|
 	  contignum += 1
 	end
 }
-
-# New file is opened to write the gff info
-def open_new_file_to_write (number)
-outfile = ""
-	outfile = File.new("Blastn_to_gff3-#{number}.gff", "w")
-	outfile.puts "##gff-version 3"
-	outfile.puts "##mRNA row have 'Genelength' attribute presenting length of RNA-seq contig and exon rows have 'Target' attibute depicting start and stop mRNA match part"
-outfile
-end
 
 number = 1
 printfile = open_new_file_to_write(number)
