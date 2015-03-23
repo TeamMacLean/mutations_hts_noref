@@ -156,11 +156,15 @@ blast.each_key { |k1|
 	data2 = sort_alignment_blocks(blast[k1])
 	subjectid, numgood = return_best_contig_aln(data2)
 	warn "#{subjectid}\t#{numgood}\n"
-	contignum = 1
 	if subjectid =~ /\w/ and numgood == 1
 	  # genelen_cov = (100* data2[subjectid]["alnlength"].to_i)/genes[k1].to_i
 	  # mismatch_cov = (100* data2[subjectid]["mismatch"].to_i)/genes[k1].to_i
 	  # if genelen_cov >= 80 and mismatch_cov <=10
+		sub_id = subjectid.sub(/\_[a-z]+\_\d+$/, '')
+		contignum = ""
+		if sub_id =~ /\_(\d+)$/
+			contignum = $1.chomp.to_i
+		end
 
 		limits = Hash.new {|h,k| h[k] = {} }
 		genelen = Hash.new {|h,k| h[k] = {} }
@@ -236,10 +240,9 @@ blast.each_key { |k1|
 		# outfile.puts "#{subjectid}\tTRINITY\tmRNA\t#{limits[:start]}\t#{limits[:stop]}\t.\t#{limits[:strand]}\t.\tID=#{k1}\n"
 		# info = "#{subjectid}\tTRINITY\tmRNA\t#{limits[:start]}\t#{limits[:stop]}\t.\t#{limits[:strand]}\t.\tID=#{k1};Parent=#{k1}".to_s
 		# gff[contignum][subjectid][limits[:start]][k1][:mRNA][info] = 1
-		info2 = "#{subjectid}\tTRINITY\tgene\t#{limits[:start]}\t#{limits[:stop]}\t.\t#{limits[:strand]}\t.\tID=#{k1}\t#{genes[k1]}\t#{genelen_cov.round(2)}\t#{genelen[:length]}\t#{genelen[:gap]}\n".to_s
-		gff[contignum][subjectid][limits[:start]][k1][:gene][info2] = 1
+		info2 = "#{sub_id}\tTRINITY\tgene\t#{limits[:start]}\t#{limits[:stop]}\t.\t#{limits[:strand]}\t.\tID=#{k1}\t#{genes[k1]}\t#{genelen_cov.round(2)}\t#{genelen[:length]}\t#{genelen[:gap]}\n".to_s
+		gff[contignum][sub_id][limits[:start]][k1][:gene][info2] = 1
 	  #end
-	  contignum += 1
 	end
 }
 
