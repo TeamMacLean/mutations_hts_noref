@@ -39,52 +39,52 @@ def sort_alignment_blocks (blasth)
 				blasth[s_id][strand][sub_start].keys.sort.each { |que_start|		# query aln start keys sorted
 					alninfo = blasth[s_id][strand][sub_start][que_start]
 
-					warn "#{s_id}\t#{strand}\t#{sub_start}\t#{que_start}\t#{alninfo}\n"
+					# warn "#{s_id}\t#{strand}\t#{sub_start}\t#{que_start}\t#{alninfo}\n"
 					array = alninfo.split("\t")
 					if previous_array == ''
 						block = [s_id, strand, number].join("_")
-						data[block]["alnlength"] = array[3].to_i
-						data[block]["alns"][alninfo] = 1
+						data[block][:alnlength] = array[3].to_i
+						data[block][:alns][alninfo] = 1
 						previous_array = array
 
 					else
 						param1, param2 = compare_blastn_params(array, previous_array)
 
 						if param1.between?(-4000, 4000) and param2.between?(-500, 4000)
-							data[block]["alnlength"] += array[3].to_i
-							data[block]["alns"][alninfo] = 1
+							data[block][:alnlength] += array[3].to_i
+							data[block][:alns][alninfo] = 1
 						else
 							if number > 1
 								assigned = 0
 								for i in 1..number
 									newid = [s_id, strand, i].join("_")
-									temphash = data[newid]["alns"]
+									temphash = data[newid][:alns]
 									alninfo_2 = temphash.keys[temphash.length - 1].split("\t")
 									param_n1, param_n2 = compare_blastn_params(array, alninfo_2)
 
 									if param_n1.between?(-4000, 4000) and param_n2.between?(-500, 4000)
 										block = newid
 										warn "I am here\t#{param_n1}\t#{param_n2}\t#{block}\n"
-										data[block]["alnlength"] += array[3].to_i
-										data[block]["alns"][alninfo] = 1
+										data[block][:alnlength] += array[3].to_i
+										data[block][:alns][alninfo] = 1
 										assigned = 1
-										warn "#{param_n1}\t#{param_n2}\t#{s_id}\t#{strand}\t#{i}\t#{data[block]["alnlength"]}\t#{data[block]["alns"].length}\n"
+										# warn "#{param_n1}\t#{param_n2}\t#{s_id}\t#{strand}\t#{i}\t#{data[block]["alnlength"]}\t#{data[block]["alns"].length}\n"
 									end
 									break if assigned == 1
 								end
 								if assigned == 0
 									number += 1
 									block = [s_id, strand, number].join("_")
-									data[block]["alnlength"] = array[3].to_i
-									data[block]["alns"][alninfo] = 1
-									warn "#{param_n1}\t#{param_n2}\t#{s_id}\t#{strand}\t#{number}\t#{data[block]["alnlength"]}\t#{data[block]["alns"].length}\n"
+									data[block][:alnlength] = array[3].to_i
+									data[block][:alns][alninfo] = 1
+									# warn "#{param_n1}\t#{param_n2}\t#{s_id}\t#{strand}\t#{number}\t#{data[block]["alnlength"]}\t#{data[block]["alns"].length}\n"
 								end
 							else
 								number += 1
 								block = [s_id, strand, number].join("_")
-								data[block]["alnlength"] = array[3].to_i
-								data[block]["alns"][alninfo] = 1
-								warn "#{param_n1}\t#{param_n2}\t#{s_id}\t#{strand}\t#{number}\t#{data[block]["alnlength"]}\t#{data[block]["alns"].length}\n"
+								data[block][:alnlength] = array[3].to_i
+								data[block][:alns][alninfo] = 1
+								# warn "#{param_n1}\t#{param_n2}\t#{s_id}\t#{strand}\t#{number}\t#{data[block]["alnlength"]}\t#{data[block]["alns"].length}\n"
 							end
 						end
 						previous_array = array
@@ -101,10 +101,10 @@ def return_best_contig_aln (hash2)
 	goodhits = 0
 	hash2.each_key { |key|
 		if contigid =~ /\w/
-			if hash2[key]["alnlength"] > hash2[contigid]["alnlength"]
+			if hash2[key][:alnlength] > hash2[contigid][:alnlength]
 				contigid = key
 				goodhits = 1
-			elsif hash2[key]["alnlength"] == hash2[contigid]["alnlength"]
+			elsif hash2[key][:alnlength] == hash2[contigid][:alnlength]
 				goodhits += 1
 			end
 		else
@@ -139,10 +139,10 @@ results.each do |string|
 		alninfo = string.split("\t")
 		if alninfo[2].to_f > 95.0 and alninfo[3].to_i >= 100 and alninfo[11].to_f >= 500.0 # % identity selection
 			if alninfo[9].to_i > alninfo[8].to_i
-				blast[alninfo[0]][alninfo[1]]["plus"][alninfo[8].to_i][alninfo[6].to_i] = string
+				blast[alninfo[0]][alninfo[1]][:plus][alninfo[8].to_i][alninfo[6].to_i] = string
 				#	  qurey id	  subject id  strand	subject start	query start		  blast-data
 			else
-				blast[alninfo[0]][alninfo[1]]["minus"][alninfo[8].to_i][alninfo[6].to_i] = string
+				blast[alninfo[0]][alninfo[1]][:minus][alninfo[8].to_i][alninfo[6].to_i] = string
 				#	  qurey id	  subject id  strand	subject start	query start		  blast-data
 			end
 		end
@@ -163,11 +163,13 @@ blast.each_key { |k1|
 	  # if genelen_cov >= 80 and mismatch_cov <=10
 
 		limits = Hash.new {|h,k| h[k] = {} }
-		data2[subjectid]["alns"].each_key { |key2|
+		genelen = Hash.new {|h,k| h[k] = {} }
+		data2[subjectid][:alns].each_key { |key2|
 			array2 = key2.split("\t")
 			aln_end = array2[9].to_i
 			aln_start = array2[8].to_i
-			# puts "#{k1}\t#{aln_end}\t#{aln_start}\n"
+			# warn "#{k1}\t#{array2[6].to_i}\t#{array2[7].to_i}\n"
+			genelen[:coord][array2[6].to_i] = array2[7].to_i
 			if aln_end < aln_start
 				# outfile.puts "#{subjectid}\tTRINITY\texon\t#{aln_end}\t#{aln_start}\t.\t-\t.\tParent=#{k1};Target=#{k1} #{array2[6].to_i} #{array2[7].to_i}\n"
 				# info = "#{subjectid}\tTRINITY\texon\t#{aln_end}\t#{aln_start}\t.\t-\t.\tParent=#{k1};Target=#{k1} #{array2[7].to_i} #{array2[6].to_i};Genelength=#{genes[k1]}".to_s
@@ -208,11 +210,33 @@ blast.each_key { |k1|
 				end
 			end
 		}
+		q_start = 0
+		q_end = 0
+		genelen[:coord].keys.sort.each { |que_start|
+			que_end = genelen[:coord][que_start]
+			# warn "#{que_start}\t#{que_end}\n"
+			if q_start == 0
+				q_start = que_start
+				q_end = que_end
+				genelen[:length] = (que_end - que_start) + 1
+				genelen[:gap] = 0
+			else
+				if q_end >= que_start
+					genelen[:length] = (que_end - q_start) + 1
+					q_end = que_end
+				else
+					genelen[:gap] += (que_start - q_end) - 1
+					genelen[:length] = (que_end - q_start) + 1
+					q_end = que_end
+				end
+			end
+		}
+		genelen_cov = 100 * (genelen[:length] - genelen[:gap])/genes[k1].to_f
 
 		# outfile.puts "#{subjectid}\tTRINITY\tmRNA\t#{limits[:start]}\t#{limits[:stop]}\t.\t#{limits[:strand]}\t.\tID=#{k1}\n"
 		# info = "#{subjectid}\tTRINITY\tmRNA\t#{limits[:start]}\t#{limits[:stop]}\t.\t#{limits[:strand]}\t.\tID=#{k1};Parent=#{k1}".to_s
 		# gff[contignum][subjectid][limits[:start]][k1][:mRNA][info] = 1
-		info2 = "#{subjectid}\tTRINITY\tgene\t#{limits[:start]}\t#{limits[:stop]}\t.\t#{limits[:strand]}\t.\tID=#{k1}\t#{genes[k1]}".to_s
+		info2 = "#{subjectid}\tTRINITY\tgene\t#{limits[:start]}\t#{limits[:stop]}\t.\t#{limits[:strand]}\t.\tID=#{k1}\t#{genes[k1]}\t#{genelen_cov.round(2)}\t#{genelen[:length]}\t#{genelen[:gap]}\n".to_s
 		gff[contignum][subjectid][limits[:start]][k1][:gene][info2] = 1
 	  #end
 	  contignum += 1
