@@ -137,7 +137,7 @@ results = lines.split("\n")
 results.each do |string|
 	if string !~ /^#/
 		alninfo = string.split("\t")
-		if alninfo[2].to_f > 95.0 and alninfo[3].to_i >= 100 and alninfo[11].to_f >= 500.0 # % identity selection
+		if alninfo[11].to_f >= 500.0 and alninfo[10].to_f == 0.0 ## bitscore and Evalue
 			if alninfo[9].to_i > alninfo[8].to_i
 				blast[alninfo[0]][alninfo[1]][:plus][alninfo[8].to_i][alninfo[6].to_i] = string
 				#	  qurey id	  subject id  strand	subject start	query start		  blast-data
