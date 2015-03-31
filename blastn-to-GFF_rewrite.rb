@@ -24,7 +24,7 @@ def compare_blastn_params (current, last_entry)
 	parameter1 = query_diff - subject_diff
 	## parameter2 is difference between subject_ends and query_ends
 	parameter2 = subject_ends - query_ends
-	warn "#{subject_diff}\t#{query_diff}\t#{subject_ends}\t#{query_ends}\n"
+	# warn "#{subject_diff}\t#{query_diff}\t#{subject_ends}\t#{query_ends}\n"
 	return parameter1, parameter2
 end
 
@@ -64,7 +64,7 @@ def sort_alignment_blocks (blasth)
 
 									if param_n1.between?(-4000, 4000) and param_n2.between?(-500, 4000)
 										block = newid
-										warn "I am here\t#{param_n1}\t#{param_n2}\t#{block}\n"
+										# warn "I am here\t#{param_n1}\t#{param_n2}\t#{block}\n"
 										data[block][:alnlength] += array[3].to_i
 										data[block][:alns][alninfo] = 1
 										assigned = 1
@@ -120,7 +120,7 @@ def open_new_file_to_write (number)
 	outfile = ""
 	outfile = File.new("Blastn_to_gff3-#{number}.gff", "w")
 	outfile.puts "##gff-version 3"
-	outfile.puts "##mRNA row have 'Genelength' attribute presenting length of RNA-seq contig and exon rows have 'Target' attibute depicting start and stop mRNA match part"
+	outfile.puts "##Each row has additional attribute presenting original length of scaffold/contig, percent of scaffold covered, length covered and length not covered"
 	outfile
 end
 
@@ -155,7 +155,7 @@ gff = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
 blast.each_key { |k1|
 	data2 = sort_alignment_blocks(blast[k1])
 	subjectid, numgood = return_best_contig_aln(data2)
-	warn "#{subjectid}\t#{numgood}\n"
+	# warn "#{subjectid}\t#{numgood}\n"
 	if subjectid =~ /\w/ and numgood == 1
 	  # genelen_cov = (100* data2[subjectid]["alnlength"].to_i)/genes[k1].to_i
 	  # mismatch_cov = (100* data2[subjectid]["mismatch"].to_i)/genes[k1].to_i
@@ -240,9 +240,11 @@ blast.each_key { |k1|
 		# outfile.puts "#{subjectid}\tTRINITY\tmRNA\t#{limits[:start]}\t#{limits[:stop]}\t.\t#{limits[:strand]}\t.\tID=#{k1}\n"
 		# info = "#{subjectid}\tTRINITY\tmRNA\t#{limits[:start]}\t#{limits[:stop]}\t.\t#{limits[:strand]}\t.\tID=#{k1};Parent=#{k1}".to_s
 		# gff[contignum][subjectid][limits[:start]][k1][:mRNA][info] = 1
-		info2 = "#{sub_id}\tTRINITY\tgene\t#{limits[:start]}\t#{limits[:stop]}\t.\t#{limits[:strand]}\t.\tID=#{k1}\t#{genes[k1]}\t#{genelen_cov.round(2)}\t#{genelen[:length]}\t#{genelen[:gap]}\n".to_s
+		info2 = "#{sub_id}\tblastn\tscaffold\t#{limits[:start]}\t#{limits[:stop]}\t.\t#{limits[:strand]}\t.\tID=#{k1};original_length=#{genes[k1]};percent_coverd=#{genelen_cov.round(2)};length_covered=#{genelen[:length]};not_covered=#{genelen[:gap]}\n".to_s
 		gff[contignum][sub_id][limits[:start]][k1][:gene][info2] = 1
 	  #end
+	else
+		warn "#{subjectid}\t#{numgood}\n"
 	end
 }
 
