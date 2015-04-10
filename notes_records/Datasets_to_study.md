@@ -3,6 +3,12 @@
 
 ## Arabidopsis
 
+### SHOREmap v3.0 Outcross data
+http://link.springer.com/protocol/10.1007/978-1-4939-2444-8_19/fulltext.html
+
+data available    
+http://link.springer.com/protocol/10.1007/978-1-4939-2444-8_19/fulltext.html#Tab1
+
 ### EMS mutagenesis of miR159a in the Arabidopsis Columbia (Col-1)
 http://journal.frontiersin.org/article/10.3389/fpls.2013.00362/full
 
@@ -16,7 +22,7 @@ http://www.ncbi.nlm.nih.gov/sra/?term=SAMN02324419
 ### EMS mutagenesis of uni-1D mutant in the Arabidopsis Wassilewskija (Ws)
 http://pcp.oxfordjournals.org/content/52/4/716.long
 
-data available at
+data available at   
 http://www.ncbi.nlm.nih.gov/sra/?term=DRA000344
 
 Col-T   
@@ -34,7 +40,7 @@ http://trace.ddbj.nig.ac.jp/DRASearch/experiment?acc=DRX000527
 ### Next-generation mapping of Arabidopsis genes
 2011     http://onlinelibrary.wiley.com/doi/10.1111/j.1365-313X.2011.04619.x/full
 
-data available at
+data available at   
 http://bioinformatics.cagef.utoronto.ca/DataCentre/Reads/ngm/Austin_etal_2011
 
 
@@ -52,7 +58,7 @@ http://www.ebi.ac.uk/ena/data/view/ERP002265
 ### MutMap 2012
 http://www.nature.com/nbt/journal/v30/n2/abs/nbt.2095.html
 
-data available at
+data available at   
 http://www.ncbi.nlm.nih.gov/sra?term=DRA000499
 
 
