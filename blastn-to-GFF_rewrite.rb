@@ -175,9 +175,8 @@ blast.each_key { |k1|
 			# warn "#{k1}\t#{array2[6].to_i}\t#{array2[7].to_i}\n"
 			genelen[:coord][array2[6].to_i] = array2[7].to_i
 			if aln_end < aln_start
-				# outfile.puts "#{subjectid}\tTRINITY\texon\t#{aln_end}\t#{aln_start}\t.\t-\t.\tParent=#{k1};Target=#{k1} #{array2[6].to_i} #{array2[7].to_i}\n"
-				# info = "#{subjectid}\tTRINITY\texon\t#{aln_end}\t#{aln_start}\t.\t-\t.\tParent=#{k1};Target=#{k1} #{array2[7].to_i} #{array2[6].to_i};Genelength=#{genes[k1]}".to_s
-				# gff[contignum][subjectid][aln_end][k1][:exon][info] = 1
+				info = "#{sub_id}\tblastn\texon\t#{aln_end}\t#{aln_start}\t.\t-\t.\tParent=#{k1}.1; #{array2[7].to_i} #{array2[6].to_i};Genelength=#{genes[k1]}".to_s
+				gff[contignum][sub_id][aln_end][k1][:exon][info] = 1
 				limits[:strand] = "-"
 				if limits.key?(:start) == true
 					if limits[:start] > aln_end
@@ -194,9 +193,8 @@ blast.each_key { |k1|
 					limits[:stop] = aln_start
 				end
 			elsif aln_end > aln_start
-				# outfile.puts "#{subjectid}\tTRINITY\texon\t#{aln_start}\t#{aln_end}\t.\t+\t.\tParent=#{k1};Target=#{k1} #{array2[6].to_i} #{array2[7].to_i}\n"
-				# info = "#{subjectid}\tTRINITY\texon\t#{aln_start}\t#{aln_end}\t.\t+\t.\tParent=#{k1};Target=#{k1} #{array2[6].to_i} #{array2[7].to_i};Genelength=#{genes[k1]}".to_s
-				# gff[contignum][subjectid][aln_start][k1][:exon][info] = 1
+				info = "#{sub_id}\tblastn\texon\t#{aln_start}\t#{aln_end}\t.\t+\t.\tParent=#{k1}.1; #{array2[6].to_i} #{array2[7].to_i};Genelength=#{genes[k1]}".to_s
+				gff[contignum][sub_id][aln_start][k1][:exon][info] = 1
 				limits[:strand] = "+"
 				if limits.key?(:start) == true
 					if limits[:start] > aln_start
@@ -237,10 +235,9 @@ blast.each_key { |k1|
 		}
 		genelen_cov = 100 * (genelen[:length] - genelen[:gap])/genes[k1].to_f
 
-		# outfile.puts "#{subjectid}\tTRINITY\tmRNA\t#{limits[:start]}\t#{limits[:stop]}\t.\t#{limits[:strand]}\t.\tID=#{k1}\n"
-		# info = "#{subjectid}\tTRINITY\tmRNA\t#{limits[:start]}\t#{limits[:stop]}\t.\t#{limits[:strand]}\t.\tID=#{k1};Parent=#{k1}".to_s
-		# gff[contignum][subjectid][limits[:start]][k1][:mRNA][info] = 1
-		info2 = "#{sub_id}\tblastn\tscaffold\t#{limits[:start]}\t#{limits[:stop]}\t.\t#{limits[:strand]}\t.\tID=#{k1};original_length=#{genes[k1]};percent_coverd=#{genelen_cov.round(2)};length_covered=#{genelen[:length]};not_covered=#{genelen[:gap]}\n".to_s
+		info = "#{sub_id}\tblastn\tmRNA\t#{limits[:start]}\t#{limits[:stop]}\t.\t#{limits[:strand]}\t.\tID=#{k1}.1;Parent=#{k1}".to_s
+		gff[contignum][sub_id][limits[:start]][k1][:mRNA][info] = 1
+		info2 = "#{sub_id}\tblastn\tgene\t#{limits[:start]}\t#{limits[:stop]}\t.\t#{limits[:strand]}\t.\tID=#{k1};original_length=#{genes[k1]};percent_coverd=#{genelen_cov.round(2)};length_covered=#{genelen[:length]};not_covered=#{genelen[:gap]}\n".to_s
 		gff[contignum][sub_id][limits[:start]][k1][:gene][info2] = 1
 	  #end
 	else
