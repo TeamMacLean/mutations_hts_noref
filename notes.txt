@@ -1,0 +1,5 @@
+seperate blast alignments to strand wise
+
+and arrange small to large number
+
+print results percent identity wise or include percent coverage as an item
