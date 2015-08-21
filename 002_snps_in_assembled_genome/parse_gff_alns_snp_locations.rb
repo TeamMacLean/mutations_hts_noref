@@ -24,7 +24,7 @@ prev_end = 0
 count = 1
 data.keys.sort.each do | key |
 	info = data[key].split("_")
-	warn "covered\t#{data[key]}\n"
+	# warn "covered\t#{data[key]}\n"
 	curr_start = info[0].to_i
 	curr_end = info[1].to_i
 	if prev_end == 0
@@ -33,7 +33,7 @@ data.keys.sort.each do | key |
 		if curr_start - prev_end > 100
 			curr_gap += curr_start - prev_end
 			nocov[count] = [prev_end, curr_start, curr_gap].join("_")
-			warn "notcovered\t#{nocov[count]}\n"
+			# warn "notcovered\t#{nocov[count]}\n"
 			count += 1
 		end
 		prev_end = curr_end
@@ -48,7 +48,8 @@ lines.split("\n").each do |line|
 end
 sorted_snp = positions.sort
 
-outfile = File.new("not_covered_variants.txt", "w")
+outfile1 = File.new("no_cov_vars_#{ARGV[2].chomp}", "w")
+outfile2 = File.new("cov_vars_#{ARGV[2].chomp}", "w")
 
 ### Check if SNP's are in no sequence read coverage area and discard them
 ### And adjust remaining SNP position accordingly
@@ -62,19 +63,19 @@ sorted_snp.each do | posn |
 		end_p = info[1].to_i
 		if start < posn.to_i and posn.to_i < end_p
 			subtract = info[2]
-			outfile.puts "#{posn}"
+			outfile1.puts "#{posn}"
 			gap_present = 1
 			in_gap = 1
-			warn "#{posn}\t#{start}\t#{end_p}\t#{key}\n"
+			# warn "#{posn}\t#{start}\t#{end_p}\t#{key}\n"
 			break
 		end
 	end
 	# warn "#{posn}\t#{gap_present}\t#{in_gap}\n"
 	if gap_present == 1
 		if in_gap == 0
-			puts "#{posn.to_i - subtract.to_i}"
+			outfile2.puts "#{posn.to_i - subtract.to_i}"
 		end
 	else
-		puts "#{posn}"
+		outfile2.puts "#{posn}"
 	end
 end
