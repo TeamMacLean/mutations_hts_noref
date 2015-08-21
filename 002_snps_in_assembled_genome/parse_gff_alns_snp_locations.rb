@@ -5,17 +5,24 @@
 require 'bio'
 require 'csv'
 
+### command line input
+### ruby parse_gff_alns_snp_locations.rb blastn_to_gf_file Chromosome-number variant_file custom_filename
+### variant file should be in the same directory, where script is executed
+
 ### Read gff and selected chromosome coverage is stored in a hash
 data = Hash.new {|h,k| h[k] = {} }
 gff3 = Bio::GFF::GFF3.new(File.read(ARGV[0]))
 chr = ARGV[1].chomp
+assembled_length = 0
 gff3.records.each do | record |
 	if record.seqname.to_s == chr
 		if record.feature == 'mRNA'
 			data[record.start.to_i] = [record.start, record.end].join("_")
+			assembled_length += record.end.to_i - record.start.to_i
 		end
 	end
 end
+warn "assembled chromosome length:\t#{assembled_length}"
 
 ### Use stored hash to calculate uncovered genomic region and add to a hash
 nocov = Hash.new {|h,k| h[k] = {} }
