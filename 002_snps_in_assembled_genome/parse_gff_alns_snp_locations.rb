@@ -48,8 +48,9 @@ lines.split("\n").each do |line|
 end
 sorted_snp = positions.sort
 
-outfile1 = File.new("no_cov_vars_#{ARGV[2].chomp}", "w")
-outfile2 = File.new("cov_vars_#{ARGV[2].chomp}", "w")
+customname = [ARGV[3].chomp, ARGV[2].chomp].join("_")
+outfile1 = File.new("no_vars_#{customname}", "w")
+outfile2 = File.new("vars_#{customname}", "w")
 
 ### Check if SNP's are in no sequence read coverage area and discard them
 ### And adjust remaining SNP position accordingly
