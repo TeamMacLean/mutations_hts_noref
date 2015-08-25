@@ -12,7 +12,7 @@ Load libraries and the data
 # load the required libraries and functions
 library(knitr)
 library(markdown)
-opts_chunk$set(dev = 'pdf')
+#opts_chunk$set(dev = 'pdf')
 library(ggplot2)
 library(gridExtra)
 
@@ -76,12 +76,6 @@ chr3len <- 23459830 # arabidopsis chromosome3 length
 parent_df <- snpfreqtable(chr_len = chr3len, bin_len = 1000000, hm=hm_parent, ht=ht_parent)
 ggplot(data=parent_df, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio)), colour="red") + geom_line(aes(y=homozy/sum(homozy)), colour ="blue") + geom_line(aes(y=heterozy/sum(heterozy)), colour="black") + scale_y_sqrt() + mytheme + labs(y=NULL, main="parent fileterd variants")
 
-"bur0_assembled_chr_length.txt"
-"c24_assembled_chr_length.txt"
-"kro0_assembled_chr_length.txt"
-"ler_assembled_chr_length.txt"
-"pacbio_ler0_assembled_chr_length.txt"
-
 ```
 
 ...			
@@ -108,8 +102,9 @@ ggplot(data=parent_nocendf, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio))
 ```{r bur-0, echo=FALSE, fig.width=12, fig.height=6}
 hm_bur0 <- read.table("vars_bur_assembly_hm_parent_filter.txt")
 ht_bur0 <- read.table("vars_bur_assembly_ht_parent_filter.txt")
+burchr = read.delim(file = "bur0_assembled_chr_length.txt", header = FALSE)
 
-bur0_df <- snpfreqtable(chr_len = chr3len, bin_len = 1000000, hm=hm_bur0, ht=ht_bur0)
+bur0_df <- snpfreqtable(chr_len = burchr$V2[1], bin_len = 1000000, hm=hm_bur0, ht=ht_bur0)
 ggplot(data=bur0_df, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio)), colour="red") + geom_line(aes(y=homozy/sum(homozy)), colour ="blue") + geom_line(aes(y=heterozy/sum(heterozy)), colour="black") + scale_y_sqrt() + mytheme + labs(y=NULL, main="BCF2 variant data on Bur-0 assembled chromosome 3")
 
 ```
@@ -124,8 +119,9 @@ ggplot(data=bur0_df, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio)), colou
 ```{r c24, echo=FALSE, fig.width=12, fig.height=6}
 hm_c24 <- read.table("vars_c24_assembly_hm_parent_filter.txt")
 ht_c24 <- read.table("vars_c24_assembly_ht_parent_filter.txt")
+c24chr = read.delim(file = "c24_assembled_chr_length.txt", header = FALSE)
 
-c24_df <- snpfreqtable(chr_len = chr3len, bin_len = 1000000, hm=hm_c24, ht=ht_c24)
+c24_df <- snpfreqtable(chr_len = c24chr$V2[1], bin_len = 1000000, hm=hm_c24, ht=ht_c24)
 ggplot(data=c24_df, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio)), colour="red") + geom_line(aes(y=homozy/sum(homozy)), colour ="blue") + geom_line(aes(y=heterozy/sum(heterozy)), colour="black") + scale_y_sqrt() + mytheme + labs(y=NULL, main="BCF2 variant data on C24 assembled chromosome 3")
 
 ```
@@ -140,8 +136,9 @@ ggplot(data=c24_df, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio)), colour
 ```{r kro0, echo=FALSE, fig.width=12, fig.height=6}
 hm_kro0 <- read.table("vars_kro0_assembly_hm_parent_filter.txt")
 ht_kro0 <- read.table("vars_kro0_assembly_ht_parent_filter.txt")
+krochr = read.delim(file = "kro0_assembled_chr_length.txt", header = FALSE)
 
-kro0_df <- snpfreqtable(chr_len = chr3len, bin_len = 1000000, hm=hm_kro0, ht=ht_kro0)
+kro0_df <- snpfreqtable(chr_len = krochr$V2[1], bin_len = 1000000, hm=hm_kro0, ht=ht_kro0)
 ggplot(data=kro0_df, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio)), colour="red") + geom_line(aes(y=homozy/sum(homozy)), colour ="blue") + geom_line(aes(y=heterozy/sum(heterozy)), colour="black") + scale_y_sqrt() + mytheme + labs(y=NULL, main="BCF2 variant data on Kro-0 assembled chromosome 3")
 
 ```
@@ -156,8 +153,9 @@ ggplot(data=kro0_df, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio)), colou
 ```{r ler-1, echo=FALSE, fig.width=12, fig.height=6}
 hm_ler1 <- read.table("vars_ler_assembly_hm.txt")
 ht_ler1 <- read.table("vars_ler_assembly_ht_parent_filter.txt")
+lerchr = read.delim(file = "ler_assembled_chr_length.txt", header = FALSE)
 
-ler1_df <- snpfreqtable(chr_len = chr3len, bin_len = 1000000, hm=hm_ler1, ht=ht_ler1)
+ler1_df <- snpfreqtable(chr_len = lerchr$V2[1], bin_len = 1000000, hm=hm_ler1, ht=ht_ler1)
 ggplot(data=ler1_df, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio)), colour="red") + geom_line(aes(y=homozy/sum(homozy)), colour ="blue") + geom_line(aes(y=heterozy/sum(heterozy)), colour="black") + scale_y_sqrt() + mytheme + labs(y=NULL, main="BCF2 variant data on Ler-1 assembled chromosome 3")
 
 ```
@@ -172,8 +170,9 @@ ggplot(data=ler1_df, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio)), colou
 ```{r pacler1, echo=FALSE, fig.width=12, fig.height=6}
 hm_pacler1 <- read.table("vars_pacbio_ler0_assembly_hm_parent_filter.txt")
 ht_pacler1 <- read.table("vars_pacbio_ler0_assembly_ht_parent_filter.txt")
+paclerchr = read.delim(file = "pacbio_ler0_assembled_chr_length.txt", header = FALSE)
 
-pacler_df <- snpfreqtable(chr_len = chr3len, bin_len = 1000000, hm=hm_pacler1, ht=ht_pacler1)
+pacler_df <- snpfreqtable(chr_len = paclerchr$V2[1], bin_len = 1000000, hm=hm_pacler1, ht=ht_pacler1)
 ggplot(data=pacler_df, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio)), colour="red") + geom_line(aes(y=homozy/sum(homozy)), colour ="blue") + geom_line(aes(y=heterozy/sum(heterozy)), colour="black") + scale_y_sqrt() + mytheme + labs(y=NULL, main="BCF2 variant data on Ler-1 pacbio assembled chromosome 3")
 
 ```
