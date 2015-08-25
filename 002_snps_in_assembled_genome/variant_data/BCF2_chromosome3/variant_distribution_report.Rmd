@@ -1,0 +1,182 @@
+---
+output:
+  html_document:
+    fig_caption: yes
+    theme: spacelab
+    toc: no
+---
+# **plots of variant distribution along chromosome length**
+
+Load libraries and the data
+```{r setup, include=FALSE}
+# load the required libraries and functions
+library(knitr)
+library(markdown)
+opts_chunk$set(dev = 'pdf')
+library(ggplot2)
+library(gridExtra)
+
+## cusotom ggplot theme edits
+mytheme <- theme(panel.background = element_rect(fill='white', colour='black'),
+        text = element_text(size = 20, face='bold', colour='black'),
+        axis.title.x = element_text(size = 19, face='bold', color='black', vjust = -1),
+        axis.text = element_text(size = 17, face='bold', color='black'),
+        panel.grid.major = element_line(linetype = 'dotted', colour='black'),
+        panel.border = element_rect(fill=NA, linetype = "solid", colour='black'),
+        plot.margin=unit(c(2,2,5,2),'mm'))
+
+## function to make a table variants based on selected nucleotide length bins
+snpfreqtable <- function (chr_len=chr_len, bin_len=bin_len, hm=hm, ht=ht){
+  # chr_len = length of the chromosome
+	# bin_len = length nucleotide bins used for poolig variants
+	# hm = homozygous variant positions and ht = heterozygous variant positions
+
+	breaks <- bin_len*c(1:ceiling(chr_len/bin_len))
+	freqtable <- data.frame(t(rep(NA,3)))
+	names(freqtable) <- c("position", "homozy", "heterozy")
+	for (i in 1:length(breaks)) {
+		lowlimit = breaks[i] - (bin_len - 1)
+		a = breaks[i]
+		b = 0.1
+		c = 0.1
+
+		for (j in 1:length(hm$V1)) {
+			if (hm$V1[j] >= lowlimit && hm$V1[j] <= breaks[i]) {
+				b = b + 1
+			}
+		}
+
+		for (k in 1:length(ht$V1)) {
+			if (ht$V1[k] >= lowlimit && ht$V1[k] <= breaks[i]) {
+				c = c + 1
+			}
+		}
+		freqtable[i,] <- c(a, b, c)
+	}
+	freqtable$ratio <- freqtable$homozy / freqtable$heterozy
+	return(freqtable)
+}
+
+## set working directory
+setwd("/Users/rallapag/git-hub-repos/shyamrallapalli/mutations_hts_noref/002_snps_in_assembled_genome/variant_data/BCF2_chromosome3")
+
+```
+
+...     
+
+...			
+
+#### Parent filtered [BCF2](https://github.com/shyamrallapalli/SNP_distribution_method/tree/master/Reads/BCF2/BCF2_chromosome3/Interesting_3) chromosome3 data
+
+```{r parent_filtered, echo=FALSE, fig.width=12, fig.height=6}
+hm_parent <- read.table("hm_parent_filter.txt")
+ht_parent <- read.table("ht_parent_filter.txt")
+chr3len <- 23459830 # arabidopsis chromosome3 length
+
+parent_df <- snpfreqtable(chr_len = chr3len, bin_len = 1000000, hm=hm_parent, ht=ht_parent)
+ggplot(data=parent_df, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio)), colour="red") + geom_line(aes(y=homozy/sum(homozy)), colour ="blue") + geom_line(aes(y=heterozy/sum(heterozy)), colour="black") + scale_y_sqrt() + mytheme + labs(y=NULL, main="parent fileterd variants")
+
+"bur0_assembled_chr_length.txt"
+"c24_assembled_chr_length.txt"
+"kro0_assembled_chr_length.txt"
+"ler_assembled_chr_length.txt"
+"pacbio_ler0_assembled_chr_length.txt"
+
+```
+
+...			
+
+...			
+
+#### Parent and centromere filtered [BCF2] chromosome3 data
+
+```{r parent_centro_filter, echo=FALSE, fig.width=12, fig.height=6}
+hmp_nocen <- read.table("hm_parent_filter_nocen.txt")
+htp_nocen <- read.table("ht_parent_filter_nocen.txt")
+
+parent_nocendf <- snpfreqtable(chr_len = chr3len, bin_len = 1000000, hm=hmp_nocen, ht=htp_nocen)
+ggplot(data=parent_nocendf, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio)), colour="red") + geom_line(aes(y=homozy/sum(homozy)), colour ="blue") + geom_line(aes(y=heterozy/sum(heterozy)), colour="black") + scale_y_sqrt() + mytheme + labs(y=NULL, main="parent and centromere fileterd variants")
+
+```
+
+...			
+
+...  		
+
+#### Bur-0 assembled chromosome3 and BCF2 variant data
+
+```{r bur-0, echo=FALSE, fig.width=12, fig.height=6}
+hm_bur0 <- read.table("vars_bur_assembly_hm_parent_filter.txt")
+ht_bur0 <- read.table("vars_bur_assembly_ht_parent_filter.txt")
+
+bur0_df <- snpfreqtable(chr_len = chr3len, bin_len = 1000000, hm=hm_bur0, ht=ht_bur0)
+ggplot(data=bur0_df, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio)), colour="red") + geom_line(aes(y=homozy/sum(homozy)), colour ="blue") + geom_line(aes(y=heterozy/sum(heterozy)), colour="black") + scale_y_sqrt() + mytheme + labs(y=NULL, main="BCF2 variant data on Bur-0 assembled chromosome 3")
+
+```
+
+...			
+
+
+...  		
+
+#### C24 assembled chromosome3 and BCF2 variant data
+
+```{r c24, echo=FALSE, fig.width=12, fig.height=6}
+hm_c24 <- read.table("vars_c24_assembly_hm_parent_filter.txt")
+ht_c24 <- read.table("vars_c24_assembly_ht_parent_filter.txt")
+
+c24_df <- snpfreqtable(chr_len = chr3len, bin_len = 1000000, hm=hm_c24, ht=ht_c24)
+ggplot(data=c24_df, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio)), colour="red") + geom_line(aes(y=homozy/sum(homozy)), colour ="blue") + geom_line(aes(y=heterozy/sum(heterozy)), colour="black") + scale_y_sqrt() + mytheme + labs(y=NULL, main="BCF2 variant data on C24 assembled chromosome 3")
+
+```
+
+...			
+
+
+...    	
+
+#### Kro-0 assembled chromosome3 and BCF2 variant data
+
+```{r kro0, echo=FALSE, fig.width=12, fig.height=6}
+hm_kro0 <- read.table("vars_kro0_assembly_hm_parent_filter.txt")
+ht_kro0 <- read.table("vars_kro0_assembly_ht_parent_filter.txt")
+
+kro0_df <- snpfreqtable(chr_len = chr3len, bin_len = 1000000, hm=hm_kro0, ht=ht_kro0)
+ggplot(data=kro0_df, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio)), colour="red") + geom_line(aes(y=homozy/sum(homozy)), colour ="blue") + geom_line(aes(y=heterozy/sum(heterozy)), colour="black") + scale_y_sqrt() + mytheme + labs(y=NULL, main="BCF2 variant data on Kro-0 assembled chromosome 3")
+
+```
+
+...			
+
+
+...      
+
+#### Ler-1 assembled chromosome3 and BCF2 variant data
+
+```{r ler-1, echo=FALSE, fig.width=12, fig.height=6}
+hm_ler1 <- read.table("vars_ler_assembly_hm.txt")
+ht_ler1 <- read.table("vars_ler_assembly_ht_parent_filter.txt")
+
+ler1_df <- snpfreqtable(chr_len = chr3len, bin_len = 1000000, hm=hm_ler1, ht=ht_ler1)
+ggplot(data=ler1_df, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio)), colour="red") + geom_line(aes(y=homozy/sum(homozy)), colour ="blue") + geom_line(aes(y=heterozy/sum(heterozy)), colour="black") + scale_y_sqrt() + mytheme + labs(y=NULL, main="BCF2 variant data on Ler-1 assembled chromosome 3")
+
+```
+
+...			
+
+
+...      
+
+#### Ler-1 pacbio assembled chromosome3 and BCF2 variant data
+
+```{r pacler1, echo=FALSE, fig.width=12, fig.height=6}
+hm_pacler1 <- read.table("vars_pacbio_ler0_assembly_hm_parent_filter.txt")
+ht_pacler1 <- read.table("vars_pacbio_ler0_assembly_ht_parent_filter.txt")
+
+pacler_df <- snpfreqtable(chr_len = chr3len, bin_len = 1000000, hm=hm_pacler1, ht=ht_pacler1)
+ggplot(data=pacler_df, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio)), colour="red") + geom_line(aes(y=homozy/sum(homozy)), colour ="blue") + geom_line(aes(y=heterozy/sum(heterozy)), colour="black") + scale_y_sqrt() + mytheme + labs(y=NULL, main="BCF2 variant data on Ler-1 pacbio assembled chromosome 3")
+
+```
+
+...  		
+
