@@ -1,0 +1,71 @@
+require 'rake/clean'
+
+@input1 = ENV['r1']
+#puts "#{@input1}"
+@input2 = ENV['r2']
+#puts "#{@input2}"
+@ref = ENV['ref']
+#puts "#{@ref}"
+@outdir = ENV['dir']
+#puts "#{@outdir}"
+
+namespace :index do
+
+  desc "create bwa index file1"
+  file "#{@ref}.amb" => ["#{@ref}"] do
+    %x[source bwa-0.7.4; bwa index #{@ref}]
+  end
+
+  desc "create bwa index file2"
+  file "#{@ref}.ann" => ["#{@ref}"] do
+    %x[source bwa-0.7.4; bwa index #{@ref}]
+  end
+
+  desc "create bwa index file3"
+  file "#{@ref}.bwt" => ["#{@ref}"] do
+    %x[source bwa-0.7.4; bwa index #{@ref}]
+  end
+
+  desc "create bwa index file4"
+  file "#{@ref}.pac" => ["#{@ref}"] do
+    %x[source bwa-0.7.4; bwa index #{@ref}]
+  end
+
+  desc "create bwa index file5"
+  file "#{@ref}.sa" => ["#{@ref}"] do
+    %x[source bwa-0.7.4; bwa index #{@ref}]
+  end
+
+  desc "run bwa indexing"
+  task :all => ["#{@ref}.amb", "#{@ref}.ann", "#{@ref}.bwt", "#{@ref}.pac", "#{@ref}.sa"]
+
+end
+
+namespace :bwa do
+
+  directory "#{@outdir}"
+
+  desc "run bwa mem paired alignment"
+  file "#{@outdir}/align_paried.sam" => ["#{@outdir}", "#{@ref}.amb", "#{@ref}.ann", "#{@ref}.bwt", "#{@ref}.pac", "#{@ref}.sa", "#{@ref}", "#{@input1}", "#{@input2}"] do
+    %x[source bwa-0.7.4; bwa mem #{@ref} #{@input1} #{@input2} > #{@outdir}/align_paried.sam]
+  end
+
+  desc "convert sam to bam"
+  file "#{@outdir}/align_paried.bam" => ["#{@outdir}/align_paried.sam"] do
+    %x[source samtools-0.1.19; samtools view -bS #{@outdir}/align_paried.sam -o #{@outdir}/align_paried.bam]
+  end
+
+  desc "make sorted bam"
+  file "#{@outdir}/align_paried-sorted.bam" => ["#{@outdir}/align_paried.bam"] do
+    %x[source samtools-0.1.19; samtools sort #{@outdir}/align_paried.bam #{@outdir}/align_paried-sorted]
+  end
+
+  desc "make indexed bam"
+  file "#{@outdir}/align_paried-sorted.bai" => ["#{@outdir}/align_paried-sorted.bam"] do
+    %x[source samtools-0.1.19; samtools index #{@outdir}/align_paried-sorted.bam #{@outdir}/align_paried-sorted.bai]
+  end
+
+  desc "run bwa mem alignments"
+  task :all => ["index:all", "#{@outdir}/align_paried-sorted.bai"]
+
+end
