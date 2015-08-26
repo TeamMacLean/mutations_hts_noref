@@ -47,22 +47,26 @@ namespace :bwa do
 
   desc "run bwa mem paired alignment"
   file "#{@outdir}/align_paried.sam" => ["#{@outdir}", "#{@ref}.amb", "#{@ref}.ann", "#{@ref}.bwt", "#{@ref}.pac", "#{@ref}.sa", "#{@ref}", "#{@input1}", "#{@input2}"] do
-    %x[source bwa-0.7.4; bwa mem #{@ref} #{@input1} #{@input2} > #{@outdir}/align_paried.sam]
+    %x[source bwa-0.7.4; bwa mem #{@ref} #{@input1} #{@input2} > #{@outdir}/align_paried.sam 2> #{@outdir}/rake_log.txt]
   end
 
   desc "convert sam to bam"
   file "#{@outdir}/align_paried.bam" => ["#{@outdir}/align_paried.sam"] do
-    %x[source samtools-0.1.19; samtools view -bS #{@outdir}/align_paried.sam -o #{@outdir}/align_paried.bam]
+    %x[source samtools-0.1.19; samtools view -bS #{@outdir}/align_paried.sam -o #{@outdir}/align_paried.bam 2>> #{@outdir}/rake_log.txt]
   end
 
   desc "make sorted bam"
   file "#{@outdir}/align_paried-sorted.bam" => ["#{@outdir}/align_paried.bam"] do
-    %x[source samtools-0.1.19; samtools sort #{@outdir}/align_paried.bam #{@outdir}/align_paried-sorted]
+    %x[source samtools-0.1.19; samtools sort #{@outdir}/align_paried.bam #{@outdir}/align_paried-sorted 2>> #{@outdir}/rake_log.txt]
+    ### remove converted sam file
+    %x[rm #{@outdir}/align_paried.sam]
   end
 
   desc "make indexed bam"
   file "#{@outdir}/align_paried-sorted.bai" => ["#{@outdir}/align_paried-sorted.bam"] do
-    %x[source samtools-0.1.19; samtools index #{@outdir}/align_paried-sorted.bam #{@outdir}/align_paried-sorted.bai]
+    %x[source samtools-0.1.19; samtools index #{@outdir}/align_paried-sorted.bam #{@outdir}/align_paried-sorted.bai 2>> #{@outdir}/rake_log.txt]
+    ### remove unsorted bam file
+    %x[rm #{@outdir}/align_paried.bam]
   end
 
   desc "run bwa mem alignments"
