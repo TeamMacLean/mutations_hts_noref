@@ -23,7 +23,9 @@ mytheme <- theme(panel.background = element_rect(fill='white', colour='black'),
         axis.text = element_text(size = 17, face='bold', color='black'),
         panel.grid.major = element_line(linetype = 'dotted', colour='black'),
         panel.border = element_rect(fill=NA, linetype = "solid", colour='black'),
-        plot.margin=unit(c(2,2,5,2),'mm'))
+        plot.margin=unit(c(2,2,5,2),'mm'), legend.position=c(0.80,0.90), legend.title = element_blank(),
+        legend.text = element_text(colour = 'black', size = 15, face = 'bold'), legend.box = "horizontal",
+        legend.key.width=unit(2, "cm"), legend.key = element_rect(fill='white'))
 
 ## function to make a table variants based on selected nucleotide length bins
 snpfreqtable <- function (chr_len=chr_len, bin_len=bin_len, hm=hm, ht=ht){
@@ -74,11 +76,19 @@ ht_parent <- read.table("ht_parent_filter.txt")
 chr3len <- 23459830 # arabidopsis chromosome3 length
 
 parent_df <- snpfreqtable(chr_len = chr3len, bin_len = 1000000, hm=hm_parent, ht=ht_parent)
-ggplot(data=parent_df, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio)), colour="red") + geom_line(aes(y=homozy/sum(homozy)), colour ="blue") + geom_line(aes(y=heterozy/sum(heterozy)), colour="black") + scale_y_sqrt() + mytheme + labs(y=NULL, main="parent fileterd variants")
+ggplot(data=parent_df, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio")) + 
+  geom_line(aes(y=homozy/sum(homozy), colour="homozygous variants")) + 
+  geom_line(aes(y=heterozy/sum(heterozy), colour="heterozygous variants")) + 
+  geom_vline(xintercept = as.numeric(1405085), size=0.5, linetype = "longdash") + 
+  scale_y_sqrt() + labs(y=NULL, main="parent fileterd variants") + mytheme 
 
 ```
 
+##### Dotted vertical black line in the plot indicates the position of causative mutation
+
 ...			
+
+...  		
 
 ...			
 
@@ -89,11 +99,19 @@ hmp_nocen <- read.table("hm_parent_filter_nocen.txt")
 htp_nocen <- read.table("ht_parent_filter_nocen.txt")
 
 parent_nocendf <- snpfreqtable(chr_len = chr3len, bin_len = 1000000, hm=hmp_nocen, ht=htp_nocen)
-ggplot(data=parent_nocendf, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio)), colour="red") + geom_line(aes(y=homozy/sum(homozy)), colour ="blue") + geom_line(aes(y=heterozy/sum(heterozy)), colour="black") + scale_y_sqrt() + mytheme + labs(y=NULL, main="parent and centromere fileterd variants")
+ggplot(data=parent_nocendf, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio")) + 
+  geom_line(aes(y=homozy/sum(homozy), colour="homozygous variants")) + 
+  geom_line(aes(y=heterozy/sum(heterozy), colour="heterozygous variants")) + 
+  geom_vline(xintercept = as.numeric(1405085), size=0.5, linetype = "longdash") + 
+  scale_y_sqrt() + labs(y=NULL, main="parent and centromere fileterd variants") + mytheme
 
 ```
 
+##### Dotted vertical black line in the plot indicates the position of causative mutation
+
 ...			
+
+...  		
 
 ...  		
 
@@ -105,12 +123,19 @@ ht_bur0 <- read.table("vars_bur_assembly_ht_parent_filter.txt")
 burchr = read.delim(file = "bur0_assembled_chr_length.txt", header = FALSE)
 
 bur0_df <- snpfreqtable(chr_len = burchr$V2[1], bin_len = 1000000, hm=hm_bur0, ht=ht_bur0)
-ggplot(data=bur0_df, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio)), colour="red") + geom_line(aes(y=homozy/sum(homozy)), colour ="blue") + geom_line(aes(y=heterozy/sum(heterozy)), colour="black") + scale_y_sqrt() + mytheme + labs(y=NULL, main="BCF2 variant data on Bur-0 assembled chromosome 3")
+ggplot(data=bur0_df, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio")) + 
+  geom_line(aes(y=homozy/sum(homozy), colour="homozygous variants")) + 
+  geom_line(aes(y=heterozy/sum(heterozy), colour="heterozygous variants")) + 
+  geom_vline(xintercept = as.numeric(1405085), size=0.5, linetype = "longdash") + 
+  scale_y_sqrt() + mytheme + labs(y=NULL, main="BCF2 variant data on Bur-0 assembled chromosome 3")
 
 ```
 
+##### Dotted vertical black line in the plot indicates the position of causative mutation
+
 ...			
 
+...  		
 
 ...  		
 
@@ -122,12 +147,19 @@ ht_c24 <- read.table("vars_c24_assembly_ht_parent_filter.txt")
 c24chr = read.delim(file = "c24_assembled_chr_length.txt", header = FALSE)
 
 c24_df <- snpfreqtable(chr_len = c24chr$V2[1], bin_len = 1000000, hm=hm_c24, ht=ht_c24)
-ggplot(data=c24_df, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio)), colour="red") + geom_line(aes(y=homozy/sum(homozy)), colour ="blue") + geom_line(aes(y=heterozy/sum(heterozy)), colour="black") + scale_y_sqrt() + mytheme + labs(y=NULL, main="BCF2 variant data on C24 assembled chromosome 3")
+ggplot(data=c24_df, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio")) + 
+  geom_line(aes(y=homozy/sum(homozy), colour="homozygous variants")) + 
+  geom_line(aes(y=heterozy/sum(heterozy), colour="heterozygous variants")) + 
+  geom_vline(xintercept = as.numeric(1405085), size=0.5, linetype = "longdash") + 
+  scale_y_sqrt() + mytheme + labs(y=NULL, main="BCF2 variant data on C24 assembled chromosome 3")
 
 ```
 
+##### Dotted vertical black line in the plot indicates the position of causative mutation
+
 ...			
 
+...  		
 
 ...    	
 
@@ -139,12 +171,19 @@ ht_kro0 <- read.table("vars_kro0_assembly_ht_parent_filter.txt")
 krochr = read.delim(file = "kro0_assembled_chr_length.txt", header = FALSE)
 
 kro0_df <- snpfreqtable(chr_len = krochr$V2[1], bin_len = 1000000, hm=hm_kro0, ht=ht_kro0)
-ggplot(data=kro0_df, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio)), colour="red") + geom_line(aes(y=homozy/sum(homozy)), colour ="blue") + geom_line(aes(y=heterozy/sum(heterozy)), colour="black") + scale_y_sqrt() + mytheme + labs(y=NULL, main="BCF2 variant data on Kro-0 assembled chromosome 3")
+ggplot(data=kro0_df, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio")) + 
+  geom_line(aes(y=homozy/sum(homozy), colour="homozygous variants")) + 
+  geom_line(aes(y=heterozy/sum(heterozy), colour="heterozygous variants")) + 
+  geom_vline(xintercept = as.numeric(1405085), size=0.5, linetype = "longdash") + 
+  scale_y_sqrt() + mytheme + labs(y=NULL, main="BCF2 variant data on Kro-0 assembled chromosome 3")
 
 ```
 
+##### Dotted vertical black line in the plot indicates the position of causative mutation
+
 ...			
 
+...  		
 
 ...      
 
@@ -156,12 +195,19 @@ ht_ler1 <- read.table("vars_ler_assembly_ht_parent_filter.txt")
 lerchr = read.delim(file = "ler_assembled_chr_length.txt", header = FALSE)
 
 ler1_df <- snpfreqtable(chr_len = lerchr$V2[1], bin_len = 1000000, hm=hm_ler1, ht=ht_ler1)
-ggplot(data=ler1_df, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio)), colour="red") + geom_line(aes(y=homozy/sum(homozy)), colour ="blue") + geom_line(aes(y=heterozy/sum(heterozy)), colour="black") + scale_y_sqrt() + mytheme + labs(y=NULL, main="BCF2 variant data on Ler-1 assembled chromosome 3")
+ggplot(data=ler1_df, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio")) + 
+  geom_line(aes(y=homozy/sum(homozy), colour="homozygous variants")) + 
+  geom_line(aes(y=heterozy/sum(heterozy), colour="heterozygous variants")) + 
+  geom_vline(xintercept = as.numeric(1405085), size=0.5, linetype = "longdash") + 
+  scale_y_sqrt() + mytheme + labs(y=NULL, main="BCF2 variant data on Ler-1 assembled chromosome 3")
 
 ```
 
+##### Dotted vertical black line in the plot indicates the position of causative mutation
+
 ...			
 
+...  		
 
 ...      
 
@@ -173,9 +219,17 @@ ht_pacler1 <- read.table("vars_pacbio_ler0_assembly_ht_parent_filter.txt")
 paclerchr = read.delim(file = "pacbio_ler0_assembled_chr_length.txt", header = FALSE)
 
 pacler_df <- snpfreqtable(chr_len = paclerchr$V2[1], bin_len = 1000000, hm=hm_pacler1, ht=ht_pacler1)
-ggplot(data=pacler_df, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio)), colour="red") + geom_line(aes(y=homozy/sum(homozy)), colour ="blue") + geom_line(aes(y=heterozy/sum(heterozy)), colour="black") + scale_y_sqrt() + mytheme + labs(y=NULL, main="BCF2 variant data on Ler-1 pacbio assembled chromosome 3")
+ggplot(data=pacler_df, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio")) + 
+  geom_line(aes(y=homozy/sum(homozy), colour="homozygous variants")) + 
+  geom_line(aes(y=heterozy/sum(heterozy), colour="heterozygous variants")) + 
+  geom_vline(xintercept = as.numeric(1405085), size=0.5, linetype = "longdash") + 
+  scale_y_sqrt() + mytheme + labs(y=NULL, main="BCF2 variant data on Ler-1 pacbio assembled chromosome 3")
 
 ```
+
+##### Dotted vertical black line in the plot indicates the position of causative mutation
+
+...  		
 
 ...  		
 
