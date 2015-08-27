@@ -66,17 +66,40 @@ setwd("/Users/rallapag/git-hub-repos/shyamrallapalli/mutations_hts_noref/002_snp
 
 ...     
 
+...  		
+
+#### Mutant [BCF2](https://github.com/shyamrallapalli/SNP_distribution_method/tree/master/Reads/BCF2/BCF2_chromosome3/Interesting_3) chromosome3 data with out parent filtering
+
+```{r no_filter, echo=FALSE, fig.width=12, fig.height=6}
+hm_mutant <- read.table("hm.txt")
+ht_mutant <- read.table("ht.txt")
+chr3len <- 23459830 # arabidopsis chromosome3 length
+
+mutant_df <- snpfreqtable(chr_len = chr3len, bin_len = 1000000, hm=hm_mutant, ht=ht_mutant)
+ggplot(data=mutant_df, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio")) + 
+  geom_line(aes(y=homozy/sum(homozy), colour="homozygous variants")) + 
+  geom_line(aes(y=heterozy/sum(heterozy), colour="heterozygous variants")) + 
+  geom_vline(xintercept = as.numeric(1405085), size=0.5, linetype = "longdash") + 
+  scale_y_sqrt() + labs(y=NULL, main="parent fileterd variants") + mytheme 
+
+```
+
+##### Dotted vertical black line in the plot indicates the position of causative mutation
+
+...		
+
+...  	
+
 ...			
 
 #### Parent filtered [BCF2](https://github.com/shyamrallapalli/SNP_distribution_method/tree/master/Reads/BCF2/BCF2_chromosome3/Interesting_3) chromosome3 data
 
 ```{r parent_filtered, echo=FALSE, fig.width=12, fig.height=6}
-hm_parent <- read.table("hm_parent_filter.txt")
-ht_parent <- read.table("ht_parent_filter.txt")
-chr3len <- 23459830 # arabidopsis chromosome3 length
+hm_parent_f <- read.table("hm_parent_filter.txt")
+ht_parent_f <- read.table("ht_parent_filter.txt")
 
-parent_df <- snpfreqtable(chr_len = chr3len, bin_len = 1000000, hm=hm_parent, ht=ht_parent)
-ggplot(data=parent_df, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio")) + 
+parent_filter_df <- snpfreqtable(chr_len = chr3len, bin_len = 1000000, hm=hm_parent_f, ht=ht_parent_f)
+ggplot(data=parent_filter_df, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio")) + 
   geom_line(aes(y=homozy/sum(homozy), colour="homozygous variants")) + 
   geom_line(aes(y=heterozy/sum(heterozy), colour="heterozygous variants")) + 
   geom_vline(xintercept = as.numeric(1405085), size=0.5, linetype = "longdash") + 
@@ -190,7 +213,7 @@ ggplot(data=kro0_df, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio), colour
 #### Ler-1 assembled chromosome3 and BCF2 variant data
 
 ```{r ler-1, echo=FALSE, fig.width=12, fig.height=6}
-hm_ler1 <- read.table("vars_ler_assembly_hm.txt")
+hm_ler1 <- read.table("vars_ler_assembly_hm_parent_filter.txt")
 ht_ler1 <- read.table("vars_ler_assembly_ht_parent_filter.txt")
 lerchr = read.delim(file = "ler_assembled_chr_length.txt", header = FALSE)
 
