@@ -20,4 +20,8 @@
 
 5. VCF files being large, files are gzipped
 
-6. 
+6. SDM evaluation mode requires both shuffled and order fasta files as input
+
+7. Variant analysis input `pacbio_ler0_polished_assembly.fasta` and `/002_snps_in_assembled_genome/arabidopsis_assemblies_blast/pacbio_ler0_vs_col0.blastn_to_gff.gff` was used to order contigs from Chromosome 1 to 5, ChrC and ChrM.
+
+8.
