@@ -15,7 +15,7 @@ file.each do |seq|
 	sequences[seq.entry_id] = seq.entry
 end
 
-### Read gff and print chromosome covered sequences from hash in order
+### Read gff and store chromosome covered sequences from hash to sort
 gff = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
 gff3 = Bio::GFF::GFF3.new(File.read(ARGV[1]))
 assembled_length = 0
@@ -29,6 +29,7 @@ gff3.records.each do | record |
 end
 warn "assembled chromosome length:\t#{assembled_length}"
 
+### sequences are ordered from chromosome 1 to 5, C and M for arabidopsis
 gff.keys.sort.each do | chromosome |
 	gff[chromosome].keys.sort.each do | position |
 		gff[chromosome][position].keys.each do | gene |

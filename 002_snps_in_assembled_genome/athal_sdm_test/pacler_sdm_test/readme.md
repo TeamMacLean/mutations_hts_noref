@@ -24,4 +24,7 @@
 
 7. Variant analysis input `pacbio_ler0_polished_assembly.fasta` and `/002_snps_in_assembled_genome/arabidopsis_assemblies_blast/pacbio_ler0_vs_col0.blastn_to_gff.gff` was used to order contigs from Chromosome 1 to 5, ChrC and ChrM.
 
-8.
+8. Current SDM method also requires homozygous (hm) and heterozygous (ht) variant location in completely linear genome and "AF" field in vcf info column
+
+9. Variant hm and ht positons and modified VCF file is generated using `ordered_fasta_vcf_positions.rb` script. Script produces `hm_snps.txt, ht_snps.txt and snps.vcf` required for the SDM method
+
