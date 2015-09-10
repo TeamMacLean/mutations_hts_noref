@@ -28,3 +28,8 @@
 
 9. Variant hm and ht positons and modified VCF file is generated using `ordered_fasta_vcf_positions.rb` script. Script produces `hm_snps.txt, ht_snps.txt and snps.vcf` required for the SDM method
 
+10. `pacbio_ler0_polished_assembly_sorted.fasta` is renamed as `frags.fasta` and `pacbio_ler0_polished_assembly.fasta` as `frags_shuffled.fasta` as required by SDM method
+
+11. Running on hpc
+
+`source ruby-2.0.0; xvfb-run ruby SNP_distribution_method_variation.rb sdm_testdata pacler_outcome_thres0 0 1 back`
