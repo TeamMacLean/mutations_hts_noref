@@ -35,9 +35,14 @@ gff.keys.sort.each do | chromosome |
 		gff[chromosome][position].keys.each do | gene |
 			if sequences.has_key?(gene)
 				puts "#{sequences[gene]}"
+				sequences.delete(gene)
 			else
 				warn "No seqeunce for\t #{gene}\n"
 			end
 		end
 	end
+end
+
+sequences.keys.each do | remains |
+	puts "#{sequences[remains]}"
 end
