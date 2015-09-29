@@ -27,7 +27,7 @@ gff3.records.each do | record |
 		assembled_length += record.end.to_i - record.start.to_i
 	end
 end
-warn "assembled chromosome length:\t#{assembled_length}"
+#warn "assembled chromosome length:\t#{assembled_length}"
 
 ### sequences are ordered from chromosome 1 to 5, C and M for arabidopsis
 gff.keys.sort.each do | chromosome |

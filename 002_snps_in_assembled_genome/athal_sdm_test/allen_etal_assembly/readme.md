@@ -36,3 +36,14 @@
 
 1. `allen_bg_spades3.6_scaff_500bp.fasta ` is blasted to TAIR10 chromosomes and `allen_bg_spades3.6_vs_col0.blastn` is converted to gff file using [blastn\_to_gff script] (001_blastn_to_gff/blastn-to-GFF_rewrite.rb)
 
+2. [Allen et al](http://journal.frontiersin.org/article/10.3389/fpls.2013.00362/full) backcross read data for both mutant population and parent were used to generate variant vcf files against `allen_bg_spades3.6_scaff_500bp.fasta`
+
+3. [samtools\_varscan\_variants_fg.vcf] (002_snps_in_assembled_genome/athal_sdm_test/allen_etal_assembly/samtools_varscan_variants_fg.vcf) and [samtools\_varscan\_variants_bg.vcf] (002_snps_in_assembled_genome/athal_sdm_test/allen_etal_assembly/samtools_varscan_variants_bg.vcf) are resulting variant files for mutant and parent seqeunce read analysis
+
+4. [filter_vcf_background.rb] (002_snps_in_assembled_genome/athal_sdm_test/pacler_sdm_test/filter_vcf_background.rb) script was used to filter parental snps and snps at the end of contigs
+
+5. [blastn_gff_to_ordered_fasta.rb] (002_snps_in_assembled_genome/athal_sdm_test/pacler_sdm_test/blastn_gff_to_ordered_fasta.rb) script was used to generate ordered scaffolds sequences `uni-1d_col_spades_scaff_500bp_order.fasta` 
+
+6. [ordered_fasta_vcf_positions.rb] (002_snps_in_assembled_genome/athal_sdm_test/pacler_sdm_test/ordered_fasta_vcf_positions.rb) script was used generate necessary order variant positions and vcf file for sdm method input `hm_snps.txt`, `ht_snps.txt` and `snps.vcf`
+
+
