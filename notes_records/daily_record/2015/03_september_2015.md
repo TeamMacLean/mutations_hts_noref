@@ -10,7 +10,7 @@
 
 1. SNP variants were called for target bulk and parent using Pacbio Ler-1 assembly and Ler-1 from 1001 genomes
 
-2. Parental snps were subtracted from target variants using [filter_vcf_background.rb] (002_snps_in_assembled_genome/athal_sdm_test/pacler_sdm_test/filter_vcf_background.rb) script
+2. Parental snps were subtracted from target variants using [filter_vcf_background.rb] (../../../002_snps_in_assembled_genome/athal_sdm_test/pacler_sdm_test/filter_vcf_background.rb) script
 
 3. To test the code running of `SNP_distribution_method` used previously tested data were taken from [Pilar's repo](https://github.com/pilarcormo/SNP_distribution_method/tree/master/arabidopsis_datasets/No_centromere/100kb_contigs/bcf2_nocen_chr3_100kb)
 
@@ -22,13 +22,13 @@
 
 1. In current state `SNP_distribution_method`, requires both ordered and shuffled sequences as well as variant location in both ordered and shuffled genomes
 
-2. Scripts [blastn_gff_to_ordered_fasta.rb] (002_snps_in_assembled_genome/athal_sdm_test/pacler_sdm_test/blastn_gff_to_ordered_fasta.rb) and [ordered_fasta_vcf_positions.rb] (002_snps_in_assembled_genome/athal_sdm_test/pacler_sdm_test/ordered_fasta_vcf_positions.rb) were used to order sequences for Arabidopsis assemblies and produce variant positions on ordered and shuffled genomes
+2. Scripts [blastn_gff_to_ordered_fasta.rb] (../../../002_snps_in_assembled_genome/athal_sdm_test/pacler_sdm_test/blastn_gff_to_ordered_fasta.rb) and [ordered_fasta_vcf_positions.rb] (../../../002_snps_in_assembled_genome/athal_sdm_test/pacler_sdm_test/ordered_fasta_vcf_positions.rb) were used to order sequences for Arabidopsis assemblies and produce variant positions on ordered and shuffled genomes
 
-3. Assemblies used for testing whole genome sorting analysis (both from pacbio and from 1001 genomes) are missing regions of causative muation for Allen et al data. Results of `SNP_distribution_method` are [available at] (002_snps_in_assembled_genome/athal_sdm_test/pacler_sdm_test/sdm_testdata)
+3. Assemblies used for testing whole genome sorting analysis (both from pacbio and from 1001 genomes) are missing regions of causative muation for Allen et al data. Results of `SNP_distribution_method` are [available at] (../../../002_snps_in_assembled_genome/athal_sdm_test/pacler_sdm_test/sdm_testdata)
 
 4. So to be comparable i have assembled Col-T genome as an independent test set. Single end seqeunce reads for Col-T were used from [Uchida et al] (http://pcp.oxfordjournals.org/content/52/4/716.long) for Uni-1D mutant
 
-5. Genome assembly carried out using SPAdes version: 3.1.0 see [more details at] (002_snps_in_assembled_genome/athal_sdm_test/col-t_sdm_test)
+5. Genome assembly carried out using SPAdes version: 3.1.0 see [more details at] (../../../002_snps_in_assembled_genome/athal_sdm_test/col-t_sdm_test)
 
 6. SNP calling using Allen et al sequence data on the Col-T assembly and preparation datasets to be suitable for `SNP_distribution_method` was carried out
 
@@ -65,7 +65,7 @@
 
 ## September 21st to 25th
 
-1. mir159a read assmebly was used for SDM analysis and results are available at [002\_snps\_in\_assembled\_genome/athal\_sdm\_test/allen\_etal\_assembly] (002_snps_in_assembled_genome/athal_sdm_test/allen_etal_assembly)
+1. mir159a read assmebly was used for SDM analysis and results are available at [002\_snps\_in\_assembled\_genome/athal\_sdm\_test/allen\_etal\_assembly] (../../../002_snps_in_assembled_genome/athal_sdm_test/allen_etal_assembly)
 
 2. Causative mutation is located on scaffold `NODE_96_length_155806_cov_17.6262_ID_446058` at position 121664
 
@@ -100,7 +100,7 @@
 
 6. So decided to remove variants from end of the contig which fall with in the length of reads used in assembly
 
-7. [filter\_vcf\_background.rb] (002_snps_in_assembled_genome/athal_sdm_test/pacler_sdm_test/filter_vcf_background.rb) script is modified to implement this change
+7. [filter\_vcf\_background.rb] (../../../002_snps_in_assembled_genome/athal_sdm_test/pacler_sdm_test/filter_vcf_background.rb) script is modified to implement this change
 
 ## September 28th to 2nd October
 
