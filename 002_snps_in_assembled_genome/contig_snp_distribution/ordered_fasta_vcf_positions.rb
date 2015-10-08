@@ -86,8 +86,8 @@ breaks = [10000, 50000, 100000, 500000, 1000000]
 breaks.each do | step |
 	outfile = open_new_file_to_write(infile, step)
 	distribute = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
-	distribute, = pool_variants_per_step(contigs, step, distribute, :hm)
-	distribute, = pool_variants_per_step(contigs, step, distribute, :ht)
+	distribute = pool_variants_per_step(contigs, step, distribute, :hm)
+	distribute = pool_variants_per_step(contigs, step, distribute, :ht)
 	distribute.each_key do | key |
 		hm = 0
 		ht = 0
