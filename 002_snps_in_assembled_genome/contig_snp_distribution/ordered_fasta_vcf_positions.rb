@@ -14,7 +14,7 @@ assembly_len = 0
 sequences = Hash.new {|h,k| h[k] = {} }
 file = Bio::FastaFormat.open(ARGV[0])
 file.each do |seq|
-	sequences[seq.entry_id] = [assembly_len, seq.length.to_i].join("_")
+	sequences[seq.entry_id] = assembly_len
 	assembly_len += seq.length.to_i
 end
 
@@ -36,27 +36,12 @@ File.open(infile, 'r').each do |line|
 	next if line =~ /^#/
 	v = Bio::DB::Vcf.new(line)
 	v.chrom = rename_chr(v.chrom)
+	v.pos = v.pos.to_i + sequences[v.chrom]
 	if v.info["HOM"].to_i == 1
-		contigs[v.chrom][:hm][v.pos.to_i] = 1
+		contigs[:hm][v.pos] = 1
 	elsif v.info["HET"].to_i == 1
-		contigs[v.chrom][:ht][v.pos.to_i] = 1
+		contigs[:ht][v.pos] = 1
 	end
-end
-
-puts "Chr\tassembly\tlength\tnumhm\tnumht"
-sequences.each_key do |key|
-	info = sequences[key].split(/_/)
-	hm = 0
-	ht = 0
-	if contigs.has_key?(key)
-		if contigs[key].has_key?(:hm)
-			hm = contigs[key][:hm].length
-		end
-		if contigs[key].has_key?(:ht)
-			ht = contigs[key][:ht].length
-		end
-	end
-	puts "#{key}\t#{info[0]}\t#{info[1]}\t#{hm}\t#{ht}"
 end
 
 # New file is opened to write
@@ -75,10 +60,12 @@ def enumerate_snps(outhash, step, vartype)
 	outhash
 end
 
-def pool_variants_per_step(inhash, assembly, slice, step, outhash, vartype)
+def pool_variants_per_step(inhash, step, outhash, vartype)
+	slice = step
 	inhash[vartype].keys.sort.each do | pos |
-		pos += assembly.to_i
-		outhash[step][vartype] = 0
+		if outhash[step].key?(vartype) == FALSE
+			outhash[step][vartype] = 0
+		end
 		if pos <= step
 			outhash = enumerate_snps(outhash, step, vartype)
 		else
@@ -92,21 +79,24 @@ def pool_variants_per_step(inhash, assembly, slice, step, outhash, vartype)
 			outhash = enumerate_snps(outhash, step, vartype)
 		end
 	end
-	[outhash, step]
+	outhash
 end
 
 breaks = [10000, 50000, 100000, 500000, 1000000]
 breaks.each do | step |
-	slice = step
 	outfile = open_new_file_to_write(infile, step)
 	distribute = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
-	contigs.keys.sort.each do | chrom |
-		info = sequences[chrom].split(/_/)
-		distribute, step = pool_variants_per_step(contigs[chrom], info[0], slice, step, distribute, :hm)
-		#distribute, step = pool_variants_per_step(contigs[chrom], info[0], slice, step, distribute, :ht)
-		#step = step
-	end
+	distribute, = pool_variants_per_step(contigs, step, distribute, :hm)
+	distribute, = pool_variants_per_step(contigs, step, distribute, :ht)
 	distribute.each_key do | key |
-		outfile.puts "#{key}\t#{distribute[key][:hm]}\t#{distribute[key][:ht]}"
+		hm = 0
+		ht = 0
+		if distribute[key].key?(:hm)
+			hm = distribute[key][:hm]
+		end
+		if distribute[key].key?(:ht)
+			ht = distribute[key][:ht]
+		end
+		outfile.puts "#{key}\t#{hm}\t#{ht}"
 	end
 end
