@@ -1,5 +1,5 @@
 ### Table of Cotents
-1. [October 5 - 9](#October-5th-to-9th)
+1. [October 5 - 9](#october-5th-to-9th)
 
 
 ## October 5th to 9th

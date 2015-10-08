@@ -2,8 +2,8 @@
 1. [September 1 - 4](#september-1st-to-4th)
 2. [September 7 - 11](#september-7th-to-11th)
 3. [September 14 - 18](#september-14th-to-18th)
-4. [September 21 - 25](#September-21st-to-25th)
-5. [September 28 - 02](#September-28th-to-2nd-October)
+4. [September 21 - 25](#september-21st-to-25th)
+5. [September 28 - 02](#september-28th-to-2nd-october)
 
 
 ## September 1st to 4th
