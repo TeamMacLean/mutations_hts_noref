@@ -47,7 +47,7 @@ tenkb$ratio <- tenkb$numhm/tenkb$numht
 ggplot(data=tenkb, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio")) + 
      geom_line(aes(y=numhm/sum(numhm), colour="homozygous variants")) + 
      geom_line(aes(y=numht/sum(numht), colour="heterozygous variants")) + 
-     scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks")
+     scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme
 
 ```
 
@@ -67,7 +67,7 @@ tenkb$ratio <- tenkb$numhm/tenkb$numht
 ggplot(data=tenkb, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio")) + 
      geom_line(aes(y=numhm/sum(numhm), colour="homozygous variants")) + 
      geom_line(aes(y=numht/sum(numht), colour="heterozygous variants")) + 
-     scale_y_sqrt() + labs(y=NULL, main="genome in 50 KB fragment chunks")
+     scale_y_sqrt() + labs(y=NULL, main="genome in 50 KB fragment chunks") + mytheme
 
 ```
 
@@ -87,7 +87,7 @@ tenkb$ratio <- tenkb$numhm/tenkb$numht
 ggplot(data=tenkb, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio")) + 
      geom_line(aes(y=numhm/sum(numhm), colour="homozygous variants")) + 
      geom_line(aes(y=numht/sum(numht), colour="heterozygous variants")) + 
-     scale_y_sqrt() + labs(y=NULL, main="genome in 100 KB fragment chunks")
+     scale_y_sqrt() + labs(y=NULL, main="genome in 100 KB fragment chunks") + mytheme
 
 ```
 
@@ -107,7 +107,7 @@ tenkb$ratio <- tenkb$numhm/tenkb$numht
 ggplot(data=tenkb, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio")) + 
      geom_line(aes(y=numhm/sum(numhm), colour="homozygous variants")) + 
      geom_line(aes(y=numht/sum(numht), colour="heterozygous variants")) + 
-     scale_y_sqrt() + labs(y=NULL, main="genome in 500 KB fragment chunks")
+     scale_y_sqrt() + labs(y=NULL, main="genome in 500 KB fragment chunks") + mytheme
 
 ```
 
@@ -127,7 +127,64 @@ tenkb$ratio <- tenkb$numhm/tenkb$numht
 ggplot(data=tenkb, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio")) + 
      geom_line(aes(y=numhm/sum(numhm), colour="homozygous variants")) + 
      geom_line(aes(y=numht/sum(numht), colour="heterozygous variants")) + 
-     scale_y_sqrt() + labs(y=NULL, main="genome in 1 MB fragment chunks")
+     scale_y_sqrt() + labs(y=NULL, main="genome in 1 MB fragment chunks") + mytheme
 
 ```
+
+
+...		
+
+...  	
+
+
+#### 5,000,000 bp grouping of whole genome
+
+```{r 5Mb, echo=FALSE, fig.width=12, fig.height=6}
+tenkb <- read.delim(file="per-5000000bp-filtered_hsty_mutant.vcf.txt", header = TRUE)
+tenkb$numhm <- tenkb$numhm + 0.1
+tenkb$numht <- tenkb$numht + 0.1
+tenkb$ratio <- tenkb$numhm/tenkb$numht
+ggplot(data=tenkb, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio")) + 
+     geom_line(aes(y=numhm/sum(numhm), colour="homozygous variants")) + 
+     geom_line(aes(y=numht/sum(numht), colour="heterozygous variants")) + 
+     scale_y_sqrt() + labs(y=NULL, main="genome in 5 MB fragment chunks") + mytheme
+
+```
+
+
+...		
+
+...  	
+
+
+#### 10,000,000 bp grouping of whole genome
+
+```{r 10Mb, echo=FALSE, fig.width=12, fig.height=6}
+tenkb <- read.delim(file="per-10000000bp-filtered_hsty_mutant.vcf.txt", header = TRUE)
+tenkb$numhm <- tenkb$numhm + 0.1
+tenkb$numht <- tenkb$numht + 0.1
+tenkb$ratio <- tenkb$numhm/tenkb$numht
+ggplot(data=tenkb, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio")) + 
+     geom_line(aes(y=numhm/sum(numhm), colour="homozygous variants")) + 
+     geom_line(aes(y=numht/sum(numht), colour="heterozygous variants")) + 
+     scale_y_sqrt() + labs(y=NULL, main="genome in 10 MB fragment chunks") + mytheme
+
+```
+
+
+...		
+
+...  	
+
+
+#### density plot for hm and ht
+
+```{r genome, echo=FALSE, fig.width=12, fig.height=6}
+infile <- read.delim(file="varposn-genome-filtered_hsty_mutant.vcf.txt", header = TRUE)
+ggplot(data=infile, aes(x=position, colour=type)) + geom_density(adjust=1/10) +
+     scale_y_sqrt() + labs(y=NULL, main="genome wide snp density") + mytheme
+
+```
+
+
 
