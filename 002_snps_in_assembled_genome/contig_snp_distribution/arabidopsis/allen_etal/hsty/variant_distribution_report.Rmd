@@ -24,7 +24,7 @@ mytheme <- theme(panel.background = element_rect(fill='white', colour='black'),
         axis.text = element_text(size = 17, face='bold', color='black'),
         panel.grid.major = element_line(linetype = 'dotted', colour='black'),
         panel.border = element_rect(fill=NA, linetype = "solid", colour='black'),
-        plot.margin=unit(c(2,2,5,2),'mm'), legend.position=c(0.80,0.90), legend.title = element_blank(),
+        plot.margin=unit(c(2,2,5,2),'mm'), legend.position=c(0.2,0.1), legend.title = element_blank(),
         legend.text = element_text(colour = 'black', size = 15, face = 'bold'), legend.box = "horizontal",
         legend.key.width=unit(2, "cm"), legend.key = element_rect(fill='white'))
 
@@ -44,10 +44,11 @@ tenkb <- read.delim(file="per-10000bp-filtered_hsty_mutant.vcf.txt", header = TR
 tenkb$numhm <- tenkb$numhm + 0.1
 tenkb$numht <- tenkb$numht + 0.1
 tenkb$ratio <- tenkb$numhm/tenkb$numht
-ggplot(data=tenkb, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio")) + 
-     geom_line(aes(y=numhm/sum(numhm), colour="homozygous variants")) + 
-     geom_line(aes(y=numht/sum(numht), colour="heterozygous variants")) + 
-     scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme
+ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio"),
+                                                  method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme
 
 ```
 
@@ -64,10 +65,11 @@ tenkb <- read.delim(file="per-50000bp-filtered_hsty_mutant.vcf.txt", header = TR
 tenkb$numhm <- tenkb$numhm + 0.1
 tenkb$numht <- tenkb$numht + 0.1
 tenkb$ratio <- tenkb$numhm/tenkb$numht
-ggplot(data=tenkb, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio")) + 
-     geom_line(aes(y=numhm/sum(numhm), colour="homozygous variants")) + 
-     geom_line(aes(y=numht/sum(numht), colour="heterozygous variants")) + 
-     scale_y_sqrt() + labs(y=NULL, main="genome in 50 KB fragment chunks") + mytheme
+ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio"),
+                                                  method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme
 
 ```
 
@@ -84,10 +86,11 @@ tenkb <- read.delim(file="per-100000bp-filtered_hsty_mutant.vcf.txt", header = T
 tenkb$numhm <- tenkb$numhm + 0.1
 tenkb$numht <- tenkb$numht + 0.1
 tenkb$ratio <- tenkb$numhm/tenkb$numht
-ggplot(data=tenkb, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio")) + 
-     geom_line(aes(y=numhm/sum(numhm), colour="homozygous variants")) + 
-     geom_line(aes(y=numht/sum(numht), colour="heterozygous variants")) + 
-     scale_y_sqrt() + labs(y=NULL, main="genome in 100 KB fragment chunks") + mytheme
+ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio"),
+                                                  method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme
 
 ```
 
@@ -104,10 +107,11 @@ tenkb <- read.delim(file="per-500000bp-filtered_hsty_mutant.vcf.txt", header = T
 tenkb$numhm <- tenkb$numhm + 0.1
 tenkb$numht <- tenkb$numht + 0.1
 tenkb$ratio <- tenkb$numhm/tenkb$numht
-ggplot(data=tenkb, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio")) + 
-     geom_line(aes(y=numhm/sum(numhm), colour="homozygous variants")) + 
-     geom_line(aes(y=numht/sum(numht), colour="heterozygous variants")) + 
-     scale_y_sqrt() + labs(y=NULL, main="genome in 500 KB fragment chunks") + mytheme
+ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio"),
+                                                  method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme
 
 ```
 
@@ -124,10 +128,11 @@ tenkb <- read.delim(file="per-1000000bp-filtered_hsty_mutant.vcf.txt", header = 
 tenkb$numhm <- tenkb$numhm + 0.1
 tenkb$numht <- tenkb$numht + 0.1
 tenkb$ratio <- tenkb$numhm/tenkb$numht
-ggplot(data=tenkb, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio")) + 
-     geom_line(aes(y=numhm/sum(numhm), colour="homozygous variants")) + 
-     geom_line(aes(y=numht/sum(numht), colour="heterozygous variants")) + 
-     scale_y_sqrt() + labs(y=NULL, main="genome in 1 MB fragment chunks") + mytheme
+ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio"),
+                                                  method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme
 
 ```
 
@@ -144,10 +149,11 @@ tenkb <- read.delim(file="per-5000000bp-filtered_hsty_mutant.vcf.txt", header = 
 tenkb$numhm <- tenkb$numhm + 0.1
 tenkb$numht <- tenkb$numht + 0.1
 tenkb$ratio <- tenkb$numhm/tenkb$numht
-ggplot(data=tenkb, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio")) + 
-     geom_line(aes(y=numhm/sum(numhm), colour="homozygous variants")) + 
-     geom_line(aes(y=numht/sum(numht), colour="heterozygous variants")) + 
-     scale_y_sqrt() + labs(y=NULL, main="genome in 5 MB fragment chunks") + mytheme
+ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio"),
+                                                  method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme
 
 ```
 
@@ -164,10 +170,11 @@ tenkb <- read.delim(file="per-10000000bp-filtered_hsty_mutant.vcf.txt", header =
 tenkb$numhm <- tenkb$numhm + 0.1
 tenkb$numht <- tenkb$numht + 0.1
 tenkb$ratio <- tenkb$numhm/tenkb$numht
-ggplot(data=tenkb, aes(x=position)) + geom_line(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio")) + 
-     geom_line(aes(y=numhm/sum(numhm), colour="homozygous variants")) + 
-     geom_line(aes(y=numht/sum(numht), colour="heterozygous variants")) + 
-     scale_y_sqrt() + labs(y=NULL, main="genome in 10 MB fragment chunks") + mytheme
+ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio"),
+                                                  method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 8, raw=TRUE) ) +
+  stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 8, raw=TRUE) ) +
+  stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 8, raw=TRUE) ) +
+  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme
 
 ```
 
