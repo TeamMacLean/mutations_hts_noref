@@ -50,7 +50,7 @@ end
 
 # argument 3 provides the chromosome id and position of causative mutation seperated by ':'
 # this is used to get position in the sequential order of the chromosomes
-unless ARGV[2].empty?
+unless ARGV[2].nil?
 	info = ARGV[2].split(/:/)
 	adjust_posn = sequences[info[0].to_s] + info[1].to_i
 	warn "adjusted mutation position\t#{adjust_posn}"

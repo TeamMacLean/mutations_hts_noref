@@ -14,3 +14,9 @@
 
 5. polyfitted the homozygous, heterozygous and the ratio between two variants for these genome chunk distributions
 
+
+## October 12th to 16th
+
+1. Completed polyfit of 4 arabidopsis datasets and produced graphs for each bin size
+
+2. Working towards to define the peak and fit parameters to peak distribution
