@@ -24,9 +24,20 @@ mytheme <- theme(panel.background = element_rect(fill='white', colour='black'),
         axis.text = element_text(size = 17, face='bold', color='black'),
         panel.grid.major = element_line(linetype = 'dotted', colour='black'),
         panel.border = element_rect(fill=NA, linetype = "solid", colour='black'),
-        plot.margin=unit(c(2,2,5,2),'mm'), legend.position=c(0.2,0.1), legend.title = element_blank(),
+        plot.margin=unit(c(2,2,5,2),'mm'), legend.position=c(0.25,0.2), legend.title = element_blank(),
         legend.text = element_text(colour = 'black', size = 15, face = 'bold'), legend.box = "horizontal",
         legend.key.width=unit(2, "cm"), legend.key = element_rect(fill='white'))
+
+### lm equation display on plot. function modified from following link
+## http://stackoverflow.com/questions/11949331/adding-a-3rd-order-polynomial-and-its-equation-to-a-ggplot-in-r
+lm_eqn = function(x, y, n){
+  m=lm(y ~ poly(x, n)) #n degree polynomial
+  eq <- substitute(italic(y) == a + b %.% italic(x)*","~~italic(r)^2~"="~r2,
+                   list(a = format(coef(m)[1], digits = 2),
+                        b = format(coef(m)[2], digits = 2),
+                        r2 = format(summary(m)$r.squared, digits = 3)))
+  as.character(as.expression(eq))
+}
 
 ## set working directory
 setwd("~/git-hub-repos/shyamrallapalli/mutations_hts_noref/002_snps_in_assembled_genome/contig_snp_distribution/arabidopsis/allen_etal/hsty")
@@ -48,7 +59,9 @@ ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour
                                                   method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 12, raw=TRUE) ) +
   stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
   stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
-  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme
+  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
+  annotate("text", x=0, y=0, label=lm_eqn(tenkb$position, tenkb$ratio, 12), hjust=0, size=8, family="Times", face="italic", parse=TRUE)
+
 
 ```
 
@@ -69,7 +82,8 @@ ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour
                                                   method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 12, raw=TRUE) ) +
   stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
   stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
-  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme
+  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
+  annotate("text", x=0, y=0, label=lm_eqn(tenkb$position, tenkb$ratio, 12), hjust=0, size=8, family="Times", face="italic", parse=TRUE)
 
 ```
 
@@ -90,7 +104,8 @@ ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour
                                                   method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 12, raw=TRUE) ) +
   stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
   stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
-  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme
+  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
+  annotate("text", x=0, y=0, label=lm_eqn(tenkb$position, tenkb$ratio, 12), hjust=0, size=8, family="Times", face="italic", parse=TRUE)
 
 ```
 
@@ -111,7 +126,8 @@ ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour
                                                   method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 12, raw=TRUE) ) +
   stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
   stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
-  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme
+  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
+  annotate("text", x=0, y=0, label=lm_eqn(tenkb$position, tenkb$ratio, 12), hjust=0, size=8, family="Times", face="italic", parse=TRUE)
 
 ```
 
@@ -132,7 +148,8 @@ ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour
                                                   method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 12, raw=TRUE) ) +
   stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
   stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
-  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme
+  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
+  annotate("text", x=0, y=0, label=lm_eqn(tenkb$position, tenkb$ratio, 12), hjust=0, size=8, family="Times", face="italic", parse=TRUE)
 
 ```
 
@@ -153,7 +170,8 @@ ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour
                                                   method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 12, raw=TRUE) ) +
   stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
   stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
-  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme
+  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
+  annotate("text", x=0, y=0, label=lm_eqn(tenkb$position, tenkb$ratio, 12), hjust=0, size=8, family="Times", face="italic", parse=TRUE)
 
 ```
 
@@ -174,7 +192,8 @@ ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour
                                                   method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 8, raw=TRUE) ) +
   stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 8, raw=TRUE) ) +
   stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 8, raw=TRUE) ) +
-  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme
+  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
+  annotate("text", x=0, y=0, label=lm_eqn(tenkb$position, tenkb$ratio, 8), hjust=0, size=8, family="Times", face="italic", parse=TRUE)
 
 ```
 
@@ -189,7 +208,7 @@ ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour
 ```{r genome, echo=FALSE, fig.width=12, fig.height=6}
 infile <- read.delim(file="varposn-genome-filtered_hsty_mutant.vcf.txt", header = TRUE)
 ggplot(data=infile, aes(x=position, colour=type)) + geom_density(adjust=1/10) +
-     scale_y_sqrt() + labs(y=NULL, main="genome wide snp density") + mytheme
+     scale_y_sqrt() + labs(y=NULL, main="genome wide snp density") + mytheme + theme(legend.position=c(0.9,0.9))
 
 ```
 
