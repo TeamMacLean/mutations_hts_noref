@@ -40,7 +40,7 @@ lm_eqn = function(x, y, n){
 }
 
 ## set working directory
-setwd("~/git-hub-repos/shyamrallapalli/mutations_hts_noref/002_snps_in_assembled_genome/contig_snp_distribution/arabidopsis/galavo_etal/96_1_fd2")
+setwd("~/git-hub-repos/shyamrallapalli/mutations_hts_noref/002_snps_in_assembled_genome/contig_snp_distribution/arabidopsis/galavo_etal/soc1")
 
 ```
 

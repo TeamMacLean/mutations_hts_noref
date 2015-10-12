@@ -6,7 +6,7 @@ require 'bio'
 require 'bio-samtools'
 
 ### command line input
-### ruby ordered_fasta_vcf_positions 'ordered fasta file' 'shuffled vcf file'  writes ordered variant positions to text files and
+### ruby ordered_fasta_vcf_positions 'ordered fasta file' 'shuffled vcf file' 'chr:position'  writes ordered variant positions to text files and
 ### a vcf file with name corrected contigs/scaffolds and "AF" entry to info field
 
 assembly_len = 0
@@ -47,6 +47,15 @@ File.open(infile, 'r').each do |line|
 		varfile.puts "#{v.pos}\tht"
 	end
 end
+
+# argument 3 provides the chromosome id and position of causative mutation seperated by ':'
+# this is used to get position in the sequential order of the chromosomes
+unless ARGV[2].empty?
+	info = ARGV[2].split(/:/)
+	adjust_posn = sequences[info[0].to_s] + info[1].to_i
+	warn "adjusted mutation position\t#{adjust_posn}"
+end
+
 
 # New file is opened to write
 def open_new_file_to_write(input, number)
