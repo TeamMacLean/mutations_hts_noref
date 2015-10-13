@@ -20,3 +20,7 @@
 1. Completed polyfit of 4 arabidopsis datasets and produced graphs for each bin size
 
 2. Working towards to define the peak and fit parameters to peak distribution
+
+3. Complete genomes (for example Arabidopsis) contain centromere and telomere, which are repeat rich and host some of the polymorphisms. Using data modelled from whole genome could be different to what we deal with denovo-assembled data. so working towards fitting distribtuion using both whole genome and assemble part of the genome
+
+4. 
