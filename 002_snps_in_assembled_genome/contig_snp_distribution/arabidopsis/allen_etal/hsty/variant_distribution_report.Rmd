@@ -24,7 +24,7 @@ mytheme <- theme(panel.background = element_rect(fill='white', colour='black'),
         axis.text = element_text(size = 17, face='bold', color='black'),
         panel.grid.major = element_line(linetype = 'dotted', colour='black'),
         panel.border = element_rect(fill=NA, linetype = "solid", colour='black'),
-        plot.margin=unit(c(2,2,5,2),'mm'), legend.position=c(0.25,0.2), legend.title = element_blank(),
+        plot.margin=unit(c(2,2,5,2),'mm'), legend.position=c(0.2,0.1), legend.title = element_blank(),
         legend.text = element_text(colour = 'black', size = 15, face = 'bold'), legend.box = "horizontal",
         legend.key.width=unit(2, "cm"), legend.key = element_rect(fill='white'))
 
@@ -61,7 +61,7 @@ ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour
   stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
   scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
   geom_vline(xintercept = as.numeric(51531045), size=0.5, linetype = "longdash") +
-  annotate("text", x=0, y=0, label=lm_eqn(tenkb$position, tenkb$ratio, 12), hjust=0, size=8, family="Times", face="italic", parse=TRUE)
+  annotate("text", x=Inf, y=Inf, label=lm_eqn(tenkb$position, tenkb$ratio, 12), hjust=1, vjust=1, size=8, family="Times", face="italic", parse=TRUE)
 
 
 ```
@@ -85,7 +85,7 @@ ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour
   stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
   scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
   geom_vline(xintercept = as.numeric(51531045), size=0.5, linetype = "longdash") +
-  annotate("text", x=0, y=0, label=lm_eqn(tenkb$position, tenkb$ratio, 12), hjust=0, size=8, family="Times", face="italic", parse=TRUE)
+  annotate("text", x=Inf, y=Inf, label=lm_eqn(tenkb$position, tenkb$ratio, 12), hjust=1, vjust=1, size=8, family="Times", face="italic", parse=TRUE)
 
 ```
 
@@ -108,7 +108,7 @@ ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour
   stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
   scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
   geom_vline(xintercept = as.numeric(51531045), size=0.5, linetype = "longdash") +
-  annotate("text", x=0, y=0, label=lm_eqn(tenkb$position, tenkb$ratio, 12), hjust=0, size=8, family="Times", face="italic", parse=TRUE)
+  annotate("text", x=Inf, y=Inf, label=lm_eqn(tenkb$position, tenkb$ratio, 12), hjust=1, vjust=1, size=8, family="Times", face="italic", parse=TRUE)
 
 ```
 
@@ -131,7 +131,7 @@ ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour
   stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
   scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
   geom_vline(xintercept = as.numeric(51531045), size=0.5, linetype = "longdash") +
-  annotate("text", x=0, y=0, label=lm_eqn(tenkb$position, tenkb$ratio, 12), hjust=0, size=8, family="Times", face="italic", parse=TRUE)
+  annotate("text", x=Inf, y=Inf, label=lm_eqn(tenkb$position, tenkb$ratio, 12), hjust=1, vjust=1, size=8, family="Times", face="italic", parse=TRUE)
 
 ```
 
@@ -154,7 +154,7 @@ ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour
   stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
   scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
   geom_vline(xintercept = as.numeric(51531045), size=0.5, linetype = "longdash") +
-  annotate("text", x=0, y=0, label=lm_eqn(tenkb$position, tenkb$ratio, 12), hjust=0, size=8, family="Times", face="italic", parse=TRUE)
+  annotate("text", x=Inf, y=Inf, label=lm_eqn(tenkb$position, tenkb$ratio, 12), hjust=1, vjust=1, size=8, family="Times", face="italic", parse=TRUE)
 
 ```
 
@@ -177,7 +177,7 @@ ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour
   stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
   scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
   geom_vline(xintercept = as.numeric(51531045), size=0.5, linetype = "longdash") +
-  annotate("text", x=0, y=0, label=lm_eqn(tenkb$position, tenkb$ratio, 12), hjust=0, size=8, family="Times", face="italic", parse=TRUE)
+  annotate("text", x=Inf, y=Inf, label=lm_eqn(tenkb$position, tenkb$ratio, 12), hjust=1, vjust=1, size=8, family="Times", face="italic", parse=TRUE)
 
 ```
 
@@ -200,7 +200,7 @@ ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour
   stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 8, raw=TRUE) ) +
   scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
   geom_vline(xintercept = as.numeric(51531045), size=0.5, linetype = "longdash") +
-  annotate("text", x=0, y=0, label=lm_eqn(tenkb$position, tenkb$ratio, 8), hjust=0, size=8, family="Times", face="italic", parse=TRUE)
+  annotate("text", x=Inf, y=Inf, label=lm_eqn(tenkb$position, tenkb$ratio, 8), hjust=1, vjust=1, size=8, family="Times", face="italic", parse=TRUE)
 
 ```
 
