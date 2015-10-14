@@ -18,6 +18,22 @@ file.each do |seq|
 	assembly_len += seq.length.to_i
 end
 
+# argument 3 provides the chromosome id and position of causative mutation seperated by ':'
+# this is used to get position in the sequential order of the chromosomes
+info = ARGV[2].split(/:/)
+adjust_posn = sequences[info[0].to_s] + info[1].to_i
+warn "adjusted mutation position\t#{adjust_posn}"
+limit_low = 0
+limit_up = 0
+if (adjust_posn - 25000000) > 0
+	limit_low = adjust_posn - 25000000
+end
+if (adjust_posn + 25000000) > assembly_len
+	limit_up = assembly_len
+else
+	limit_up = adjust_posn + 25000000
+end
+
 def rename_chr(chr)
 	if chr =~ /^Chr\d/
 		chr.gsub!(/^Chr/, '')
@@ -47,15 +63,6 @@ File.open(infile, 'r').each do |line|
 		varfile.puts "#{v.pos}\tht"
 	end
 end
-
-# argument 3 provides the chromosome id and position of causative mutation seperated by ':'
-# this is used to get position in the sequential order of the chromosomes
-unless ARGV[2].nil?
-	info = ARGV[2].split(/:/)
-	adjust_posn = sequences[info[0].to_s] + info[1].to_i
-	warn "adjusted mutation position\t#{adjust_posn}"
-end
-
 
 # New file is opened to write
 def open_new_file_to_write(input, number)
