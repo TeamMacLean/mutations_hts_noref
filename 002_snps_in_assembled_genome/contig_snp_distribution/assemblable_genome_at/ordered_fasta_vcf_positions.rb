@@ -21,7 +21,7 @@ file.each do |seq|
 	sequences[seq.entry_id] = genome_len
 	genome_len += seq.length.to_i
 end
-warn "assembled chromosome length:\t#{genome_len}"
+warn "whole genome length:\t#{genome_len}"
 
 def rename_chr(chr)
 	if chr =~ /^Chr\d/
@@ -38,16 +38,22 @@ end
 data = Hash.new {|h,k| h[k] = {} }
 gff3 = Bio::GFF::GFF3.new(File.read(gfffile))
 assembled_length = 0
+covered_length = 0
 gff3.records.each do | record |
 	chr = rename_chr(record.seqname.to_s)
-	if record.feature == 'mRNA'
+	if record.feature == 'gene'
 		record.start = sequences[chr] + record.start.to_i
 		record.end = sequences[chr] + record.end.to_i
 		data[record.start.to_i] = [record.start, record.end].join("_")
-		assembled_length += record.end - record.start
+		# assembled_length += record.end - record.start
+		length = record.get_attributes('original_length')[0].to_i
+		assembled_length += length
+		covlength = record.get_attributes('length_covered')[0].to_i
+		covered_length += covlength
 	end
 end
-warn "assembled chromosome length:\t#{assembled_length}"
+warn "assembled genome length:\t#{assembled_length}"
+warn "assembly covering the genome:\t#{covered_length}"
 
 ### Use stored hash to calculate uncovered genomic region and add to a hash
 nocov = Hash.new {|h,k| h[k] = {} }
