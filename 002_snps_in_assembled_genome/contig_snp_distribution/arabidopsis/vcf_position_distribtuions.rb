@@ -79,7 +79,7 @@ def pool_variants_per_step(inhash, step, outhash, vartype)
 	outhash
 end
 
-breaks = [10000, 50000, 100000, 500000, 1000000, 5000000, 10000000]
+breaks = [10000, 50000, 100000, 500000, 1000000, 2500000]
 breaks.each do | step |
 	outfile = open_new_file_to_write(infile, step)
 	distribute = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
