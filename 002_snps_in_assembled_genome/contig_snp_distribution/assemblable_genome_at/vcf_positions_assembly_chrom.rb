@@ -9,19 +9,9 @@ require 'bio-samtools'
 ### ruby ordered_fasta_vcf_positions 'ordered fasta file' 'shuffled vcf file' 'chr:position'  writes ordered variant positions to text files and
 ### a vcf file with name corrected contigs/scaffolds and "AF" entry to info field
 
-fastafile = ARGV[0]
-vcffile = ARGV[1]
-gfffile = ARGV[2] # gff file of denovo assembly over the fasta file
-
-genome_len = 0
-### Read ordered fasta file and store sequence id and lengths in a hash
-sequences = Hash.new {|h,k| h[k] = {} }
-file = Bio::FastaFormat.open(fastafile)
-file.each do |seq|
-	sequences[seq.entry_id] = genome_len
-	genome_len += seq.length.to_i
-end
-warn "whole genome length:\t#{genome_len}"
+vcffile = ARGV[0]
+gfffile = ARGV[1] # gff file of denovo assembly over the fasta file
+targetchr = ARGV[2]
 
 def rename_chr(chr)
 	if chr =~ /^Chr\d/
@@ -37,23 +27,14 @@ end
 ### Read gff and selected chromosome coverage is stored in a hash
 data = Hash.new {|h,k| h[k] = {} }
 gff3 = Bio::GFF::GFF3.new(File.read(gfffile))
-assembled_length = 0
-covered_length = 0
 gff3.records.each do | record |
 	chr = rename_chr(record.seqname.to_s)
-	if record.feature == 'gene'
-		record.start = sequences[chr] + record.start.to_i
-		record.end = sequences[chr] + record.end.to_i
-		data[record.start.to_i] = [record.start, record.end].join("_")
-		# assembled_length += record.end - record.start
-		length = record.get_attributes('original_length')[0].to_i
-		assembled_length += length
-		covlength = record.get_attributes('length_covered')[0].to_i
-		covered_length += covlength
+	if targetchr == chr
+		if record.feature == 'gene'
+			data[record.start.to_i] = [record.start.to_i, record.end.to_i].join("_")
+		end
 	end
 end
-warn "assembled genome length:\t#{assembled_length}"
-warn "assembly covering the genome:\t#{covered_length}"
 
 ### Use stored hash to calculate uncovered genomic region and add to a hash
 nocov = Hash.new {|h,k| h[k] = {} }
@@ -62,7 +43,6 @@ prev_end = 0
 count = 1
 data.keys.sort.each do | key |
 	info = data[key].split("_")
-	# warn "covered\t#{data[key]}\n"
 	curr_start = info[0].to_i
 	curr_end = info[1].to_i
 	if prev_end == 0
@@ -72,7 +52,6 @@ data.keys.sort.each do | key |
 		if gap > 100
 			curr_gap += gap
 			nocov[count] = [prev_end, curr_start, curr_gap].join("_")
-			# warn "notcovered\t#{nocov[count]}\n"
 			count += 1
 		end
 		prev_end = curr_end
@@ -99,9 +78,10 @@ end
 subtract = 0
 gap_present = 0
 
-### Read vcf file and store variants in respective 
+### Read vcf file and store variants in respective order
 contigs = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
-varfile = File.new("varposn-genome-#{vcffile}.txt", "w")
+varfile1 = File.new("varposn-chromosome-#{vcffile}.txt", "w")
+varfile2 = File.new("varposn-assembly-#{vcffile}.txt", "w")
 varfile.puts "position\ttype"
 File.open(vcffile, 'r').each do |line|
 	next if line =~ /^#/
