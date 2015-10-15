@@ -55,12 +55,14 @@ File.open(infile, 'r').each do |line|
 	v = Bio::DB::Vcf.new(line)
 	v.chrom = rename_chr(v.chrom)
 	v.pos = v.pos.to_i + sequences[v.chrom]
-	if v.info["HOM"].to_i == 1
-		contigs[:hm][v.pos] = 1
-		varfile.puts "#{v.pos}\thm"
-	elsif v.info["HET"].to_i == 1
-		contigs[:ht][v.pos] = 1
-		varfile.puts "#{v.pos}\tht"
+	if v.pos.between?(limit_low, limit_up)
+		if v.info["HOM"].to_i == 1
+			contigs[:hm][v.pos] = 1
+			varfile.puts "#{v.pos}\thm"
+		elsif v.info["HET"].to_i == 1
+			contigs[:ht][v.pos] = 1
+			varfile.puts "#{v.pos}\tht"
+		end
 	end
 end
 
