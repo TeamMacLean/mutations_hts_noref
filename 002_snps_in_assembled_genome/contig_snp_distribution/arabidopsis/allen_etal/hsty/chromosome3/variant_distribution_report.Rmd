@@ -1,0 +1,200 @@
+---
+output:
+  html_document:
+    fig_caption: yes
+    theme: spacelab
+    toc: no
+---
+# **plots of variant distribution along chromosome length**
+
+Load libraries and the data
+```{r setup, include=FALSE}
+# load the required libraries and functions
+library(knitr)
+library(markdown)
+#opts_chunk$set(dev = 'pdf')
+library(grid)
+library(gridExtra)
+library(ggplot2)
+
+## cusotom ggplot theme edits
+mytheme <- theme(panel.background = element_rect(fill='white', colour='black'),
+        text = element_text(size = 20, face='bold', colour='black'),
+        axis.title.x = element_text(size = 19, face='bold', color='black', vjust = -1),
+        axis.text = element_text(size = 17, face='bold', color='black'),
+        panel.grid.major = element_line(linetype = 'dotted', colour='black'),
+        panel.border = element_rect(fill=NA, linetype = "solid", colour='black'),
+        plot.margin=unit(c(2,2,5,2),'mm'), legend.position=c(0.2,0.1), legend.title = element_blank(),
+        legend.text = element_text(colour = 'black', size = 15, face = 'bold'), legend.box = "horizontal",
+        legend.key.width=unit(2, "cm"), legend.key = element_rect(fill='white'))
+
+### lm equation display on plot. function modified from following link
+## http://stackoverflow.com/questions/11949331/adding-a-3rd-order-polynomial-and-its-equation-to-a-ggplot-in-r
+lm_eqn = function(x, y, n){
+  m=lm(y ~ poly(x, n)) #n degree polynomial
+  eq <- substitute(italic(y) == a + b %.% italic(x)*","~~italic(r)^2~"="~r2,
+                   list(a = format(coef(m)[1], digits = 2),
+                        b = format(coef(m)[2], digits = 2),
+                        r2 = format(summary(m)$r.squared, digits = 3)))
+  as.character(as.expression(eq))
+}
+
+
+```
+
+...     
+
+...  		
+
+#### 10,000 bp grouping of whole genome
+
+```{r 10kb, echo=FALSE, fig.width=12, fig.height=6}
+tenkb <- read.delim(file="per-10000bp-filtered_hsty_mutant.vcf.txt", header = TRUE)
+tenkb$numhm <- tenkb$numhm + 0.1
+tenkb$numht <- tenkb$numht + 0.1
+tenkb$ratio <- tenkb$numhm/tenkb$numht
+ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio"),
+                                                  method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
+  geom_vline(xintercept = as.numeric(1405085), size=0.5, linetype = "longdash") +
+  annotate("text", x=Inf, y=Inf, label=lm_eqn(tenkb$position, tenkb$ratio, 12), hjust=1, vjust=1, size=8, family="Times", face="italic", parse=TRUE)
+
+
+```
+
+
+...		
+
+...  	
+
+
+#### 50,000 bp grouping of whole genome
+
+```{r 50kb, echo=FALSE, fig.width=12, fig.height=6}
+tenkb <- read.delim(file="per-50000bp-filtered_hsty_mutant.vcf.txt", header = TRUE)
+tenkb$numhm <- tenkb$numhm + 0.1
+tenkb$numht <- tenkb$numht + 0.1
+tenkb$ratio <- tenkb$numhm/tenkb$numht
+ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio"),
+                                                  method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
+  geom_vline(xintercept = as.numeric(1405085), size=0.5, linetype = "longdash") +
+  annotate("text", x=Inf, y=Inf, label=lm_eqn(tenkb$position, tenkb$ratio, 12), hjust=1, vjust=1, size=8, family="Times", face="italic", parse=TRUE)
+
+```
+
+
+...		
+
+...  	
+
+
+#### 100,000 bp grouping of whole genome
+
+```{r 100kb, echo=FALSE, fig.width=12, fig.height=6}
+tenkb <- read.delim(file="per-100000bp-filtered_hsty_mutant.vcf.txt", header = TRUE)
+tenkb$numhm <- tenkb$numhm + 0.1
+tenkb$numht <- tenkb$numht + 0.1
+tenkb$ratio <- tenkb$numhm/tenkb$numht
+ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio"),
+                                                  method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
+  geom_vline(xintercept = as.numeric(1405085), size=0.5, linetype = "longdash") +
+  annotate("text", x=Inf, y=Inf, label=lm_eqn(tenkb$position, tenkb$ratio, 12), hjust=1, vjust=1, size=8, family="Times", face="italic", parse=TRUE)
+
+```
+
+
+...		
+
+...  	
+
+
+#### 500,000 bp grouping of whole genome
+
+```{r 500kb, echo=FALSE, fig.width=12, fig.height=6}
+tenkb <- read.delim(file="per-500000bp-filtered_hsty_mutant.vcf.txt", header = TRUE)
+tenkb$numhm <- tenkb$numhm + 0.1
+tenkb$numht <- tenkb$numht + 0.1
+tenkb$ratio <- tenkb$numhm/tenkb$numht
+ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio"),
+                                                  method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
+  geom_vline(xintercept = as.numeric(1405085), size=0.5, linetype = "longdash") +
+  annotate("text", x=Inf, y=Inf, label=lm_eqn(tenkb$position, tenkb$ratio, 12), hjust=1, vjust=1, size=8, family="Times", face="italic", parse=TRUE)
+
+```
+
+
+...		
+
+...  	
+
+
+#### 1,000,000 bp grouping of whole genome
+
+```{r 1Mb, echo=FALSE, fig.width=12, fig.height=6}
+tenkb <- read.delim(file="per-1000000bp-filtered_hsty_mutant.vcf.txt", header = TRUE)
+tenkb$numhm <- tenkb$numhm + 0.1
+tenkb$numht <- tenkb$numht + 0.1
+tenkb$ratio <- tenkb$numhm/tenkb$numht
+ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio"),
+                                                  method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
+  geom_vline(xintercept = as.numeric(1405085), size=0.5, linetype = "longdash") +
+  annotate("text", x=Inf, y=Inf, label=lm_eqn(tenkb$position, tenkb$ratio, 12), hjust=1, vjust=1, size=8, family="Times", face="italic", parse=TRUE)
+
+```
+
+
+...		
+
+...  	
+
+
+#### 5,000,000 bp grouping of whole genome
+
+```{r 5Mb, echo=FALSE, fig.width=12, fig.height=6}
+tenkb <- read.delim(file="per-2500000bp-filtered_hsty_mutant.vcf.txt", header = TRUE)
+tenkb$numhm <- tenkb$numhm + 0.1
+tenkb$numht <- tenkb$numht + 0.1
+tenkb$ratio <- tenkb$numhm/tenkb$numht
+ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio"),
+                                                  method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 4, raw=TRUE) ) +
+  stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 4, raw=TRUE) ) +
+  stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 4, raw=TRUE) ) +
+  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
+  geom_vline(xintercept = as.numeric(1405085), size=0.5, linetype = "longdash") +
+  annotate("text", x=Inf, y=Inf, label=lm_eqn(tenkb$position, tenkb$ratio, 4), hjust=1, vjust=1, size=8, family="Times", face="italic", parse=TRUE)
+
+```
+
+
+...		
+
+
+...  	
+
+
+#### density plot for hm and ht
+
+```{r genome, echo=FALSE, fig.width=12, fig.height=6}
+infile <- read.delim(file="varposn-chromosome-filtered_hsty_mutant.vcf.txt", header = TRUE)
+ggplot(data=infile, aes(x=position, colour=type)) + geom_density(adjust=1/10) +
+  geom_vline(xintercept = as.numeric(1405085), size=0.5, linetype = "longdash") +
+  scale_y_sqrt() + labs(y=NULL, main="genome wide snp density") + mytheme + theme(legend.position=c(0.9,0.9))
+
+```
+
+
+
