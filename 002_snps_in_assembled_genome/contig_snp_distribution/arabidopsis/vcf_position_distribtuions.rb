@@ -6,17 +6,8 @@ require 'bio'
 require 'bio-samtools'
 
 ### command line input
-### ruby ordered_fasta_vcf_positions 'ordered fasta file' 'shuffled vcf file' 'chr:position'  writes ordered variant positions to text files and
+### ruby ordered_fasta_vcf_positions 'shuffled vcf file' 'chr'  writes ordered variant positions to text files and
 ### a vcf file with name corrected contigs/scaffolds and "AF" entry to info field
-
-assembly_len = 0
-### Read ordered fasta file and store sequence id and lengths in a hash
-sequences = Hash.new {|h,k| h[k] = {} }
-file = Bio::FastaFormat.open(ARGV[0])
-file.each do |seq|
-	sequences[seq.entry_id] = assembly_len
-	assembly_len += seq.length.to_i
-end
 
 def rename_chr(chr)
 	if chr =~ /^Chr\d/
@@ -31,31 +22,24 @@ end
 
 ### Read sequence fasta file and store sequences in a hash
 contigs = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
-infile = ARGV[1]
-varfile = File.new("varposn-genome-#{infile}.txt", "w")
+infile = ARGV[0]
+chr = ARGV[1]
+varfile = File.new("varposn-chromosome-#{infile}.txt", "w")
 varfile.puts "position\ttype"
 File.open(infile, 'r').each do |line|
 	next if line =~ /^#/
 	v = Bio::DB::Vcf.new(line)
 	v.chrom = rename_chr(v.chrom)
-	v.pos = v.pos.to_i + sequences[v.chrom]
-	if v.info["HOM"].to_i == 1
-		contigs[:hm][v.pos] = 1
-		varfile.puts "#{v.pos}\thm"
-	elsif v.info["HET"].to_i == 1
-		contigs[:ht][v.pos] = 1
-		varfile.puts "#{v.pos}\tht"
+	if chr == v.chrom
+		if v.info["HOM"].to_i == 1
+			contigs[:hm][v.pos] = 1
+			varfile.puts "#{v.pos}\thm"
+		elsif v.info["HET"].to_i == 1
+			contigs[:ht][v.pos] = 1
+			varfile.puts "#{v.pos}\tht"
+		end
 	end
 end
-
-# argument 3 provides the chromosome id and position of causative mutation seperated by ':'
-# this is used to get position in the sequential order of the chromosomes
-unless ARGV[2].nil?
-	info = ARGV[2].split(/:/)
-	adjust_posn = sequences[info[0].to_s] + info[1].to_i
-	warn "adjusted mutation position\t#{adjust_posn}"
-end
-
 
 # New file is opened to write
 def open_new_file_to_write(input, number)
