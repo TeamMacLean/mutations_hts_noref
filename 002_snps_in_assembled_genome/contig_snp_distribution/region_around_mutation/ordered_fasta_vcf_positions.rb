@@ -64,12 +64,11 @@ File.open(infile, 'r').each do |line|
 	seq_limit.each_key do | limit |
 		limits = seq_limit[limit].split(':')
 		if v.pos.between?(limits[0].to_i, limits[1].to_i)
+			pos = v.pos - limits[0].to_i
 			if v.info["HOM"].to_i == 1
-				contigs[limit][:hm][v.pos] = 1
-				# varfile.puts "#{v.pos}\thm"
+				contigs[limit][:hm][pos] = 1
 			elsif v.info["HET"].to_i == 1
-				contigs[limit][:ht][v.pos] = 1
-				# varfile.puts "#{v.pos}\tht"
+				contigs[limit][:ht][pos] = 1
 			end
 		end
 	end
