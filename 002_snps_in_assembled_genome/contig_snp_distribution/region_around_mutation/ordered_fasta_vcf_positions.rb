@@ -23,15 +23,21 @@ end
 info = ARGV[2].split(/:/)
 adjust_posn = sequences[info[0].to_s] + info[1].to_i
 warn "adjusted mutation position\t#{adjust_posn}"
-limit_low = 0
-limit_up = 0
-if (adjust_posn - 25000000) > 0
-	limit_low = adjust_posn - 25000000
-end
-if (adjust_posn + 25000000) > assembly_len
-	limit_up = assembly_len
-else
-	limit_up = adjust_posn + 25000000
+
+# using limits of 50Mb, 25Mb, 10Mb, 5Mb and 1Mb around the causative mutation
+limits = [25000000, 12500000, 5000000, 2500000, 1250000]
+seq_limit = Hash.new {|h,k| h[k] = {} }
+limits.each do | delimit |
+	lower = 0
+	if (adjust_posn - delimit) > 0
+		lower = adjust_posn - delimit
+	end
+
+	upper = adjust_posn + delimit
+	if upper > assembly_len
+		upper = assembly_len
+	end
+	seq_limit[delimit*2] = [lower, upper].join(':')
 end
 
 def rename_chr(chr)
@@ -48,27 +54,30 @@ end
 ### Read sequence fasta file and store sequences in a hash
 contigs = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
 infile = ARGV[1]
-varfile = File.new("varposn-genome-#{infile}.txt", "w")
-varfile.puts "position\ttype"
+#varfile = File.new("varposn-genome-#{infile}.txt", "w")
+#varfile.puts "position\ttype"
 File.open(infile, 'r').each do |line|
 	next if line =~ /^#/
 	v = Bio::DB::Vcf.new(line)
 	v.chrom = rename_chr(v.chrom)
 	v.pos = v.pos.to_i + sequences[v.chrom]
-	if v.pos.between?(limit_low, limit_up)
-		if v.info["HOM"].to_i == 1
-			contigs[:hm][v.pos] = 1
-			varfile.puts "#{v.pos}\thm"
-		elsif v.info["HET"].to_i == 1
-			contigs[:ht][v.pos] = 1
-			varfile.puts "#{v.pos}\tht"
+	seq_limit.each_key do | limit |
+		limits = seq_limit[limit].split(':')
+		if v.pos.between?(limits[0].to_i, limits[1].to_i)
+			if v.info["HOM"].to_i == 1
+				contigs[limit][:hm][v.pos] = 1
+				# varfile.puts "#{v.pos}\thm"
+			elsif v.info["HET"].to_i == 1
+				contigs[limit][:ht][v.pos] = 1
+				# varfile.puts "#{v.pos}\tht"
+			end
 		end
 	end
 end
 
 # New file is opened to write
-def open_new_file_to_write(input, number)
-	outfile = File.new("per-#{number}bp-#{input}.txt", "w")
+def open_new_file_to_write(input, number, region)
+	outfile = File.new("#{region}-per#{number}bp-#{input}.txt", "w")
 	outfile.puts "position\tnumhm\tnumht"
 	outfile
 end
@@ -104,21 +113,23 @@ def pool_variants_per_step(inhash, step, outhash, vartype)
 	outhash
 end
 
-breaks = [10000, 50000, 100000, 500000, 1000000, 5000000, 10000000]
+breaks = [10000, 100000, 500000]
 breaks.each do | step |
-	outfile = open_new_file_to_write(infile, step)
-	distribute = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
-	distribute = pool_variants_per_step(contigs, step, distribute, :hm)
-	distribute = pool_variants_per_step(contigs, step, distribute, :ht)
-	distribute.each_key do | key |
-		hm = 0
-		ht = 0
-		if distribute[key].key?(:hm)
-			hm = distribute[key][:hm]
+	contigs.each_key do | region |
+		outfile = open_new_file_to_write(infile, step, region)
+		distribute = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
+		distribute = pool_variants_per_step(contigs[region], step, distribute, :hm)
+		distribute = pool_variants_per_step(contigs[region], step, distribute, :ht)
+		distribute.each_key do | key |
+			hm = 0
+			ht = 0
+			if distribute[key].key?(:hm)
+				hm = distribute[key][:hm]
+			end
+			if distribute[key].key?(:ht)
+				ht = distribute[key][:ht]
+			end
+			outfile.puts "#{key}\t#{hm}\t#{ht}"
 		end
-		if distribute[key].key?(:ht)
-			ht = distribute[key][:ht]
-		end
-		outfile.puts "#{key}\t#{hm}\t#{ht}"
 	end
 end
