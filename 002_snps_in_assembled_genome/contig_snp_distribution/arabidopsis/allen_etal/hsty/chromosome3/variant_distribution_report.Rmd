@@ -55,6 +55,7 @@ tenkb$numht <- tenkb$numht + 0.1
 tenkb$ratio <- tenkb$numhm/tenkb$numht
 ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio"),
                                                   method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  geom_bar(aes(y=ratio/sum(ratio)), stat="identity") +
   stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
   stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
   scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
@@ -79,6 +80,7 @@ tenkb$numht <- tenkb$numht + 0.1
 tenkb$ratio <- tenkb$numhm/tenkb$numht
 ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio"),
                                                   method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  geom_bar(aes(y=ratio/sum(ratio)), stat="identity") +
   stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
   stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
   scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
@@ -102,6 +104,7 @@ tenkb$numht <- tenkb$numht + 0.1
 tenkb$ratio <- tenkb$numhm/tenkb$numht
 ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio"),
                                                   method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  geom_bar(aes(y=ratio/sum(ratio)), stat="identity") +
   stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
   stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
   scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
@@ -125,6 +128,7 @@ tenkb$numht <- tenkb$numht + 0.1
 tenkb$ratio <- tenkb$numhm/tenkb$numht
 ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio"),
                                                   method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  geom_bar(aes(y=ratio/sum(ratio)), stat="identity") +
   stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
   stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
   scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
@@ -148,6 +152,7 @@ tenkb$numht <- tenkb$numht + 0.1
 tenkb$ratio <- tenkb$numhm/tenkb$numht
 ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio"),
                                                   method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 12, raw=TRUE) ) +
+  geom_bar(aes(y=ratio/sum(ratio)), stat="identity") +
   stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
   stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
   scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
@@ -162,15 +167,16 @@ ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour
 ...  	
 
 
-#### 5,000,000 bp grouping of whole genome
+#### 2,500,000 bp grouping of whole genome
 
-```{r 5Mb, echo=FALSE, fig.width=12, fig.height=6}
+```{r 2.5Mb, echo=FALSE, fig.width=12, fig.height=6}
 tenkb <- read.delim(file="per-2500000bp-filtered_hsty_mutant.vcf.txt", header = TRUE)
 tenkb$numhm <- tenkb$numhm + 0.1
 tenkb$numht <- tenkb$numht + 0.1
 tenkb$ratio <- tenkb$numhm/tenkb$numht
 ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio"),
                                                   method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 4, raw=TRUE) ) +
+  geom_bar(aes(y=ratio/sum(ratio)), stat="identity") +
   stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 4, raw=TRUE) ) +
   stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 4, raw=TRUE) ) +
   scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
