@@ -9,33 +9,31 @@ require 'bio-samtools'
 ### ruby ordered_fasta_vcf_positions 'ordered fasta file' 'shuffled vcf file' 'chr:position'  writes ordered variant positions to text files and
 ### a vcf file with name corrected contigs/scaffolds and "AF" entry to info field
 
-assembly_len = 0
 ### Read ordered fasta file and store sequence id and lengths in a hash
 sequences = Hash.new {|h,k| h[k] = {} }
 file = Bio::FastaFormat.open(ARGV[0])
 file.each do |seq|
-	sequences[seq.entry_id] = assembly_len
-	assembly_len += seq.length.to_i
+	sequences[seq.entry_id] = seq.length.to_i
 end
 
 # argument 3 provides the chromosome id and position of causative mutation seperated by ':'
 # this is used to get position in the sequential order of the chromosomes
 info = ARGV[2].split(/:/)
-adjust_posn = sequences[info[0].to_s] + info[1].to_i
-warn "adjusted mutation position\t#{adjust_posn}"
+chromo_len = sequences[info[0].to_s]
+mutant_posn = info[1].to_i
 
 # using limits of 50Mb, 25Mb, 10Mb, 5Mb and 2.5Mb around the causative mutation
 limits = [25000000, 12500000, 5000000, 2500000, 1250000]
 seq_limit = Hash.new {|h,k| h[k] = {} }
 limits.each do | delimit |
 	lower = 0
-	if (adjust_posn - delimit) > 0
-		lower = adjust_posn - delimit
+	if (mutant_posn - delimit) > 0
+		lower = mutant_posn - delimit
 	end
 
-	upper = adjust_posn + delimit
-	if upper > assembly_len
-		upper = assembly_len
+	upper = mutant_posn + delimit
+	if upper > chromo_len
+		upper = chromo_len
 	end
 	seq_limit[delimit*2] = [lower, upper].join(':')
 end
@@ -60,15 +58,17 @@ File.open(infile, 'r').each do |line|
 	next if line =~ /^#/
 	v = Bio::DB::Vcf.new(line)
 	v.chrom = rename_chr(v.chrom)
-	v.pos = v.pos.to_i + sequences[v.chrom]
-	seq_limit.each_key do | limit |
-		limits = seq_limit[limit].split(':')
-		if v.pos.between?(limits[0].to_i, limits[1].to_i)
-			pos = v.pos - limits[0].to_i
-			if v.info["HOM"].to_i == 1
-				contigs[limit][:hm][pos] = 1
-			elsif v.info["HET"].to_i == 1
-				contigs[limit][:ht][pos] = 1
+	if v.chrom == info[0].to_s
+		v.pos = v.pos.to_i
+		seq_limit.each_key do | limit |
+			limits = seq_limit[limit].split(':')
+			if v.pos.between?(limits[0].to_i, limits[1].to_i)
+				pos = v.pos - limits[0].to_i
+				if v.info["HOM"].to_i == 1
+					contigs[limit][:hm][pos] = 1
+				elsif v.info["HET"].to_i == 1
+					contigs[limit][:ht][pos] = 1
+				end
 			end
 		end
 	end
