@@ -24,7 +24,7 @@ info = ARGV[2].split(/:/)
 adjust_posn = sequences[info[0].to_s] + info[1].to_i
 warn "adjusted mutation position\t#{adjust_posn}"
 
-# using limits of 50Mb, 25Mb, 10Mb, 5Mb and 1Mb around the causative mutation
+# using limits of 50Mb, 25Mb, 10Mb, 5Mb and 2.5Mb around the causative mutation
 limits = [25000000, 12500000, 5000000, 2500000, 1250000]
 seq_limit = Hash.new {|h,k| h[k] = {} }
 limits.each do | delimit |
