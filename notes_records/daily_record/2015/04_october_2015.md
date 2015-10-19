@@ -1,5 +1,7 @@
 ### Table of Cotents
-1. [October 5 - 9](#october-5th-to-9th)
+1. [October 5 - 9]  (#october-5th-to-9th)
+2. [October 12 - 16](#october-12th-to-16th)
+3. [October 19 - 23](#october-19th-to-23rd)
 
 
 ## October 5th to 9th
@@ -21,6 +23,13 @@
 
 2. Working towards to define the peak and fit parameters to peak distribution
 
-3. Complete genomes (for example Arabidopsis) contain centromere and telomere, which are repeat rich and host some of the polymorphisms. Using data modelled from whole genome could be different to what we deal with denovo-assembled data. so working towards fitting distribtuion using both whole genome and assemble part of the genome
+3. Complete genomes (for example Arabidopsis) contain centromere and telomere, which are repeat rich and host some of the polymorphisms. Using data modelled from whole genome could be different to what we deal with denovo-assembled data. so working towards fitting distribtuion using both whole genome and assemblable part of the genome
 
-4. 
+4. Whole genome (ordered from Chromosome 1 to 5) and specific chromosome carrying mutation data is used to generate density distribution and curve fitted
+
+5. In addtion to whole genome, assemblable part of whole genome and individual chromosome region covering variant density distrubtion are plotted
+
+6. Variants covering the sizes of 2.5, 5, 10, 25 and 50 Mb around the causative mutation are plotted using whole genome variant data (not limited to chromosome)
+
+
+## October 19th to 23rd
