@@ -35,7 +35,7 @@ def rename_chr(chr)
 end
 
 ### Read gff and selected chromosome coverage is stored in a hash
-data = Hash.new {|h,k| h[k] = {} }
+assembly = Hash.new {|h,k| h[k] = {} }
 gff3 = Bio::GFF::GFF3.new(File.read(gfffile))
 assembled_length = 0
 covered_length = 0
@@ -44,7 +44,7 @@ gff3.records.each do | record |
 	if record.feature == 'gene'
 		record.start = sequences[chr] + record.start.to_i
 		record.end = sequences[chr] + record.end.to_i
-		data[record.start.to_i] = [record.start, record.end].join("_")
+		assembly[record.start.to_i] = [record.start, record.end].join("_")
 		length = record.get_attributes('original_length')[0].to_i
 		assembled_length += length
 		covlength = record.get_attributes('length_covered')[0].to_i
@@ -59,9 +59,8 @@ nocov = Hash.new {|h,k| h[k] = {} }
 curr_gap = 0
 prev_end = 0
 count = 1
-data.keys.sort.each do | key |
-	info = data[key].split("_")
-	# warn "covered\t#{data[key]}\n"
+assembly.keys.sort.each do | key |
+	info = assembly[key].split("_")
 	curr_start = info[0].to_i
 	curr_end = info[1].to_i
 	if prev_end == 0
@@ -110,12 +109,14 @@ end
 ### And adjust remaining SNP position accordingly
 subtract = 0
 adjust_posn = 0
+
+## cusative mutation position and adjust position in assembled parts
 info = ARGV[3].split(/:/)
 mutant_posn = sequences[info[0].to_s] + info[1].to_i
-warn "adjusted mutation position\t#{mutant_posn}"
+warn "mutation position genome\t#{mutant_posn}"
 subtract, is_gap = notin_asmbly_check(nocov, mutant_posn)
 adjust_posn = mutant_posn - subtract
-warn "adjusted mutation position 1st\t#{adjust_posn}\t#{is_gap}"
+warn "mutation position assembly\t#{adjust_posn}\t#{is_gap}"
 
 ### Read vcf file and store variants in respective
 contigs = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
@@ -139,10 +140,6 @@ File.open(vcffile, 'r').each do |line|
 		varfile.puts "#{adj_pos}\t#{type}"
 	end
 end
-
-subtract, is_gap = notin_asmbly_check(nocov, mutant_posn)
-adjust_posn = mutant_posn - subtract
-warn "adjusted mutation position 2nd\t#{adjust_posn}\t#{is_gap}"
 
 # New file is opened to write
 def open_new_file_to_write(input, number)
