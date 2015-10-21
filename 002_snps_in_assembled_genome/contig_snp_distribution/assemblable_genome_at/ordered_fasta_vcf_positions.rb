@@ -45,7 +45,6 @@ gff3.records.each do | record |
 		record.start = sequences[chr] + record.start.to_i
 		record.end = sequences[chr] + record.end.to_i
 		data[record.start.to_i] = [record.start, record.end].join("_")
-		# assembled_length += record.end - record.start
 		length = record.get_attributes('original_length')[0].to_i
 		assembled_length += length
 		covlength = record.get_attributes('length_covered')[0].to_i
@@ -66,40 +65,59 @@ data.keys.sort.each do | key |
 	curr_start = info[0].to_i
 	curr_end = info[1].to_i
 	if prev_end == 0
+		if curr_start > 1
+			curr_gap += curr_start - 1
+			nocov[count] = [prev_end, curr_start, curr_gap, "gap"].join("_")
+			count += 1
+		else
+			nocov[count] = [curr_start, curr_end, curr_gap, "no-gap"].join("_")
+			count += 1
+		end
 		prev_end = curr_end
 	else
 		gap = curr_start - prev_end
-		if gap > 100
+		if gap > 0
 			curr_gap += gap
-			nocov[count] = [prev_end, curr_start, curr_gap].join("_")
-			# warn "notcovered\t#{nocov[count]}\n"
+			nocov[count] = [prev_end, curr_start, curr_gap, "gap"].join("_")
+			count += 1
+			nocov[count] = [curr_start, curr_end, curr_gap, "no-gap"].join("_")
+			count += 1
+		else
+			nocov[count] = [curr_start, curr_end, curr_gap, "no-gap"].join("_")
 			count += 1
 		end
 		prev_end = curr_end
 	end
 end
 
-def notin_asmbly_check(nocov, varpos, subtract, gap_present, in_gap)
-	nocov.keys.sort.each do | key |
-		info = nocov[key].split("_")
+def notin_asmbly_check(hash, varpos)
+	subtract = 0
+	is_gap = ''
+	hash.keys.sort.each do | key |
+		info = hash[key].split("_")
 		start = info[0].to_i
 		end_p = info[1].to_i
 		if varpos.between?(start, end_p)
 			subtract = info[2].to_i
-			gap_present = 1
-			in_gap = 1
+			is_gap = info[3].to_s
 			break
 		end
 	end
-	[subtract, in_gap, gap_present]
+	[subtract, is_gap]
 end
 
 ### Check if SNP's are in no sequence read coverage area and discard them
 ### And adjust remaining SNP position accordingly
 subtract = 0
-gap_present = 0
+adjust_posn = 0
+info = ARGV[3].split(/:/)
+mutant_posn = sequences[info[0].to_s] + info[1].to_i
+warn "adjusted mutation position\t#{mutant_posn}"
+subtract, is_gap = notin_asmbly_check(nocov, mutant_posn)
+adjust_posn = mutant_posn - subtract
+warn "adjusted mutation position 1st\t#{adjust_posn}\t#{is_gap}"
 
-### Read vcf file and store variants in respective 
+### Read vcf file and store variants in respective
 contigs = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
 varfile = File.new("varposn-genome-#{vcffile}.txt", "w")
 varfile.puts "position\ttype"
@@ -114,20 +132,17 @@ File.open(vcffile, 'r').each do |line|
 	elsif v.info["HET"].to_i == 1
 		type = 'ht'
 	end
-
-	in_gap = 0
-	subtract, in_gap, gap_present = notin_asmbly_check(nocov, v.pos, subtract, gap_present, in_gap)
-	if gap_present == 1
-		if in_gap == 0
-			adj_pos = v.pos - subtract
-			contigs[type][adj_pos] = 1
-			varfile.puts "#{adj_pos}\t#{type}"
-		end
-	else
-		contigs[type][v.pos] = 1
-		varfile.puts "#{v.pos}\t#{type}"
+	subtract, is_gap = notin_asmbly_check(nocov, v.pos)
+	if is_gap == "no-gap"
+		adj_pos = v.pos - subtract
+		contigs[type][adj_pos] = 1
+		varfile.puts "#{adj_pos}\t#{type}"
 	end
 end
+
+subtract, is_gap = notin_asmbly_check(nocov, mutant_posn)
+adjust_posn = mutant_posn - subtract
+warn "adjusted mutation position 2nd\t#{adjust_posn}\t#{is_gap}"
 
 # New file is opened to write
 def open_new_file_to_write(input, number)
