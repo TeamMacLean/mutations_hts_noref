@@ -33,3 +33,12 @@
 
 
 ## October 19th to 23rd
+
+1. Assemblabe part of the whole genome and individual chormosome data harbouring the causative mutation is binned and plots are generated
+
+2. Variants data in 10Mb and 25Mb around the causative mutation in bins of 500kb is used to curve fit using polynomial model (3rd order or 4th order and above degrees have fit the density distribtuion with R^2 value of 0.7)
+
+3. From the distribtuion it appears that back-cross data set from the 4 arabidopsis dataset is not ideal for snd density distribution based mutation identification
+
+4. Frequency of mutation induced by EMS(ethyl methyl sulfonate) appears to be one every 110 kb (for arabidopsis), we would end up with ~1100 mutations in genome and from Allen et al hsty backcross data has resulted in 6000 snps, which seem to be insufficient to arrange contigs to pick the key regions.
+
