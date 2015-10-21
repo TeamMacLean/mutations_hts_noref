@@ -1,0 +1,5 @@
+whole genome length:	119667750
+assembled genome length:	112055217
+assembly covering the genome:	96527194
+mutation position genome	49235209
+mutation position assembly	42846479	no-gap
