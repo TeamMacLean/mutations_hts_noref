@@ -45,7 +45,7 @@ lm_eqn = function(x, y, n){
 re_zero_ratio = function(df, number){
   for (i in 1:nrow(df)) {
   	if (df$numhm[i] == 0 && df$numht[i] == 0) {
-  		df$numhm[i] = 1
+  		df$numht[i] = 1
   	}
   	else {
   		df$numhm[i] = number + df$numhm[i]
