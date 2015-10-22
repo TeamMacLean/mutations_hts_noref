@@ -82,30 +82,35 @@ gap_present = 0
 contigs = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
 varfile1 = File.new("varposn-chromosome-#{vcffile}.txt", "w")
 varfile2 = File.new("varposn-assembly-#{vcffile}.txt", "w")
-varfile.puts "position\ttype"
+varfile1.puts "position\ttype"
+varfile2.puts "position\ttype"
 File.open(vcffile, 'r').each do |line|
 	next if line =~ /^#/
 	v = Bio::DB::Vcf.new(line)
 	v.chrom = rename_chr(v.chrom)
-	v.pos = v.pos.to_i + sequences[v.chrom]
-	type = ''
-	if v.info["HOM"].to_i == 1
-		type = 'hm'
-	elsif v.info["HET"].to_i == 1
-		type = 'ht'
-	end
-
-	in_gap = 0
-	subtract, in_gap, gap_present = notin_asmbly_check(nocov, v.pos, subtract, gap_present, in_gap)
-	if gap_present == 1
-		if in_gap == 0
-			adj_pos = v.pos - subtract
-			contigs[type][adj_pos] = 1
-			varfile.puts "#{adj_pos}\t#{type}"
+	if targetchr == v.chrom
+		v.pos = v.pos.to_i
+		type = ''
+		if v.info["HOM"].to_i == 1
+			type = 'hm'
+			varfile1.puts "#{v.pos}\t#{type}"
+		elsif v.info["HET"].to_i == 1
+			type = 'ht'
+			varfile1.puts "#{v.pos}\t#{type}"
 		end
-	else
-		contigs[type][v.pos] = 1
-		varfile.puts "#{v.pos}\t#{type}"
+
+		in_gap = 0
+		subtract, in_gap, gap_present = notin_asmbly_check(nocov, v.pos, subtract, gap_present, in_gap)
+		if gap_present == 1
+			if in_gap == 0
+				adj_pos = v.pos - subtract
+				contigs[type][adj_pos] = 1
+				varfile2.puts "#{adj_pos}\t#{type}"
+			end
+		else
+			contigs[type][v.pos] = 1
+			varfile2.puts "#{v.pos}\t#{type}"
+		end
 	end
 end
 
@@ -147,7 +152,7 @@ def pool_variants_per_step(inhash, step, outhash, vartype)
 	outhash
 end
 
-breaks = [10000, 50000, 100000, 500000, 1000000, 5000000, 10000000]
+breaks = [10000, 50000, 100000, 500000, 1000000, 2500000]
 breaks.each do | step |
 	outfile = open_new_file_to_write(vcffile, step)
 	distribute = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
