@@ -9,9 +9,41 @@ require 'bio-samtools'
 ### ruby ordered_fasta_vcf_positions 'ordered fasta file' 'shuffled vcf file' 'chr:position'  writes ordered variant positions to text files and
 ### a vcf file with name corrected contigs/scaffolds and "AF" entry to info field
 
-vcffile = ARGV[0]
-gfffile = ARGV[1] # gff file of denovo assembly over the fasta file
-targetchr = ARGV[2]
+fastafile = ARGV[0]
+vcffile = ARGV[1]
+gfffile = ARGV[2] # gff file of denovo assembly over the fasta file
+
+### Read ordered fasta file and store sequence id and lengths in a hash
+sequences = Hash.new {|h,k| h[k] = {} }
+file = Bio::FastaFormat.open(fastafile)
+file.each do |seq|
+	sequences[seq.entry_id] = seq.length.to_i
+end
+
+# argument 3 provides the chromosome id and position of causative mutation seperated by ':'
+# this is used to get position in the sequential order of the chromosomes
+info = ARGV[3].split(/:/)
+targetchr = info[0].to_s
+mutant_posn = info[1].to_i
+warn "mutation position genome\t#{mutant_posn}"
+
+
+# using limits of 20Mb, 10Mb, 5Mb and 2Mb around the causative mutation
+limits = [10000000, 5000000, 2500000, 1000000]
+seq_limit = Hash.new {|h,k| h[k] = {} }
+limits.each do | delimit |
+	lower = 0
+	if (mutant_posn - delimit) > 0
+		lower = mutant_posn - delimit
+	end
+
+	upper = mutant_posn + delimit
+	if upper > sequences[targetchr]
+		upper = sequences[targetchr]
+	end
+	seq_limit[delimit*2] = [lower, upper].join(':')
+end
+
 
 def rename_chr(chr)
 	if chr =~ /^Chr\d/
@@ -93,9 +125,6 @@ subtract = 0
 adjust_posn = 0
 
 ## cusative mutation position and adjust position in assembled parts
-info = ARGV[3].split(/:/)
-mutant_posn = info[1].to_i
-warn "mutation position genome\t#{mutant_posn}"
 subtract, is_gap = notin_asmbly_check(nocov, mutant_posn)
 adjust_posn = mutant_posn - subtract
 warn "mutation position assembly\t#{adjust_posn}\t#{is_gap}"
@@ -124,15 +153,21 @@ File.open(vcffile, 'r').each do |line|
 		subtract, is_gap = notin_asmbly_check(nocov, v.pos)
 		if is_gap == "no-gap"
 			adj_pos = v.pos - subtract
-			contigs[type][adj_pos] = 1
+			seq_limit.each_key do | limit |
+				limits = seq_limit[limit].split(':')
+				if v.pos.between?(limits[0].to_i, limits[1].to_i)
+					pos = adj_pos - limits[0].to_i
+					contigs[limit][type][pos] = 1
+				end
+			end
 			varfile2.puts "#{adj_pos}\t#{type}"
 		end
 	end
 end
 
 # New file is opened to write
-def open_new_file_to_write(input, number)
-	outfile = File.new("per-#{number}bp-#{input}.txt", "w")
+def open_new_file_to_write(input, number, region)
+	outfile = File.new("#{region}-per#{number}bp-#{input}.txt", "w")
 	outfile.puts "position\tnumhm\tnumht"
 	outfile
 end
@@ -170,19 +205,21 @@ end
 
 breaks = [10000, 50000, 100000, 500000, 1000000, 2500000]
 breaks.each do | step |
-	outfile = open_new_file_to_write(vcffile, step)
-	distribute = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
-	distribute = pool_variants_per_step(contigs, step, distribute, 'hm')
-	distribute = pool_variants_per_step(contigs, step, distribute, 'ht')
-	distribute.each_key do | key |
-		hm = 0
-		ht = 0
-		if distribute[key].key?('hm')
-			hm = distribute[key]['hm']
+		contigs.each_key do | region |
+		outfile = open_new_file_to_write(vcffile, step, region)
+		distribute = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
+		distribute = pool_variants_per_step(contigs, step, distribute, 'hm')
+		distribute = pool_variants_per_step(contigs, step, distribute, 'ht')
+		distribute.each_key do | key |
+			hm = 0
+			ht = 0
+			if distribute[key].key?('hm')
+				hm = distribute[key]['hm']
+			end
+			if distribute[key].key?('ht')
+				ht = distribute[key]['ht']
+			end
+			outfile.puts "#{key}\t#{hm}\t#{ht}"
 		end
-		if distribute[key].key?('ht')
-			ht = distribute[key]['ht']
-		end
-		outfile.puts "#{key}\t#{hm}\t#{ht}"
 	end
 end
