@@ -39,7 +39,7 @@ gff3.records.each do | record |
 	if targetchr == chr
 		if record.feature == 'gene'
 			assembly[record.start.to_i] = [record.start, record.end].join("_")
-			targetchr_length = record.end.to_i - record.start.to_i
+			targetchr_length += record.end.to_i - record.start.to_i
 		end
 	end
 end
@@ -200,8 +200,8 @@ breaks.each do | step |
 		contigs.each_key do | region |
 		outfile = open_new_file_to_write(vcffile, step, region)
 		distribute = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
-		distribute = pool_variants_per_step(contigs, step, distribute, 'hm')
-		distribute = pool_variants_per_step(contigs, step, distribute, 'ht')
+		distribute = pool_variants_per_step(contigs[region], step, distribute, 'hm')
+		distribute = pool_variants_per_step(contigs[region], step, distribute, 'ht')
 		distribute.each_key do | key |
 			hm = 0
 			ht = 0
