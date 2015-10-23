@@ -9,41 +9,15 @@ require 'bio-samtools'
 ### ruby ordered_fasta_vcf_positions 'ordered fasta file' 'shuffled vcf file' 'chr:position'  writes ordered variant positions to text files and
 ### a vcf file with name corrected contigs/scaffolds and "AF" entry to info field
 
-fastafile = ARGV[0]
-vcffile = ARGV[1]
-gfffile = ARGV[2] # gff file of denovo assembly over the fasta file
-
-### Read ordered fasta file and store sequence id and lengths in a hash
-sequences = Hash.new {|h,k| h[k] = {} }
-file = Bio::FastaFormat.open(fastafile)
-file.each do |seq|
-	sequences[seq.entry_id] = seq.length.to_i
-end
-
-# argument 3 provides the chromosome id and position of causative mutation seperated by ':'
+# argument 1 provides the chromosome id and position of causative mutation seperated by ':'
 # this is used to get position in the sequential order of the chromosomes
-info = ARGV[3].split(/:/)
+info = ARGV[0].split(/:/)
 targetchr = info[0].to_s
 mutant_posn = info[1].to_i
 warn "mutation position genome\t#{mutant_posn}"
 
-
-# using limits of 20Mb, 10Mb, 5Mb and 2Mb around the causative mutation
-limits = [10000000, 5000000, 2500000, 1000000]
-seq_limit = Hash.new {|h,k| h[k] = {} }
-limits.each do | delimit |
-	lower = 0
-	if (mutant_posn - delimit) > 0
-		lower = mutant_posn - delimit
-	end
-
-	upper = mutant_posn + delimit
-	if upper > sequences[targetchr]
-		upper = sequences[targetchr]
-	end
-	seq_limit[delimit*2] = [lower, upper].join(':')
-end
-
+vcffile = ARGV[1]
+gfffile = ARGV[2] # gff file of denovo assembly over the fasta file
 
 def rename_chr(chr)
 	if chr =~ /^Chr\d/
@@ -58,12 +32,14 @@ end
 
 ### Read gff and selected chromosome coverage is stored in a hash
 assembly = Hash.new {|h,k| h[k] = {} }
+targetchr_length = 0
 gff3 = Bio::GFF::GFF3.new(File.read(gfffile))
 gff3.records.each do | record |
 	chr = rename_chr(record.seqname.to_s)
 	if targetchr == chr
 		if record.feature == 'gene'
 			assembly[record.start.to_i] = [record.start, record.end].join("_")
+			targetchr_length = record.end.to_i - record.start.to_i
 		end
 	end
 end
@@ -128,6 +104,22 @@ adjust_posn = 0
 subtract, is_gap = notin_asmbly_check(nocov, mutant_posn)
 adjust_posn = mutant_posn - subtract
 warn "mutation position assembly\t#{adjust_posn}\t#{is_gap}"
+
+# using limits of 20Mb, 10Mb, 5Mb and 2Mb around the causative mutation
+limits = [10000000, 5000000, 2500000, 1000000]
+seq_limit = Hash.new {|h,k| h[k] = {} }
+limits.each do | delimit |
+	lower = 0
+	if (adjust_posn - delimit) > 0
+		lower = adjust_posn - delimit
+	end
+
+	upper = adjust_posn + delimit
+	if upper > targetchr_length
+		upper = targetchr_length
+	end
+	seq_limit[delimit*2] = [lower, upper].join(':')
+end
 
 ### Read vcf file and store variants in respective
 contigs = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
