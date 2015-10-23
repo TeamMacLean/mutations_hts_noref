@@ -25,13 +25,13 @@ def rename_chr(chr)
 end
 
 ### Read gff and selected chromosome coverage is stored in a hash
-data = Hash.new {|h,k| h[k] = {} }
+assembly = Hash.new {|h,k| h[k] = {} }
 gff3 = Bio::GFF::GFF3.new(File.read(gfffile))
 gff3.records.each do | record |
 	chr = rename_chr(record.seqname.to_s)
 	if targetchr == chr
 		if record.feature == 'gene'
-			data[record.start.to_i] = [record.start.to_i, record.end.to_i].join("_")
+			assembly[record.start.to_i] = [record.start, record.end].join("_")
 		end
 	end
 end
@@ -41,44 +41,66 @@ nocov = Hash.new {|h,k| h[k] = {} }
 curr_gap = 0
 prev_end = 0
 count = 1
-data.keys.sort.each do | key |
-	info = data[key].split("_")
+assembly.keys.sort.each do | key |
+	info = assembly[key].split("_")
 	curr_start = info[0].to_i
 	curr_end = info[1].to_i
 	if prev_end == 0
+		if curr_start > 1
+			curr_gap += curr_start - 1
+			nocov[count] = [prev_end, curr_start, curr_gap, "gap"].join("_")
+			count += 1
+		else
+			nocov[count] = [curr_start, curr_end, curr_gap, "no-gap"].join("_")
+			count += 1
+		end
 		prev_end = curr_end
 	else
 		gap = curr_start - prev_end
-		if gap > 100
+		if gap > 0
 			curr_gap += gap
-			nocov[count] = [prev_end, curr_start, curr_gap].join("_")
+			nocov[count] = [prev_end, curr_start, curr_gap, "gap"].join("_")
+			count += 1
+			nocov[count] = [curr_start, curr_end, curr_gap, "no-gap"].join("_")
+			count += 1
+		else
+			nocov[count] = [curr_start, curr_end, curr_gap, "no-gap"].join("_")
 			count += 1
 		end
 		prev_end = curr_end
 	end
 end
 
-def notin_asmbly_check(nocov, varpos, subtract, gap_present, in_gap)
-	nocov.keys.sort.each do | key |
-		info = nocov[key].split("_")
+def notin_asmbly_check(hash, varpos)
+	subtract = 0
+	is_gap = ''
+	hash.keys.sort.each do | key |
+		info = hash[key].split("_")
 		start = info[0].to_i
 		end_p = info[1].to_i
 		if varpos.between?(start, end_p)
 			subtract = info[2].to_i
-			gap_present = 1
-			in_gap = 1
+			is_gap = info[3].to_s
 			break
 		end
 	end
-	[subtract, in_gap, gap_present]
+	[subtract, is_gap]
 end
 
 ### Check if SNP's are in no sequence read coverage area and discard them
 ### And adjust remaining SNP position accordingly
 subtract = 0
-gap_present = 0
+adjust_posn = 0
 
-### Read vcf file and store variants in respective order
+## cusative mutation position and adjust position in assembled parts
+info = ARGV[3].split(/:/)
+mutant_posn = info[1].to_i
+warn "mutation position genome\t#{mutant_posn}"
+subtract, is_gap = notin_asmbly_check(nocov, mutant_posn)
+adjust_posn = mutant_posn - subtract
+warn "mutation position assembly\t#{adjust_posn}\t#{is_gap}"
+
+### Read vcf file and store variants in respective
 contigs = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
 varfile1 = File.new("varposn-chromosome-#{vcffile}.txt", "w")
 varfile2 = File.new("varposn-assembly-#{vcffile}.txt", "w")
@@ -99,17 +121,11 @@ File.open(vcffile, 'r').each do |line|
 			varfile1.puts "#{v.pos}\t#{type}"
 		end
 
-		in_gap = 0
-		subtract, in_gap, gap_present = notin_asmbly_check(nocov, v.pos, subtract, gap_present, in_gap)
-		if gap_present == 1
-			if in_gap == 0
-				adj_pos = v.pos - subtract
-				contigs[type][adj_pos] = 1
-				varfile2.puts "#{adj_pos}\t#{type}"
-			end
-		else
-			contigs[type][v.pos] = 1
-			varfile2.puts "#{v.pos}\t#{type}"
+		subtract, is_gap = notin_asmbly_check(nocov, v.pos)
+		if is_gap == "no-gap"
+			adj_pos = v.pos - subtract
+			contigs[type][adj_pos] = 1
+			varfile2.puts "#{adj_pos}\t#{type}"
 		end
 	end
 end
