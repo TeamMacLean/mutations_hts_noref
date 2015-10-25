@@ -6,9 +6,8 @@ output:
     toc: no
 ---
 # **plots of variant distribution along chromosome length**
-
 Load libraries and the data
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, message=FALSE}
 # load the required libraries and functions
 library(knitr)
 library(markdown)
@@ -16,6 +15,7 @@ library(markdown)
 library(grid)
 library(gridExtra)
 library(ggplot2)
+library(quantchem)
 
 ## cusotom ggplot theme edits
 mytheme <- theme(panel.background = element_rect(fill='white', colour='black'),
@@ -24,7 +24,7 @@ mytheme <- theme(panel.background = element_rect(fill='white', colour='black'),
         axis.text = element_text(size = 17, face='bold', color='black'),
         panel.grid.major = element_line(linetype = 'dotted', colour='black'),
         panel.border = element_rect(fill=NA, linetype = "solid", colour='black'),
-        plot.margin=unit(c(2,2,5,2),'mm'), legend.position=c(0.2,0.1), legend.title = element_blank(),
+        plot.margin=unit(c(2,2,5,2),'mm'), legend.position=c(0.1,0.9), legend.title = element_blank(),
         legend.text = element_text(colour = 'black', size = 15, face = 'bold'), legend.box = "horizontal",
         legend.key.width=unit(2, "cm"), legend.key = element_rect(fill='white'))
 
@@ -46,6 +46,7 @@ re_zero_ratio = function(df, number){
   for (i in 1:nrow(df)) {
   	if (df$numhm[i] == 0 && df$numht[i] == 0) {
   		df$numht[i] = 1
+  		df$numhm[i] = number
   	}
   	else {
   		df$numhm[i] = number + df$numhm[i]
@@ -64,7 +65,6 @@ re_zero_ratio = function(df, number){
 ...  		
 
 #### 10Mb - 500kb bins
-
 ```{r 10Mb-500kb, echo=FALSE, fig.width=12, fig.height=6}
 hsty <- read.delim(file="10000000-per500000bp-filtered_hsty_mutant.vcf.txt", header = TRUE)
 soc1 <- read.delim(file="10000000-per500000bp-filtered_96_1_fd2_mutant.vcf.txt", header = TRUE)
@@ -74,10 +74,10 @@ hsty <- re_zero_ratio(hsty, 0.01)
 soc1 <- re_zero_ratio(soc1, 0.01)
 sup1 <- re_zero_ratio(sup1, 0.01)
 sup2 <- re_zero_ratio(sup2, 0.01)
-ggplot() + stat_smooth(data=hsty, aes(x=position, y=ratio/sum(ratio), colour="hsty"), se=FALSE) +
-  stat_smooth(data=soc1, aes(x=position, y=ratio/sum(ratio), colour="soc1"), se=FALSE) +
-  stat_smooth(data=sup1, aes(x=position, y=ratio/sum(ratio), colour="sup1"), se=FALSE) +
-  stat_smooth(data=sup2, aes(x=position, y=ratio/sum(ratio), colour="sup2"), se=FALSE) +
+ggplot() + stat_smooth(data=hsty, aes(x=position, y=ratio/sum(ratio), colour="hsty"), method="lm", se=FALSE, formula=y ~ poly(x, 4, raw=TRUE)) +
+  stat_smooth(data=soc1, aes(x=position, y=ratio/sum(ratio), colour="soc1"), method="lm", se=FALSE, formula=y ~ poly(x, 4, raw=TRUE)) +
+  stat_smooth(data=sup1, aes(x=position, y=ratio/sum(ratio), colour="sup1"), method="lm", se=FALSE, formula=y ~ poly(x, 4, raw=TRUE)) +
+  stat_smooth(data=sup2, aes(x=position, y=ratio/sum(ratio), colour="sup2"), method="lm", se=FALSE, formula=y ~ poly(x, 4, raw=TRUE)) +
   scale_y_sqrt() + labs(y=NULL, main="genome in 500 KB fragment chunks") + mytheme
 
 
@@ -90,7 +90,6 @@ ggplot() + stat_smooth(data=hsty, aes(x=position, y=ratio/sum(ratio), colour="hs
 ...  		
 
 #### 25Mb - 500kb bins
-
 ```{r 25Mb-500kb, echo=FALSE, fig.width=12, fig.height=6}
 hsty <- read.delim(file="25000000-per500000bp-filtered_hsty_mutant.vcf.txt", header = TRUE)
 soc1 <- read.delim(file="25000000-per500000bp-filtered_96_1_fd2_mutant.vcf.txt", header = TRUE)
@@ -100,52 +99,141 @@ hsty <- re_zero_ratio(hsty, 0.01)
 soc1 <- re_zero_ratio(soc1, 0.01)
 sup1 <- re_zero_ratio(sup1, 0.01)
 sup2 <- re_zero_ratio(sup2, 0.01)
-ggplot() + stat_smooth(data=hsty, aes(x=position, y=ratio/sum(ratio), colour="hsty"), se=FALSE) +
-  stat_smooth(data=soc1, aes(x=position, y=ratio/sum(ratio), colour="soc1"), se=FALSE) +
-  stat_smooth(data=sup1, aes(x=position, y=ratio/sum(ratio), colour="sup1"), se=FALSE) +
-  stat_smooth(data=sup2, aes(x=position, y=ratio/sum(ratio), colour="sup2"), se=FALSE) +
+ggplot() + stat_smooth(data=hsty, aes(x=position, y=ratio/sum(ratio), colour="hsty"), method="lm", se=FALSE, formula=y ~ poly(x, 4, raw=TRUE)) +
+  stat_smooth(data=soc1, aes(x=position, y=ratio/sum(ratio), colour="soc1"), method="lm", se=FALSE, formula=y ~ poly(x, 4, raw=TRUE)) +
+  stat_smooth(data=sup1, aes(x=position, y=ratio/sum(ratio), colour="sup1"), method="lm", se=FALSE, formula=y ~ poly(x, 4, raw=TRUE)) +
+  stat_smooth(data=sup2, aes(x=position, y=ratio/sum(ratio), colour="sup2"), method="lm", se=FALSE, formula=y ~ poly(x, 4, raw=TRUE)) +
   scale_y_sqrt() + labs(y=NULL, main="genome in 500 KB fragment chunks") + mytheme
 
 
 ```
 
 
+
+#### 25Mb - 500kb bins (adjusted soc1 and hsty)
+```{r 25Mb-adjusted, echo=FALSE, fig.width=12, fig.height=6}
+soc1$position <- soc1$position + 3000000
+hsty$position <- hsty$position - 1000000
+ggplot() + stat_smooth(data=hsty, aes(x=position, y=ratio/sum(ratio), colour="hsty"), method="lm", se=FALSE, formula=y ~ poly(x, 4, raw=TRUE)) +
+  stat_smooth(data=soc1, aes(x=position, y=ratio/sum(ratio), colour="soc1"), method="lm", se=FALSE, formula=y ~ poly(x, 4, raw=TRUE)) +
+  stat_smooth(data=sup1, aes(x=position, y=ratio/sum(ratio), colour="sup1"), method="lm", se=FALSE, formula=y ~ poly(x, 4, raw=TRUE)) +
+  stat_smooth(data=sup2, aes(x=position, y=ratio/sum(ratio), colour="sup2"), method="lm", se=FALSE, formula=y ~ poly(x, 4, raw=TRUE)) +
+  scale_y_sqrt() + labs(y=NULL, main="genome in 500 KB fragment chunks") + mytheme
+```
+
+
+
+#### polyfit coefficients
+```{r 25Mb-equations, echo=FALSE, fig.width=12, fig.height=6}
+cat ("## sup1")
+summary(lm(sup1$ratio/sum(sup1$ratio) ~ poly(sup1$position, 4, raw=TRUE)))
+cat ("## sup2")
+summary(lm(sup2$ratio/sum(sup2$ratio) ~ poly(sup2$position, 4, raw=TRUE)))
+cat ("## soc1")
+summary(lm(soc1$ratio/sum(soc1$ratio) ~ poly(soc1$position, 4, raw=TRUE)))
+cat ("## hsty")
+summary(lm(hsty$ratio/sum(hsty$ratio) ~ poly(hsty$position, 4, raw=TRUE)))
+
+```
+
 ...		
 
 
 ...  		
 
 #### curve fit for sup1 data
-
-```{r sup1-25mb curvefit, echo=FALSE, fig.width=12, fig.height=6}
-sup1_25mb <- read.delim(file="25000000-per500000bp-filtered_sup1_colT_wsT.vcf.txt", header = TRUE)
+```{r sup1-10mb_1 curvefit, echo=FALSE, warning=FALSE, fig.width=12, fig.height=10}
 sup1_10mb <- read.delim(file="10000000-per500000bp-filtered_sup1_colT_wsT.vcf.txt", header = TRUE)
 sup1_10mb <- re_zero_ratio(sup1_10mb, 0.01)
-sup1_25mb <- re_zero_ratio(sup1_25mb, 0.01)
-
-lmfit2 <- lm(sup1_25mb$ratio ~ poly(sup1_25mb$position, 2, raw=TRUE))
-lmfit3 <- lm(sup1_25mb$ratio ~ poly(sup1_25mb$position, 3, raw=TRUE))
-lmfit4 <- lm(sup1_25mb$ratio ~ poly(sup1_25mb$position, 4, raw=TRUE))
-lmfit5 <- lm(sup1_25mb$ratio ~ poly(sup1_25mb$position, 5, raw=TRUE))
-lmfit6 <- lm(sup1_25mb$ratio ~ poly(sup1_25mb$position, 6, raw=TRUE))
-plot(sup1_25mb$position, sup1_25mb$ratio)
-lines(sup1_25mb$position, predict(lmfit2, data.frame(x=sup1_25mb$position)), col="red")
-lines(sup1_25mb$position, predict(lmfit3, data.frame(x=sup1_25mb$position)), col="blue")
-lines(sup1_25mb$position, predict(lmfit4, data.frame(x=sup1_25mb$position)), col="green")
-lines(sup1_25mb$position, predict(lmfit5, data.frame(x=sup1_25mb$position)), col="orange")
-lines(sup1_25mb$position, predict(lmfit6, data.frame(x=sup1_25mb$position)), col="grey")
+fit = lmcal(sup1_10mb$position, sup1_10mb$ratio)
+par(mfrow=c(4,5))
+plot(fit, type = "curve", xlab = "position", ylab = "ratio")
 
 
 ```
 
 
+
+#### boxplot of residuals of sup1 data fit
+```{r sup1-10mb_2 curvefit, echo=FALSE, fig.width=8, fig.height=5}
+boxplot(residuals(fit))
+```
+
 ...		
 
 
 ...  		
 
-#### curve fit for sup1 data
+#### quantchem curve fit for sup2 data
+```{r sup2-10mb_1 curvefit, echo=FALSE, warning=FALSE, fig.width=12, fig.height=10}
 
+sup2_10mb <- read.delim(file="10000000-per500000bp-filtered_sup2_colT_wsT.vcf.txt", header = TRUE)
+sup2_10mb <- re_zero_ratio(sup2_10mb, 0.01)
+fit = lmcal(sup2_10mb$position, sup2_10mb$ratio)
+par(mfrow=c(4,5))
+plot(fit, type = "curve", xlab = "position", ylab = "ratio")
+
+
+```
+
+
+
+#### boxplot of residuals of sup2 data fit
+```{r sup2-10mb_2 curvefit, echo=FALSE, fig.width=8, fig.height=5}
+boxplot(residuals(fit))
+```
+
+...		
+
+...  		
+
+#### curve fit for soc1 data
+```{r soc1-10mb_1 curvefit, echo=FALSE, warning=FALSE, fig.width=12, fig.height=10}
+
+soc1_10mb <- read.delim(file="10000000-per500000bp-filtered_96_1_fd2_mutant.vcf.txt", header = TRUE)
+soc1_10mb <- re_zero_ratio(soc1_10mb, 0.01)
+fit = lmcal(soc1_10mb$position, soc1_10mb$ratio)
+par(mfrow=c(4,5))
+plot(fit, type = "curve", xlab = "position", ylab = "ratio")
+
+
+```
+
+
+
+#### boxplot of residuals of sco1 data fit
+```{r soc1-10mb_2 curvefit, echo=FALSE, fig.width=8, fig.height=5}
+boxplot(residuals(fit))
+```
+
+...		
+
+...  		
+
+#### curve fit for hsty data
+```{r hsty-10mb_1 curvefit, echo=FALSE, warning=FALSE, fig.width=12, fig.height=10}
+hsty_10mb <- hsty <- read.delim(file="10000000-per500000bp-filtered_hsty_mutant.vcf.txt", header = TRUE)
+hsty_10mb <- re_zero_ratio(hsty_10mb, 0.01)
+fit = lmcal(hsty_10mb$position, hsty_10mb$ratio)
+par(mfrow=c(4,5))
+plot(fit, type = "curve", xlab = "position", ylab = "ratio")
+
+
+```
+
+
+
+#### boxplot of residuals of hsty data fit
+```{r hsty-10mb_2 curvefit, echo=FALSE, fig.width=8, fig.height=5}
+boxplot(residuals(fit))
+```
+
+
+...		
+
+...  		
+
+#### lm poly for sup1 data (10Mb around mutation)
 ```{r sup1-10mb curvefit, echo=FALSE, fig.width=12, fig.height=6}
 sup1_10mb <- read.delim(file="10000000-per500000bp-filtered_sup1_colT_wsT.vcf.txt", header = TRUE)
 sup1_10mb <- re_zero_ratio(sup1_10mb, 0.01)
@@ -168,5 +256,30 @@ lines(sup1_10mb$position, predict(lmfit6, data.frame(x=sup1_10mb$position)), col
 
 ...		
 
+
+...  		
+
+#### lm poly fit for sup1 data (25Mb around mutation)
+```{r sup1-25mb curvefit, echo=FALSE, fig.width=12, fig.height=6}
+sup1_25mb <- read.delim(file="25000000-per500000bp-filtered_sup1_colT_wsT.vcf.txt", header = TRUE)
+sup1_25mb <- re_zero_ratio(sup1_25mb, 0.01)
+
+lmfit2 <- lm(sup1_25mb$ratio ~ poly(sup1_25mb$position, 2, raw=TRUE))
+lmfit3 <- lm(sup1_25mb$ratio ~ poly(sup1_25mb$position, 3, raw=TRUE))
+lmfit4 <- lm(sup1_25mb$ratio ~ poly(sup1_25mb$position, 4, raw=TRUE))
+lmfit5 <- lm(sup1_25mb$ratio ~ poly(sup1_25mb$position, 5, raw=TRUE))
+lmfit6 <- lm(sup1_25mb$ratio ~ poly(sup1_25mb$position, 6, raw=TRUE))
+plot(sup1_25mb$position, sup1_25mb$ratio)
+lines(sup1_25mb$position, predict(lmfit2, data.frame(x=sup1_25mb$position)), col="red")
+lines(sup1_25mb$position, predict(lmfit3, data.frame(x=sup1_25mb$position)), col="blue")
+lines(sup1_25mb$position, predict(lmfit4, data.frame(x=sup1_25mb$position)), col="green")
+lines(sup1_25mb$position, predict(lmfit5, data.frame(x=sup1_25mb$position)), col="orange")
+lines(sup1_25mb$position, predict(lmfit6, data.frame(x=sup1_25mb$position)), col="grey")
+
+
+```
+
+
+...		
 
 
