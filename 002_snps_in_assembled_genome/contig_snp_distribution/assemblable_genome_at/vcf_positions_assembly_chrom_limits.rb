@@ -154,7 +154,6 @@ limits.each do | delimit |
 		end
 	end
 	order[delimit*2] = breaks_array
-	warn "#{breaks_array}\n\n"
 end
 
 ### Read vcf file and store variants in respective
