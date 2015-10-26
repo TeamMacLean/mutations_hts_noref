@@ -1,0 +1,85 @@
+---
+output:
+  html_document:
+    fig_caption: yes
+    theme: spacelab
+    toc: no
+---
+# **pacbio sequence read lengths - arabidopsis**
+
+Load libraries and the data
+```{r setup, include=FALSE}
+# load the required libraries and functions
+library(knitr)
+library(markdown)
+#opts_chunk$set(dev = 'pdf')
+library(grid)
+library(gridExtra)
+library(ggplot2)
+
+## cusotom ggplot theme edits
+mytheme <- theme(panel.background = element_rect(fill='white', colour='black'),
+        text = element_text(size = 20, face='bold', colour='black'),
+        axis.title.x = element_text(size = 19, face='bold', color='black', vjust = -1),
+        axis.text = element_text(size = 17, face='bold', color='black'),
+        panel.grid.major = element_line(linetype = 'dotted', colour='black'),
+        panel.border = element_rect(fill=NA, linetype = "solid", colour='black'),
+        plot.margin=unit(c(2,2,5,2),'mm'), legend.position=c(0.2,0.1), legend.title = element_blank(),
+        legend.text = element_text(colour = 'black', size = 15, face = 'bold'), legend.box = "horizontal",
+        legend.key.width=unit(2, "cm"), legend.key = element_rect(fill='white'))
+
+
+## function to openfile and extract lengths
+process_lengths = function (filename, lib_name) {
+	newdf <- read.delim(file=filename, header = FALSE)
+	newdf$length <- as.numeric(gsub("^\\@\\w+\\.\\d+\\s{1}length=", "", newdf$V1, perl=TRUE))
+	colnames(newdf) <- c("libname", "length")
+	newdf$libname <- rep(lib_name, nrow(newdf))
+	#cat("Lengths summary", filename, "\n")
+	#print(summary(newdf$length))
+  newdf
+}
+
+
+```
+
+...     
+
+...  		
+
+Pacbio sequence data for Arabidopsis is published in the following mansucript [http://www.nature.com/articles/sdata201445](http://www.nature.com/articles/sdata201445).
+
+...
+
+I have used Arabidopsis data from P5C3 kits for the following analysis.
+Datasets downloaded from [NCBI Sequence Read Archive](http://www.ncbi.nlm.nih.gov/sra/SRX533607[accn])
+
+...
+
+#### box plot of sequence read lengths from 
+
+```{r boxplot, echo=FALSE, fig.width=12, fig.height=6}
+df1 = process_lengths("len_SRR1284093.txt", "lib1")
+newdf = process_lengths("len_SRR1284094.txt", "lib2")
+df1 <- rbind(df1, newdf)
+newdf = process_lengths("len_SRR1284095.txt", "lib3")
+df1 <- rbind(df1, newdf)
+newdf = process_lengths("len_SRR1284096.txt", "lib4")
+df1 <- rbind(df1, newdf)
+newdf = process_lengths("len_SRR1284703.txt", "lib5")
+df1 <- rbind(df1, newdf)
+newdf = process_lengths("len_SRR1284704.txt", "lib6")
+df1 <- rbind(df1, newdf)
+newdf = process_lengths("len_SRR1284705.txt", "lib7")
+df1 <- rbind(df1, newdf)
+newdf = process_lengths("len_SRR1284706.txt", "lib8")
+df1 <- rbind(df1, newdf)
+newdf = process_lengths("len_SRR1284707.txt", "lib9")
+df1 <- rbind(df1, newdf)
+ggplot(df1, aes(x=libname, y=length, fill=libname)) + geom_boxplot() + scale_y_log10() +
+  labs(x ="libraries", y="length in bp", main=NULL) + mytheme + theme(legend.position="none")
+
+
+```
+
+
