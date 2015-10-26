@@ -44,15 +44,33 @@ gff3.records.each do | record |
 	end
 end
 
+
+def covered_length(hash, start, len)
+	if hash.keys.length > 0
+		last_element = hash.keys[-1]
+		start += hash[last_element]
+		hash[start] = len
+	else
+		hash[start] = len
+	end
+	[hash, start]
+end
+
+
 ### Use stored hash to calculate uncovered genomic region and add to a hash
 nocov = Hash.new {|h,k| h[k] = {} }
+covered = Hash.new {|h,k| h[k] = {} }
 curr_gap = 0
 prev_end = 0
 count = 1
+begining = 1
 assembly.keys.sort.each do | key |
 	info = assembly[key].split("_")
 	curr_start = info[0].to_i
 	curr_end = info[1].to_i
+	cov_len = curr_end - curr_start
+	covered, begining= covered_length(covered, begining, cov_len)
+	#warn "#{curr_start}\t#{curr_end}\t#{cov_len}\t#{begining}\n"
 	if prev_end == 0
 		if curr_start > 1
 			curr_gap += curr_start - 1
@@ -108,10 +126,13 @@ warn "mutation position assembly\t#{adjust_posn}\t#{is_gap}"
 # using limits of 20Mb, 10Mb, 5Mb and 2Mb around the causative mutation
 limits = [10000000, 5000000, 2500000, 1000000]
 seq_limit = Hash.new {|h,k| h[k] = {} }
+order = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
 limits.each do | delimit |
-	lower = 0
+	lower = 1
 	if (adjust_posn - delimit) > 0
 		lower = adjust_posn - delimit
+	else
+		warn "#{delimit}\t#{adjust_posn}\n"
 	end
 
 	upper = adjust_posn + delimit
@@ -119,6 +140,21 @@ limits.each do | delimit |
 		upper = targetchr_length
 	end
 	seq_limit[delimit*2] = [lower, upper].join(':')
+	breaks_array = []
+	covered.keys.sort.each do | key |
+		info = key + covered[key]
+		if lower.between?(key, info)
+			breaks_array << info - lower
+		elsif key.between?(lower, upper)
+			if info < upper
+				breaks_array << covered[key]
+			else
+				breaks_array << upper - key
+			end
+		end
+	end
+	order[delimit*2] = breaks_array
+	warn "#{breaks_array}\n\n"
 end
 
 ### Read vcf file and store variants in respective
@@ -147,7 +183,7 @@ File.open(vcffile, 'r').each do |line|
 			adj_pos = v.pos - subtract
 			seq_limit.each_key do | limit |
 				limits = seq_limit[limit].split(':')
-				if v.pos.between?(limits[0].to_i, limits[1].to_i)
+				if adj_pos.between?(limits[0].to_i, limits[1].to_i)
 					pos = adj_pos - limits[0].to_i
 					contigs[limit][type][pos] = 1
 				end
@@ -189,7 +225,9 @@ def pool_variants_per_step(inhash, step, outhash, vartype)
 					outhash[step][vartype] = 0
 				end
 			end
-			outhash = enumerate_snps(outhash, step, vartype)
+			if pos <= step
+				outhash = enumerate_snps(outhash, step, vartype)
+			end
 		end
 	end
 	outhash
@@ -197,7 +235,7 @@ end
 
 breaks = [10000, 50000, 100000, 500000, 1000000, 2500000]
 breaks.each do | step |
-		contigs.each_key do | region |
+	contigs.each_key do | region |
 		outfile = open_new_file_to_write(vcffile, step, region)
 		distribute = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
 		distribute = pool_variants_per_step(contigs[region], step, distribute, 'hm')
@@ -213,5 +251,48 @@ breaks.each do | step |
 			end
 			outfile.puts "#{key}\t#{hm}\t#{ht}"
 		end
+	end
+end
+
+def pool_vars_assembly_chunks(inhash, steps, outhash, vartype)
+	n = 0
+	current_chunk = steps[n]
+	inhash[vartype].keys.sort.each do | pos |
+		if outhash[current_chunk].key?(vartype) == FALSE
+			outhash[current_chunk][vartype] = 0
+		end
+		if pos <= current_chunk
+			outhash = enumerate_snps(outhash, current_chunk, vartype)
+		else
+			while pos > current_chunk and n < steps.length - 1
+				n += 1
+				current_chunk += steps[n]
+				if outhash[current_chunk].key?(vartype) == FALSE
+					outhash[current_chunk][vartype] = 0
+				end
+			end
+			if pos <= current_chunk
+				outhash = enumerate_snps(outhash, current_chunk, vartype)
+			end
+		end
+	end
+	outhash
+end
+
+contigs.each_key do | region |
+	outfile = open_new_file_to_write(vcffile, 'assembly', region)
+	distribute = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
+	distribute = pool_vars_assembly_chunks(contigs[region], order[region], distribute, 'hm')
+	distribute = pool_vars_assembly_chunks(contigs[region], order[region], distribute, 'ht')
+	distribute.each_key do | key |
+		hm = 0
+		ht = 0
+		if distribute[key].key?('hm')
+			hm = distribute[key]['hm']
+		end
+		if distribute[key].key?('ht')
+			ht = distribute[key]['ht']
+		end
+		outfile.puts "#{key}\t#{hm}\t#{ht}"
 	end
 end
