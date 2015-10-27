@@ -102,6 +102,11 @@ newdf = read.delim("assembly_lengths/read_lengths_sup1.txt", header=FALSE)
 colnames(newdf) <- c("assembly", "length")
 newdf$assembly <- rep("sup1", nrow(newdf))
 df1 <- rbind(df1, newdf)
+newdf = read.delim("assembly_lengths/frags_ordered_lengths.txt", header=FALSE)
+colnames(newdf) <- c("assembly", "length")
+newdf$assembly <- rep("fragments", nrow(newdf))
+df1 <- rbind(df1, newdf)
+
 ggplot(df1, aes(x=assembly, y=length, fill=assembly)) + geom_boxplot() + scale_y_log10() +
   labs(x ="arabidopsis assemblies", y="length in bp", main=NULL) + mytheme + theme(legend.position="none")
 
