@@ -1,7 +1,8 @@
 ### Table of Cotents
 1. [October 5 - 9]  (#october-5th-to-9th)
-2. [October 12 - 16](#october-12th-to-16th)
-3. [October 19 - 23](#october-19th-to-23rd)
+2. [October 12 - 16] (#october-12th-to-16th)
+3. [October 19 - 23] (#october-19th-to-23rd)
+4. [October 26 - 30] (#october-26th-to-30th)
 
 
 ## October 5th to 9th
@@ -45,3 +46,14 @@
 5. Quantchem r library is used to scan a range of model fits for 4 ararbidopsis data sets. Mostly 4th order polynomial or weighted 4th order polynomial seems to be a good fit.
 
 6. Resulting model equations can be used to reverse predict the approximate disatnce between variants (there by contigs) in the snp density based arrangement
+
+
+## October 26th to 30th
+
+1. Binning data using contig lengths shows many peaks over varying distances. Such a distribtuion has not given distinct peaks as binning data to different lengths.
+
+2. Box plots of pacbio read lengths and arabidopsis assembly contig length shows that assembly contig lengths are higher. Indicating that above peak distribution using assembly lenghts or pacbio read lengths may not provide a distinct peak region.
+
+3. A pacbio read assembly may be better than pacbio reads and illumina assemblies. test pacbio assembly distribtuion.
+
+4. Previous attempts using arabidopsis assemblies to pick causative mutation has not been successful. So Arabidopsis genome is fragmented using fragments sizes of exponential distribtuon with mean of 11kb. this is to test if the assemblies have caused more errors in limiting identification of mutation.
