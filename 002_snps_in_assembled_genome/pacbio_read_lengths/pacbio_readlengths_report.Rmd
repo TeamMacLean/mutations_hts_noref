@@ -56,9 +56,9 @@ Datasets downloaded from [NCBI Sequence Read Archive](http://www.ncbi.nlm.nih.go
 
 ...
 
-#### box plot of sequence read lengths from 
+#### box plot of sequence read lengths from pacbio (arabidopsis)
 
-```{r boxplot, echo=FALSE, fig.width=12, fig.height=6}
+```{r boxplot-pacbio, echo=FALSE, fig.width=12, fig.height=6}
 df1 = process_lengths("len_SRR1284093.txt", "lib1")
 newdf = process_lengths("len_SRR1284094.txt", "lib2")
 df1 <- rbind(df1, newdf)
@@ -79,6 +79,31 @@ df1 <- rbind(df1, newdf)
 ggplot(df1, aes(x=libname, y=length, fill=libname)) + geom_boxplot() + scale_y_log10() +
   labs(x ="libraries", y="length in bp", main=NULL) + mytheme + theme(legend.position="none")
 
+
+```
+
+
+...
+
+
+...
+
+#### box plot of scaffold sequence lengths for arabidopsis assemblies (Illumina reads)
+
+```{r boxplot-assembly, echo=FALSE, fig.width=12, fig.height=6}
+df1 = read.delim("assembly_lengths/read_lengths_hasty.txt", header=FALSE)
+colnames(df1) <- c("assembly", "length")
+df1$assembly <- rep("hasty", nrow(df1))
+newdf = read.delim("assembly_lengths/read_lengths_soc1.txt", header=FALSE)
+colnames(newdf) <- c("assembly", "length")
+newdf$assembly <- rep("soc1", nrow(newdf))
+df1 <- rbind(df1, newdf)
+newdf = read.delim("assembly_lengths/read_lengths_sup1.txt", header=FALSE)
+colnames(newdf) <- c("assembly", "length")
+newdf$assembly <- rep("sup1", nrow(newdf))
+df1 <- rbind(df1, newdf)
+ggplot(df1, aes(x=assembly, y=length, fill=assembly)) + geom_boxplot() + scale_y_log10() +
+  labs(x ="arabidopsis assemblies", y="length in bp", main=NULL) + mytheme + theme(legend.position="none")
 
 ```
 
