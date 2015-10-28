@@ -16,6 +16,7 @@ library(markdown)
 library(grid)
 library(gridExtra)
 library(ggplot2)
+library(MASS)
 
 ## cusotom ggplot theme edits
 mytheme <- theme(panel.background = element_rect(fill='white', colour='black'),
@@ -111,5 +112,37 @@ ggplot(df1, aes(x=assembly, y=length, fill=assembly)) + geom_boxplot() + scale_y
   labs(x ="arabidopsis assemblies", y="length in bp", main=NULL) + mytheme + theme(legend.position="none")
 
 ```
+
+
+
+#### fitting distribtuion to the assembly lengths
+
+```{r fit-distr, echo=FALSE, fig.width=12, fig.height=9}
+
+df1 <- read.delim(file="assembly_lengths/read_lengths_hasty.txt", header = FALSE)
+lenden <- density(df1$V2)
+contiglen <- data.frame(x=lenden$x, y=lenden$y)
+
+fit1 <- fitdistr(df1$V2, "lognormal")
+lnorm_r <- rlnorm(nrow(df1), as.numeric(fit1$estimate['meanlog']), as.numeric(fit1$estimate['sdlog']))
+den1 <- density(lnorm_r)
+ln_model <- data.frame(x=den1$x, y=den1$y)
+
+fit2 <- fitdistr(df1$V2, "exponential")
+expon_r <- rexp(nrow(df1), as.numeric(fit2$estimate['rate']))
+den2 <- density(expon_r)
+exp_model <- data.frame(x=den2$x, y=den2$y)
+
+fit3 <- fitdistr(df1$V2, "normal")
+normal_r <- rnorm(nrow(df1), as.numeric(fit3$estimate['mean']), as.numeric(fit3$estimate['sd']))
+den3 <- density(normal_r)
+normal_model <- data.frame(x=den3$x, y=den3$y)
+
+ggplot() + geom_line(data=contiglen, aes(x=x, y=y, colour="assembly lengths"), size=1) +
+geom_line(data=ln_model, aes(x=x, y=y, colour="lognormal fit"), size=1) + geom_line(data=exp_model, aes(x=x, y=y, colour="exponential fit"), size=1) + geom_line(data=normal_model, aes(x=x, y=y, colour="normal fit"), size=1) + scale_y_sqrt() + mytheme + theme(legend.position=c(0.85,0.9)) + labs(x ="contig lengths", y="density", main=NULL)
+
+
+```
+
 
 
