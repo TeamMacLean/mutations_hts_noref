@@ -3,10 +3,10 @@ require 'bio'
 require 'fileutils'
 
 # mean, std deviation and sample size to generate random numbers
-# add additonal 10% to sample number to be able cover the whole genome length
-mean = ARGV[0].to_i   # 11885 bp is mean
-sample = ARGV[1].to_i # 9600 + 500 random numbers (contig number)
-sd = ARGV[2].to_i     # 30160 bp is std. deviation
+# add additonal 10% to sample number to be able to cover the whole genome length
+sample = ARGV[0].to_i # 9600 + 500 random numbers (contig number)
+mean = ARGV[1].to_f   # 11885 bp is mean / 7.889536 is mean of log of lengths
+sd = ARGV[2].to_f     # 30160 bp is std. deviation / 1.56288 is sd of log of lengths
 
 # a hash of chromosome sequences
 genome_length = 0
@@ -38,8 +38,9 @@ for iteration in 1..iterations
 	number_array = []
 	i = 0
 	while i < sample
-		number = @random.exponential(mean).to_i
-		if number >= 500
+		# number = @random.exponential(mean).to_i
+		number = @random.log_normal(mean, sd).to_i
+		if number.between?(500, 500000)
 			number_array << number
 			i += 1
 		end
