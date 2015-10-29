@@ -1,18 +1,22 @@
 require 'simple-random'
 require 'bio'
 require 'fileutils'
+require 'yaml'
+pars = YAML.load_file("frag_pars.yml")
 
 # mean, std deviation and sample size to generate random numbers
 # add additonal 10% to sample number to be able to cover the whole genome length
-sample = ARGV[0].to_i # 9600 + 500 random numbers (contig number)
-mean = ARGV[1].to_f   # 11885 bp is mean / 7.889536 is mean of log of lengths
-sd = ARGV[2].to_f     # 30160 bp is std. deviation / 1.56288 is sd of log of lengths
+sample = pars['sample']  # 9600 + 500 random numbers (contig number)
+mean = pars['mean']   # 11885 bp is mean / 7.889536 is mean of log of lengths
+sd = pars['sd']    # 30160 bp is std. deviation / 1.56288 is sd of log of lengths
+iterations = pars['iterations'] # number of iterations of framenting
 
-# a hash of chromosome sequences
+# a hash of chromosome sequences and accumulated lengths
 genome_length = 0
 chrseq = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
 Bio::FastaFormat.open(ARGV[3]).each do |inseq|
-	chrseq[inseq.entry_id] = inseq.seq.to_s
+	chrseq[:seq][inseq.entry_id] = inseq.seq.to_s
+	chrseq[:len][inseq.entry_id] = genome_length
 	genome_length += inseq.length
 	warn "#{inseq.entry_id}\n"
 end
@@ -27,7 +31,36 @@ def write_fasta(hash, array, filename)
 	end
 end
 
-iterations = ARGV[4].to_i
+### open files to write snp outputs
+hmfile = File.open("hm_snps.txt", 'w')
+htfile = File.open("ht_snps.txt", 'w')
+snpfile = File.open("snps.vcf", 'w')
+
+### Read sequence fasta file and store sequences in a hash
+vars = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
+File.open(ARGV[1], 'r').each do |line|
+	if line =~ /^#/
+		snpfile.puts "#{line}"
+	else
+		v = Bio::DB::Vcf.new(line)
+		if chrseq[:len].has_key?(v.chrom.to_s)
+			if v.info["HET"].to_i == 1
+				v.info["AF"] = 0.5
+				v.pos = v.pos.to_i + chrseq[:len][v.chrom.to_s]
+				vars[v.pos] = v
+				htfile.puts "#{v.pos}"
+			elsif v.info["HOM"].to_i == 1
+				v.info["AF"] = 1.0
+				v.pos = v.pos.to_i + chrseq[:len][v.chrom.to_s]
+				vars[v.pos] = v
+				hmfile.puts "#{v.pos}"
+			end
+		else
+			warn "No sequnce in fasta file for\t#{v.chrom.to_s}\n"
+		end
+	end
+end
+
 @random = SimpleRandom.new
 FileUtils.mkdir_p "outseq_lengths"
 
