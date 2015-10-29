@@ -1,4 +1,4 @@
-position	numhm	numht
+position	numhm	numht	length
 2500000	214	182
 5000000	1247	786
 7500000	1676	112
