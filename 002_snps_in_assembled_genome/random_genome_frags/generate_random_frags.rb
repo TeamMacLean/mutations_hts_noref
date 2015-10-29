@@ -17,6 +17,16 @@ Bio::FastaFormat.open(ARGV[3]).each do |inseq|
 	warn "#{inseq.entry_id}\n"
 end
 
+# write fasta frag hash to a file
+# array of ids provided either sorted or shuffled
+def write_fasta(hash, array, filename)
+	outfile = File.open(filename, 'w')
+	array.each do | element |
+		seqout = Bio::Sequence::NA.new(hash[element])
+		outfile.puts seqout.to_fasta("seq_id_#{element}", 80)
+	end
+end
+
 iterations = ARGV[4].to_i
 @random = SimpleRandom.new
 FileUtils.mkdir_p "outseq_lengths"
@@ -46,7 +56,7 @@ for iteration in 1..iterations
 	frags = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
 	name_index = 1
 	chrseq.keys.sort.each do | id |
-		seq = chrseq[id]
+		seq = chrseq[id].dup
 		while seq.length > 500
 			if seq.length < 1000
 				frags[name_index] = seq.slice!(0..-1)
@@ -55,16 +65,6 @@ for iteration in 1..iterations
 				frags[name_index] = seq.slice!(0...index)
 			end
 			name_index += 1
-		end
-	end
-
-	# write fasta frag hash to a file
-	# array of ids provided either sorted or shuffled
-	def write_fasta(hash, array, filename)
-		outfile = File.open(filename, 'w')
-		array.each do | element |
-			seqout = Bio::Sequence::NA.new(hash[element])
-			outfile.puts seqout.to_fasta("seq_id_#{element}", 80)
 		end
 	end
 
