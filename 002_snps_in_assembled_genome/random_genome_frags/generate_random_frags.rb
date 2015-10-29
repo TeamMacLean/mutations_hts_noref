@@ -102,8 +102,15 @@ for iteration in 1..iterations
 		end
 	end
 
+	# write ordered and shuffled fragments in a new folder for current iteration
 	newname = "genome_" + iteration.to_s
 	FileUtils.mkdir_p "#{newname}"
+	# copy vcf and variant location file to iteration folder
+	%x[cp hm_snps.txt #{newname}/hm_snps.txt]
+	%x[cp ht_snps.txt #{newname}/ht_snps.txt]
+	%x[cp snps.vcf #{newname}/snps.vcf]
+
+	snpvcf = File.open("#{newname}/snps.vcf", 'w+')
 
 	write_fasta(frags, frags.keys.sort, "#{newname}/frags_ordered.fasta")
 
@@ -111,6 +118,7 @@ for iteration in 1..iterations
 	write_fasta(frags, shuffled, "#{newname}/frags_shuffled.fasta")
 
 	output = File.open("outseq_lengths/#{newname}_lengths.txt", 'w')
+	output.puts "fragment_id\tlength"
 	Bio::FastaFormat.open("#{newname}/frags_shuffled.fasta").each do |i|
     	output.puts "#{i.entry_id}\t#{i.length}"
 	end
