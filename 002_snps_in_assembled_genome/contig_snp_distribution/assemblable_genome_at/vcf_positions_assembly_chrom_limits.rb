@@ -195,7 +195,7 @@ end
 # New file is opened to write
 def open_new_file_to_write(input, number, region)
 	outfile = File.new("#{region}-per#{number}bp-#{input}.txt", "w")
-	outfile.puts "position\tnumhm\tnumht"
+	outfile.puts "position\tnumhm\tnumht\tlength"
 	outfile
 end
 
@@ -283,6 +283,7 @@ contigs.each_key do | region |
 	distribute = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
 	distribute = pool_vars_assembly_chunks(contigs[region], order[region], distribute, 'hm')
 	distribute = pool_vars_assembly_chunks(contigs[region], order[region], distribute, 'ht')
+	prev_length = 0
 	distribute.each_key do | key |
 		hm = 0
 		ht = 0
@@ -292,6 +293,7 @@ contigs.each_key do | region |
 		if distribute[key].key?('ht')
 			ht = distribute[key]['ht']
 		end
-		outfile.puts "#{key}\t#{hm}\t#{ht}"
+		outfile.puts "#{key}\t#{hm}\t#{ht}\t#{key - prev_length}"
+		prev_length = key
 	end
 end
