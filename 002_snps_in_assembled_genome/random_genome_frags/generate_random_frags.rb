@@ -33,23 +33,26 @@ def write_fasta(hash, array, filename)
 	end
 end
 
-# spliced sequence based on random length verified for ambigous bases filter
+# spliced sequence based on random length
 # and deatils added to a hash with sequence and length informations
-def splice_sequence (inseq, nameindex, lenindex, fragshash, *discardsfile)
+# if selected discard fragments having 50% or more ambiguous nucleotides
+def splice_sequence (inseq, nameindex, lenindex, fragshash, discardsfile)
 	seqlen = inseq.length
-	if @discard_n == 'yes'
+	if @discard_n
 		ncount = inseq.scan(/n/i).count
 		if ncount >= seqlen/2
+			#warn "#{ncount}\t#{nameindex}\t#{discardsfile}\n"
 			seqout = Bio::Sequence::NA.new(inseq)
 			discardsfile.puts seqout.to_fasta("seq_id_#{nameindex}", 80)
 		else
 			fragshash[:seq][nameindex] = inseq
 			fragshash[:len][nameindex] = [lenindex, lenindex+seqlen].join(':')
 			lenindex += seqlen
+		end
 	else
 		fragshash[:seq][nameindex] = inseq
-		fragshash[:len][name_index] = [lenindex, lenindex+seqlen].join(':')
-		len_start += seqlen
+		fragshash[:len][nameindex] = [lenindex, lenindex+seqlen].join(':')
+		lenindex += seqlen
 	end
 	[fragshash, lenindex]
 end
@@ -113,7 +116,7 @@ for iteration in 1..iterations
 	end
 
 	# create a new folder for current iteration
-	# and open a file to write discarded fragments (seqeunces with ambigous nucleotides)
+	# and open a file to write discarded seqeunces with 50% or more ambigous nucleotides
 	newname = "genome_" + iteration.to_s
 	FileUtils.mkdir_p "#{newname}"
 	disfrags = ''
