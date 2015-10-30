@@ -11,6 +11,7 @@ sample = pars['sample']  # 9600 + 500 random numbers (contig number)
 mean = pars['mean']   # 11885 bp is mean / 7.889536 is mean of log of lengths
 sd = pars['sd']    # 30160 bp is std. deviation / 1.56288 is sd of log of lengths
 iterations = pars['iterations'] # number of iterations of framenting
+@discard_n = pars['discard_n'] # boolean option to discarding sequences with 50% or more 'N's
 
 # a hash of chromosome sequences and accumulated lengths
 genome_length = 0
@@ -30,6 +31,27 @@ def write_fasta(hash, array, filename)
 		seqout = Bio::Sequence::NA.new(hash[element])
 		outfile.puts seqout.to_fasta("seq_id_#{element}", 80)
 	end
+end
+
+# spliced sequence based on random length verified for ambigous bases filter
+# and deatils added to a hash with sequence and length informations
+def splice_sequence (inseq, nameindex, lenindex, fragshash, *discardsfile)
+	seqlen = inseq.length
+	if @discard_n == 'yes'
+		ncount = inseq.scan(/n/i).count
+		if ncount >= seqlen/2
+			seqout = Bio::Sequence::NA.new(inseq)
+			discardsfile.puts seqout.to_fasta("seq_id_#{nameindex}", 80)
+		else
+			fragshash[:seq][nameindex] = inseq
+			fragshash[:len][nameindex] = [lenindex, lenindex+seqlen].join(':')
+			lenindex += seqlen
+	else
+		fragshash[:seq][nameindex] = inseq
+		fragshash[:len][name_index] = [lenindex, lenindex+seqlen].join(':')
+		len_start += seqlen
+	end
+	[fragshash, lenindex]
 end
 
 ### open files to write snp outputs
@@ -90,6 +112,15 @@ for iteration in 1..iterations
 		break
 	end
 
+	# create a new folder for current iteration
+	# and open a file to write discarded fragments (seqeunces with ambigous nucleotides)
+	newname = "genome_" + iteration.to_s
+	FileUtils.mkdir_p "#{newname}"
+	disfrags = ''
+	if @discard_n
+		disfrags = File.open("#{newname}/discarded_fragments.fasta", 'w')
+	end
+
 	# chromosme sequences are fragemened to the sizes in random number array
 	# and saved to a hash
 	frags = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
@@ -100,33 +131,15 @@ for iteration in 1..iterations
 		while seq.length > 500
 			if seq.length < 1000
 				sequence = seq.slice!(0..-1)
-				seqlen = sequence.length
-				ncount = sequence.scan(/n/i).count
-				if ncount >= seqlen/2
-					warn "#{name_index}\n"
-				end
-				frags[:seq][name_index] = sequence
-				frags[:len][name_index] = [len_start, len_start+seqlen].join(':')
-				len_start += seqlen
+				frags,len_start = splice_sequence(sequence, name_index, len_start, frags, disfrags)
 			else
 				index = number_array.shift.to_i
 				sequence = seq.slice!(0...index)
-				seqlen = sequence.length
-				ncount = sequence.scan(/n/i).count
-				if ncount >= seqlen/2
-					warn "#{name_index}\n"
-				end
-				frags[:seq][name_index] = sequence
-				frags[:len][name_index] = [len_start, len_start+seqlen].join(':')
-				len_start += seqlen
+				frags,len_start = splice_sequence(sequence, name_index, len_start, frags, disfrags)
 			end
 			name_index += 1
 		end
 	end
-
-	# create a new folder for current iteration
-	newname = "genome_" + iteration.to_s
-	FileUtils.mkdir_p "#{newname}"
 
 	# copy vcf and variant location file to iteration folder
 	%x[cp hm_snps.txt #{newname}/hm_snps.txt]

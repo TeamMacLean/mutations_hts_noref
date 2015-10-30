@@ -2,3 +2,4 @@ sample: 14000
 mean: 7.889536
 sd: 1.56288
 iterations: 2
+discard_n: yes
