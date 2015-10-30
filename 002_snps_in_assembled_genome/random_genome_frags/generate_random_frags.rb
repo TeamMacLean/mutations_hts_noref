@@ -1,5 +1,6 @@
 require 'simple-random'
 require 'bio'
+require 'bio-samtools'
 require 'fileutils'
 require 'yaml'
 pars = YAML.load_file("frag_pars.yml")
@@ -14,7 +15,7 @@ iterations = pars['iterations'] # number of iterations of framenting
 # a hash of chromosome sequences and accumulated lengths
 genome_length = 0
 chrseq = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
-Bio::FastaFormat.open(ARGV[3]).each do |inseq|
+Bio::FastaFormat.open(ARGV[0]).each do |inseq|
 	chrseq[:seq][inseq.entry_id] = inseq.seq.to_s
 	chrseq[:len][inseq.entry_id] = genome_length
 	genome_length += inseq.length
@@ -47,12 +48,12 @@ File.open(ARGV[1], 'r').each do |line|
 			if v.info["HET"].to_i == 1
 				v.info["AF"] = 0.5
 				v.pos = v.pos.to_i + chrseq[:len][v.chrom.to_s]
-				vars[v.pos] = v
+				vars[v.pos] = v.to_s
 				htfile.puts "#{v.pos}"
 			elsif v.info["HOM"].to_i == 1
 				v.info["AF"] = 1.0
 				v.pos = v.pos.to_i + chrseq[:len][v.chrom.to_s]
-				vars[v.pos] = v
+				vars[v.pos] = v.to_s
 				hmfile.puts "#{v.pos}"
 			end
 		else
@@ -60,6 +61,10 @@ File.open(ARGV[1], 'r').each do |line|
 		end
 	end
 end
+
+hmfile.close
+htfile.close
+snpfile.close
 
 @random = SimpleRandom.new
 FileUtils.mkdir_p "outseq_lengths"
@@ -89,33 +94,65 @@ for iteration in 1..iterations
 	# and saved to a hash
 	frags = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
 	name_index = 1
-	chrseq.keys.sort.each do | id |
-		seq = chrseq[id].dup
+	len_start = 1
+	chrseq[:seq].keys.sort.each do | id |
+		seq = chrseq[:seq][id].dup
 		while seq.length > 500
 			if seq.length < 1000
-				frags[name_index] = seq.slice!(0..-1)
+				sequence = seq.slice!(0..-1)
+				seqlen = sequence.length
+				ncount = sequence.scan(/n/i).count
+				if ncount >= seqlen/2
+					warn "#{name_index}\n"
+				end
+				frags[:seq][name_index] = sequence
+				frags[:len][name_index] = [len_start, len_start+seqlen].join(':')
+				len_start += seqlen
 			else
 				index = number_array.shift.to_i
-				frags[name_index] = seq.slice!(0...index)
+				sequence = seq.slice!(0...index)
+				seqlen = sequence.length
+				ncount = sequence.scan(/n/i).count
+				if ncount >= seqlen/2
+					warn "#{name_index}\n"
+				end
+				frags[:seq][name_index] = sequence
+				frags[:len][name_index] = [len_start, len_start+seqlen].join(':')
+				len_start += seqlen
 			end
 			name_index += 1
 		end
 	end
 
-	# write ordered and shuffled fragments in a new folder for current iteration
+	# create a new folder for current iteration
 	newname = "genome_" + iteration.to_s
 	FileUtils.mkdir_p "#{newname}"
+
 	# copy vcf and variant location file to iteration folder
 	%x[cp hm_snps.txt #{newname}/hm_snps.txt]
 	%x[cp ht_snps.txt #{newname}/ht_snps.txt]
 	%x[cp snps.vcf #{newname}/snps.vcf]
 
-	snpvcf = File.open("#{newname}/snps.vcf", 'w+')
+	snpvcf = File.open("#{newname}/snps.vcf", 'a')
+	current_frag = 1
+	vars.keys.sort.each do | position |
+		frags[:len].keys.sort.each do | frag |
+			limits = frags[:len][frag].split(':')
+			if position.between?(limits[0].to_i, limits[1].to_i)
+				vcfinfo = Bio::DB::Vcf.new(vars[position])
+				vcfinfo.chrom = "seq_id_" + frag.to_s
+				vcfinfo.pos = vcfinfo.pos.to_i - limits[0].to_i
+				snpvcf.puts "#{vcfinfo}"
+				break
+			end
+		end
+	end
 
-	write_fasta(frags, frags.keys.sort, "#{newname}/frags_ordered.fasta")
+	# write ordered and shuffled fragments for current iteration
+	write_fasta(frags[:seq], frags[:seq].keys.sort, "#{newname}/frags_ordered.fasta")
 
-	shuffled = frags.keys.shuffle(random: Random.new_seed)
-	write_fasta(frags, shuffled, "#{newname}/frags_shuffled.fasta")
+	shuffled = frags[:seq].keys.shuffle(random: Random.new_seed)
+	write_fasta(frags[:seq], shuffled, "#{newname}/frags_shuffled.fasta")
 
 	output = File.open("outseq_lengths/#{newname}_lengths.txt", 'w')
 	output.puts "fragment_id\tlength"
