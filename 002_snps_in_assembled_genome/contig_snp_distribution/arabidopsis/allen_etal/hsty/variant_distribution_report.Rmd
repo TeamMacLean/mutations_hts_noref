@@ -37,8 +37,6 @@ ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour
   scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
   geom_vline(xintercept = as.numeric(51531045), size=0.5)
 
-
-
 ```
 
 

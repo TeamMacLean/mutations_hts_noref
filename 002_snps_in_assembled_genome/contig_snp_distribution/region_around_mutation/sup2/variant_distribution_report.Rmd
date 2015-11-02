@@ -13,31 +13,12 @@ Load libraries and the data
 library(knitr)
 library(markdown)
 #opts_chunk$set(dev = 'pdf')
-library(grid)
-library(gridExtra)
-library(ggplot2)
+library(reshape2)
 
-## cusotom ggplot theme edits
-mytheme <- theme(panel.background = element_rect(fill='white', colour='black'),
-        text = element_text(size = 20, face='bold', colour='black'),
-        axis.title.x = element_text(size = 19, face='bold', color='black', vjust = -1),
-        axis.text = element_text(size = 17, face='bold', color='black'),
-        panel.grid.major = element_line(linetype = 'dotted', colour='black'),
-        panel.border = element_rect(fill=NA, linetype = "solid", colour='black'),
-        plot.margin=unit(c(2,2,5,2),'mm'), legend.position=c(0.2,0.1), legend.title = element_blank(),
-        legend.text = element_text(colour = 'black', size = 15, face = 'bold'), legend.box = "horizontal",
-        legend.key.width=unit(2, "cm"), legend.key = element_rect(fill='white'))
-
-### lm equation display on plot. function modified from following link
-## http://stackoverflow.com/questions/11949331/adding-a-3rd-order-polynomial-and-its-equation-to-a-ggplot-in-r
-lm_eqn = function(x, y, n){
-  m=lm(y ~ poly(x, n)) #n degree polynomial
-  eq <- substitute(italic(y) == a + b %.% italic(x)*","~~italic(r)^2~"="~r2,
-                   list(a = format(coef(m)[1], digits = 2),
-                        b = format(coef(m)[2], digits = 2),
-                        r2 = format(summary(m)$r.squared, digits = 3)))
-  as.character(as.expression(eq))
-}
+# source custom R functions
+source('~/git-hub-repos/shyamrallapalli/mutations_hts_noref/lib/ggplot_theme.R')
+source('~/git-hub-repos/shyamrallapalli/mutations_hts_noref/lib/zero_ratio_adj.R')
+source('~/git-hub-repos/shyamrallapalli/mutations_hts_noref/lib/lm_eqn_plot.R')
 
 ```
 
@@ -49,17 +30,12 @@ lm_eqn = function(x, y, n){
 
 ```{r 2.5Mb-10kb, echo=FALSE, fig.width=12, fig.height=6}
 tenkb <- read.delim(file="2500000-per10000bp-filtered_sup2_colT_wsT.vcf.txt", header = TRUE)
-tenkb$numhm <- tenkb$numhm + 0.01
-tenkb$numht <- tenkb$numht + 0.01
-tenkb$ratio <- tenkb$numhm/tenkb$numht
-ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio"), se=FALSE) +
-  geom_bar(aes(y=ratio/sum(ratio)), stat="identity") +
-  stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), se=FALSE) +
-  stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), se=FALSE) +
+tenkb <- re_zero_ratio(tenkb, 0.01)
+melted <- melt(tenkb, id.vars = "position")
+ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
+  facet_grid(variable ~ ., scales = "free") +
   scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
-  geom_vline(xintercept = as.numeric(1250000), size=0.5, linetype = "longdash") +
-  annotate("text", x=Inf, y=Inf, label=lm_eqn(tenkb$position, tenkb$ratio, 12), hjust=1, vjust=1, size=8, family="Times", face="italic", parse=TRUE)
-
+  geom_vline(xintercept = as.numeric(1250000), size=0.5)
 
 ```
 
@@ -72,18 +48,12 @@ ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour
 
 ```{r 2.5Mb-100kb, echo=FALSE, fig.width=12, fig.height=6}
 tenkb <- read.delim(file="2500000-per100000bp-filtered_sup2_colT_wsT.vcf.txt", header = TRUE)
-tenkb$numhm <- tenkb$numhm + 0.01
-tenkb$numht <- tenkb$numht + 0.01
-tenkb$ratio <- tenkb$numhm/tenkb$numht
-ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio"),
-                                                  method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 12, raw=TRUE) ) +
-  geom_bar(aes(y=ratio/sum(ratio)), stat="identity") +
-  stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
-  stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
-  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
-  geom_vline(xintercept = as.numeric(1250000), size=0.5, linetype = "longdash") +
-  annotate("text", x=Inf, y=Inf, label=lm_eqn(tenkb$position, tenkb$ratio, 12), hjust=1, vjust=1, size=8, family="Times", face="italic", parse=TRUE)
-
+tenkb <- re_zero_ratio(tenkb, 0.01)
+melted <- melt(tenkb, id.vars = "position")
+ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
+  facet_grid(variable ~ ., scales = "free") +
+  scale_y_sqrt() + labs(y=NULL, main="genome in 100 KB fragment chunks") + mytheme +
+  geom_vline(xintercept = as.numeric(1250000), size=0.5)
 
 ```
 
@@ -96,18 +66,12 @@ ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour
 
 ```{r 2.5Mb-500kb, echo=FALSE, fig.width=12, fig.height=6}
 tenkb <- read.delim(file="2500000-per500000bp-filtered_sup2_colT_wsT.vcf.txt", header = TRUE)
-tenkb$numhm <- tenkb$numhm + 0.01
-tenkb$numht <- tenkb$numht + 0.01
-tenkb$ratio <- tenkb$numhm/tenkb$numht
-ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio"),
-                                                  method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 4, raw=TRUE) ) +
-  geom_bar(aes(y=ratio/sum(ratio)), stat="identity") +
-  stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 4, raw=TRUE) ) +
-  stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 4, raw=TRUE) ) +
-  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
-  geom_vline(xintercept = as.numeric(1250000), size=0.5, linetype = "longdash") +
-  annotate("text", x=Inf, y=Inf, label=lm_eqn(tenkb$position, tenkb$ratio, 4), hjust=1, vjust=1, size=8, family="Times", face="italic", parse=TRUE)
-
+tenkb <- re_zero_ratio(tenkb, 0.01)
+melted <- melt(tenkb, id.vars = "position")
+ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
+  facet_grid(variable ~ ., scales = "free") +
+  scale_y_sqrt() + labs(y=NULL, main="genome in 500 KB fragment chunks") + mytheme +
+  geom_vline(xintercept = as.numeric(1250000), size=0.5)
 
 ```
 
@@ -121,18 +85,12 @@ ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour
 
 ```{r 5Mb-10kb, echo=FALSE, fig.width=12, fig.height=6}
 tenkb <- read.delim(file="5000000-per10000bp-filtered_sup2_colT_wsT.vcf.txt", header = TRUE)
-tenkb$numhm <- tenkb$numhm + 0.01
-tenkb$numht <- tenkb$numht + 0.01
-tenkb$ratio <- tenkb$numhm/tenkb$numht
-ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio"),
-                                                  method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 5, raw=TRUE) ) +
-  geom_bar(aes(y=ratio/sum(ratio)), stat="identity") +
-  stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
-  stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
+tenkb <- re_zero_ratio(tenkb, 0.01)
+melted <- melt(tenkb, id.vars = "position")
+ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
+  facet_grid(variable ~ ., scales = "free") +
   scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
-  geom_vline(xintercept = as.numeric(2500000), size=0.5, linetype = "longdash") +
-  annotate("text", x=Inf, y=Inf, label=lm_eqn(tenkb$position, tenkb$ratio, 5), hjust=1, vjust=1, size=8, family="Times", face="italic", parse=TRUE)
-
+  geom_vline(xintercept = as.numeric(2500000), size=0.5)
 
 ```
 
@@ -145,18 +103,12 @@ ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour
 
 ```{r 5Mb-100kb, echo=FALSE, fig.width=12, fig.height=6}
 tenkb <- read.delim(file="5000000-per100000bp-filtered_sup2_colT_wsT.vcf.txt", header = TRUE)
-tenkb$numhm <- tenkb$numhm + 0.01
-tenkb$numht <- tenkb$numht + 0.01
-tenkb$ratio <- tenkb$numhm/tenkb$numht
-ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio"),
-                                                  method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 5, raw=TRUE) ) +
-  geom_bar(aes(y=ratio/sum(ratio)), stat="identity") +
-  stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
-  stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
-  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
-  geom_vline(xintercept = as.numeric(2500000), size=0.5, linetype = "longdash") +
-  annotate("text", x=Inf, y=Inf, label=lm_eqn(tenkb$position, tenkb$ratio, 5), hjust=1, vjust=1, size=8, family="Times", face="italic", parse=TRUE)
-
+tenkb <- re_zero_ratio(tenkb, 0.01)
+melted <- melt(tenkb, id.vars = "position")
+ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
+  facet_grid(variable ~ ., scales = "free") +
+  scale_y_sqrt() + labs(y=NULL, main="genome in 100 KB fragment chunks") + mytheme +
+  geom_vline(xintercept = as.numeric(2500000), size=0.5)
 
 ```
 
@@ -169,18 +121,12 @@ ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour
 
 ```{r 5Mb-500kb, echo=FALSE, fig.width=12, fig.height=6}
 tenkb <- read.delim(file="5000000-per500000bp-filtered_sup2_colT_wsT.vcf.txt", header = TRUE)
-tenkb$numhm <- tenkb$numhm + 0.01
-tenkb$numht <- tenkb$numht + 0.01
-tenkb$ratio <- tenkb$numhm/tenkb$numht
-ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio"),
-                                                  method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 4, raw=TRUE) ) +
-  geom_bar(aes(y=ratio/sum(ratio)), stat="identity") +
-  stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
-  stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
-  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
-  geom_vline(xintercept = as.numeric(2500000), size=0.5, linetype = "longdash") +
-  annotate("text", x=Inf, y=Inf, label=lm_eqn(tenkb$position, tenkb$ratio, 4), hjust=1, vjust=1, size=8, family="Times", face="italic", parse=TRUE)
-
+tenkb <- re_zero_ratio(tenkb, 0.01)
+melted <- melt(tenkb, id.vars = "position")
+ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
+  facet_grid(variable ~ ., scales = "free") +
+  scale_y_sqrt() + labs(y=NULL, main="genome in 500 KB fragment chunks") + mytheme +
+  geom_vline(xintercept = as.numeric(2500000), size=0.5)
 
 ```
 
@@ -193,18 +139,12 @@ ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour
 
 ```{r 10Mb-10kb, echo=FALSE, fig.width=12, fig.height=6}
 tenkb <- read.delim(file="10000000-per10000bp-filtered_sup2_colT_wsT.vcf.txt", header = TRUE)
-tenkb$numhm <- tenkb$numhm + 0.01
-tenkb$numht <- tenkb$numht + 0.01
-tenkb$ratio <- tenkb$numhm/tenkb$numht
-ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio"),
-                                                  method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 5, raw=TRUE) ) +
-  geom_bar(aes(y=ratio/sum(ratio)), stat="identity") +
-  stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
-  stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
+tenkb <- re_zero_ratio(tenkb, 0.01)
+melted <- melt(tenkb, id.vars = "position")
+ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
+  facet_grid(variable ~ ., scales = "free") +
   scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
-  geom_vline(xintercept = as.numeric(5000000), size=0.5, linetype = "longdash") +
-  annotate("text", x=Inf, y=Inf, label=lm_eqn(tenkb$position, tenkb$ratio, 5), hjust=1, vjust=1, size=8, family="Times", face="italic", parse=TRUE)
-
+  geom_vline(xintercept = as.numeric(5000000), size=0.5)
 
 ```
 
@@ -217,18 +157,12 @@ ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour
 
 ```{r 10Mb-100kb, echo=FALSE, fig.width=12, fig.height=6}
 tenkb <- read.delim(file="10000000-per100000bp-filtered_sup2_colT_wsT.vcf.txt", header = TRUE)
-tenkb$numhm <- tenkb$numhm + 0.01
-tenkb$numht <- tenkb$numht + 0.01
-tenkb$ratio <- tenkb$numhm/tenkb$numht
-ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio"),
-                                                  method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 5, raw=TRUE) ) +
-  geom_bar(aes(y=ratio/sum(ratio)), stat="identity") +
-  stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
-  stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
-  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
-  geom_vline(xintercept = as.numeric(5000000), size=0.5, linetype = "longdash") +
-  annotate("text", x=Inf, y=Inf, label=lm_eqn(tenkb$position, tenkb$ratio, 5), hjust=1, vjust=1, size=8, family="Times", face="italic", parse=TRUE)
-
+tenkb <- re_zero_ratio(tenkb, 0.01)
+melted <- melt(tenkb, id.vars = "position")
+ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
+  facet_grid(variable ~ ., scales = "free") +
+  scale_y_sqrt() + labs(y=NULL, main="genome in 100 KB fragment chunks") + mytheme +
+  geom_vline(xintercept = as.numeric(5000000), size=0.5)
 
 ```
 
@@ -241,18 +175,12 @@ ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour
 
 ```{r 10Mb-500kb, echo=FALSE, fig.width=12, fig.height=6}
 tenkb <- read.delim(file="10000000-per500000bp-filtered_sup2_colT_wsT.vcf.txt", header = TRUE)
-tenkb$numhm <- tenkb$numhm + 0.01
-tenkb$numht <- tenkb$numht + 0.01
-tenkb$ratio <- tenkb$numhm/tenkb$numht
-ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio"),
-                                                  method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 4, raw=TRUE) ) +
-  geom_bar(aes(y=ratio/sum(ratio)), stat="identity") +
-  stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
-  stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
-  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
-  geom_vline(xintercept = as.numeric(5000000), size=0.5, linetype = "longdash") +
-  annotate("text", x=Inf, y=Inf, label=lm_eqn(tenkb$position, tenkb$ratio, 4), hjust=1, vjust=1, size=8, family="Times", face="italic", parse=TRUE)
-
+tenkb <- re_zero_ratio(tenkb, 0.01)
+melted <- melt(tenkb, id.vars = "position")
+ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
+  facet_grid(variable ~ ., scales = "free") +
+  scale_y_sqrt() + labs(y=NULL, main="genome in 500 KB fragment chunks") + mytheme +
+  geom_vline(xintercept = as.numeric(5000000), size=0.5)
 
 ```
 
@@ -265,18 +193,12 @@ ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour
 
 ```{r 25Mb-10kb, echo=FALSE, fig.width=12, fig.height=6}
 tenkb <- read.delim(file="25000000-per10000bp-filtered_sup2_colT_wsT.vcf.txt", header = TRUE)
-tenkb$numhm <- tenkb$numhm + 0.01
-tenkb$numht <- tenkb$numht + 0.01
-tenkb$ratio <- tenkb$numhm/tenkb$numht
-ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio"),
-                                                  method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 5, raw=TRUE) ) +
-  geom_bar(aes(y=ratio/sum(ratio)), stat="identity") +
-  stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
-  stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
+tenkb <- re_zero_ratio(tenkb, 0.01)
+melted <- melt(tenkb, id.vars = "position")
+ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
+  facet_grid(variable ~ ., scales = "free") +
   scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
-  geom_vline(xintercept = as.numeric(12500000), size=0.5, linetype = "longdash") +
-  annotate("text", x=Inf, y=Inf, label=lm_eqn(tenkb$position, tenkb$ratio, 5), hjust=1, vjust=1, size=8, family="Times", face="italic", parse=TRUE)
-
+  geom_vline(xintercept = as.numeric(12500000), size=0.5)
 
 ```
 
@@ -289,18 +211,12 @@ ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour
 
 ```{r 25Mb-100kb, echo=FALSE, fig.width=12, fig.height=6}
 tenkb <- read.delim(file="25000000-per100000bp-filtered_sup2_colT_wsT.vcf.txt", header = TRUE)
-tenkb$numhm <- tenkb$numhm + 0.01
-tenkb$numht <- tenkb$numht + 0.01
-tenkb$ratio <- tenkb$numhm/tenkb$numht
-ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio"),
-                                                  method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 5, raw=TRUE) ) +
-  geom_bar(aes(y=ratio/sum(ratio)), stat="identity") +
-  stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
-  stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
-  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
-  geom_vline(xintercept = as.numeric(12500000), size=0.5, linetype = "longdash") +
-  annotate("text", x=Inf, y=Inf, label=lm_eqn(tenkb$position, tenkb$ratio, 5), hjust=1, vjust=1, size=8, family="Times", face="italic", parse=TRUE)
-
+tenkb <- re_zero_ratio(tenkb, 0.01)
+melted <- melt(tenkb, id.vars = "position")
+ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
+  facet_grid(variable ~ ., scales = "free") +
+  scale_y_sqrt() + labs(y=NULL, main="genome in 100 KB fragment chunks") + mytheme +
+  geom_vline(xintercept = as.numeric(12500000), size=0.5)
 
 ```
 
@@ -313,18 +229,12 @@ ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour
 
 ```{r 25Mb-500kb, echo=FALSE, fig.width=12, fig.height=6}
 tenkb <- read.delim(file="25000000-per500000bp-filtered_sup2_colT_wsT.vcf.txt", header = TRUE)
-tenkb$numhm <- tenkb$numhm + 0.01
-tenkb$numht <- tenkb$numht + 0.01
-tenkb$ratio <- tenkb$numhm/tenkb$numht
-ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio"),
-                                                  method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 4, raw=TRUE) ) +
-  geom_bar(aes(y=ratio/sum(ratio)), stat="identity") +
-  stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
-  stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
-  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
-  geom_vline(xintercept = as.numeric(12500000), size=0.5, linetype = "longdash") +
-  annotate("text", x=Inf, y=Inf, label=lm_eqn(tenkb$position, tenkb$ratio, 4), hjust=1, vjust=1, size=8, family="Times", face="italic", parse=TRUE)
-
+tenkb <- re_zero_ratio(tenkb, 0.01)
+melted <- melt(tenkb, id.vars = "position")
+ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
+  facet_grid(variable ~ ., scales = "free") +
+  scale_y_sqrt() + labs(y=NULL, main="genome in 500 KB fragment chunks") + mytheme +
+  geom_vline(xintercept = as.numeric(12500000), size=0.5)
 
 ```
 
@@ -338,18 +248,12 @@ ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour
 
 ```{r 50Mb-10kb, echo=FALSE, fig.width=12, fig.height=6}
 tenkb <- read.delim(file="50000000-per10000bp-filtered_sup2_colT_wsT.vcf.txt", header = TRUE)
-tenkb$numhm <- tenkb$numhm + 0.01
-tenkb$numht <- tenkb$numht + 0.01
-tenkb$ratio <- tenkb$numhm/tenkb$numht
-ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio"),
-                                                  method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 5, raw=TRUE) ) +
-  geom_bar(aes(y=ratio/sum(ratio)), stat="identity") +
-  stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
-  stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
+tenkb <- re_zero_ratio(tenkb, 0.01)
+melted <- melt(tenkb, id.vars = "position")
+ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
+  facet_grid(variable ~ ., scales = "free") +
   scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
-  geom_vline(xintercept = as.numeric(25000000), size=0.5, linetype = "longdash") +
-  annotate("text", x=Inf, y=Inf, label=lm_eqn(tenkb$position, tenkb$ratio, 5), hjust=1, vjust=1, size=8, family="Times", face="italic", parse=TRUE)
-
+  geom_vline(xintercept = as.numeric(25000000), size=0.5)
 
 ```
 
@@ -362,18 +266,12 @@ ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour
 
 ```{r 50Mb-100kb, echo=FALSE, fig.width=12, fig.height=6}
 tenkb <- read.delim(file="50000000-per100000bp-filtered_sup2_colT_wsT.vcf.txt", header = TRUE)
-tenkb$numhm <- tenkb$numhm + 0.01
-tenkb$numht <- tenkb$numht + 0.01
-tenkb$ratio <- tenkb$numhm/tenkb$numht
-ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio"),
-                                                  method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 12, raw=TRUE) ) +
-  geom_bar(aes(y=ratio/sum(ratio)), stat="identity") +
-  stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
-  stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 12, raw=TRUE) ) +
-  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
-  geom_vline(xintercept = as.numeric(25000000), size=0.5, linetype = "longdash") +
-  annotate("text", x=Inf, y=Inf, label=lm_eqn(tenkb$position, tenkb$ratio, 12), hjust=1, vjust=1, size=8, family="Times", face="italic", parse=TRUE)
-
+tenkb <- re_zero_ratio(tenkb, 0.01)
+melted <- melt(tenkb, id.vars = "position")
+ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
+  facet_grid(variable ~ ., scales = "free") +
+  scale_y_sqrt() + labs(y=NULL, main="genome in 100 KB fragment chunks") + mytheme +
+  geom_vline(xintercept = as.numeric(25000000), size=0.5)
 
 ```
 
@@ -386,18 +284,12 @@ ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour
 
 ```{r 50Mb-500kb, echo=FALSE, fig.width=12, fig.height=6}
 tenkb <- read.delim(file="50000000-per500000bp-filtered_sup2_colT_wsT.vcf.txt", header = TRUE)
-tenkb$numhm <- tenkb$numhm + 0.01
-tenkb$numht <- tenkb$numht + 0.01
-tenkb$ratio <- tenkb$numhm/tenkb$numht
-ggplot(data=tenkb, aes(x=position)) + stat_smooth(aes(y=ratio/sum(ratio), colour="homozygous to heterozygous ratio"),
-                                                  method="lm", se=TRUE, fill=NA, formula=y ~ poly(x, 4, raw=TRUE) ) +
-  geom_bar(aes(y=ratio/sum(ratio)), stat="identity") +
-  stat_smooth(aes(y=numhm/sum(numhm), colour="homozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 4, raw=TRUE) ) +
-  stat_smooth(aes(y=numht/sum(numht), colour="heterozygous variants"), method="lm", se=FALSE, formula=y ~ poly(x, 4, raw=TRUE) ) +
-  scale_y_sqrt() + labs(y=NULL, main="genome in 10 KB fragment chunks") + mytheme +
-  geom_vline(xintercept = as.numeric(25000000), size=0.5, linetype = "longdash") +
-  annotate("text", x=Inf, y=Inf, label=lm_eqn(tenkb$position, tenkb$ratio, 4), hjust=1, vjust=1, size=8, family="Times", face="italic", parse=TRUE)
-
+tenkb <- re_zero_ratio(tenkb, 0.01)
+melted <- melt(tenkb, id.vars = "position")
+ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
+  facet_grid(variable ~ ., scales = "free") +
+  scale_y_sqrt() + labs(y=NULL, main="genome in 500 KB fragment chunks") + mytheme +
+  geom_vline(xintercept = as.numeric(25000000), size=0.5)
 
 ```
 
