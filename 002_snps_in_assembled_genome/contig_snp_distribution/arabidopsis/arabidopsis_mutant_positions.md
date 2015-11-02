@@ -15,3 +15,7 @@
 	sup2 - Chr4 6851277      (AT4G11260) [Uchida et al 2011]
 
 For soc1, sup1 and sup2 only candidate gene information is abvailable but not the variant details
+
+after analyzing variant data for AT4G11260 only one variant found with in the limits of the gene (6851277 to 6853860)
+
+	sup2 - Chr4 6852405  C  T  (AT4G11260) [Uchida et al 2011]
