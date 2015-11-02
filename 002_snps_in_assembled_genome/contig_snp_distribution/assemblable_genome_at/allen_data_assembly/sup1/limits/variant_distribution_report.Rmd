@@ -259,9 +259,10 @@ ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour
 
 #### 2Mb-assembly grouping
 
-```{r 2Mb-assembly, echo=FALSE, fig.width=12, fig.height=6}
+```{r 2Mb-assembly, echo=FALSE, fig.width=12, fig.height=8}
 tenkb <- read.delim(file="2000000-perassemblybp-filtered_sup1_colT_wsT.vcf.txt", header = TRUE)
 tenkb <- re_zero_ratio(tenkb, 0.01)
+tenkb$ratio_norm <- tenkb$ratio/tenkb$length
 tenkb$length <- NULL
 melted <- melt(tenkb, id.vars = "position")
 ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
@@ -273,37 +274,16 @@ ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour
 
 
 ...	
-
-...  		
-
-#### 2Mb-assembly  grouping
-
-```{r 2Mb-assembly-ratio, echo=FALSE, fig.width=12, fig.height=6}
-tenkb <- read.delim(file="2000000-perassemblybp-filtered_sup1_colT_wsT.vcf.txt", header = TRUE)
-tenkb <- re_zero_ratio(tenkb, 0.01)
-tenkb$ratio <- tenkb$ratio/tenkb$length
-tenkb$numhm <- tenkb$numhm/tenkb$length
-tenkb$numht <- tenkb$numht/tenkb$length
-tenkb$length <- NULL
-melted <- melt(tenkb, id.vars = "position")
-ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
-  facet_grid(variable ~ ., scales = "free") +
-  scale_y_sqrt() + labs(y=NULL, main="genome in assembly fragment chunks") + mytheme +
-  geom_vline(xintercept = as.numeric(1000000), size=0.5)
-
-```
-
-
-...	
-
 
 ...  		
 
 #### 5Mb-assembly grouping
 
-```{r 5Mb-assembly, echo=FALSE, fig.width=12, fig.height=6}
+```{r 5Mb-assembly, echo=FALSE, fig.width=12, fig.height=8}
 tenkb <- read.delim(file="5000000-perassemblybp-filtered_sup1_colT_wsT.vcf.txt", header = TRUE)
 tenkb <- re_zero_ratio(tenkb, 0.01)
+tenkb$ratio_norm <- tenkb$ratio/tenkb$length
+tenkb$length <- NULL
 melted <- melt(tenkb, id.vars = "position")
 ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
   facet_grid(variable ~ ., scales = "free") +
@@ -319,9 +299,11 @@ ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour
 
 #### 10Mb-assembly grouping
 
-```{r 10Mb-assembly, echo=FALSE, fig.width=12, fig.height=6}
+```{r 10Mb-assembly, echo=FALSE, fig.width=12, fig.height=8}
 tenkb <- read.delim(file="10000000-perassemblybp-filtered_sup1_colT_wsT.vcf.txt", header = TRUE)
 tenkb <- re_zero_ratio(tenkb, 0.01)
+tenkb$ratio_norm <- tenkb$ratio/tenkb$length
+tenkb$length <- NULL
 melted <- melt(tenkb, id.vars = "position")
 ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
   facet_grid(variable ~ ., scales = "free") +
@@ -337,9 +319,11 @@ ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour
 
 #### 20Mb-assembly grouping
 
-```{r 20Mb-assembly, echo=FALSE, fig.width=12, fig.height=6}
+```{r 20Mb-assembly, echo=FALSE, fig.width=12, fig.height=8}
 tenkb <- read.delim(file="20000000-perassemblybp-filtered_sup1_colT_wsT.vcf.txt", header = TRUE)
 tenkb <- re_zero_ratio(tenkb, 0.01)
+tenkb$ratio_norm <- tenkb$ratio/tenkb$length
+tenkb$length <- NULL
 melted <- melt(tenkb, id.vars = "position")
 ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
   facet_grid(variable ~ ., scales = "free") +
