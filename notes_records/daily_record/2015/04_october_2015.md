@@ -57,3 +57,8 @@
 3. A pacbio read assembly may be better than pacbio reads and illumina assemblies. test pacbio assembly distribtuion.
 
 4. Previous attempts using arabidopsis assemblies to pick causative mutation has not been successful. So Arabidopsis genome is fragmented using fragments sizes of exponential distribtuon with mean of 11kb. this is to test if the assemblies have caused more errors in limiting identification of mutation.
+
+5. Assemblies distribution is found to fit log-normal distribtuon more than exponential and powerlaw. so have generated random fragments with log-normal paramaters from current assemblies
+
+6. Density plot of the variant distributions along chromosome or genome for whole ordered genome or assembly data is changed to bar charts to get better view of the variant distributions
+
