@@ -1,0 +1,3 @@
+position	numhm	numht	length
+2500000	2197	1351
+5000000	3129	312
