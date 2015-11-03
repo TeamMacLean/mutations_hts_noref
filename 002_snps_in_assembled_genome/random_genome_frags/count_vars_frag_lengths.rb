@@ -2,11 +2,19 @@ require 'bio'
 require 'bio-samtools'
 require 'fileutils'
 
+# take mutant position in the whole genome and mark the fragment
+# in the current random fragmenting iteration of genome
+mutant_posn = ARGV[2].to_i
 
-# open a fasta file and store sequence ids and lengths to hash
+# open a ordered fasta file and store sequence ids and lengths to hash
+cumulative = 0
 seqs = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
 Bio::FastaFormat.open(ARGV[0]).each do |i|
 	seqs[i.entry_id] = i.length.to_i
+	if mutant_posn.between?(cumulative, cumulative + i.length.to_i)
+		warn "fragment with mutation\t#{i.entry_id}\n"
+	end
+	cumulative += i.length.to_i
 end
 
 # read variants vcf file and count number of variants for each fragment
@@ -31,7 +39,8 @@ end
 
 puts "fragment\tlength\tnumhm\tnumht"
 # go through each sequence and print lenght and number of vars (homozygous and heterozygous)
-seqs.keys.sort.each do | seqid |
+seq_ids = seqs.keys.sort_by{ |m| m.scan(/d+/)[0].to_i }
+seq_ids.each do | seqid |
 	hm = 0
 	hm = vars[:hm][seqid.to_s] if vars[:hm].key?(seqid.to_s)
 
