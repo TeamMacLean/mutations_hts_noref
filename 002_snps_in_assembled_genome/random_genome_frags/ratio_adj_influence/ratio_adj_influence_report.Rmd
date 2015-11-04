@@ -1,0 +1,60 @@
+---
+output:
+  html_document:
+    fig_caption: yes
+    theme: spacelab
+    toc: no
+---
+# **variant ratio adjustment factor influence on density distribution**
+
+Load libraries and the data
+```{r setup, include=FALSE}
+# load the required libraries and functions
+library(knitr)
+library(markdown)
+#opts_chunk$set(dev = 'pdf')
+library(MASS)
+library(reshape2)
+
+# source custom R functions
+source('~/git-hub-repos/shyamrallapalli/mutations_hts_noref/lib/ggplot_theme.R')
+source('~/git-hub-repos/shyamrallapalli/mutations_hts_noref/lib/zero_ratio_adj.R')
+
+```
+
+...     
+
+...
+
+#### ratio adjustments
+
+```{r ratio-barchart, echo=FALSE, fig.width=12, fig.height=12}
+newdf = read.delim(file="genome_1_varinfo.txt", header = TRUE)
+newdf$position = cumsum(newdf$length)
+newdf0_01 <- re_zero_ratio(newdf, 0.01)
+newdf0_01$addend <- rep("0.01", nrow(newdf0_01))
+newdf0_1 <- re_zero_ratio(newdf, 0.1)
+newdf0_1$addend <- rep("0.1", nrow(newdf0_1))
+newdf0_5 <- re_zero_ratio(newdf, 0.5)
+newdf0_5$addend <- rep("0.5", nrow(newdf0_5))
+newdf0_8 <- re_zero_ratio(newdf, 0.8)
+newdf0_8$addend <- rep("0.8", nrow(newdf0_8))
+newdf1_0 <- re_zero_ratio(newdf, 1)
+newdf1_0$addend <- rep("1.0", nrow(newdf1_0))
+
+testdata <- newdf0_01[c("addend", "position", "ratio")]
+testdata <- rbind(testdata, newdf0_1[c("addend", "position", "ratio")])
+testdata <- rbind(testdata, newdf0_5[c("addend", "position", "ratio")])
+testdata <- rbind(testdata, newdf0_8[c("addend", "position", "ratio")])
+testdata <- rbind(testdata, newdf1_0[c("addend", "position", "ratio")])
+
+ggplot(data=testdata, aes(x=position, y=ratio)) + geom_bar(stat="identity", colour="#0072B2", fill="#0072B2") +
+  facet_grid(addend ~ ., scales = "free") + scale_y_sqrt() + mytheme +
+  geom_vline(xintercept = as.numeric(51531045), size=0.5)
+
+
+```
+
+
+...
+
