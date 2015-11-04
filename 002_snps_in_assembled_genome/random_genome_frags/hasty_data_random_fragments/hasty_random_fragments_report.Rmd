@@ -14,6 +14,7 @@ library(knitr)
 library(markdown)
 #opts_chunk$set(dev = 'pdf')
 library(reshape2)
+library(MESS)
 
 # source custom R functions
 source('~/git-hub-repos/shyamrallapalli/mutations_hts_noref/lib/ggplot_theme.R')
@@ -33,8 +34,8 @@ Data resulting 1000 iteration is used to make following boxplots
 #### box plot of number of fragments, fragments with variants and fragments with more homozygous than heterozygous variants
 
 ```{r boxplot, echo=FALSE, fig.width=12, fig.height=6}
-newtable <- data.frame(t(rep(NA,3)))
-names(newtable) <- c("Fragment", "WithVars", "MoreHomozygous")
+newtable <- data.frame(t(rep(NA,4)))
+names(newtable) <- c("Fragment", "WithVars", "MoreHomozygous", "AUC")
 dir = getwd()
 dir = paste(dir, "vars_infrags", sep='/')
 ## read all files in a folder and store to a dataframe
@@ -45,17 +46,22 @@ for (i in 1:length(filelist)) {
   newdf$vars = newdf$numhm + newdf$numht
   newdf$vardiff = newdf$numhm - newdf$numht
   numfrags = nrow(newdf)
-  withvars = nrow(subset(newdf, vars > 0))
+  selected = subset(newdf, vars > 0)
+  withvars = nrow(selected)
+  selected$position <- cumsum(selected$length)
+  selected <- re_zero_ratio(selected, 0.5)
+  auc_calc = auc(selected$position, selected$ratio)
   morehm = nrow(subset(newdf, vardiff > 0))
-  newtable[i,] <- c(numfrags, withvars, morehm)
+  newtable[i,] <- c(numfrags, withvars, morehm, auc_calc)
 }
 
 #melted <- melt(newtable)
 #ggplot(data=melted, aes(x=variable, y=value)) + geom_boxplot() + facet_grid(variable ~ ., scales="free")
-par(mfrow=c(1,3))
+par(mfrow=c(1,4))
 boxplot(newtable$Fragment, xlab="num fragments", cex.lab=2.5, cex.axis=2.5)
 boxplot(newtable$WithVars, xlab="frags with vars", cex.lab=2.5, cex.axis=2.5)
 boxplot(newtable$MoreHomozygous, xlab="more heterozygous", cex.lab=2.5, cex.axis=2.5)
+boxplot(newtable$AUC, xlab="area under curve", cex.lab=2.5, cex.axis=2.5)
 
 ```
 
