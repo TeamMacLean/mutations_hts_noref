@@ -55,6 +55,7 @@ for (i in 1:length(filelist)) {
   newtable[i,] <- c(numfrags, withvars, morehm, auc_calc)
 }
 
+write.table(newtable, file="random_frag_contig_analysis.txt", sep="\t", row.names = FALSE)
 #melted <- melt(newtable)
 #ggplot(data=melted, aes(x=variable, y=value)) + geom_boxplot() + facet_grid(variable ~ ., scales="free")
 par(mfrow=c(1,4))
