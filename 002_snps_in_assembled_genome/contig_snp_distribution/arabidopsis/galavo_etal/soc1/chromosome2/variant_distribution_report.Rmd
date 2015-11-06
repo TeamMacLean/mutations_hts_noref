@@ -64,6 +64,25 @@ ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour
 ...  	
 
 
+#### 75,000 bp grouping of whole genome
+
+```{r 75kb, echo=FALSE, fig.width=12, fig.height=6}
+tenkb <- read.delim(file="per-75000bp-filtered_96_1_fd2_mutant.vcf.txt", header = TRUE)
+tenkb <- re_zero_ratio(tenkb, 0.01)
+melted <- melt(tenkb, id.vars = "position")
+ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
+  facet_grid(variable ~ ., scales = "free") +
+  scale_y_sqrt() + labs(y=NULL, main="genome in 75 KB fragment chunks") + mytheme +
+  geom_vline(xintercept = as.numeric(18807538), size=0.5)
+
+```
+
+
+...		
+
+...  	
+
+
 #### 100,000 bp grouping of whole genome
 
 ```{r 100kb, echo=FALSE, fig.width=12, fig.height=6}
@@ -83,6 +102,63 @@ ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour
 ...  	
 
 
+#### 200,000 bp grouping of whole genome
+
+```{r 200kb, echo=FALSE, fig.width=12, fig.height=6}
+tenkb <- read.delim(file="per-200000bp-filtered_96_1_fd2_mutant.vcf.txt", header = TRUE)
+tenkb <- re_zero_ratio(tenkb, 0.01)
+melted <- melt(tenkb, id.vars = "position")
+ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
+  facet_grid(variable ~ ., scales = "free") +
+  scale_y_sqrt() + labs(y=NULL, main="genome in 200 KB fragment chunks") + mytheme +
+  geom_vline(xintercept = as.numeric(18807538), size=0.5)
+
+```
+
+
+...		
+
+...  	
+
+
+#### 300,000 bp grouping of whole genome
+
+```{r 300kb, echo=FALSE, fig.width=12, fig.height=6}
+tenkb <- read.delim(file="per-300000bp-filtered_96_1_fd2_mutant.vcf.txt", header = TRUE)
+tenkb <- re_zero_ratio(tenkb, 0.01)
+melted <- melt(tenkb, id.vars = "position")
+ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
+  facet_grid(variable ~ ., scales = "free") +
+  scale_y_sqrt() + labs(y=NULL, main="genome in 300 KB fragment chunks") + mytheme +
+  geom_vline(xintercept = as.numeric(18807538), size=0.5)
+
+```
+
+
+...		
+
+...  	
+
+
+#### 400,000 bp grouping of whole genome
+
+```{r 400kb, echo=FALSE, fig.width=12, fig.height=6}
+tenkb <- read.delim(file="per-400000bp-filtered_96_1_fd2_mutant.vcf.txt", header = TRUE)
+tenkb <- re_zero_ratio(tenkb, 0.01)
+melted <- melt(tenkb, id.vars = "position")
+ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
+  facet_grid(variable ~ ., scales = "free") +
+  scale_y_sqrt() + labs(y=NULL, main="genome in 400 KB fragment chunks") + mytheme +
+  geom_vline(xintercept = as.numeric(18807538), size=0.5)
+
+```
+
+
+...		
+
+...  	
+
+
 #### 500,000 bp grouping of whole genome
 
 ```{r 500kb, echo=FALSE, fig.width=12, fig.height=6}
@@ -92,6 +168,82 @@ melted <- melt(tenkb, id.vars = "position")
 ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
   facet_grid(variable ~ ., scales = "free") +
   scale_y_sqrt() + labs(y=NULL, main="genome in 500 KB fragment chunks") + mytheme +
+  geom_vline(xintercept = as.numeric(18807538), size=0.5)
+
+```
+
+
+...		
+
+...  	
+
+
+#### 600,000 bp grouping of whole genome
+
+```{r 600kb, echo=FALSE, fig.width=12, fig.height=6}
+tenkb <- read.delim(file="per-600000bp-filtered_96_1_fd2_mutant.vcf.txt", header = TRUE)
+tenkb <- re_zero_ratio(tenkb, 0.01)
+melted <- melt(tenkb, id.vars = "position")
+ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
+  facet_grid(variable ~ ., scales = "free") +
+  scale_y_sqrt() + labs(y=NULL, main="genome in 600 KB fragment chunks") + mytheme +
+  geom_vline(xintercept = as.numeric(18807538), size=0.5)
+
+```
+
+
+...		
+
+...  	
+
+
+#### 700,000 bp grouping of whole genome
+
+```{r 700kb, echo=FALSE, fig.width=12, fig.height=6}
+tenkb <- read.delim(file="per-700000bp-filtered_96_1_fd2_mutant.vcf.txt", header = TRUE)
+tenkb <- re_zero_ratio(tenkb, 0.01)
+melted <- melt(tenkb, id.vars = "position")
+ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
+  facet_grid(variable ~ ., scales = "free") +
+  scale_y_sqrt() + labs(y=NULL, main="genome in 700 KB fragment chunks") + mytheme +
+  geom_vline(xintercept = as.numeric(18807538), size=0.5)
+
+```
+
+
+...		
+
+...  	
+
+
+#### 800,000 bp grouping of whole genome
+
+```{r 800kb, echo=FALSE, fig.width=12, fig.height=6}
+tenkb <- read.delim(file="per-800000bp-filtered_96_1_fd2_mutant.vcf.txt", header = TRUE)
+tenkb <- re_zero_ratio(tenkb, 0.01)
+melted <- melt(tenkb, id.vars = "position")
+ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
+  facet_grid(variable ~ ., scales = "free") +
+  scale_y_sqrt() + labs(y=NULL, main="genome in 800 KB fragment chunks") + mytheme +
+  geom_vline(xintercept = as.numeric(18807538), size=0.5)
+
+```
+
+
+...		
+
+...  	
+
+
+#### 900,000 bp grouping of whole genome
+
+```{r 900kb, echo=FALSE, fig.width=12, fig.height=6}
+tenkb <- read.delim(file="per-900000bp-filtered_96_1_fd2_mutant.vcf.txt", header = TRUE)
+tenkb <- re_zero_ratio(tenkb, 0.01)
+melted <- melt(tenkb, id.vars = "position")
+ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
+  facet_grid(variable ~ ., scales = "free") +
+  scale_y_sqrt() + labs(y=NULL, main="genome in 900 KB fragment chunks") + mytheme +
   geom_vline(xintercept = as.numeric(18807538), size=0.5)
 
 ```
