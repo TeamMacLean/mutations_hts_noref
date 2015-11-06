@@ -30,7 +30,7 @@ source('~/git-hub-repos/shyamrallapalli/mutations_hts_noref/lib/lm_eqn_plot.R')
 
 ```{r 10kb, echo=FALSE, fig.width=12, fig.height=6}
 tenkb <- read.delim(file="per-10000bp-filtered_hsty_mutant.vcf.txt", header = TRUE)
-tenkb <- re_zero_ratio(tenkb, 0.01)
+tenkb <- re_zero_ratio(tenkb, 1)
 melted <- melt(tenkb, id.vars = "position")
 ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
   facet_grid(variable ~ ., scales = "free") +
@@ -49,7 +49,7 @@ ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour
 
 ```{r 50kb, echo=FALSE, fig.width=12, fig.height=6}
 tenkb <- read.delim(file="per-50000bp-filtered_hsty_mutant.vcf.txt", header = TRUE)
-tenkb <- re_zero_ratio(tenkb, 0.01)
+tenkb <- re_zero_ratio(tenkb, 1)
 melted <- melt(tenkb, id.vars = "position")
 ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
   facet_grid(variable ~ ., scales = "free") +
@@ -68,7 +68,7 @@ ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour
 
 ```{r 75kb, echo=FALSE, fig.width=12, fig.height=6}
 tenkb <- read.delim(file="per-75000bp-filtered_hsty_mutant.vcf.txt", header = TRUE)
-tenkb <- re_zero_ratio(tenkb, 0.01)
+tenkb <- re_zero_ratio(tenkb, 1)
 melted <- melt(tenkb, id.vars = "position")
 ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
   facet_grid(variable ~ ., scales = "free") +
@@ -87,7 +87,7 @@ ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour
 
 ```{r 100kb, echo=FALSE, fig.width=12, fig.height=6}
 tenkb <- read.delim(file="per-100000bp-filtered_hsty_mutant.vcf.txt", header = TRUE)
-tenkb <- re_zero_ratio(tenkb, 0.01)
+tenkb <- re_zero_ratio(tenkb, 1)
 melted <- melt(tenkb, id.vars = "position")
 ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
   facet_grid(variable ~ ., scales = "free") +
@@ -106,7 +106,7 @@ ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour
 
 ```{r 200kb, echo=FALSE, fig.width=12, fig.height=6}
 tenkb <- read.delim(file="per-200000bp-filtered_hsty_mutant.vcf.txt", header = TRUE)
-tenkb <- re_zero_ratio(tenkb, 0.01)
+tenkb <- re_zero_ratio(tenkb, 1)
 melted <- melt(tenkb, id.vars = "position")
 ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
   facet_grid(variable ~ ., scales = "free") +
@@ -125,7 +125,7 @@ ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour
 
 ```{r 300kb, echo=FALSE, fig.width=12, fig.height=6}
 tenkb <- read.delim(file="per-300000bp-filtered_hsty_mutant.vcf.txt", header = TRUE)
-tenkb <- re_zero_ratio(tenkb, 0.01)
+tenkb <- re_zero_ratio(tenkb, 1)
 melted <- melt(tenkb, id.vars = "position")
 ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
   facet_grid(variable ~ ., scales = "free") +
@@ -144,7 +144,7 @@ ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour
 
 ```{r 400kb, echo=FALSE, fig.width=12, fig.height=6}
 tenkb <- read.delim(file="per-400000bp-filtered_hsty_mutant.vcf.txt", header = TRUE)
-tenkb <- re_zero_ratio(tenkb, 0.01)
+tenkb <- re_zero_ratio(tenkb, 1)
 melted <- melt(tenkb, id.vars = "position")
 ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
   facet_grid(variable ~ ., scales = "free") +
@@ -163,7 +163,7 @@ ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour
 
 ```{r 500kb, echo=FALSE, fig.width=12, fig.height=6}
 tenkb <- read.delim(file="per-500000bp-filtered_hsty_mutant.vcf.txt", header = TRUE)
-tenkb <- re_zero_ratio(tenkb, 0.01)
+tenkb <- re_zero_ratio(tenkb, 1)
 melted <- melt(tenkb, id.vars = "position")
 ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
   facet_grid(variable ~ ., scales = "free") +
@@ -182,7 +182,7 @@ ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour
 
 ```{r 600kb, echo=FALSE, fig.width=12, fig.height=6}
 tenkb <- read.delim(file="per-600000bp-filtered_hsty_mutant.vcf.txt", header = TRUE)
-tenkb <- re_zero_ratio(tenkb, 0.01)
+tenkb <- re_zero_ratio(tenkb, 1)
 melted <- melt(tenkb, id.vars = "position")
 ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
   facet_grid(variable ~ ., scales = "free") +
@@ -201,7 +201,7 @@ ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour
 
 ```{r 700kb, echo=FALSE, fig.width=12, fig.height=6}
 tenkb <- read.delim(file="per-700000bp-filtered_hsty_mutant.vcf.txt", header = TRUE)
-tenkb <- re_zero_ratio(tenkb, 0.01)
+tenkb <- re_zero_ratio(tenkb, 1)
 melted <- melt(tenkb, id.vars = "position")
 ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
   facet_grid(variable ~ ., scales = "free") +
@@ -220,7 +220,7 @@ ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour
 
 ```{r 800kb, echo=FALSE, fig.width=12, fig.height=6}
 tenkb <- read.delim(file="per-800000bp-filtered_hsty_mutant.vcf.txt", header = TRUE)
-tenkb <- re_zero_ratio(tenkb, 0.01)
+tenkb <- re_zero_ratio(tenkb, 1)
 melted <- melt(tenkb, id.vars = "position")
 ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
   facet_grid(variable ~ ., scales = "free") +
@@ -239,7 +239,7 @@ ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour
 
 ```{r 900kb, echo=FALSE, fig.width=12, fig.height=6}
 tenkb <- read.delim(file="per-900000bp-filtered_hsty_mutant.vcf.txt", header = TRUE)
-tenkb <- re_zero_ratio(tenkb, 0.01)
+tenkb <- re_zero_ratio(tenkb, 1)
 melted <- melt(tenkb, id.vars = "position")
 ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
   facet_grid(variable ~ ., scales = "free") +
@@ -258,7 +258,7 @@ ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour
 
 ```{r 1Mb, echo=FALSE, fig.width=12, fig.height=6}
 tenkb <- read.delim(file="per-1000000bp-filtered_hsty_mutant.vcf.txt", header = TRUE)
-tenkb <- re_zero_ratio(tenkb, 0.01)
+tenkb <- re_zero_ratio(tenkb, 1)
 melted <- melt(tenkb, id.vars = "position")
 ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
   facet_grid(variable ~ ., scales = "free") +
@@ -277,7 +277,7 @@ ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour
 
 ```{r 2.5Mb, echo=FALSE, fig.width=12, fig.height=6}
 tenkb <- read.delim(file="per-2500000bp-filtered_hsty_mutant.vcf.txt", header = TRUE)
-tenkb <- re_zero_ratio(tenkb, 0.01)
+tenkb <- re_zero_ratio(tenkb, 1)
 melted <- melt(tenkb, id.vars = "position")
 ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
   facet_grid(variable ~ ., scales = "free") +
