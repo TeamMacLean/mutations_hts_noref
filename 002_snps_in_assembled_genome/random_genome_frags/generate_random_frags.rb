@@ -3,6 +3,7 @@ require 'bio'
 require 'bio-samtools'
 require 'fileutils'
 require 'yaml'
+
 pars = YAML.load_file("frag_pars.yml")
 
 # mean, std deviation and sample size to generate random numbers
@@ -98,6 +99,8 @@ for iteration in 1..iterations
 	# generate an array of random numbers using mean and sample number provided
 	# exponential distribution is used
 	@random.set_seed
+
+	time1 = Time.now
 	number_array = []
 	i = 0
 	while i < sample
@@ -124,6 +127,8 @@ for iteration in 1..iterations
 		disfrags = File.open("#{newname}/discarded_fragments.fasta", 'w')
 	end
 
+	time2 = Time.now
+	warn "#{time2 - time1}\n"
 	# chromosme sequences are fragemened to the sizes in random number array
 	# and saved to a hash
 	frags = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
@@ -149,21 +154,26 @@ for iteration in 1..iterations
 	%x[cp ht_snps.txt #{newname}/ht_snps.txt]
 	%x[cp snps.vcf #{newname}/snps.vcf]
 
+	time3 = Time.now
+	warn "#{time3 - time2}\n"
 	snpvcf = File.open("#{newname}/snps.vcf", 'a')
 	current_frag = 1
 	vars.keys.sort.each do | position |
-		frags[:len].keys.sort.each do | frag |
-			limits = frags[:len][frag].split(':')
+		while current_frag < name_index
+			limits = frags[:len][current_frag].split(':')
 			if position.between?(limits[0].to_i, limits[1].to_i)
 				vcfinfo = Bio::DB::Vcf.new(vars[position])
-				vcfinfo.chrom = "seq_id_" + frag.to_s
+				vcfinfo.chrom = "seq_id_" + current_frag.to_s
 				vcfinfo.pos = vcfinfo.pos.to_i - limits[0].to_i
 				snpvcf.puts "#{vcfinfo}"
 				break
 			end
+			current_frag += 1
 		end
 	end
 
+	time4 = Time.now
+	warn "#{time4 - time3}\n"
 	# write ordered and shuffled fragments for current iteration
 	write_fasta(frags[:seq], frags[:seq].keys.sort, "#{newname}/frags_ordered.fasta")
 
