@@ -31,11 +31,27 @@ Data resulting 1000 iteration is used to make following boxplots
 
 ...  		
 
-#### box plot of number of fragments, fragments with variants and fragments with more homozygous than heterozygous variants
+...
 
-```{r boxplot, echo=FALSE, fig.width=12, fig.height=6}
+#### read data from 1000 iterations and analyze the iteration data
+##### fragments with variants are selected and remaining fragments discarded
+
+```{r analysis, include=FALSE}
+
+# create empty dataframe to store summary information per iteration
 newtable <- data.frame(t(rep(NA,4)))
 names(newtable) <- c("Fragment", "WithVars", "MoreHomozygous", "AUC")
+
+# create empty dataframe with correct colnames for appending processed data
+alldata = data.frame(fragment=character(), 
+                     length=numeric(), 
+                     numhm=numeric(), 
+                     numht=numeric(), 
+                     position=numeric(), 
+                     file=character(), 
+                     ratio=numeric(), 
+                     stringsAsFactors=FALSE)
+
 dir = getwd()
 dir = paste(dir, "vars_infrags", sep='/')
 ## read all files in a folder and store to a dataframe
@@ -43,17 +59,33 @@ filelist = list.files(dir, "^genome_")
 for (i in 1:length(filelist)) {
   filename = paste(dir, filelist[i], sep='/')
   newdf <- read.delim(file=filename, header = TRUE)
-  newdf$vars = newdf$numhm + newdf$numht
-  newdf$vardiff = newdf$numhm - newdf$numht
   numfrags = nrow(newdf)
+  newdf$vars = newdf$numhm + newdf$numht
   selected = subset(newdf, vars > 0)
   withvars = nrow(selected)
   selected$position <- cumsum(selected$length)
+  selected$file <- rep(filelist[i], nrow(selected))
   selected <- re_zero_ratio(selected, 0.5)
-  auc_calc = auc(selected$position, selected$ratio)
+  # add subset data to the alldata
+  alldata = rbind(alldata, selected)
+  newdf$vardiff = newdf$numhm - newdf$numht
   morehm = nrow(subset(newdf, vardiff > 0))
+  auc_calc = auc(selected$position, selected$ratio)
+  # add summary infomration per iteration to newtable 
   newtable[i,] <- c(numfrags, withvars, morehm, auc_calc)
 }
+
+
+```
+
+...
+
+...
+
+
+#### box plot of number of fragments, fragments with variants and fragments with more homozygous than heterozygous variants
+
+```{r boxplot, echo=FALSE, fig.width=12, fig.height=6}
 
 write.table(newtable, file="random_frag_contig_analysis.txt", sep="\t", row.names = FALSE)
 #melted <- melt(newtable)
@@ -70,5 +102,32 @@ boxplot(newtable$AUC, xlab="area under curve", cex.lab=2.5, cex.axis=2.5)
 ...
 
 
+#### produce variant ratios for ordered fragments
+
+```{r plotvars, echo=FALSE, fig.width=12, fig.height=12}
+
+# save alldata analysis to a file
+write.table(alldata, file="random_frag_contig_all_iterations_data.txt", sep="\t", row.names = FALSE)
+
+ggplot(data=alldata, aes(x=position, y=ratio)) + stat_binhex() +
+  labs(y="ordered fragment length", y="hom to het ratio") + mytheme
+
+```
+
+
 ...
 
+...
+
+#### produce length normalized variant ratios
+
+```{r plotvars-normalized, echo=FALSE, fig.width=12, fig.height=12}
+
+ggplot(data=alldata, aes(x=position, y=ratio/length)) + stat_binhex() +
+  labs(y="ordered fragment length", y="normalized hom to het ratio") + mytheme
+
+```
+
+...
+
+...
