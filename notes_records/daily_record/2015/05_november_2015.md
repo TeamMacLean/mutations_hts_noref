@@ -1,5 +1,6 @@
 ### Table of Cotents
 1. [November 2 - 6]  (#november-2nd-to-6th)
+2. [November 9 - 13]  (#november-9th-to-13th)
 
 
 ## November 2nd to 6th
@@ -15,3 +16,11 @@
 5. From 1000 random iterations of hasty mutant data we can see that on average ~620 contigs had variants out of ~12000 fragments. And only ~33 fragments had higher homozygous than heterozygous variatns. This dataset is a backcross mutant data. 
 
 6. Now generating random data from an outcrossed mutant sequencing and would help us determine the limits of the analysis.
+
+## November 9th to 13th
+
+1. Looking at the data from the contigs/fragments with variants, it seems only about 30 MB of genome had information (from the random iterations data)
+
+2. Backcross data from hasty mutant shows two peaks (both normalized and non-normalized ratios using fragment lengths).
+
+3. More mutant data is being processed to generate distributions and derive equations to the distributions. Such equations would help us evaluating final arragements for de-novo data.
