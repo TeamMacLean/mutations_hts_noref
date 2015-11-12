@@ -110,7 +110,7 @@ boxplot(newtable$AUC, xlab="area under curve", cex.lab=2.5, cex.axis=2.5)
 write.table(alldata, file="random_frag_contig_all_iterations_data.txt", sep="\t", row.names = FALSE)
 
 ggplot(data=alldata, aes(x=position, y=ratio)) + stat_binhex() +
-  labs(y="ordered fragment length", y="hom to het ratio") + mytheme
+  labs(x="ordered fragment length", y="hom to het ratio") + mytheme
 
 ```
 
@@ -124,7 +124,7 @@ ggplot(data=alldata, aes(x=position, y=ratio)) + stat_binhex() +
 ```{r plotvars-normalized, echo=FALSE, fig.width=12, fig.height=12}
 
 ggplot(data=alldata, aes(x=position, y=ratio/length)) + stat_binhex() +
-  labs(y="ordered fragment length", y="normalized hom to het ratio") + mytheme
+  labs(x="ordered fragment length", y="normalized hom to het ratio") + mytheme
 
 ```
 

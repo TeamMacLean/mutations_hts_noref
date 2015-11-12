@@ -1,4 +1,4 @@
-iterations	fragment
+#iterations	fragment
 genome_924	seq_id_5126
 genome_698	seq_id_4963
 genome_276	seq_id_5375
