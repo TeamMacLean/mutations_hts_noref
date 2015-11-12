@@ -25,7 +25,7 @@ source('~/git-hub-repos/shyamrallapalli/mutations_hts_noref/lib/zero_ratio_adj.R
 ...     
 Arabdiopsis genome is fragmented using a log-normal distribution with parameters derived from an assembly made using Allen et al miR159 sequence data.
 
-1000 iterations of fragments were generated and parent filtered hasty mutant variant information is used to assign variants to made genome fragments
+1000 iterations of fragments were generated and parent filtered sup2 mutant variant information is used to assign variants to made genome fragments
 
 Data resulting 1000 iteration is used to make following boxplots
 
