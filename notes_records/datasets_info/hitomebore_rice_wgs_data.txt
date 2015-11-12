@@ -1,0 +1,4 @@
+#accession	libname	description
+DRR004451	hitomebore_1	Oryza sativa L. cv. Hitomebore wgs data
+DRR004452	hitomebore_2	Oryza sativa L. cv. Hitomebore wgs data
+DRR004453	hitomebore_3	Oryza sativa L. cv. Hitomebore wgs data

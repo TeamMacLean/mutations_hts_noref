@@ -1,0 +1,4 @@
+#accession	libname	description
+ERR469285	sur2-1gl1	parent
+ERR469286	494sur2-1gl1	F3 after 4th backcross
+ERR469287	2035sur2-1gl1	F3 after 2nd backcross

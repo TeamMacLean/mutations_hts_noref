@@ -1,0 +1,9 @@
+#accession	libname	description
+DRR001785	Hit1917-pl1	pale green leaf mutants
+DRR001786	Hit0813-pl2_run1	pale green leaf mutants
+DRR001787	Hit1917-sd	pale green leaf mutants
+DRR001788	Hit0746-sd	pale green leaf mutants
+DRR001789	Hit5500-sd	pale green leaf mutants
+DRR001790	Hit5814-sd	pale green leaf mutants
+DRR001791	Hit5243-sm	pale green leaf mutants
+DRR001792	Hit0813-pl2_run2	pale green leaf mutants

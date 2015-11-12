@@ -1,0 +1,7 @@
+#accession	libname	description
+ERR045179	LDNwt	low GPC parent
+ERR045180	RSL65	high GPC parent
+ERR045181	Hi400	hi GPC pool 400 bp insertion libraries
+ERR045182	Lo400	low GPC pool 400 bp insertion libraries
+ERR045183	Hi250	hi GPC pool 250 bp insertion libraries
+ERR063461	Lo250	low GPC pool 250 bp insertion libraries
