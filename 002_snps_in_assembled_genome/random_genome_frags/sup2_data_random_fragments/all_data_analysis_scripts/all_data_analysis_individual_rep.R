@@ -4,6 +4,9 @@ library(quantchem)
 source('~/git-hub-repos/shyamrallapalli/mutations_hts_noref/lib/zero_ratio_adj.R')
 
 
+frags <- read.delim(file="fragments_with_mut_ids.txt", header = TRUE)
+colnames(frags) <- c("iterations", "fragment")
+
 dir = getwd()
 dir = paste(dir, "vars_infrags", sep='/')
 dir.create("barplots_selected")
@@ -26,10 +29,16 @@ for (i in 1:10) {
   lmfit5 <- lm(selected$ratio ~ poly(selected$position, 5, raw=TRUE))
   lmfit6 <- lm(selected$ratio ~ poly(selected$position, 6, raw=TRUE))
 
+  iteration = gsub("_varinfo.txt$", "", filelist[2])
+  fragid = as.character(frags[which(frags$iterations == iteration),]$fragment)
+  selected = within(selected, {
+    color=ifelse(fragment==fragid, "red", "black")
+    width=ifelse(fragment==fragid, 30, 0.5)})
+
   # print models to pdf
   filename1 = paste("barplots_selected/ratio_", filelist[i], "_barplot.pdf", sep='')
   pdf(filename1,width=6,height=4)
-  barplot(selected$ratio)
+  barplot(selected$ratio, width=selected$width, col=selected$color, border=selected$color)
   lines(predict(lmfit2, data.frame(x=selected$position)), col="red")
   lines(predict(lmfit3, data.frame(x=selected$position)), col="blue")
   lines(predict(lmfit4, data.frame(x=selected$position)), col="green")
@@ -47,7 +56,7 @@ for (i in 1:10) {
   # print models to pdf
   filename2 = paste("barplots_selected/adjratio_", filelist[i], "_barplot.pdf", sep='')
   pdf(filename2,width=6,height=4)
-  barplot(selected$adjratio)
+  barplot(selected$adjratio, width=selected$width, col=selected$color, border=selected$color)
   lines(predict(lmfit2, data.frame(x=selected$position)), col="red")
   lines(predict(lmfit3, data.frame(x=selected$position)), col="blue")
   lines(predict(lmfit4, data.frame(x=selected$position)), col="green")
