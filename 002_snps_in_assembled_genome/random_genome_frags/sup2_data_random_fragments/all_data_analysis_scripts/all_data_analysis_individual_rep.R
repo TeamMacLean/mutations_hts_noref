@@ -29,7 +29,7 @@ for (i in 1:10) {
   lmfit5 <- lm(selected$ratio ~ poly(selected$position, 5, raw=TRUE))
   lmfit6 <- lm(selected$ratio ~ poly(selected$position, 6, raw=TRUE))
 
-  iteration = gsub("_varinfo.txt$", "", filelist[2])
+  iteration = gsub("_varinfo.txt$", "", filelist[i])
   fragid = as.character(frags[which(frags$iterations == iteration),]$fragment)
   selected = within(selected, {
     color=ifelse(fragment==fragid, "red", "black")
