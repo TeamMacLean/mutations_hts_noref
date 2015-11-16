@@ -31,10 +31,10 @@ for (i in 1:10) {
   hm = 0
   ht = 0
   x = 1
-  for (i in 1:dflength){
-    len = len + selected$length[i]
-    hm = hm + selected$numhm[i]
-    ht = ht + selected$numht[i]
+  for (j in 1:dflength){
+    len = len + selected$length[j]
+    hm = hm + selected$numhm[j]
+    ht = ht + selected$numht[j]
     if (len >= lenbin) {
       rollingdf1[x, ] = c(len, hm, ht)
       len = 0
@@ -42,7 +42,7 @@ for (i in 1:10) {
       ht = 0
       x = x + 1
     }
-    else if (i == dflength){
+    else if (j == dflength){
       rollingdf1[x, ] = c(len, hm, ht)
     }
   }
@@ -64,24 +64,23 @@ for (i in 1:10) {
   hm = 0
   ht = 0
   x = 1
-  i = 1
-  while (i <= dflength){
-    len = len + selected$length[i]
-    hm = hm + selected$numhm[i]
-    ht = ht + selected$numht[i]
-    i = i + 1
+  j = 1
+  while (j <= dflength){
+    len = len + selected$length[j]
+    hm = hm + selected$numhm[j]
+    ht = ht + selected$numht[j]
+    i = j + 1
     if (len >= lenbin) {
       rollingdf2[x, ] = c(len, hm, ht)
       len = 0
       hm = 0
       ht = 0
       x = x + 1
-      i = x
+      j = x
     }
-    else if (i == dflength){
+    else if (j == dflength){
       rollingdf2[x, ] = c(len, hm, ht)
     }
-
   }
   rollingdf2 <- re_zero_ratio(rollingdf2, 0.5)
 
