@@ -54,8 +54,8 @@ for (i in 1:10) {
   barplot(rollingdf1$ratio)
   dev.off()
 
-# fragments pooled to a near 500kb sliding chunks and plotted
-    rollingdf2 = data.frame(length=numeric(),
+  # fragments pooled to a near 500kb sliding chunks and plotted
+  rollingdf2 = data.frame(length=numeric(),
     numhm=numeric(),
     numht=numeric(),
     stringsAsFactors=FALSE)
@@ -69,7 +69,7 @@ for (i in 1:10) {
     len = len + selected$length[j]
     hm = hm + selected$numhm[j]
     ht = ht + selected$numht[j]
-    i = j + 1
+    j = j + 1
     if (len >= lenbin) {
       rollingdf2[x, ] = c(len, hm, ht)
       len = 0
