@@ -1,7 +1,7 @@
 ### Table of Cotents
 1. [November 2 - 6]  (#november-2nd-to-6th)
 2. [November 9 - 13]  (#november-9th-to-13th)
-
+3. [November 16 - 20]  (#november-16th-to-20th)
 
 ## November 2nd to 6th
 
@@ -17,6 +17,7 @@
 
 6. Now generating random data from an outcrossed mutant sequencing and would help us determine the limits of the analysis.
 
+
 ## November 9th to 13th
 
 1. Looking at the data from the contigs/fragments with variants, it seems only about 30 MB of genome had information (from the random iterations data)
@@ -24,3 +25,17 @@
 2. Backcross data from hasty mutant shows two peaks (both normalized and non-normalized ratios using fragment lengths).
 
 3. More mutant data is being processed to generate distributions and derive equations to the distributions. Such equations would help us evaluating final arragements for de-novo data.
+
+4. Arabidopsis sup2 mutant data was used to generate random fragments: Out of ~12000 fragments, ~7800 fragments had variants, while about ~850 fragments had more homozygous than heterozygous variants.
+
+5. With sup2 data from 867 iterations, we see a distinct peak, while for length normalized data various peaks are found.
+
+6. Using data from iterations we could see that length normalization is not requied, as it create more distinct peaks outside the causative mutation region.
+
+
+## November 16th to 20th
+
+1. I have looked at ratios using near to 500 KB chunks of fragments pooled or 500KB chunks in a sliding window. In both cases we see a clear peak around the causative mutation region. May be this could be used to check the arrangement.
+
+2. Using all the fragments with causative mutation from random iterations, minimum ratio fragments to keep is being decided.
+
