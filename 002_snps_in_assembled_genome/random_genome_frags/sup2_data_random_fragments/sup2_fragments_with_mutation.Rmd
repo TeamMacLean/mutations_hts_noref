@@ -1,0 +1,106 @@
+---
+output:
+  html_document:
+    fig_caption: yes
+    theme: spacelab
+    toc: no
+---
+# **fragments carrying causative sup2 mutation from random iterations of arabidopsis genome**
+
+Load libraries and the data
+```{r setup, include=FALSE}
+# load the required libraries and functions
+library(knitr)
+library(markdown)
+#opts_chunk$set(dev = 'pdf')
+library(reshape2)
+library(MESS)
+
+# source custom R functions
+source('~/git-hub-repos/shyamrallapalli/mutations_hts_noref/lib/ggplot_theme.R')
+source('~/git-hub-repos/shyamrallapalli/mutations_hts_noref/lib/zero_ratio_adj.R')
+
+```
+
+...     
+Arabdiopsis genome is fragmented using a log-normal distribution with parameters derived from an assembly made using Allen et al miR159 sequence data.
+
+867 iterations of fragments were generated and parent filtered sup2 mutant variant information is used to assign variants to made genome fragments
+
+Data for the fragment carrying sup2 mutation from all iterations is extracted
+
+...  		
+
+...
+
+##### read file with fragment ids of causatiave mutation for all iterations
+##### store the data in a dataframe and write to a table
+
+```{r analysis, include=FALSE}
+
+frags <- read.delim(file="fragments_with_mut_ids.txt", header = TRUE)
+colnames(frags) <- c("iterations", "fragment")
+
+# create empty data frame to store information about
+# mutation carrying fragments from all iterations
+selected = data.frame(fragment=character(),
+  length=numeric(),
+  numhm=numeric(),
+  numht=numeric(),
+  file=character(),
+  stringsAsFactors=FALSE)
+
+## read all files in a folder and store to a dataframe
+dir = getwd()
+dir = paste(dir, "vars_infrags", sep='/')
+filelist = list.files(dir, "^genome_")
+numfiles = length(filelist)
+
+for (i in 1:numfiles) {
+  filename = paste(dir, filelist[i], sep='/')
+  newdf <- read.delim(file=filename, header = TRUE, stringsAsFactors=FALSE)
+  iteration = gsub("_varinfo.txt$", "", filelist[i])
+  fragid = as.character(frags[which(frags$iterations == iteration),]$fragment)
+  selected[i,] = c(subset(newdf, fragment==fragid), iteration)
+}
+
+# save all iteration fragment data to a file
+write.table(selected, file="frags_mutation_all_iterations.txt", sep="\t", row.names = FALSE)
+
+```
+
+...
+
+...
+
+
+#### box plot of length fragments, homozygous, heterozygous variants and ratio
+
+```{r boxplot, echo=FALSE, fig.width=12, fig.height=6}
+
+selected <- re_zero_ratio(selected, 0.5)
+selected$adjratio <- selected$ratio/selected$length
+par(mfrow=c(1,4))
+boxplot(selected$length, xlab="length", cex.lab=2.5, cex.axis=2.5)
+boxplot(selected$ratio, xlab="ratio", cex.lab=2.5, cex.axis=2.5)
+boxplot(selected$numhm, xlab="homozygous", cex.lab=2.5, cex.axis=2.5)
+boxplot(selected$adjratio, xlab="length adj ratio", cex.lab=2.5, cex.axis=2.5)
+
+```
+
+
+...
+
+
+#### ratios of fragments with causative mutation
+
+```{r plotvars, echo=FALSE, fig.width=12, fig.height=12}
+
+summary(selected$ratio)
+
+```
+
+
+...
+
+...
