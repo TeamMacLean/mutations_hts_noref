@@ -39,3 +39,4 @@
 
 2. Using all the fragments with causative mutation from random iterations, minimum ratio fragments to keep is being decided.
 
+3. From sup2 data analysis, ratio >=5 (when using 0.5 as factor to add) has removed most fragments out side the peak. While hasty data mostly gave (99% iterations) ratio value of 3. So variant frequency should factored in to the cut-off value for fragment ratios.
