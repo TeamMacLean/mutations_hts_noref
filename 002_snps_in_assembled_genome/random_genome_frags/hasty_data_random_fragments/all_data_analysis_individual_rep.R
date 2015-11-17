@@ -1,0 +1,53 @@
+# load libraries and data
+library(ggplot2)
+library(quantchem)
+source('~/git-hub-repos/shyamrallapalli/mutations_hts_noref/lib/zero_ratio_adj.R')
+
+
+frags <- read.delim(file="fragment_with_mut_iterations.txt", header = TRUE)
+colnames(frags) <- c("iterations", "fragment")
+
+dir = getwd()
+dir = paste(dir, "vars_infrags", sep='/')
+dir.create("barplots_selected")
+## read all files in a folder and store to a dataframe
+filelist = list.files(dir, "^genome_")
+#for (i in 1:length(filelist)) {
+for (i in 1:10) {
+  filename = paste(dir, filelist[i], sep='/')
+  newdf <- read.delim(file=filename, header = TRUE)
+  newdf$vars = newdf$numhm + newdf$numht
+  selected = subset(newdf, vars > 0)
+  selected$position <- cumsum(selected$length)
+  selected <- re_zero_ratio(selected, 0.5)
+  selected$adjratio <- selected$ratio/selected$length
+
+  iteration = gsub("_varinfo.txt$", "", filelist[i])
+  fragid = as.character(frags[which(frags$iterations == iteration),]$fragment)
+  selected = within(selected, {
+    color=ifelse(fragment==fragid, "red", "black")
+    width=ifelse(fragment==fragid, 10, 0.5)})
+
+  # print non-normalized ratio barplots
+  filename1 = paste("barplots_selected/ratio_", filelist[i], "_barplot.pdf", sep='')
+  pdf(filename1,width=6,height=4)
+  barplot(selected$ratio, width=selected$width, col=selected$color, border=selected$color)
+  dev.off()
+
+  # print length-normalized ratio barplots
+  filename2 = paste("barplots_selected/adjratio_", filelist[i], "_barplot.pdf", sep='')
+  pdf(filename2,width=6,height=4)
+  barplot(selected$adjratio, width=selected$width, col=selected$color, border=selected$color)
+  dev.off()
+
+
+  # qunatchem fit to combined data and save curves to pdf
+#  fit = lmcal(selected$position, selected$ratio)
+
+#  filename2 = paste(filelist[i], "_quantchem_fitplot.pdf", sep='')
+#  pdf(filename2,width=7,height=7)
+#  par(mfrow=c(4,5))
+#  plot(fit, type = "curve", xlab = "position", ylab = "ratio")
+#  dev.off()
+
+}
