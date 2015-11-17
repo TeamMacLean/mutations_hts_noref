@@ -28,18 +28,21 @@ for (i in 1:10) {
     color=ifelse(fragment==fragid, "red", "black")
     width=ifelse(fragment==fragid, 30, 0.5)})
 
-  # print non-normalized ratio barplots
+  selected2 <- selected
+  selected2[selected2$ratio < 3,]$ratio <- 0
+  selected3 <- selected
+  selected3[selected3$ratio < 5,]$ratio <- 0
+
+  # print non-normalized ratios, ratios >= 3 and ratio >= 5
+  # and length-normalized ratio barplots
   filename1 = paste("barplots_selected/ratio_", filelist[i], "_barplot.pdf", sep='')
-  pdf(filename1,width=6,height=4)
-  barplot(selected$ratio, width=selected$width, col=selected$color, border=selected$color)
+  pdf(filename1,width=6,height=8)
+  par(mfrow=c(4,1), mar=c(1,2,1,0.5))
+  barplot(selected$ratio, width=selected$width, col=selected$color, border=selected$color, main="ratios")
+  barplot(selected2$ratio, width=selected$width, col=selected$color, border=selected$color, main="ratios >= 3")
+  barplot(selected3$ratio, width=selected$width, col=selected$color, border=selected$color, main="ratios >= 5")
+  barplot(selected$adjratio, width=selected$width, col=selected$color, border=selected$color, main="adj ratios")
   dev.off()
-
-  # print length-normalized ratio barplots
-  filename2 = paste("barplots_selected/adjratio_", filelist[i], "_barplot.pdf", sep='')
-  pdf(filename2,width=6,height=4)
-  barplot(selected$adjratio, width=selected$width, col=selected$color, border=selected$color)
-  dev.off()
-
 
   # qunatchem fit to combined data and save curves to pdf
 #  fit = lmcal(selected$position, selected$ratio)
