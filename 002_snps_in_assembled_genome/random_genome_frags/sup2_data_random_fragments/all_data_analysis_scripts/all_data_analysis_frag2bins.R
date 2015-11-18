@@ -48,12 +48,6 @@ for (i in 1:10) {
   }
   rollingdf1 <- re_zero_ratio(rollingdf1, 0.5)
 
-  # print models to pdf
-  filename1 = paste("barplots_frag2bins/chunks_", filelist[i], ".pdf", sep='')
-  pdf(filename1,width=6,height=4)
-  barplot(rollingdf1$ratio)
-  dev.off()
-
   # fragments pooled to a near 500kb sliding chunks and plotted
   rollingdf2 = data.frame(length=numeric(),
     numhm=numeric(),
@@ -85,9 +79,11 @@ for (i in 1:10) {
   rollingdf2 <- re_zero_ratio(rollingdf2, 0.5)
 
   # print models to pdf
-  filename2 = paste("barplots_frag2bins/slidingwindow_", filelist[i], ".pdf", sep='')
-  pdf(filename2,width=6,height=4)
-  barplot(rollingdf2$ratio)
+  filename1 = paste("barplots_frag2bins/chunks_", filelist[i], ".pdf", sep='')
+  pdf(filename1,width=6,height=6)
+  par(mfrow=c(2,1), mar=c(1,2,1,0.5))
+  barplot(rollingdf1$ratio, main="chunks_500KB")
+  barplot(rollingdf2$ratio, main="slidingwindow_500KB")
   dev.off()
 
 }
