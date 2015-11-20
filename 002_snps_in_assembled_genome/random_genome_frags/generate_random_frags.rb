@@ -47,12 +47,12 @@ def splice_sequence (inseq, nameindex, lenindex, fragshash, discardsfile)
 			discardsfile.puts seqout.to_fasta("seq_id_#{nameindex}", 80)
 		else
 			fragshash[:seq][nameindex] = inseq
-			fragshash[:len][nameindex] = [lenindex, lenindex+seqlen].join(':')
+			fragshash[:len][nameindex] = [lenindex, lenindex+seqlen-1].join(':')
 			lenindex += seqlen
 		end
 	else
 		fragshash[:seq][nameindex] = inseq
-		fragshash[:len][nameindex] = [lenindex, lenindex+seqlen].join(':')
+		fragshash[:len][nameindex] = [lenindex, lenindex+seqlen-1].join(':')
 		lenindex += seqlen
 	end
 	[fragshash, lenindex]
@@ -100,7 +100,6 @@ for iteration in 1..iterations
 	# exponential distribution is used
 	@random.set_seed
 
-	time1 = Time.now
 	number_array = []
 	i = 0
 	while i < sample
@@ -127,8 +126,6 @@ for iteration in 1..iterations
 		disfrags = File.open("#{newname}/discarded_fragments.fasta", 'w')
 	end
 
-	time2 = Time.now
-	warn "#{time2 - time1}\n"
 	# chromosme sequences are fragemened to the sizes in random number array
 	# and saved to a hash
 	frags = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
@@ -154,8 +151,6 @@ for iteration in 1..iterations
 	%x[cp ht_snps.txt #{newname}/ht_snps.txt]
 	%x[cp snps.vcf #{newname}/snps.vcf]
 
-	time3 = Time.now
-	warn "#{time3 - time2}\n"
 	snpvcf = File.open("#{newname}/snps.vcf", 'a')
 	current_frag = 1
 	vars.keys.sort.each do | position |
@@ -172,8 +167,6 @@ for iteration in 1..iterations
 		end
 	end
 
-	time4 = Time.now
-	warn "#{time4 - time3}\n"
 	# write ordered and shuffled fragments for current iteration
 	write_fasta(frags[:seq], frags[:seq].keys.sort, "#{newname}/frags_ordered.fasta")
 
