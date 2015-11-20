@@ -1,0 +1,5 @@
+#accession	libname	description
+DRR000872	col-t	parent
+DRR000873	ws-t	parent
+DRR000874	sup1	supperssor mutant # 1
+DRR000875	sup2	supperssor mutant # 2

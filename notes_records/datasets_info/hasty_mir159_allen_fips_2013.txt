@@ -1,0 +1,5 @@
+#accession	libname	description
+SRR955635	mir159a-1	mir159a in Col-0 parent lib1
+SRR955636	mir159a-2	mir159a in Col-0 parent lib2
+SRR955637	hasty-1	F2 after backcross to parent lib1
+SRR955638	hasty-2	F2 after backcross to parent lib2
