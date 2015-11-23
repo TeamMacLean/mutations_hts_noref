@@ -2,6 +2,7 @@
 1. [November 2 - 6]  (#november-2nd-to-6th)
 2. [November 9 - 13]  (#november-9th-to-13th)
 3. [November 16 - 20]  (#november-16th-to-20th)
+4. [November 23 - 27]  (#november-23rd-to-27th)
 
 ## November 2nd to 6th
 
@@ -40,3 +41,12 @@
 2. Using all the fragments with causative mutation from random iterations, minimum ratio fragments to keep is being decided.
 
 3. From sup2 data analysis, ratio >=5 (when using 0.5 as factor to add) has removed most fragments out side the peak. While hasty data mostly gave (99% iterations) ratio value of 3. So variant frequency should factored in to the cut-off value for fragment ratios.
+
+
+## November 23rd to 27th
+
+1. working towards cleaning the SNP distribution code for whole genome analysis and update code for complete gem. Made updates to images plotting ratios arranged after SDM and comparison to position in ordered genome
+
+2. updated code to produce qqplots for both homozygous variants from fragments as well as the ratios of homozygous to heterozygous for the fragments.
+
+3. 
