@@ -49,4 +49,10 @@
 
 2. updated code to produce qqplots for both homozygous variants from fragments as well as the ratios of homozygous to heterozygous for the fragments.
 
-3. 
+3. Checking if the causative mutation is enriched in homozygous rich region (length of region hosting homozygous vars to region hosting heterozygous vars). This would help to exclude some fragments.
+
+4. From the iteration analysis (from sup2 data), it shows that 90% of times fragment with mutation is only in the top 4% of fragments ranked based on ratio of homozygous to heterozygous. 85% of iterations have ratio value 5 or more.
+
+5. Linkage grouping softwares from marker could be of help if the individual plant sequencing instead of bulk sequencing is done (have to test how many individual plant sequencing needed to improve the order of contigs).
+
+6. Preparig background
