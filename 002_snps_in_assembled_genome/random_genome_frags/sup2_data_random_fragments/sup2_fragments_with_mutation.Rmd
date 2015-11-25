@@ -47,6 +47,8 @@ selected = data.frame(fragment=character(),
   length=numeric(),
   numhm=numeric(),
   numht=numeric(),
+  varpercent=numeric(),
+  hmpercent=numeric(),
   file=character(),
   stringsAsFactors=FALSE)
 
@@ -61,7 +63,22 @@ for (i in 1:numfiles) {
   newdf <- read.delim(file=filename, header = TRUE, stringsAsFactors=FALSE)
   iteration = gsub("_varinfo.txt$", "", filelist[i])
   fragid = as.character(frags[which(frags$iterations == iteration),]$fragment)
-  selected[i,] = c(subset(newdf, fragment==fragid), iteration)
+  
+  # selected fragments with variants
+  withvars = subset(newdf, numhm + numht > 0)
+  withvars <- re_zero_ratio(withvars, 0.5)
+  withvars = withvars[order(withvars$ratio, decreasing = TRUE),]
+  row.names(withvars) <- NULL
+  varpercent = as.numeric(row.names(withvars[withvars$fragment==fragid,])) * 100 /nrow(withvars)
+  
+  # selected fragments with more hm than ht variants
+  high_hm = subset(newdf, numhm > numht)
+  high_hm <- re_zero_ratio(high_hm, 0.5)
+  high_hm = high_hm[order(high_hm$ratio, decreasing = TRUE),]
+  row.names(high_hm) <- NULL
+  hmpercent = as.numeric(row.names(high_hm[high_hm$fragment==fragid,])) * 100 /nrow(high_hm)
+  
+  selected[i,] = c(subset(newdf, fragment==fragid), varpercent, hmpercent, iteration)
 }
 
 # save all iteration fragment data to a file
@@ -76,15 +93,17 @@ write.table(selected, file="frags_mutation_all_iterations.txt", sep="\t", row.na
 
 #### box plot of length fragments, homozygous, heterozygous variants and ratio
 
-```{r boxplot, echo=FALSE, fig.width=12, fig.height=6}
+```{r boxplot, echo=FALSE, fig.width=12, fig.height=12}
 
 selected <- re_zero_ratio(selected, 0.5)
 selected$adjratio <- selected$ratio/selected$length
-par(mfrow=c(1,4))
-boxplot(selected$length, xlab="length", cex.lab=2.5, cex.axis=2.5)
-boxplot(selected$ratio, xlab="ratio", cex.lab=2.5, cex.axis=2.5)
-boxplot(selected$numhm, xlab="homozygous", cex.lab=2.5, cex.axis=2.5)
-boxplot(selected$adjratio, xlab="length adj ratio", cex.lab=2.5, cex.axis=2.5)
+par(mfrow=c(2,3), mar=c(4,3,1,1))
+boxplot(selected$length, xlab="length\n", cex.lab=2, cex.axis=2)
+boxplot(selected$ratio, xlab="ratio\n", cex.lab=2, cex.axis=2)
+boxplot(selected$adjratio, xlab="length adj ratio\n", cex.lab=2, cex.axis=2)
+boxplot(selected$numhm, xlab="hm vars in frag\n", cex.lab=2, cex.axis=2)
+boxplot(selected$varpercent, xlab="frag rank as %\nof frags with vars", cex.lab=2, cex.axis=2)
+boxplot(selected$hmpercent, xlab="frag rank as %\nof frags with >hm", cex.lab=2, cex.axis=2)
 
 ```
 
@@ -94,12 +113,47 @@ boxplot(selected$adjratio, xlab="length adj ratio", cex.lab=2.5, cex.axis=2.5)
 
 #### ratios of fragments with causative mutation
 
-```{r plotvars, echo=FALSE, fig.width=12, fig.height=12}
+```{r plotvars, echo=FALSE, fig.width=12, fig.height=4}
+par(mfrow=c(1,3), mar=c(4,3,3,1))
 
-summary(selected$ratio)
+plot(sort(selected$varpercent), as.numeric(row.names(selected))*100/nrow(selected), xlab="frag rank as %\nof frags with vars", cex.lab=2, cex.axis=2, axes=FALSE)
+axis(3)
+axis(2)
+plot(sort(selected$hmpercent), as.numeric(row.names(selected))*100/nrow(selected), xlab="frag rank as %\nof frags with >hm", cex.lab=2, cex.axis=2, axes=FALSE)
+axis(3)
+axis(2)
+plot(sort(selected$ratio), as.numeric(row.names(selected))*100/nrow(selected), xlab="ratio of frag\nwith mutation", cex.lab=2, cex.axis=2, axes=FALSE)
+axis(3)
+axis(2)
 
 ```
 
+...
+
+
+#### summary about ratio of fragment with causative mutation from all iterations
+```{r sub-report1, include=FALSE}
+
+summary(selected$ratio)
+```
+
+...
+
+
+#### summary about rank of fragment with causative mutation as percentage of all fragments with variants from all iterations
+```{r sub-report2, include=FALSE}
+
+summary(selected$varpercent)
+```
+
+...
+
+
+#### summary about rank of fragment with causative mutation as percentage of all fragments with more hm variants from all iterations
+```{r sub-report3, include=FALSE}
+
+summary(selected$hmpercent)
+```
 
 ...
 
