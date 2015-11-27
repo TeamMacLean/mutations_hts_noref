@@ -55,4 +55,4 @@
 
 5. Linkage grouping softwares from marker could be of help if the individual plant sequencing instead of bulk sequencing is done (have to test how many individual plant sequencing needed to improve the order of contigs).
 
-6. Preparig background
+6. [SNP_distribution_method code] (https://github.com/shyamrallapalli/SNP_distribution_method/tree/debug_wholegenome) is being updated and streamlined to to able make a gem. Lot of code redundancy have been removed and is being updated.
