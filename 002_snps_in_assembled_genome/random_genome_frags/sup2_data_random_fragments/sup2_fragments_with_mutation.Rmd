@@ -15,6 +15,7 @@ library(markdown)
 #opts_chunk$set(dev = 'pdf')
 library(reshape2)
 library(MESS)
+library(tcltk2)
 
 # source custom R functions
 source('~/git-hub-repos/shyamrallapalli/mutations_hts_noref/lib/ggplot_theme.R')
@@ -57,6 +58,7 @@ dir = getwd()
 dir = paste(dir, "vars_infrags", sep='/')
 filelist = list.files(dir, "^genome_")
 numfiles = length(filelist)
+pb = tkProgressBar(title="Progress bar of iteration data processing", min=0, max=numfiles, width=400)
 
 for (i in 1:numfiles) {
   filename = paste(dir, filelist[i], sep='/')
@@ -79,7 +81,9 @@ for (i in 1:numfiles) {
   hmpercent = as.numeric(row.names(high_hm[high_hm$fragment==fragid,])) * 100 /nrow(high_hm)
   
   selected[i,] = c(subset(newdf, fragment==fragid), varpercent, hmpercent, iteration)
+  setTkProgressBar(pb, i)
 }
+close(pb)
 
 # save all iteration fragment data to a file
 write.table(selected, file="frags_mutation_all_iterations.txt", sep="\t", row.names = FALSE)
