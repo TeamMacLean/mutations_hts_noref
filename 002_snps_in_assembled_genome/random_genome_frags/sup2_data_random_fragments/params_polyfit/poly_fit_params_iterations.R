@@ -51,12 +51,12 @@ for (i in 1:numfiles) {
   # select fragments 5 Mb either side of the peak
   DT = subset(withvars, position >= peak - 5000000 & position <= peak + 5000000)
   lmfit4 <- lm(DT$ratio ~ poly(DT$position, 4, raw=TRUE))
-  pars = as.data.frame(lmfit4$coefficients)[,1]
 
-  coeffs[i,] = c(iteration, pars)
+  coeffs[i,1] = iteration
+  coeffs[i,2:6] = as.numeric(lmfit4$coefficients)
   setTkProgressBar(pb, i)
 }
 close(pb)
 
 # save all iterations params from poly fit to a file
-write.table(selected, file="params_polyfit_all_iterations.txt", sep="\t", row.names = FALSE)
+write.table(coeffs, file="params_polyfit_all_iterations.txt", sep="\t", row.names = FALSE)
