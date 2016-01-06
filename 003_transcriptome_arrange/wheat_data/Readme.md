@@ -15,7 +15,7 @@ Cross between LDN and RSL65 resulted in F2 population, producing segregants and 
 
 These two bulks carry variants resulting from 30cM region in Chromosome 6B that are segregating between both bulks. More detail on the study are available [in the manuscript] (http://bmcplantbiol.biomedcentral.com/articles/10.1186/1471-2229-12-14)
 
-Short read sequence data is available at the Sequence Read Archive (SRA) under the accession code ERA050658. And details about the sample ids and description are [in the following text file] (mutations_hts_noref/notes_records/datasets_info/gpc_wheat_trick_bmcpb_2012.txt)
+Short read sequence data is available at the Sequence Read Archive (SRA) under the accession code ERA050658. And details about the sample ids and description are [in the following text file] (../../notes_records/datasets_info/gpc_wheat_trick_bmcpb_2012.txt)
 
 
 
@@ -24,12 +24,12 @@ Short read sequence data is available at the Sequence Read Archive (SRA) under t
 #### read filtering
 
 fastqc analysis (```source fastqc-0.11.3; fastqc input-fastq-file```)
-report for ldn wildtype paired reads is [available here](003_transcriptome_arrange/wheat_data/gpc_bsa/fastqc_reports/langdon)
+report for ldn wildtype paired reads is [available here](./gpc_bsa/fastqc_reports/langdon)
 fastqc reports show that there are poor quality bases at 3' end of reads and truseq adapter sequences at 3' end of most reads. So reads were quality filtered and trimmed using trimmomatic software ver 0.33
 
 ``` source trimmomatic-0.33; trimmomatic PE ERR045179_1.fastq.gz ERR045179_2.fastq.gz ERR045179_1.paired.fq.gz ERR045179_1.nopair.fq.gz ERR045179_2.paired.fq.gz ERR045179_2.nopair.fq.gz ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:50 ```
 
-fastqc report for reports for trimmed reads is [available here](003_transcriptome_arrange/wheat_data/gpc_bsa/fastqc_reports/langdon/trimmomatic)
+fastqc report for reports for trimmed reads is [available here](./gpc_bsa/fastqc_reports/langdon/trimmomatic)
 
 In addition to testing trimmomatic for quality filtering and trimming
 i have used two step quality filtering using fastx toolkit and trimmed reads using trimmomatic
@@ -50,15 +50,15 @@ Resulting paired reads are adapter tirmmed using trimmomatic
 
 ```source trimmomatic-0.33; trimmomatic PE ERR045179.fastx_qc.pe.1.fq.gz ERR045179.fastx_qc.pe.2.fq.gz ERR045179.fastx_qc.pe.1.paired.fq.gz ERR045179.fastx_qc.pe.1.nopair.fq.gz ERR045179.fastx_qc.pe.2.paired.fq.gz ERR045179.fastx_qc.pe.2.nopair.fq.gz ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:50```
 
-fastqc report for reports for filtered and trimmed reads is [available here](003_transcriptome_arrange/wheat_data/gpc_bsa/fastqc_reports/langdon/fastx_quality_timmo)
+fastqc report for reports for filtered and trimmed reads is [available here](./gpc_bsa/fastqc_reports/langdon/fastx_quality_timmo)
 
 
-fastqc analysis report for ldn wildtype paired reads is [available here](003_transcriptome_arrange/wheat_data/gpc_bsa/fastqc_reports/rsl65)
+fastqc analysis report for ldn wildtype paired reads is [available here](./gpc_bsa/fastqc_reports/rsl65)
 
 
 ```source trimmomatic-0.33; trimmomatic PE ERR045180_1.fastq.gz ERR045180_2.fastq.gz ERR045180_1.PR.fq.gz ERR045180_1.UP.fq.gz ERR045180_2.PR.fq.gz ERR045180_2.UP.fq.gz ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:50```
 
-fastqc report for reports for trimmed reads is [available here](003_transcriptome_arrange/wheat_data/gpc_bsa/fastqc_reports/rsl65/trimmo)
+fastqc report for reports for trimmed reads is [available here](./gpc_bsa/fastqc_reports/rsl65/trimmo)
 
 
 #### transcriptome assembly
@@ -66,12 +66,12 @@ fastqc report for reports for trimmed reads is [available here](003_transcriptom
 assembly using soapdenovo_trans (ver 1.03) and trinity
 
 
-[soap-trans_kmer_iter.sh](003_transcriptome_arrange/wheat_data/assembly_params/soap-trans_kmer_iter.sh)
-[sample.config](003_transcriptome_arrange/wheat_data/assembly_params/sample.config)
+[soap-trans_kmer_iter.sh](./assembly_params/soap-trans_kmer_iter.sh)
+[sample.config](./assembly_params/sample.config)
 
 
-[trinity_log_langdon.txt](003_transcriptome_arrange/wheat_data/assembly_params/trinity_log_langdon.txt)
-[trinity_log_rsl65.txt](003_transcriptome_arrange/wheat_data/assembly_params/trinity_log_rsl65.txt)
+[trinity_log_langdon.txt](./assembly_params/trinity_log_langdon.txt)
+[trinity_log_rsl65.txt](./assembly_params/trinity_log_rsl65.txt)
 
 assemblies were compared using transrate software using the same reads used for assembly
 
