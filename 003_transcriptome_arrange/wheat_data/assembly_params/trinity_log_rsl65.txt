@@ -1,0 +1,176 @@
+Job <source trinity-2.0.6; Trinity --seqType fq --max_memory 50G --left ERR045180_1.PR.fq --right ERR045180_2.PR.fq --CPU 32 --min_contig_length 300 --full_cleanup> was submitted from host <v0276.tgaccluster> by user <rallapag> in cluster <tgac-cluster>.
+Job was executed on host(s) <cn-256-02.tgaccluster>, in queue <TSL-Test256>, as user <rallapag> in cluster <tgac-cluster>.
+</usr/users/sl/rallapag> was used as the home directory.
+</tsl/scratch/rallapag/assemblies/wheat_trans/wt_rsl65/trinity> was used as the working directory.
+Started at Mon Jan  4 15:55:07 2016
+Results reported at Tue Jan  5 08:52:43 2016
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+source trinity-2.0.6; Trinity --seqType fq --max_memory 50G --left ERR045180_1.PR.fq --right ERR045180_2.PR.fq --CPU 32 --min_contig_length 300 --full_cleanup
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+   CPU time :               608494.06 sec.
+   Max Memory :             48927 MB
+   Average Memory :         10004.25 MB
+   Total Requested Memory : -
+   Delta Memory :           -
+   (Delta: the difference between total requested memory and actual max usage.)
+   Max Swap :               170201 MB
+
+   Max Processes :          103
+   Max Threads :            504
+
+The output (if any) follows:
+
+Trinity version: v2.0.6
+-ERROR: couldn't run the network check to confirm latest Trinity software version.
+
+Monday, January 4, 2016: 15:55:19 CMD: java -Xmx64m -jar /tsl/software/testing/trinity/2.0.6/x86_64/bin/util/support_scripts/ExitTester.jar 0
+Monday, January 4, 2016: 15:55:19 CMD: java -Xmx64m -jar /tsl/software/testing/trinity/2.0.6/x86_64/bin/util/support_scripts/ExitTester.jar 1
+Monday, January 4, 2016: 15:55:20 CMD: mkdir -p /tsl/scratch/rallapag/assemblies/wheat_trans/wt_rsl65/trinity/trinity_out_dir
+Monday, January 4, 2016: 15:55:20 CMD: mkdir -p /tsl/scratch/rallapag/assemblies/wheat_trans/wt_rsl65/trinity/trinity_out_dir/chrysalis
+
+
+----------------------------------------------------------------------------------
+-------------- Trinity Phase 1: Clustering of RNA-Seq Reads  ---------------------
+----------------------------------------------------------------------------------
+
+Converting input files. (in parallel)Monday, January 4, 2016: 15:55:20  CMD: /tsl/software/testing/trinity/2.0.6/x86_64/bin/trinity-plugins/fastool/fastool --illumina-trinity --to-fasta /tsl/scratch/rallapag/assemblies/wheat_trans/wt_rsl65/trinity/ERR045180_1.PR.fq >> left.fa 2> /tsl/scratch/rallapag/assemblies/wheat_trans/wt_rsl65/trinity/ERR045180_1.PR.fq.readcount 
+Monday, January 4, 2016: 15:55:21 CMD: /tsl/software/testing/trinity/2.0.6/x86_64/bin/trinity-plugins/fastool/fastool --illumina-trinity --to-fasta /tsl/scratch/rallapag/assemblies/wheat_trans/wt_rsl65/trinity/ERR045180_2.PR.fq >> right.fa 2> /tsl/scratch/rallapag/assemblies/wheat_trans/wt_rsl65/trinity/ERR045180_2.PR.fq.readcount 
+Monday, January 4, 2016: 16:00:17 CMD: cat left.fa right.fa > both.fa
+-------------------------------------------
+----------- Jellyfish  --------------------
+-- (building a k-mer catalog from reads) --
+-------------------------------------------
+
+Monday, January 4, 2016: 16:02:11 CMD: /tsl/software/testing/trinity/2.0.6/x86_64/bin/trinity-plugins/jellyfish/bin/jellyfish count -t 32 -m 25 -s 6810409386  --canonical  both.fa 2> /dev/null 
+Monday, January 4, 2016: 16:11:11 CMD: /tsl/software/testing/trinity/2.0.6/x86_64/bin/trinity-plugins/jellyfish/bin/jellyfish dump -L 1 mer_counts.jf > jellyfish.kmers.fa 2>/dev/null
+Monday, January 4, 2016: 16:13:46 CMD: /tsl/software/testing/trinity/2.0.6/x86_64/bin/trinity-plugins/jellyfish/bin/jellyfish histo -t 32 -o jellyfish.kmers.fa.histo mer_counts.jf 2>/dev/null
+Monday, January 4, 2016: 16:14:03 CMD: touch jellyfish.1.finished
+----------------------------------------------
+--------------- Inchworm ---------------------
+-- (Linear contig construction from k-mers) --
+----------------------------------------------
+
+Monday, January 4, 2016: 16:14:03 CMD: /tsl/software/testing/trinity/2.0.6/x86_64/bin/Inchworm/bin//inchworm --kmers jellyfish.kmers.fa --run_inchworm -K 25 -L 25 --monitor 1   --DS  --keep_tmp_files  --num_threads 6  --PARALLEL_IWORM  > /tsl/scratch/rallapag/assemblies/wheat_trans/wt_rsl65/trinity/trinity_out_dir/inchworm.K25.L25.DS.fa.tmp 2>/dev/null
+Monday, January 4, 2016: 16:50:47 CMD: touch /tsl/scratch/rallapag/assemblies/wheat_trans/wt_rsl65/trinity/trinity_out_dir/inchworm.K25.L25.DS.fa.finished
+Running cmd: /tsl/software/testing/trinity/2.0.6/x86_64/bin/util/misc/fasta_filter_by_min_length.pl /tsl/scratch/rallapag/assemblies/wheat_trans/wt_rsl65/trinity/trinity_out_dir/inchworm.K25.L25.DS.fa 100 > /tsl/scratch/rallapag/assemblies/wheat_trans/wt_rsl65/trinity/trinity_out_dir/chrysalis/inchworm.K25.L25.DS.fa.min100
+Running cmd: bowtie-build -q /tsl/scratch/rallapag/assemblies/wheat_trans/wt_rsl65/trinity/trinity_out_dir/chrysalis/inchworm.K25.L25.DS.fa.min100 /tsl/scratch/rallapag/assemblies/wheat_trans/wt_rsl65/trinity/trinity_out_dir/chrysalis/inchworm.K25.L25.DS.fa.min100 2>/dev/null
+Running cmd: bash -c " set -o pipefail; bowtie -a -m 20 --best --strata --threads 32  --chunkmbs 512 -q -S -f /tsl/scratch/rallapag/assemblies/wheat_trans/wt_rsl65/trinity/trinity_out_dir/chrysalis/inchworm.K25.L25.DS.fa.min100 both.fa  | samtools view -@ 32 -F4 -Sb - | samtools sort -@ 32 -no - - > /tsl/scratch/rallapag/assemblies/wheat_trans/wt_rsl65/trinity/trinity_out_dir/chrysalis/iworm.bowtie.nameSorted.bam"  2>/dev/null
+Running cmd: /tsl/software/testing/trinity/2.0.6/x86_64/bin/util/support_scripts/scaffold_iworm_contigs.pl /tsl/scratch/rallapag/assemblies/wheat_trans/wt_rsl65/trinity/trinity_out_dir/chrysalis/iworm.bowtie.nameSorted.bam /tsl/scratch/rallapag/assemblies/wheat_trans/wt_rsl65/trinity/trinity_out_dir/inchworm.K25.L25.DS.fa > /tsl/scratch/rallapag/assemblies/wheat_trans/wt_rsl65/trinity/trinity_out_dir/chrysalis/iworm_scaffolds.txt 2>/dev/null
+Running cmd: /tsl/software/testing/trinity/2.0.6/x86_64/bin/Chrysalis/GraphFromFasta -i /tsl/scratch/rallapag/assemblies/wheat_trans/wt_rsl65/trinity/trinity_out_dir/inchworm.K25.L25.DS.fa -r both.fa -min_contig_length 300 -min_glue 2 -glue_factor 0.05 -min_iso_ratio 0.05 -t 32 -k 24 -kk 48  -scaffolding /tsl/scratch/rallapag/assemblies/wheat_trans/wt_rsl65/trinity/trinity_out_dir/chrysalis/iworm_scaffolds.txt  > /tsl/scratch/rallapag/assemblies/wheat_trans/wt_rsl65/trinity/trinity_out_dir/chrysalis/GraphFromIwormFasta.out
+-----------------------------------------
+--- Chrysalis: GraphFromFasta -----------
+-- (cluster related inchworm contigs) ---
+-----------------------------------------
+
+-setting num threads to: 32
+-running on 32 threads
+GraphFromFasta: Reading file: /tsl/scratch/rallapag/assemblies/wheat_trans/wt_rsl65/trinity/trinity_out_dir/inchworm.K25.L25.DS.fa
+done!
+Counting k-mers...
+
+KmerAlignCore- Contigs: 0   
+KmerAlignCore- Contigs: 1000   
+KmerAlignCore- Contigs: 2000   
+KmerAlignCore- Contigs: 3000   
+
+KmerAlignCore- Contigs: 1554000   
+KmerAlignCore- Contigs: 1554678   
+done!
+-setting omp for schedule chunksize to 485 for 1554679 iworm contigs
+Phase 1: Collecting candidate weldmers between iworm contig pairs sharing k-1mers
+
+Processed: 0.064322 % of iworm contigs.    
+Processed: 0.128644 % of iworm contigs.    
+Processed: 0.192966 % of iworm contigs.    
+Processed: 0.257288 % of iworm contigs.    
+
+Processed: 99.892 % of iworm contigs.    
+Processed: 99.9563 % of iworm contigs.    
+Processed: 99.9999 % of iworm contigs.    
+
+...done Phase 1. (4109.8 seconds)
+Captured: 2814357 weldmer candidates.
+Setting up reads for streaming...
+Identifying reads that support welding of iworm contigs...
+Reads: (unknown count: streaming-mode)
+
+
+Done!
+Phase 2: Reclustering iworm contigs using welds.
+
+[0.000128644% done]                
+[0.00160805% done]                
+[0.00566033% done]                
+[0.0168524% done]                
+[0.0277228% done]                
+              
+[99.9626% done]                
+[99.9763% done]                
+[99.9829% done]                
+[99.9898% done]                
+[99.9943% done]                
+now bubbling: 
+
+done bubbling.
+Running cmd: /tsl/software/testing/trinity/2.0.6/x86_64/bin/Chrysalis/CreateIwormFastaBundle -i /tsl/scratch/rallapag/assemblies/wheat_trans/wt_rsl65/trinity/trinity_out_dir/chrysalis/GraphFromIwormFasta.out -o /tsl/scratch/rallapag/assemblies/wheat_trans/wt_rsl65/trinity/trinity_out_dir/chrysalis/bundled_iworm_contigs.fasta -min 300 2>/dev/null 
+Running cmd: /tsl/software/testing/trinity/2.0.6/x86_64/bin/Chrysalis/ReadsToTranscripts -i both.fa -f /tsl/scratch/rallapag/assemblies/wheat_trans/wt_rsl65/trinity/trinity_out_dir/chrysalis/bundled_iworm_contigs.fasta -o /tsl/scratch/rallapag/assemblies/wheat_trans/wt_rsl65/trinity/trinity_out_dir/chrysalis/readsToComponents.out -t 32 -max_mem_reads 10000000  2>/dev/null
+Running cmd: /bin/sort -T . -S 50G -k 1,1n /tsl/scratch/rallapag/assemblies/wheat_trans/wt_rsl65/trinity/trinity_out_dir/chrysalis/readsToComponents.out > /tsl/scratch/rallapag/assemblies/wheat_trans/wt_rsl65/trinity/trinity_out_dir/chrysalis/readsToComponents.out.sort 2>/dev/null 
+Monday, January 4, 2016: 21:23:08 CMD: mkdir -p read_partitions/Fb_0/CBin_0
+Monday, January 4, 2016: 21:23:10 CMD: mkdir -p read_partitions/Fb_0/CBin_1
+Monday, January 4, 2016: 21:23:12 CMD: mkdir -p read_partitions/Fb_0/CBin_2
+
+Monday, January 4, 2016: 21:44:36 CMD: mkdir -p read_partitions/Fb_0/CBin_479
+Monday, January 4, 2016: 21:44:37 CMD: touch partitioned_reads.files.list.ok
+Monday, January 4, 2016: 21:44:37 CMD: /tsl/software/testing/trinity/2.0.6/x86_64/bin/util/support_scripts/GG_write_trinity_cmds.pl --reads_list_file partitioned_reads.files.list --CPU 1 --max_memory 1G  --full_cleanup --seqType fa --trinity_complete --min_contig_length  300  > recursive_trinity.cmds
+Monday, January 4, 2016: 21:44:38 CMD: touch recursive_trinity.cmds.ok
+Monday, January 4, 2016: 21:44:38 CMD: touch recursive_trinity.cmds.ok
+
+
+--------------------------------------------------------------------------------
+------------ Trinity Phase 2: Assembling Clusters of Reads ---------------------
+--------------------------------------------------------------------------------
+
+Monday, January 4, 2016: 21:44:38 CMD: /tsl/software/testing/trinity/2.0.6/x86_64/bin/trinity-plugins/parafly/bin/ParaFly -c recursive_trinity.cmds -CPU 32 -v 
+Number of Commands: 47966
+
+succeeded(1)   0.00208481% completed.    
+succeeded(2)   0.00416962% completed.    
+succeeded(3)   0.00625443% completed.    
+succeeded(4)   0.00833924% completed.    
+succeeded(5)   0.0104241% completed.    
+succeeded(6)   0.0125089% completed.    
+succeeded(7)   0.0145937% completed.    
+succeeded(8)   0.0166785% completed.    
+succeeded(9)   0.0187633% completed.    
+succeeded(10)   0.0208481% completed.    
+
+succeeded(47959)   99.9854% completed.    
+succeeded(47960)   99.9875% completed.    
+succeeded(47961)   99.9896% completed.    
+succeeded(47962)   99.9917% completed.    
+succeeded(47963)   99.9937% completed.    
+succeeded(47964)   99.9958% completed.    
+succeeded(47965)   99.9979% completed.    
+succeeded(47966)   100% completed.    
+
+All commands completed successfully. :-)
+
+
+
+** Harvesting all assembled transcripts into a single multi-fasta file...
+
+Tuesday, January 5, 2016: 08:37:10  CMD: find read_partitions/  -name '*inity.fasta'  | /tsl/software/testing/trinity/2.0.6/x86_64/bin/util/support_scripts/partitioned_trinity_aggregator.pl TR > Trinity.fasta.tmp
+
+
+###################################################################
+Butterfly assemblies are written to /tsl/scratch/rallapag/assemblies/wheat_trans/wt_rsl65/trinity/trinity_out_dir.Trinity.fasta
+###################################################################
