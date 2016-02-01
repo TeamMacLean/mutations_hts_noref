@@ -190,4 +190,85 @@ leg_r2(k)
 ```
 
 
-##### from the qqplots of the fragment lengths vs fitted data; arabidopsis assemblies seem to follow a log-normal distribution
+##### from the qqplots of the fragment lengths vs fitted data; arabidopsis assemblies are best summarised by a log-normal distribution
+
+
+
+
+
+
+#### box plot of scaffold sequence lengths for rice assemblies from [Schatz et al 2014](http://www.genomebiology.com/2014/15/11/506)
+
+```{r rice-boxplot, echo=FALSE, fig.width=12, fig.height=6}
+df1 = read.delim("rice_assembly_lengths/nipponbare_all_lens.txt", header=FALSE)
+colnames(df1) <- c("assembly", "length")
+df1$assembly <- rep("nipponbare", nrow(df1))
+newdf = read.delim("rice_assembly_lengths/dj123_all_lens.txt", header=FALSE)
+colnames(newdf) <- c("assembly", "length")
+newdf$assembly <- rep("dj123", nrow(newdf))
+df1 <- rbind(df1, newdf)
+newdf = read.delim("rice_assembly_lengths/ir64_all_lens.txt", header=FALSE)
+colnames(newdf) <- c("assembly", "length")
+newdf$assembly <- rep("ir64", nrow(newdf))
+df1 <- rbind(df1, newdf)
+
+ggplot(df1, aes(x=assembly, y=length, fill=assembly)) + geom_boxplot() + scale_y_log10() +
+  labs(x ="rice de-novo assemblies", y="length in bp", main=NULL) + mytheme + theme(legend.position="none")
+
+```
+
+
+
+#### fitting distribtuion to the assembly lengths
+
+```{r rice-fit-distr, echo=FALSE, fig.width=12, fig.height=6}
+
+df1 <- read.delim(file="rice_assembly_lengths/nipponbare_all_lens.txt", header = FALSE)
+lenden <- density(df1$V2)
+contiglen <- data.frame(x=lenden$x, y=lenden$y)
+
+fit1 <- fitdistr(df1$V2, "lognormal")
+lnorm_r <- rlnorm(nrow(df1), as.numeric(fit1$estimate['meanlog']), as.numeric(fit1$estimate['sdlog']))
+den1 <- density(lnorm_r)
+ln_model <- data.frame(x=den1$x, y=den1$y)
+
+fit2 <- fitdistr(df1$V2, "exponential")
+expon_r <- rexp(nrow(df1), as.numeric(fit2$estimate['rate']))
+den2 <- density(expon_r)
+exp_model <- data.frame(x=den2$x, y=den2$y)
+
+fit3 <- fitdistr(df1$V2, "normal")
+normal_r <- rnorm(nrow(df1), as.numeric(fit3$estimate['mean']), as.numeric(fit3$estimate['sd']))
+den3 <- density(normal_r)
+normal_model <- data.frame(x=den3$x, y=den3$y)
+
+ggplot() + geom_line(data=contiglen, aes(x=x, y=y, colour="assembly lengths"), size=1) +
+geom_line(data=exp_model, aes(x=x, y=y, colour="exponential fit"), size=1) + geom_line(data=normal_model, aes(x=x, y=y, colour="normal fit"), size=1) + scale_y_sqrt() + mytheme + theme(legend.position=c(0.85,0.9)) + labs(x ="contig lengths", y="density", main=NULL)
+
+
+```
+
+
+
+### qq plots using fitted distributions
+
+```{r qqplot-rice, echo=FALSE, fig.width=12, fig.height=4}
+
+par(mfrow=c(1,3), mar=c(5,5,1,0.5))
+V=qqplot(df1$V2, expon_r, xlab="rice scaffolds", ylab="exponential fit", cex.lab=1.5, cex.axis=1.5)
+qqline2(df1$V2, expon_r)
+k=lm(V$y ~ V$x)
+leg_r2(k)
+V=qqplot(df1$V2, lnorm_r, xlab="rice scaffolds", ylab="lognormal fit", cex.lab=1.5, cex.axis=1.5)
+qqline2(df1$V2, lnorm_r)
+k=lm(V$y ~ V$x)
+leg_r2(k)
+V=qqplot(df1$V2, normal_r, xlab="rice scaffolds", ylab="normal fit", cex.lab=1.5, cex.axis=1.5)
+qqline2(df1$V2, normal_r)
+k=lm(V$y ~ V$x)
+leg_r2(k)
+
+```
+
+
+##### from the qqplots of the fragment lengths vs fitted data; rice assemblies are best summarised by an exponential distribution
