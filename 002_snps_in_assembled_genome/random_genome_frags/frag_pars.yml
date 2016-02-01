@@ -1,4 +1,6 @@
 sample: 14000
+# distribution is either exponential or lognormal
+distri: exponential
 mean: 7.889536
 sd: 1.56288
 iterations: 2

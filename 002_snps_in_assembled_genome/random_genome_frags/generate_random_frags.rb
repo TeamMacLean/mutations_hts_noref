@@ -9,6 +9,7 @@ pars = YAML.load_file("frag_pars.yml")
 # mean, std deviation and sample size to generate random numbers
 # add additonal 10% to sample number to be able to cover the whole genome length
 sample = pars['sample']  # 9600 + 500 random numbers (contig number)
+distri = pars['distri'] # distribtuion to apply to selecte random number for fragment lengths
 mean = pars['mean']   # 11885 bp is mean / 7.889536 is mean of log of lengths
 sd = pars['sd']    # 30160 bp is std. deviation / 1.56288 is sd of log of lengths
 iterations = pars['iterations'] # number of iterations of framenting
@@ -103,8 +104,11 @@ for iteration in 1..iterations
 	number_array = []
 	i = 0
 	while i < sample
-		# number = @random.exponential(mean).to_i
-		number = @random.log_normal(mean, sd).to_i
+    if distri = 'exponential'
+		  number = @random.exponential(mean).to_i
+    elsif distri = 'lognormal'
+		  number = @random.log_normal(mean, sd).to_i
+    end
 		if number.between?(500, 500000)
 			number_array << number
 			i += 1
