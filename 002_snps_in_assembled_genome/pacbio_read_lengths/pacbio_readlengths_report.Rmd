@@ -92,26 +92,26 @@ ggplot(df1, aes(x=libname, y=length, fill=libname)) + geom_boxplot() + scale_y_l
 #### box plot of scaffold sequence lengths for arabidopsis assemblies (Illumina reads)
 
 ```{r boxplot-assembly, echo=FALSE, fig.width=12, fig.height=6}
-df1 = read.delim("assembly_lengths/read_lengths_hasty.txt", header=FALSE)
+df1 = read.delim("arabidopsis_assembly_lengths/read_lengths_hasty.txt", header=FALSE)
 colnames(df1) <- c("assembly", "length")
 df1$assembly <- rep("hasty", nrow(df1))
-newdf = read.delim("assembly_lengths/read_lengths_soc1.txt", header=FALSE)
+newdf = read.delim("arabidopsis_assembly_lengths/read_lengths_soc1.txt", header=FALSE)
 colnames(newdf) <- c("assembly", "length")
 newdf$assembly <- rep("soc1", nrow(newdf))
 df1 <- rbind(df1, newdf)
-newdf = read.delim("assembly_lengths/read_lengths_sup1.txt", header=FALSE)
+newdf = read.delim("arabidopsis_assembly_lengths/read_lengths_sup1.txt", header=FALSE)
 colnames(newdf) <- c("assembly", "length")
 newdf$assembly <- rep("sup1", nrow(newdf))
 df1 <- rbind(df1, newdf)
-newdf = read.delim("assembly_lengths/frags_ordered_lengths.txt", header=FALSE)
+newdf = read.delim("arabidopsis_assembly_lengths/frags_ordered_lengths.txt", header=FALSE)
 colnames(newdf) <- c("assembly", "length")
 newdf$assembly <- rep("exponential", nrow(newdf))
 df1 <- rbind(df1, newdf)
-newdf = read.delim("assembly_lengths/genome_1_lengths.txt", header=TRUE)
+newdf = read.delim("arabidopsis_assembly_lengths/genome_1_lengths.txt", header=TRUE)
 colnames(newdf) <- c("assembly", "length")
 newdf$assembly <- rep("lognormal_1", nrow(newdf))
 df1 <- rbind(df1, newdf)
-newdf = read.delim("assembly_lengths/genome_2_lengths.txt", header=TRUE)
+newdf = read.delim("arabidopsis_assembly_lengths/genome_2_lengths.txt", header=TRUE)
 colnames(newdf) <- c("assembly", "length")
 newdf$assembly <- rep("lognormal_2", nrow(newdf))
 df1 <- rbind(df1, newdf)
@@ -127,7 +127,7 @@ ggplot(df1, aes(x=assembly, y=length, fill=assembly)) + geom_boxplot() + scale_y
 
 ```{r fit-distr, echo=FALSE, fig.width=12, fig.height=6}
 
-df1 <- read.delim(file="assembly_lengths/read_lengths_hasty.txt", header = FALSE)
+df1 <- read.delim(file="arabidopsis_assembly_lengths/read_lengths_hasty.txt", header = FALSE)
 lenden <- density(df1$V2)
 contiglen <- data.frame(x=lenden$x, y=lenden$y)
 
@@ -189,3 +189,5 @@ leg_r2(k)
 
 ```
 
+
+##### from the qqplots of the fragment lengths vs fitted data; arabidopsis assemblies seem to follow a log-normal distribution
