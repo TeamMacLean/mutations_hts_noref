@@ -60,29 +60,34 @@ fastqc analysis report for ldn wildtype paired reads is [available here](./gpc_b
 
 fastqc report for reports for trimmed reads is [available here](./gpc_bsa/fastqc_reports/rsl65/trimmo)
 
+similary fastqc reports for high and low GPC bulks are available at the following links with sub-direcotries for libraries made with 250bp and 400bp insert
+
+[high GPC bulk](./gpc_bsa/fastqc_reports/highgpc_bulk)
+[low GPC bulk](./gpc_bsa/fastqc_reports/lowgpc_bulk)
 
 #### transcriptome assembly
 
 assembly using soapdenovo_trans (ver 1.03) and trinity
 
-
+soapdenovo_trans assembly was carried out using at different k-mer lengths, while trinity assembly carried out using 25 kmer
+soap sample config and shell script to run multiple k-mer assemblies are at following links
 [soap-trans_kmer_iter.sh](./assembly_params/soap-trans_kmer_iter.sh)
 [sample.config](./assembly_params/sample.config)
 
-
+assmebly log for trinity for both parents are available at following links
 [trinity_log_langdon.txt](./assembly_params/trinity_log_langdon.txt)
 [trinity_log_rsl65.txt](./assembly_params/trinity_log_rsl65.txt)
 
-assemblies were compared using transrate software using the same reads used for assembly
+Assemblies were compared using transrate software using the same reads used for assembly
 
 Based on the assembly score and the number contigs and mean contigs and N50 values trinity assembly has scored better than rest of the soapdenovo_trans assemblies
 
-transrate submission
+Transrate submission
 
 ```source transrate-1.0.1; transrate --assembly assembly31.scafSeq,assembly41.scafSeq,assembly51.scafSeq,assembly61.scafSeq,assembly71.scafSeq,assembly91.scafSeq,assembly101.scafSeq --left ERR045180_1.PR.fq.gz --right ERR045180_2.PR.fq.gz --threads 32```
 
 
-modifying fasta ids resulting from trinity
+* modifying fasta ids resulting from trinity
 
 typical naming in trinity fasta outcome
 
@@ -110,13 +115,15 @@ AGCCCCACTCCCACCAGCATCTCCTTCTGCCGCCGCCGCCGCCTAACTCTCTCCCTGTGC
 transrate provides a selected sequences with good read evidence as good quality contigs.
 good quality selected trinity assemblies were selected for downstream analysis
 
-these selected trinity contigs were used to generate homeologus gene sequences using [homeosplitter software](http://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-14-S15-S15)
+These selected trinity contigs were used to generate homeologus gene sequences using [homeosplitter software](http://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-14-S15-S15)
 
-it take alr file derived form bam and an indexed fasta file as inputs to 
+It takes alr file derived form bam and an indexed fasta file as inputs to generate homelogus gene calls
 
-reads used for assembly were aligned to the trinity selected contigs and the bam file is converted to alr 
+Reads used for assembly were aligned to the trinity selected contigs and the bam file is converted to alr 
 using [bam2alr software](http://kimura.univ-montp2.fr/calcul_isem.wp/isem-softwares/logiciels/)
 
+
+cd-hit-est software was used to reduce the redundancy 
 
 
 ```
