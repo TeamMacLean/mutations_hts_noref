@@ -1,0 +1,3 @@
+#accession	libname	description
+SRR396617	wildtype	wildtype
+SRR396616	gl3-mutant	gl3 mutant
