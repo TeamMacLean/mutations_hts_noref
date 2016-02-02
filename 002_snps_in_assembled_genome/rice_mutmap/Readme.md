@@ -11,3 +11,14 @@ The genomic regions covered with at least two reads were called as contigs.
 SNPs but not indels have been reflected to the consensus contigs.
 
 From [MutMap+ study] (http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0068529) it appears that hitomebore genome sequencing data is [submitted at SRA](http://www.ncbi.nlm.nih.gov/sra/DRA000927)
+
+#### Hit5814 data
+
+Hit5814-sd data is downloaded from accession number DRR001790.
+
+Hitomebore reads downloaded from accession number
+DRR004451
+
+Variants were called for Hit5814 and wildtype using Hitomebore scaffolds.
+
+
