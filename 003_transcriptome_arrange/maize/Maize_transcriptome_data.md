@@ -13,9 +13,9 @@ The libraries were sequenced on an Illumina GA II resulting in 75 bp single end 
 
 RNA-seq data is quality checked using fastqc 
 
-Fastqc reports of raw data is in the [fastqc_reports folder](./fastqc_reports)[SRR396616](http://htmlpreview.github.io/?./fastqc_reports/SRR396616_fastqc.html)
+Fastqc reports of raw data is in the [fastqc_reports folder](./fastqc_reports)[SRR396616](http://htmlpreview.github.io/?https://github.com/shyamrallapalli/mutations_hts_noref/blob/master/003_transcriptome_arrange/maize/fastqc_reports/SRR396616_fastqc.html)
 
-[SRR396617](http://htmlpreview.github.io/?./fastqc_reports/SRR396617_fastqc.html)
+[SRR396617](http://htmlpreview.github.io/?https://github.com/shyamrallapalli/mutations_hts_noref/blob/master/003_transcriptome_arrange/maize/fastqc_reports/SRR396617_fastqc.html)
 
 Trimmomatic is used to quality filter reads for adapter and poor base qualities.
 
