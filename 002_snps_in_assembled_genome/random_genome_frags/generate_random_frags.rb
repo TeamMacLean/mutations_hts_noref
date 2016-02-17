@@ -113,9 +113,9 @@ for iteration in 1..iterations
 	number_array = []
 	i = 0
 	while i < sample
-    if distri = 'exponential'
+    if distri == 'exponential'
 		  number = @random.exponential(mean).to_i
-    elsif distri = 'lognormal'
+    elsif distri == 'lognormal'
 		  number = @random.log_normal(mean, sd).to_i
     end
 		if number.between?(500, 500000)
@@ -190,7 +190,11 @@ for iteration in 1..iterations
 	end
 
 	# write ordered and shuffled fragments for current iteration
-	write_fasta(frags[:seq], frags[:seq].keys.sort, "#{newname}/frags_ordered.fasta")
+	# write_fasta(frags[:seq], frags[:seq].keys.sort, "#{newname}/frags_ordered.fasta")
+  order = File.open("#{newname}/frags_ordered.txt", 'w')
+  frags[:seq].keys.sort.each do  | key |
+    order.puts "seq_id_#{key}"
+  end
 
 	shuffled = frags[:seq].keys.shuffle(random: Random.new_seed)
 	write_fasta(frags[:seq], shuffled, "#{newname}/frags_shuffled.fasta")
