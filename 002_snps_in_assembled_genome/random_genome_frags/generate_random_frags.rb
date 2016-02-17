@@ -4,7 +4,7 @@ require 'bio-samtools'
 require 'fileutils'
 require 'yaml'
 
-pars = YAML.load_file("frag_pars.yml")
+pars = YAML.load_file('frag_pars.yml')
 
 # mean, std deviation and sample size to generate random numbers
 # add additonal 10% to sample number to be able to cover the whole genome length
@@ -67,7 +67,7 @@ def splice_sequence (inseq, nameindex, lenindex, fragshash, discardsfile)
 end
 
 ### open files to write snp outputs
-snpfile = File.open("snps.vcf", 'w')
+snpfile = File.open('snps.vcf', 'w')
 
 ### Read sequence fasta file and store sequences in a hash
 vars = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
@@ -77,12 +77,12 @@ File.open(ARGV[1], 'r').each do |line|
   else
     v = Bio::DB::Vcf.new(line)
     if chrseq[:len].has_key?(v.chrom.to_s)
-      if v.info["HET"].to_i == 1
-        v.info["AF"] = 0.5
+      if v.info['HET'].to_i == 1
+        v.info['AF'] = 0.5
         v.pos = v.pos.to_i + chrseq[:len][v.chrom.to_s]
         vars[v.pos] = v.to_s
-      elsif v.info["HOM"].to_i == 1
-        v.info["AF"] = 1.0
+      elsif v.info['HOM'].to_i == 1
+        v.info['AF'] = 1.0
         v.pos = v.pos.to_i + chrseq[:len][v.chrom.to_s]
         vars[v.pos] = v.to_s
       end
@@ -103,7 +103,7 @@ unless ARGV[2].nil?
 end
 
 @random = SimpleRandom.new
-FileUtils.mkdir_p "outseq_lengths"
+FileUtils.mkdir_p 'outseq_lengths'
 
 for iteration in 1..iterations
   # generate an array of random numbers using mean and sample number provided
@@ -117,6 +117,9 @@ for iteration in 1..iterations
       number = @random.exponential(mean).to_i
     elsif distri == 'lognormal'
       number = @random.log_normal(mean, sd).to_i
+    else
+      warn 'no distribution selected'
+      break
     end
     if number.between?(500, 500000)
       number_array << number
@@ -132,7 +135,7 @@ for iteration in 1..iterations
 
   # create a new folder for current iteration
   # and open a file to write discarded seqeunces with 50% or more ambigous nucleotides
-  newname = "genome_" + iteration.to_s
+  newname = 'genome_' + iteration.to_s
   FileUtils.mkdir_p "#{newname}"
   disfrags = ''
   if @discard_n
@@ -170,7 +173,7 @@ for iteration in 1..iterations
         limits = frags[:len][current_frag].split(':')
         if position.between?(limits[0].to_i, limits[1].to_i)
           vcfinfo = Bio::DB::Vcf.new(vars[position])
-          vcfinfo.chrom = "seq_id_" + current_frag.to_s
+          vcfinfo.chrom = 'seq_id_' + current_frag.to_s
           vcfinfo.pos = vcfinfo.pos.to_i - limits[0].to_i
           snpvcf.puts "#{vcfinfo}"
           # check if causative mutation is the current position
@@ -201,10 +204,10 @@ for iteration in 1..iterations
 
   output = File.open("outseq_lengths/#{newname}_lengths.txt", 'w')
   output.puts "fragment_id\tlength"
-  Bio::FastaFormat.open("#{newname}/frags_shuffled.fasta").each do |i|
-      output.puts "#{i.entry_id}\t#{i.length}"
+  Bio::FastaFormat.open("#{newname}/frags_shuffled.fasta").each do |inseq|
+      output.puts "#{inseq.entry_id}\t#{inseq.length}"
   end
 
-  warn "sequences fragment iteration:\t#{iteration}\n"
+  # warn "sequences fragment iteration:\t#{iteration}\n"
 
 end
