@@ -46,24 +46,24 @@ end
 # and deatils added to a hash with sequence and length informations
 # if selected discard fragments having 50% or more ambiguous nucleotides
 def splice_sequence (inseq, nameindex, lenindex, fragshash, discardsfile)
-	seqlen = inseq.length
-	if @discard_n
-		ncount = inseq.scan(/n/i).count
-		if ncount >= seqlen/2
-			#warn "#{ncount}\t#{nameindex}\t#{discardsfile}\n"
-			seqout = Bio::Sequence::NA.new(inseq).upcase
-			discardsfile.puts seqout.to_fasta("seq_id_#{nameindex}", 80)
-		else
-			fragshash[:seq][nameindex] = inseq
-			fragshash[:len][nameindex] = [lenindex, lenindex+seqlen-1].join(':')
-			lenindex += seqlen
-		end
-	else
-		fragshash[:seq][nameindex] = inseq
-		fragshash[:len][nameindex] = [lenindex, lenindex+seqlen-1].join(':')
-		lenindex += seqlen
-	end
-	[fragshash, lenindex]
+  seqlen = inseq.length
+  if @discard_n
+    ncount = inseq.scan(/n/i).count
+    if ncount >= seqlen/2
+      #warn "#{ncount}\t#{nameindex}\t#{discardsfile}\n"
+      seqout = Bio::Sequence::NA.new(inseq).upcase
+      discardsfile.puts seqout.to_fasta("seq_id_#{nameindex}", 80)
+    else
+      fragshash[:seq][nameindex] = inseq
+      fragshash[:len][nameindex] = [lenindex, lenindex+seqlen-1].join(':')
+      lenindex += seqlen
+    end
+  else
+    fragshash[:seq][nameindex] = inseq
+    fragshash[:len][nameindex] = [lenindex, lenindex+seqlen-1].join(':')
+    lenindex += seqlen
+  end
+  [fragshash, lenindex]
 end
 
 ### open files to write snp outputs
@@ -72,24 +72,24 @@ snpfile = File.open("snps.vcf", 'w')
 ### Read sequence fasta file and store sequences in a hash
 vars = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
 File.open(ARGV[1], 'r').each do |line|
-	if line =~ /^#/
-		snpfile.puts "#{line}"
-	else
-		v = Bio::DB::Vcf.new(line)
-		if chrseq[:len].has_key?(v.chrom.to_s)
-			if v.info["HET"].to_i == 1
-				v.info["AF"] = 0.5
-				v.pos = v.pos.to_i + chrseq[:len][v.chrom.to_s]
-				vars[v.pos] = v.to_s
-			elsif v.info["HOM"].to_i == 1
-				v.info["AF"] = 1.0
-				v.pos = v.pos.to_i + chrseq[:len][v.chrom.to_s]
-				vars[v.pos] = v.to_s
-			end
-		else
-			warn "No sequnce in fasta file for\t#{v.chrom.to_s}\n"
-		end
-	end
+  if line =~ /^#/
+    snpfile.puts "#{line}"
+  else
+    v = Bio::DB::Vcf.new(line)
+    if chrseq[:len].has_key?(v.chrom.to_s)
+      if v.info["HET"].to_i == 1
+        v.info["AF"] = 0.5
+        v.pos = v.pos.to_i + chrseq[:len][v.chrom.to_s]
+        vars[v.pos] = v.to_s
+      elsif v.info["HOM"].to_i == 1
+        v.info["AF"] = 1.0
+        v.pos = v.pos.to_i + chrseq[:len][v.chrom.to_s]
+        vars[v.pos] = v.to_s
+      end
+    else
+      warn "No sequnce in fasta file for\t#{v.chrom.to_s}\n"
+    end
+  end
 end
 snpfile.close
 
@@ -106,73 +106,73 @@ end
 FileUtils.mkdir_p "outseq_lengths"
 
 for iteration in 1..iterations
-	# generate an array of random numbers using mean and sample number provided
-	# exponential distribution is used
-	@random.set_seed
+  # generate an array of random numbers using mean and sample number provided
+  # exponential distribution is used
+  @random.set_seed
 
-	number_array = []
-	i = 0
-	while i < sample
+  number_array = []
+  i = 0
+  while i < sample
     if distri == 'exponential'
-		  number = @random.exponential(mean).to_i
+      number = @random.exponential(mean).to_i
     elsif distri == 'lognormal'
-		  number = @random.log_normal(mean, sd).to_i
+      number = @random.log_normal(mean, sd).to_i
     end
-		if number.between?(500, 500000)
-			number_array << number
-			i += 1
-		end
-	end
+    if number.between?(500, 500000)
+      number_array << number
+      i += 1
+    end
+  end
 
-	# adding a break to the loop if the random numbers do not cover the genome
-	if number_array.reduce(:+) < genome_length
-		warn "Increase sample number to cover the genome length\n"
-		break
-	end
+  # adding a break to the loop if the random numbers do not cover the genome
+  if number_array.reduce(:+) < genome_length
+    warn "Increase sample number to cover the genome length\n"
+    break
+  end
 
-	# create a new folder for current iteration
-	# and open a file to write discarded seqeunces with 50% or more ambigous nucleotides
-	newname = "genome_" + iteration.to_s
-	FileUtils.mkdir_p "#{newname}"
-	disfrags = ''
-	if @discard_n
-		disfrags = File.open("#{newname}/discarded_fragments.fasta", 'w')
-	end
+  # create a new folder for current iteration
+  # and open a file to write discarded seqeunces with 50% or more ambigous nucleotides
+  newname = "genome_" + iteration.to_s
+  FileUtils.mkdir_p "#{newname}"
+  disfrags = ''
+  if @discard_n
+    disfrags = File.open("#{newname}/discarded_fragments.fasta", 'w')
+  end
 
-	# chromosme sequences are fragemened to the sizes in random number array
-	# and saved to a hash
-	frags = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
-	name_index = 1
-	len_start = 1
-	chrseq[:seq].keys.sort.each do | id |
-		seq = chrseq[:seq][id].dup
-		while seq.length > 500
-			if seq.length < 1000
-				sequence = seq.slice!(0..-1)
-				frags,len_start = splice_sequence(sequence, name_index, len_start, frags, disfrags)
-			else
-				index = number_array.shift.to_i
-				sequence = seq.slice!(0...index)
-				frags,len_start = splice_sequence(sequence, name_index, len_start, frags, disfrags)
-			end
-			name_index += 1
-		end
-	end
+  # chromosme sequences are fragemened to the sizes in random number array
+  # and saved to a hash
+  frags = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
+  name_index = 1
+  len_start = 1
+  chrseq[:seq].keys.sort.each do | id |
+    seq = chrseq[:seq][id].dup
+    while seq.length > 500
+      if seq.length < 1000
+        sequence = seq.slice!(0..-1)
+        frags,len_start = splice_sequence(sequence, name_index, len_start, frags, disfrags)
+      else
+        index = number_array.shift.to_i
+        sequence = seq.slice!(0...index)
+        frags,len_start = splice_sequence(sequence, name_index, len_start, frags, disfrags)
+      end
+      name_index += 1
+    end
+  end
 
-	# copy vcf and variant location file to iteration folder
-	%x[cp snps.vcf #{newname}/snps.vcf]
+  # copy vcf and variant location file to iteration folder
+  %x[cp snps.vcf #{newname}/snps.vcf]
 
-	snpvcf = File.open("#{newname}/snps.vcf", 'a')
-	current_frag = 1
-	vars.keys.sort.each do | position |
-		while current_frag < name_index
+  snpvcf = File.open("#{newname}/snps.vcf", 'a')
+  current_frag = 1
+  vars.keys.sort.each do | position |
+    while current_frag < name_index
       if frags[:len].key?(current_frag)
-  			limits = frags[:len][current_frag].split(':')
-  			if position.between?(limits[0].to_i, limits[1].to_i)
-  				vcfinfo = Bio::DB::Vcf.new(vars[position])
-  				vcfinfo.chrom = "seq_id_" + current_frag.to_s
-  				vcfinfo.pos = vcfinfo.pos.to_i - limits[0].to_i
-  				snpvcf.puts "#{vcfinfo}"
+        limits = frags[:len][current_frag].split(':')
+        if position.between?(limits[0].to_i, limits[1].to_i)
+          vcfinfo = Bio::DB::Vcf.new(vars[position])
+          vcfinfo.chrom = "seq_id_" + current_frag.to_s
+          vcfinfo.pos = vcfinfo.pos.to_i - limits[0].to_i
+          snpvcf.puts "#{vcfinfo}"
           # check if causative mutation is the current position
           # and print new fragment id and position for downstream analysis
           unless adjust_posn == 0
@@ -182,29 +182,29 @@ for iteration in 1..iterations
           end
           # now that we found var postion in a fragment
           # break while loop and get next var position
-  				break
-  			end
+          break
+        end
       end
-			current_frag += 1
-		end
-	end
+      current_frag += 1
+    end
+  end
 
-	# write ordered and shuffled fragments for current iteration
-	# write_fasta(frags[:seq], frags[:seq].keys.sort, "#{newname}/frags_ordered.fasta")
+  # write ordered and shuffled fragments for current iteration
+  # write_fasta(frags[:seq], frags[:seq].keys.sort, "#{newname}/frags_ordered.fasta")
   order = File.open("#{newname}/frags_ordered.txt", 'w')
   frags[:seq].keys.sort.each do  | key |
     order.puts "seq_id_#{key}"
   end
 
-	shuffled = frags[:seq].keys.shuffle(random: Random.new_seed)
-	write_fasta(frags[:seq], shuffled, "#{newname}/frags_shuffled.fasta")
+  shuffled = frags[:seq].keys.shuffle(random: Random.new_seed)
+  write_fasta(frags[:seq], shuffled, "#{newname}/frags_shuffled.fasta")
 
-	output = File.open("outseq_lengths/#{newname}_lengths.txt", 'w')
-	output.puts "fragment_id\tlength"
-	Bio::FastaFormat.open("#{newname}/frags_shuffled.fasta").each do |i|
-    	output.puts "#{i.entry_id}\t#{i.length}"
-	end
+  output = File.open("outseq_lengths/#{newname}_lengths.txt", 'w')
+  output.puts "fragment_id\tlength"
+  Bio::FastaFormat.open("#{newname}/frags_shuffled.fasta").each do |i|
+      output.puts "#{i.entry_id}\t#{i.length}"
+  end
 
-	warn "sequences fragment iteration:\t#{iteration}\n"
+  warn "sequences fragment iteration:\t#{iteration}\n"
 
 end
