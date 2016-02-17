@@ -93,6 +93,15 @@ File.open(ARGV[1], 'r').each do |line|
 end
 snpfile.close
 
+# argument 3 provides the chromosome id and position of causative mutation seperated by ':'
+# this is used to get position in the sequential order of the chromosomes
+adjust_posn = 0
+unless ARGV[2].nil?
+  info = ARGV[2].split(/:/)
+  adjust_posn = chrseq[:len][info[0].to_s] + info[1].to_i
+  warn "adjusted mutation position\t#{adjust_posn}"
+end
+
 @random = SimpleRandom.new
 FileUtils.mkdir_p "outseq_lengths"
 
@@ -157,14 +166,25 @@ for iteration in 1..iterations
 	current_frag = 1
 	vars.keys.sort.each do | position |
 		while current_frag < name_index
-			limits = frags[:len][current_frag].split(':')
-			if position.between?(limits[0].to_i, limits[1].to_i)
-				vcfinfo = Bio::DB::Vcf.new(vars[position])
-				vcfinfo.chrom = "seq_id_" + current_frag.to_s
-				vcfinfo.pos = vcfinfo.pos.to_i - limits[0].to_i
-				snpvcf.puts "#{vcfinfo}"
-				break
-			end
+      if frags[:len].key?(current_frag)
+  			limits = frags[:len][current_frag].split(':')
+  			if position.between?(limits[0].to_i, limits[1].to_i)
+  				vcfinfo = Bio::DB::Vcf.new(vars[position])
+  				vcfinfo.chrom = "seq_id_" + current_frag.to_s
+  				vcfinfo.pos = vcfinfo.pos.to_i - limits[0].to_i
+  				snpvcf.puts "#{vcfinfo}"
+          # check if causative mutation is the current position
+          # and print new fragment id and position for downstream analysis
+          unless adjust_posn == 0
+            if position == adjust_posn
+              warn "#{iteration}\t#{vcfinfo.chrom}\t#{vcfinfo.pos}\n"
+            end
+          end
+          # now that we found var postion in a fragment
+          # break while loop and get next var position
+  				break
+  			end
+      end
 			current_frag += 1
 		end
 	end
