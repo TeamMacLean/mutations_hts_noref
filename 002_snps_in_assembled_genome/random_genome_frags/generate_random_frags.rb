@@ -16,23 +16,30 @@ iterations = pars['iterations'] # number of iterations of framenting
 @discard_n = pars['discard_n'] # boolean option to discarding sequences with 50% or more 'N's
 
 # a hash of chromosome sequences and accumulated lengths
-genome_length = 0
 chrseq = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
 Bio::FastaFormat.open(ARGV[0]).each do |inseq|
-	chrseq[:seq][inseq.entry_id] = inseq.seq.to_s
-	chrseq[:len][inseq.entry_id] = genome_length
-	genome_length += inseq.length
-	warn "#{inseq.entry_id}\n"
+  chrseq[:seq][inseq.entry_id] = inseq.seq.to_s
+  chrseq[:length][inseq.entry_id] = inseq.length
+end
+
+genome_length = 0
+chrseq[:length].keys.sort.each do | sorted_id |
+  chrseq[:len][sorted_id] = genome_length
+  genome_length += chrseq[:length][sorted_id]
 end
 
 # write fasta frag hash to a file
 # array of ids provided either sorted or shuffled
 def write_fasta(hash, array, filename)
-	outfile = File.open(filename, 'w')
-	array.each do | element |
-		seqout = Bio::Sequence::NA.new(hash[element])
-		outfile.puts seqout.to_fasta("seq_id_#{element}", 80)
-	end
+  outfile = File.open(filename, 'w')
+  array.each do | element |
+    if hash.key?(element)
+      seqout = Bio::Sequence::NA.new(hash[element]).upcase
+      outfile.puts seqout.to_fasta("seq_id_#{element}", 80)
+    else
+      warn "#{element}\tno seq present to write to fasta file\n"
+    end
+  end
 end
 
 # spliced sequence based on random length
@@ -44,7 +51,7 @@ def splice_sequence (inseq, nameindex, lenindex, fragshash, discardsfile)
 		ncount = inseq.scan(/n/i).count
 		if ncount >= seqlen/2
 			#warn "#{ncount}\t#{nameindex}\t#{discardsfile}\n"
-			seqout = Bio::Sequence::NA.new(inseq)
+			seqout = Bio::Sequence::NA.new(inseq).upcase
 			discardsfile.puts seqout.to_fasta("seq_id_#{nameindex}", 80)
 		else
 			fragshash[:seq][nameindex] = inseq
