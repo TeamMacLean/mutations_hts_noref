@@ -67,8 +67,6 @@ def splice_sequence (inseq, nameindex, lenindex, fragshash, discardsfile)
 end
 
 ### open files to write snp outputs
-hmfile = File.open("hm_snps.txt", 'w')
-htfile = File.open("ht_snps.txt", 'w')
 snpfile = File.open("snps.vcf", 'w')
 
 ### Read sequence fasta file and store sequences in a hash
@@ -83,21 +81,16 @@ File.open(ARGV[1], 'r').each do |line|
 				v.info["AF"] = 0.5
 				v.pos = v.pos.to_i + chrseq[:len][v.chrom.to_s]
 				vars[v.pos] = v.to_s
-				htfile.puts "#{v.pos}"
 			elsif v.info["HOM"].to_i == 1
 				v.info["AF"] = 1.0
 				v.pos = v.pos.to_i + chrseq[:len][v.chrom.to_s]
 				vars[v.pos] = v.to_s
-				hmfile.puts "#{v.pos}"
 			end
 		else
 			warn "No sequnce in fasta file for\t#{v.chrom.to_s}\n"
 		end
 	end
 end
-
-hmfile.close
-htfile.close
 snpfile.close
 
 @random = SimpleRandom.new
@@ -158,8 +151,6 @@ for iteration in 1..iterations
 	end
 
 	# copy vcf and variant location file to iteration folder
-	%x[cp hm_snps.txt #{newname}/hm_snps.txt]
-	%x[cp ht_snps.txt #{newname}/ht_snps.txt]
 	%x[cp snps.vcf #{newname}/snps.vcf]
 
 	snpvcf = File.open("#{newname}/snps.vcf", 'a')
