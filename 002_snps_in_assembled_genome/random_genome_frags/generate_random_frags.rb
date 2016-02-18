@@ -42,6 +42,14 @@ def write_fasta(hash, array, filename)
   end
 end
 
+# Input 0: Filename by which to save an array with filetype extension, one value per line
+# Input 1: Array to save
+def write_array(filename, array)
+  File.open(filename, 'w+') do |f|
+    array.each { |element| f.puts(element) }
+  end
+end
+
 # spliced sequence based on random length
 # and deatils added to a hash with sequence and length informations
 # if selected discard fragments having 50% or more ambiguous nucleotides
@@ -66,14 +74,14 @@ def splice_sequence (inseq, nameindex, lenindex, fragshash, discardsfile)
   [fragshash, lenindex]
 end
 
-### open files to write snp outputs
-snpfile = File.open('snps.vcf', 'w')
+### an array for vcf header
+vcf_header = []
 
 ### Read sequence fasta file and store sequences in a hash
 vars = Hash.new{ |h,k| h[k] = Hash.new(&h.default_proc) }
 File.open(ARGV[1], 'r').each do |line|
   if line =~ /^#/
-    snpfile.puts "#{line}"
+    vcf_header << line
   else
     v = Bio::DB::Vcf.new(line)
     if chrseq[:len].has_key?(v.chrom.to_s)
@@ -91,7 +99,6 @@ File.open(ARGV[1], 'r').each do |line|
     end
   end
 end
-snpfile.close
 
 # argument 3 provides the chromosome id and position of causative mutation seperated by ':'
 # this is used to get position in the sequential order of the chromosomes
@@ -162,8 +169,8 @@ for iteration in 1..iterations
     end
   end
 
-  # copy vcf and variant location file to iteration folder
-  %x[cp snps.vcf #{newname}/snps.vcf]
+  # print vcf header and variant location file to iteration folder
+  write_array("#{newname}/snps.vcf", vcf_header)
 
   snpvcf = File.open("#{newname}/snps.vcf", 'a')
   current_frag = 1
