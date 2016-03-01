@@ -20,7 +20,7 @@ def set_partition(arg)
   elsif arg == 'long'
     partition = '-p tsl-long'
   else
-    warn "incorrect queue. use either tiny or short or med or long queue"
+    warn "incorrect queue. use either short or med or long queue"
     exit
   end
   partition
@@ -46,7 +46,7 @@ end
 
 if ARGV.empty?
   puts "Please specify a partition queue - short / med / long\n\
-  and amount of RAM required for the job in M / G / T example 2G or 2048M or 0.5T etc..\n\
+  and amount of RAM required for the job in M / G / T example 2G or 2048M or 1T etc..\n\
   and a command to run in quotations. For example as following\n\
   short 2G \"source varscan-2.3.9; varscan mpileup2indel samtools.pileup --output-vcf 1 > varscan_vars.vcf\""
   exit
@@ -63,7 +63,7 @@ end
 script = "#!/bin/bash\n\
 #SBATCH -n 1 # number of cores\n\
 #SBATCH --mail-type=END,FAIL # notifications for job done & fail\n\
-#SBATCH --mail-user=rallapag@nbi.ac.uk # send-to address\n"
+#SBATCH --mail-user=${USER}@${LINSTITUTE}.ac.uk # send-to address\n"
 
 temp_script = file_timestamp("/tmp/commands.sh")
 
