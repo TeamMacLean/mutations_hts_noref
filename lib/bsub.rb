@@ -2,15 +2,18 @@
 # encoding: utf-8
 #
 
+# make unique file name based on username and time
 # taken from http://stackoverflow.com/a/14508272
 def file_timestamp(file)
   dir  = File.dirname(file)
   base = File.basename(file, ".*")
   time = Time.now.to_i  # or format however you like
   ext  = File.extname(file)
-  File.join(dir, "#{base}_#{time}#{ext}")
+  user = %x[echo $USER].chomp
+  File.join(dir, "#{user}_#{base}_#{time}#{ext}")
 end
 
+# set partition or queue to submit a job
 def set_partition(arg)
   partition = ''
   if arg == 'short'
@@ -26,6 +29,7 @@ def set_partition(arg)
   partition
 end
 
+# set memory required for the job
 def set_memory(arg)
   ram = 0
   if /^(?<size>\d+)(?<format>[mgtMGT])$/ =~ arg
@@ -71,3 +75,5 @@ temp_script = file_timestamp("/tmp/commands.sh")
 %x[echo "#{cmd}" >> #{temp_script}]
 
 %x[sbatch #{partition} #{memory} #{temp_script}]
+
+%x[rm #{temp_script}]
