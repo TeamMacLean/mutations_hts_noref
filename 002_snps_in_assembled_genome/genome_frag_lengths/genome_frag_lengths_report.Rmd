@@ -117,7 +117,7 @@ newdf$assembly <- rep("lognormal_2", nrow(newdf))
 df1 <- rbind(df1, newdf)
 
 ggplot(df1, aes(x=assembly, y=length, fill=assembly)) + geom_boxplot() + scale_y_log10() +
-  labs(x ="arabidopsis assemblies", y="length in bp", main=NULL) + mytheme + theme(legend.position="none")
+  labs(x ="arabidopsis denovo and modelled assemblies", y="length in bp", main=NULL) + mytheme + theme(legend.position="none")
 
 ```
 
@@ -211,9 +211,17 @@ newdf = read.delim("rice_assembly_lengths/ir64_all_lens.txt", header=FALSE)
 colnames(newdf) <- c("assembly", "length")
 newdf$assembly <- rep("ir64", nrow(newdf))
 df1 <- rbind(df1, newdf)
+newdf = read.delim("rice_assembly_lengths/genome_1_lengths.txt", header=TRUE)
+colnames(newdf) <- c("assembly", "length")
+newdf$assembly <- rep("exponential_1", nrow(newdf))
+df1 <- rbind(df1, newdf)
+newdf = read.delim("rice_assembly_lengths/genome_2_lengths.txt", header=TRUE)
+colnames(newdf) <- c("assembly", "length")
+newdf$assembly <- rep("exponential_2", nrow(newdf))
+df1 <- rbind(df1, newdf)
 
 ggplot(df1, aes(x=assembly, y=length, fill=assembly)) + geom_boxplot() + scale_y_log10() +
-  labs(x ="rice de-novo assemblies", y="length in bp", main=NULL) + mytheme + theme(legend.position="none")
+  labs(x ="rice de-novo and modelled assemblies", y="length in bp", main=NULL) + mytheme + theme(legend.position="none")
 
 ```
 
