@@ -67,7 +67,7 @@ end
 script = "#!/bin/bash\n\
 #SBATCH -n 1 # number of cores\n\
 #SBATCH --mail-type=END,FAIL # notifications for job done & fail\n\
-#SBATCH --mail-user=${USER}@${LINSTITUTE}.ac.uk # send-to address\n"
+#SBATCH --mail-user=${USER}@nbi.ac.uk # send-to address\n"
 
 temp_script = file_timestamp("/tmp/commands.sh")
 
