@@ -44,6 +44,7 @@ sudo su - -c "R -e \"install.packages('rmarkdown', repos='http://cran.rstudio.co
 * install shiny-server package
 
 download latest server package
+
 ```
 wget https://download3.rstudio.org/centos5.9/x86_64/shiny-server-1.4.1.759-rh5-x86_64.rpm
 sudo yum install --nogpgcheck shiny-server-1.4.1.759-rh5-x86_64.rpm
