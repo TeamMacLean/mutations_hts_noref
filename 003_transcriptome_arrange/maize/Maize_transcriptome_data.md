@@ -192,3 +192,21 @@ One can clearly see that there is enriched transcript alignment to second half o
 
 Liu et al have indeed found that causative mutation is harboured on distal end of chromosome 4. [See Figure 1D in published manuscript] (http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0036406#s2)
 
+
+
+Improvements of mutation picking:
+
+For the initial analysis only vcf files were used along with bam file from the mutant.
+To improve on the calling of positions hosting candidate mutation, both bam files of mutant and background are made use to ignore positions with more than expected frequency of 33% in the background bam.
+For a recessive mutation, the background pool constitutes heterozygotes and homozygotes of wildtype.
+This results in a frequency of mutation base around 0.33. 
+So ignored positions with variant frequency > 0.35.
+
+This step resulted in selection of fragments with possible mutation to 115, which is about 1/3rd of initially selected fragments
+
+Mummer was used to depict against chromosomes and the image is as follows
+
+
+![assembled_transcripts](./transcripts_on_genome/trimmo_trascripts_selected_vcf_bam.png)
+
+
