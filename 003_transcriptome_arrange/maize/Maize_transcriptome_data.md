@@ -210,3 +210,10 @@ Mummer was used to depict against chromosomes and the image is as follows
 ![assembled_transcripts](./transcripts_on_genome/trimmo_trascripts_selected_vcf_bam.png)
 
 
+sdm method further improved by making use of variant comparison between mutant and background by using pileup files instead of vcf files.
+Pileup file comparison is essential, especially for polyploid genomes.
+This change has further reduced the number of fragments with variants for maize data
+Number of fragments with variants are now 80 and Mummer was used to depict against chromosomes and the image is as follows
+
+![assembled_transcripts](./transcripts_on_genome/trimmo_trascripts_selected_mpileup_bam.png)
+
