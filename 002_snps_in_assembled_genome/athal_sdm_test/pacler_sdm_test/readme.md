@@ -16,7 +16,7 @@
 
 3. Since genome used is Ler-1 and the mutants are from Col-0 there are many ecotype specific variants - resulting large vcf files
 
-4. Used `filter_vcf_background.rb` script to filter out ecotype specific and parent specific variants and saved them to `filtered_bcf_fg_pacler.vcf`
+4. Used `filter_vcf_background.rb` script from lib folder to filter out ecotype specific and parent specific variants and saved them to `filtered_bcf_fg_pacler.vcf`
 
 5. VCF files being large, files are gzipped
 

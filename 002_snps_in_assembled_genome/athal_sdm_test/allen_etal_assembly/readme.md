@@ -40,7 +40,7 @@
 
 3. [samtools\_varscan\_variants_fg.vcf] (../../002_snps_in_assembled_genome/athal_sdm_test/allen_etal_assembly/samtools_varscan_variants_fg.vcf) and [samtools\_varscan\_variants_bg.vcf] (../../002_snps_in_assembled_genome/athal_sdm_test/allen_etal_assembly/samtools_varscan_variants_bg.vcf) are resulting variant files for mutant and parent seqeunce read analysis
 
-4. [filter_vcf_background.rb] (../../002_snps_in_assembled_genome/athal_sdm_test/pacler_sdm_test/filter_vcf_background.rb) script was used to filter parental snps and snps at the end of contigs
+4. [filter_vcf_background.rb] (../../../lib/filter_vcf_background.rb) script was used to filter parental snps and snps at the end of contigs
 
 5. [blastn_gff_to_ordered_fasta.rb] (../../002_snps_in_assembled_genome/athal_sdm_test/pacler_sdm_test/blastn_gff_to_ordered_fasta.rb) script was used to generate ordered scaffolds sequences `uni-1d_col_spades_scaff_500bp_order.fasta` 
 

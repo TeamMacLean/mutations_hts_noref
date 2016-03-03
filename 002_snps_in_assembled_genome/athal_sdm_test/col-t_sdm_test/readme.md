@@ -39,7 +39,7 @@ GC %:				36.18 %
 
 3. [samtools_varscan_variants_fg.vcf] (../../002_snps_in_assembled_genome/athal_sdm_test/col-t_sdm_test/sdm_analysis/samtools_varscan_variants_fg.vcf) and [samtools_varscan_variants_bg.vcf] (../../002_snps_in_assembled_genome/athal_sdm_test/col-t_sdm_test/sdm_analysis/samtools_varscan_variants_bg.vcf) are resulting variant files for mutant and parent seqeunce read analysis
 
-4. [filter_vcf_background.rb] (../../002_snps_in_assembled_genome/athal_sdm_test/pacler_sdm_test/filter_vcf_background.rb) script was used to filter parental snps
+4. [filter_vcf_background.rb] (../../../lib/filter_vcf_background.rb) script was used to filter parental snps
 
 5. [blastn_gff_to_ordered_fasta.rb] (../../002_snps_in_assembled_genome/athal_sdm_test/pacler_sdm_test/blastn_gff_to_ordered_fasta.rb) script was used to generate ordered scaffolds sequences `uni-1d_col_spades_scaff_500bp_order.fasta` 
 
