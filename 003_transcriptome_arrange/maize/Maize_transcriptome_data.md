@@ -11,13 +11,23 @@ Mutation is recessive
 The lower leaves of 32 mutants and 31 non-mutant siblings were collected made pools for sequencing.
 The libraries were sequenced on an Illumina GA II resulting in 75 bp single end reads [GenBank accession no. SRA049037] (http://www.ncbi.nlm.nih.gov/sra/?term=SRP010139)
 
-RNA-seq data is quality checked using fastqc 
+RNA-seq data is downloaded from SRA and quality checked using fastqc 
+
+```
+source sratoolkit-2.3.3.3; fastq-dump --gzip SRR396616.sra
+source sratoolkit-2.3.3.3; fastq-dump --gzip SRR396617.sra
+```
 
 Fastqc reports of raw data is in the [fastqc_reports folder](./fastqc_reports)[SRR396616](http://htmlpreview.github.io/?https://github.com/shyamrallapalli/mutations_hts_noref/blob/master/003_transcriptome_arrange/maize/fastqc_reports/SRR396616_fastqc.html)
 
 [SRR396617](http://htmlpreview.github.io/?https://github.com/shyamrallapalli/mutations_hts_noref/blob/master/003_transcriptome_arrange/maize/fastqc_reports/SRR396617_fastqc.html)
 
 Trimmomatic is used to quality filter reads for adapter and poor base qualities.
+
+```
+source trimmomatic-0.33; trimmomatic SE SRR396616.fastq.gz trim_SRR396616.fastq.gz ILLUMINACLIP:ilmn_adapters.fa:2:30:10 HEADCROP:13 LEADING:10 TRAILING:10 SLIDINGWINDOW:4:15 MINLEN:25
+source trimmomatic-0.33; trimmomatic SE SRR396617.fastq.gz trim_SRR396617.fastq.gz ILLUMINACLIP:ilmn_adapters.fa:2:30:10 HEADCROP:13 LEADING:10 TRAILING:10 SLIDINGWINDOW:4:15 MINLEN:25
+```
 
 Fastqc reports of trimmomatic data is provided in [fastqc_reports folder](./fastqc_reports)
 
@@ -26,11 +36,46 @@ Trimmomatic quality filtered data is used to assemble transcriptome of maize usi
 Assembly carried out using both trinity (v 2.0.6) and soapdenovo-trans (v 1.03).
 
 Assembly with trinity is done with single k-mer set at size 25
-With soapdenovo-trans multiple kmer sizes of 25, 31, 41, 51 and 61 and assemblies are pooled from all kmer assemblies. Reduced redundancy using cd-hit-est program.
+With soapdenovo-trans multiple kmer sizes of 25, 31, 41, 51 and 61 and assemblies are pooled from all kmer assemblies and removed any contig less than 100bp
+[sample config](./sample.config) and [the shell script](./soap-trans_kmer_iter.sh) used to run soapdenovo are provided
+Reduced redundancy using cd-hit-est program.
 cd-hit-est was ran with sequence identity threshold (-c) of 0.95
 Resulting sequences were further filtered by discarding sequences smaller than 200bp.
+Scripts used are provided in [the lib folder] (../../lib/) of this repository
+
+```
+source trinity-2.0.6; Trinity --seqType fq --max_memory 50G --single trim_SRR396616.fastq.gz,trim_SRR396617.fastq.gz --CPU 64 --full_cleanup > assembly_log_trinity.txt
+
+sh soap-trans_kmer_iter.sh
+source ruby-2.0.0; ruby ~/lib/fasta_pooled_changename.rb contig 100 > combined_contigs.fa
+source ruby-2.0.0; ruby ~/lib/read_write_fasta.rb 95.0_combined_contigs.fa 200 > sel_cdhit_combined_contigs.fa
+
+```
+
+Number of sequences assembled by Trinity default params: 33563
+
+Number of sequences in cdhit reduced (identity threshold - 0.975): 29288
+
+Number of contigs from soapdenovo-trans from all kmers pooled: 240601
+| assembly kmers     | number |
+|--------------------|--------|
+| assembly_25.contig | 121236 |
+| assembly_31.contig | 79952  |
+| assembly_41.contig | 32425  |
+| assembly_51.contig | 6968   |
+| assembly_61.contig | 20     |
+
+pooled sequecnes >=100bp: 174915
+cdhit reduced contigs at 0.95 identity threshold: 79358
+sequences selected >= 200bp: 29505
 
 Assemblies of Trinity and soapdenovo-trans was compared along with cd-hit-est reduced trinity assembly using detonate software (v1.8.1).
+
+```
+source detonate-1.8.1; rsem-eval-calculate-score -p 32 trim_SRR396617.fq,trim_SRR396616.fq trinity_out_dir.Trinity.fasta assembly_trinity 60 &> log_trinity_assembly.txt
+source detonate-1.8.1; rsem-eval-calculate-score -p 32 trim_SRR396617.fq,trim_SRR396616.fq 97.5_trinity_out_dir.Trinity.fasta assembly_cdhit_trin 60 &> log_assembly_cdhit_trin.txt
+source detonate-1.8.1; rsem-eval-calculate-score -p 32 trim_SRR396617.fq,trim_SRR396616.fq sel_cdhit_combined_contigs.fa assembly_soap 60 &> log_soap_assembly.txt
+```
 
 trinity assembly default params score
 
@@ -90,7 +135,28 @@ Number_of_alignments_in_total   23624962
 Transcript_length_distribution_related_factors  -182853.49
 ```
 
-cutadapt was used to trim adapters and remove low quality reads
 
-fastqc reports of the cutadapt resulting reads are available at .....
+From the detonate score, Tinirty default assembly ranked higher, with cdhit reduced trinity assembly standing next and sopadenovo-trans ranked last.
+Trinity cdhit reduced assmbly was taken for down stream analysis as the number of contigs with out any reads are lower and the number of total alignmetns are very close and the scores as well as very close.
+
+
+Trimmomatic quality filtered reads used for variant calling
+[Rakefile](./Rakefile_maize) is used call variants using bwa, samtools and varcan softwares
+
+```source ruby-2.0.0; rake bwa:all ref=97.5_trinity_out_dir.Trinity.fasta r1=trim_SRR396616.fastq.gz dir=maize_mutant &> log_maize_mutant.txt
+
+source ruby-2.0.0; rake bwa:all ref=97.5_trinity_out_dir.Trinity.fasta r1=trim_SRR396617.fastq.gz dir=maize_wt &> log_maize_wt.txt```
+
+
+Resulting variant files were used to generate filtered variant files for sdm selection of fragments with causative mutation.
+
+Fragments selected from sdm are written to a file
+```source ruby-2.0.0; ruby filter_vcf_background.rb mutant_maize_vars.vcf wildtype_maize_vars.vcf
+
+source ruby-2.0.0; xvfb-run ruby ~/fastqc_reports/wheat_data/variants/homeosplit/SNP_distribution_method/implement_sdm.rb .
+
+source ruby-2.0.0; ruby ~/lib/read_write_fasta_filter.rb sdm_log_0_0.5/4_5_selected_frags.txt sel_trinity_cdhit97.5.fa > chosen_sel_trinity_cdhit97.5.fa```
+
+
+
 
