@@ -8,7 +8,7 @@
 
 3. Resulting scaffolds file `uni-1d_col_spades_scaffolds.fasta` and spades log is available under assembly folder
 
-4. A perl script count_fasta.pl is used from [http://wiki.bioinformatics.ucdavis.edu/index.php/Count_fasta.pl](http://wiki.bioinformatics.ucdavis.edu/index.php/Count_fasta.pl) to get sequence lengths and N50 stats
+4. A perl script [count\_fasta.pl] (../../../lib/count_fasta.pl) is used from [http://wiki.bioinformatics.ucdavis.edu/index.php/Count_fasta.pl](http://wiki.bioinformatics.ucdavis.edu/index.php/Count_fasta.pl) to get sequence lengths and N50 stats
 
 Total length of sequence:	111544374 bp
 Total number of sequences:	150004
@@ -18,7 +18,7 @@ N75 stats:			75% of total sequence length is contained in the 21629 sequences >=
 Total GC count:			40617457 bp
 GC %:				36.41 %
  
-5. Majority of the assembled sequences were small, so used `select_fasta.rb` script to discard sequences less than 500bp and saved sequnces to `uni-1d_col_spades_scaff_500bp.fasta`
+5. Majority of the assembled sequences were small, so used [select\_fasta.rb] (../../../lib/select_fasta.rb) script to discard sequences less than 500bp and saved sequnces to `uni-1d_col_spades_scaff_500bp.fasta`
 
 6. 111376 discarded and N50 stats are as following
 

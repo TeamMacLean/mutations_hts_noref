@@ -8,7 +8,7 @@
 
 3. Resulting scaffolds file `allen_bg_spades3.6_scaff.fasta` and spades log is available under assembly folder
 
-4. count_fasta.pl output of sequence lengths and N50 stats
+4. [count\_fasta.pl] (../../../lib/count_fasta.pl) output of sequence lengths and N50 stats
 
 		Total length of sequence:	124753515 bp
 		Total number of sequences:	119323
@@ -19,7 +19,7 @@
 		GC %:				36.42 %
 
  
-5. `select_fasta.rb` script used to discard sequences less than 500bp and saved sequnces to `allen_bg_spades3.6_scaff_500bp.fasta`
+5. [select\_fasta.rb] (../../../lib/select_fasta.rb) script used to discard sequences less than 500bp and saved sequnces to `allen_bg_spades3.6_scaff_500bp.fasta`
 
 6. 109713 discarded and N50 stats for `allen_bg_spades3.6_scaff_500bp.fasta` are as following
 
