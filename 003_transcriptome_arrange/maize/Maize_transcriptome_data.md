@@ -57,6 +57,7 @@ Number of sequences assembled by Trinity default params: 33563
 Number of sequences in cdhit reduced (identity threshold - 0.975): 29288
 
 Number of contigs from soapdenovo-trans from all kmers pooled: 240601
+
 | assembly kmers     | number |
 |--------------------|--------|
 | assembly_25.contig | 121236 |
@@ -143,20 +144,51 @@ Trinity cdhit reduced assmbly was taken for down stream analysis as the number o
 Trimmomatic quality filtered reads used for variant calling
 [Rakefile](./Rakefile_maize) is used call variants using bwa, samtools and varcan softwares
 
-```source ruby-2.0.0; rake bwa:all ref=97.5_trinity_out_dir.Trinity.fasta r1=trim_SRR396616.fastq.gz dir=maize_mutant &> log_maize_mutant.txt
-
-source ruby-2.0.0; rake bwa:all ref=97.5_trinity_out_dir.Trinity.fasta r1=trim_SRR396617.fastq.gz dir=maize_wt &> log_maize_wt.txt```
+```
+source ruby-2.0.0; rake bwa:all ref=97.5_trinity_out_dir.Trinity.fasta r1=trim_SRR396616.fastq.gz dir=maize_mutant &> log_maize_mutant.txt
+source ruby-2.0.0; rake bwa:all ref=97.5_trinity_out_dir.Trinity.fasta r1=trim_SRR396617.fastq.gz dir=maize_wt &> log_maize_wt.txt
+```
 
 
 Resulting variant files were used to generate filtered variant files for sdm selection of fragments with causative mutation.
 
 Fragments selected from sdm are written to a file
-```source ruby-2.0.0; ruby filter_vcf_background.rb mutant_maize_vars.vcf wildtype_maize_vars.vcf
 
+```
+source ruby-2.0.0; ruby filter_vcf_background.rb mutant_maize_vars.vcf wildtype_maize_vars.vcf
 source ruby-2.0.0; xvfb-run ruby ~/fastqc_reports/wheat_data/variants/homeosplit/SNP_distribution_method/implement_sdm.rb .
+source ruby-2.0.0; ruby ~/lib/read_write_fasta_filter.rb sdm_log_0_0.5/4_5_selected_frags.txt sel_trinity_cdhit97.5.fa > chosen_sel_trinity_cdhit97.5.fa
+```
 
-source ruby-2.0.0; ruby ~/lib/read_write_fasta_filter.rb sdm_log_0_0.5/4_5_selected_frags.txt sel_trinity_cdhit97.5.fa > chosen_sel_trinity_cdhit97.5.fa```
+
+Then attempted to display the transcripts assembled and transcripts selected from sdm on the genome.
+Used mummer to do this
+
+First depicted assembled trancripts on the genome of maize
+
+```
+source mummer-3.23_64bit; nucmer --prefix=ref_transcripts zea_mays.AGPv3.22.dna.genome.fa sel_trinity_cdhit97.5.fa
+source mummer-3.23_64bit; delta-filter -q -r ref_transcripts.delta > ref_transcripts.filter
+source mummer-3.23_64bit; mummerplot ref_transcripts.filter -f -l --large --png -R zea_mays.AGPv3.22.dna.genome.fa -Q sel_trinity_cdhit97.5.fa
+```
+
+resulting image displaying maize choromosomes on X-axis and 29288 assembled transcripts on Y-axis
+
+![assembled_transcripts](./transcripts_on_genome/trimmo_transcripts.png)
 
 
+Next depicted selected transcript resulting from sdm (N=298)
 
+```
+source mummer-3.23_64bit; nucmer --prefix=ref_selcted zea_mays.AGPv3.22.dna.genome.fa chosen_sel_trinity_cdhit97.5.fa
+source mummer-3.23_64bit; delta-filter -q -r ref_selcted.delta > ref_selcted.filter
+source mummer-3.23_64bit; mummerplot ref_selcted.filter -f -l --large --png -R zea_mays.AGPv3.22.dna.genome.fa -Q chosen_sel_trinity_cdhit97.5.fa
+```
+
+![assembled_transcripts](./transcripts_on_genome/trimmo_trascripts_selected_whole_genome.png)
+
+
+One can clearly see that there is enriched transcript alignment to second half of chromosome 4 compared to rest of the genome
+
+Liu et al have indeed found that causative mutation is harboured on distal end of chromosome 4. [See Figure 1D in published manuscript] (http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0036406#s2)
 
