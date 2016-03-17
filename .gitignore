@@ -7,3 +7,7 @@
 
 random_frag_contig_all_iterations_data.txt
 sequence.fasta
+Hordeum_vulgare.082214v1.29.dna.genome.fa.gz
+filtered_mnd_samtools_varscan_variants.vcf
+mnd_samtools_varscan_variants.vcf
+wt_samtools_varscan_variants.vcf
