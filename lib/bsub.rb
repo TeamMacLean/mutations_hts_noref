@@ -4,18 +4,40 @@
 
 # set partition or queue to submit a job
 def set_partition(arg)
+  if arg =~ /-/
+    args = arg.split('-')
+    arg1 = args[0]
+    arg2 = args[1]
+  else
+    arg1 = arg
+    arg2 = ''
+  end
+
   partition = ''
-  if arg == 'short'
+  if arg1 == 'short'
     partition = '-p tsl-short'
-  elsif arg == 'med'
+  elsif arg1 == 'med'
     partition = '-p tsl-medium'
-  elsif arg == 'long'
+  elsif arg1 == 'long'
     partition = '-p tsl-long'
   else
     warn "incorrect queue. use either short or med or long queue"
     exit
   end
-  partition
+
+  time = ''
+  unless arg2 == ''
+    number = /^(\d+)\w/.match(arg2)[1].to_i
+    format = /^\d+(\w)/.match(arg2)[1].to_s
+    if format == 'h' or format == 'hrs'
+      time = "-t #{number}:00:00"
+    elsif format == 'd' or format == 'days'
+      time = "-t #{number}-00:00:00"
+    else
+      time = ''
+    end
+  end
+  [partition, time]
 end
 
 # set memory required for the job
@@ -39,13 +61,15 @@ end
 
 if ARGV.empty?
   puts "Please specify a partition queue - short / med / long\n\
-  and amount of RAM required for the job in M / G / T example 2G or 2048M or 1T etc..\n\
+  default timelimit for these queues: short - 6hrs, med - 7days and long 365days\n\
+  including a number with hyphen after quename with h or hrs or d or days will add time limit to the queue\n\
+  and amount of RAM required for the job in m or M or g or G example 2G or 2048M etc..\n\
   and a command to run in quotations. For example as following\n\
   short 2G \"source varscan-2.3.9; varscan mpileup2indel samtools.pileup --output-vcf 1 > varscan_vars.vcf\""
   exit
 end
 
-partition = set_partition(ARGV[0].chomp)
+partition, time = set_partition(ARGV[0].chomp)
 memory = set_memory(ARGV[1].chomp)
 cmd = ARGV[2]
 unless ARGV[3].nil?
@@ -53,4 +77,5 @@ unless ARGV[3].nil?
   exit
 end
 
-%x[sbatch #{partition} #{memory} -n 1 --mail-type=END,FAIL --mail-user=${USER}@nbi.ac.uk --wrap="#{cmd}"]
+log = %x[sbatch #{partition} #{time} #{memory} -n 1 --mail-type=END,FAIL --mail-user=${USER}@nbi.ac.uk --wrap="#{cmd}"]
+puts "#{log}"
