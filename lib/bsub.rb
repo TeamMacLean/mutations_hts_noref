@@ -14,11 +14,11 @@ def set_partition(arg)
   end
 
   partition = ''
-  if arg1 == 'short'
+  if arg1 == 'short' or arg1 == 's'
     partition = '-p tsl-short'
-  elsif arg1 == 'med'
+  elsif arg1 == 'med' or arg1 == 'm'
     partition = '-p tsl-medium'
-  elsif arg1 == 'long'
+  elsif arg1 == 'long' or arg1 == 'l'
     partition = '-p tsl-long'
   else
     warn "incorrect queue. use either short or med or long queue"
@@ -29,7 +29,9 @@ def set_partition(arg)
   unless arg2 == ''
     number = /^(\d+)\w/.match(arg2)[1].to_i
     format = /^\d+(\w)/.match(arg2)[1].to_s
-    if format == 'h' or format == 'hrs'
+    if format == 'm' or format == 'mins'
+      time = "-t 00:#{number}:00"
+    elsif format == 'h' or format == 'hrs'
       time = "-t #{number}:00:00"
     elsif format == 'd' or format == 'days'
       time = "-t #{number}-00:00:00"
@@ -77,5 +79,5 @@ unless ARGV[3].nil?
   exit
 end
 
-log = %x[sbatch #{partition} #{time} #{memory} -n 1 --mail-type=END,FAIL --mail-user=${USER}@nbi.ac.uk --wrap="#{cmd}"]
+log = %x[sbatch #{partition} #{time} #{memory} -n 1 --mail-type=END,FAIL --mail-user=${USER}@nbi.ac.uk  --acctg-freq=task=05 --wrap="#{cmd}"]
 puts "#{log}"
