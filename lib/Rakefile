@@ -1,0 +1,117 @@
+require 'rake/clean'
+
+@input1 = ENV['r1']
+#puts "#{@input1}"
+@input2 = ENV['r2']
+#puts "#{@input2}"
+@ref = ENV['ref']
+#puts "#{@ref}"
+@outdir = ENV['dir']
+#puts "#{@outdir}"
+
+namespace :index do
+
+  desc "create bwa index file1"
+  file "#{@ref}.amb" => ["#{@ref}"] do
+    %x[source bwa-0.7.12; bwa index #{@ref}]
+  end
+
+  desc "create bwa index file2"
+  file "#{@ref}.ann" => ["#{@ref}"] do
+    %x[source bwa-0.7.12; bwa index #{@ref}]
+  end
+
+  desc "create bwa index file3"
+  file "#{@ref}.bwt" => ["#{@ref}"] do
+    %x[source bwa-0.7.12; bwa index #{@ref}]
+  end
+
+  desc "create bwa index file4"
+  file "#{@ref}.pac" => ["#{@ref}"] do
+    %x[source bwa-0.7.12; bwa index #{@ref}]
+  end
+
+  desc "create bwa index file5"
+  file "#{@ref}.sa" => ["#{@ref}"] do
+    %x[source bwa-0.7.12; bwa index #{@ref}]
+  end
+
+  desc "run bwa indexing"
+  task :all => ["#{@ref}.amb", "#{@ref}.ann", "#{@ref}.bwt", "#{@ref}.pac", "#{@ref}.sa"]
+
+end
+
+namespace :bwa do
+
+  directory "#{@outdir}"
+
+  desc "run bwa mem paired alignment"
+  file "#{@outdir}/align_paired_sorted.bam" => ["#{@outdir}", "#{@ref}.amb", "#{@ref}.ann", "#{@ref}.bwt", "#{@ref}.pac", "#{@ref}.sa", "#{@ref}"] do
+    if @input1 == '' || @input2 == ''
+      warn "input files are empty"
+      exit
+    end
+    # make alignment bam files for each pair of read files, if more than one lane data available
+    bam_num = 0
+    @input1.split(",").zip(@input2.split(",")).each do |left, right|
+      %x[source samtools-1.0; source bwa-0.7.12; bwa mem #{@ref} #{left} #{right} | samtools view -bT #{@ref} - | samtools sort - #{@outdir}/#{bam_num}_align_paired_sorted 2>> #{@outdir}/rake_log.txt]
+      bam_num += 1
+    end
+
+    # combine bam files if more than one lane of data available
+    if bam_num == 1
+      %x[mv #{@outdir}/0_align_paired_sorted.bam #{@outdir}/align_paired_sorted.bam]
+    elsif bam_num > 1
+      %x[source samtools-1.0; samtools merge #{@outdir}/align_paired.bam #{@outdir}/*_align_paired_sorted.bam]
+      %x[source samtools-1.0; samtools sort #{@outdir}/align_paired.bam #{@outdir}/align_paired_sorted]
+    else
+      warn "you messed up something, number of bam files made are #{bam_num}, check your inputs"
+      exit
+    end
+  end
+
+  desc "make indexed bam"
+  file "#{@outdir}/align_paired_sorted.bam.bai" => ["#{@outdir}/align_paired_sorted.bam"] do
+    %x[source samtools-1.0; samtools index #{@outdir}/align_paired_sorted.bam ]
+  end
+
+  desc "run bwa mem alignments"
+  task :all => ["index:all", "#{@outdir}/align_paired_sorted.bam.bai"]
+
+end
+
+namespace :variants do
+
+  @depth = 8000
+  desc "get average depth of coverage"
+  file "breadth_depth_coverage.txt" => ["#{@outdir}/align_paired_sorted.bam.bai", "#{@outdir}/align_paired_sorted.bam"] do
+    avg_depth = %x[source samtools-1.0; source python-2.7.4; python ~/lib/depth_of_coverage.py #{@outdir}/align_paired_sorted.bam]
+    # setting max depth to 20 times avg depth of coverage
+    @depth = 20 * avg_depth.to_f.round
+    warn "Setting maximum depth to #{@depth}"
+  end
+
+  # parameters setting to mpileup
+  # mapping quality 20
+  # base quality 15
+  # disable computation of base alignment quality (BAQ)
+  # max read deapth 3 times the average read depth or default value of 8000
+  desc "generate mpileup file"
+  file "#{@outdir}/samtools_paired_sorted.pileup" => ["#{@outdir}/align_paired_sorted.bam.bai", "#{@outdir}/align_paired_sorted.bam", "breadth_depth_coverage.txt"] do
+    %x[source samtools-1.0; samtools mpileup -q 20 -Q 15 -d #{@depth} -Bf #{@ref} #{@outdir}/align_paired_sorted.bam > #{@outdir}/samtools_paired_sorted.pileup 2>> #{@outdir}/rake_log.txt]
+  end
+
+  desc "generate variant file"
+  file "#{@outdir}/samtools_varscan_variants.vcf" => ["#{@outdir}/samtools_paired_sorted.pileup"] do
+    %x[source varscan-2.3.9; varscan mpileup2snp #{@outdir}/samtools_paired_sorted.pileup --output-vcf 1 > #{@outdir}/varscan_variants.vcf 2>> #{@outdir}/rake_log.txt]
+    %x[source varscan-2.3.9; varscan mpileup2indel #{@outdir}/samtools_paired_sorted.pileup --output-vcf 1 >> #{@outdir}/varscan_variants.vcf 2>> #{@outdir}/rake_log.txt]
+    # sort resulting vcf file
+    %x[source vcftools-01.10; vcf-sort #{@outdir}/varscan_variants.vcf > #{@outdir}/samtools_varscan_variants.vcf]
+    ### remove samtools pileup file
+    %x[rm #{@outdir}/samtools_paired_sorted.pileup]
+  end
+
+  desc "run bwa mem alignments"
+  task :all => ["bwa:all", "#{@outdir}/samtools_varscan_variants.vcf"]
+
+end
