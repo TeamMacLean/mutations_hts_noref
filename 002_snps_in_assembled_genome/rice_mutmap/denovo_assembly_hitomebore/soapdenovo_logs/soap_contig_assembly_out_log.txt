@@ -1,0 +1,1670 @@
+
+Version 2.04: released on July 13th, 2012
+Compile Mar 30 2016	17:29:11
+
+********************
+Pregraph
+********************
+
+Parameters: pregraph -p 32 -K 25 -d 1 -s sample.config -o assembly_25 
+
+In sample.config, 1 lib(s), maximum read length 75, maximum name length 256.
+
+32 thread(s) initialized.
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004451_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004451_2.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004452_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004452_2.fastq.gz
+--- 100000000th reads.
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004453_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004453_2.fastq.gz
+Time spent on hashing reads: 7648s, 195479108 read(s) processed.
+LIB(s) information:
+ [LIB] 0, avg_ins 200, reverse 0.
+376037864 node(s) allocated, 7885200749 kmer(s) in reads, 7885200749 kmer(s) processed.
+done hashing nodes
+102850203 kmer(s) removed.
+Time spent on delowcvgNode: 11s.
+267527767 linear node(s) marked.
+Time spent on marking linear nodes: 9s.
+Time spent on pre-graph construction: 7670s.
+
+Start to remove tips with minority links.
+899482 tip(s) removed in cycle 1.
+3001 tip(s) removed in cycle 2.
+6 tip(s) removed in cycle 3.
+0 tip(s) removed in cycle 4.
+Total 902489 tip(s) removed.
+32 thread(s) initialized.
+0 linear node(s) marked.
+Time spent on removing tips: 49s.
+
+--- 10000000 edge(s) built.
+12385205 (6192984) edge(s) and 1439943 extra node(s) constructed.
+Time spent on constructing edges: 268s.
+
+In file: sample.config, max seq len 75, max name len 256.
+32 thread(s) initialized.
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004451_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004451_2.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004452_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004452_2.fastq.gz
+--- 100000000th reads.
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004453_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004453_2.fastq.gz
+195479108 read(s) processed.
+Time spent on:
+ importing reads: 847s,
+ chopping reads to kmers: 1013s,
+ searching kmers: 5396s,
+ aligning reads to edges: 741s,
+ searching (K+1)mers: 976s,
+ adding pre-arcs: 1072s,
+ recording read paths: 0s.
+0 marker(s) output.
+Reads alignment done, 3125035 read(s) deleted, 16052293 pre-arc(s) added.
+LIB(s) information:
+ [LIB] 0, avg_ins 200, reverse 0.
+Time spent on aligning reads: 10126s.
+
+4027083 vertex(es) output.
+Overall time spent on constructing pre-graph: 301m.
+
+
+Version 2.04: released on July 13th, 2012
+Compile Mar 30 2016	17:29:11
+
+********************
+Contig
+********************
+
+Parameters: contig -g assembly_25 
+
+There are 4027083 kmer(s) in vertex file.
+There are 12385205 edge(s) in edge file.
+Kmers sorted.
+12385205 edge(s) input.
+16501386 pre-arcs loaded.
+3095593 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+12385205 edge(s) sorted.
+Arcs sorted.
+Start to pinch bubbles, cutoff 0.100000, MAX NODE NUM 3, MAX DIFF NUM 2.
+.............100000 bubbles merged.
+109571 start points, 11654186 dheap nodes.
+4114353 pair(s) found, 207706 pair of path(s) compared, 101058 pair(s) merged.
+Sequence comparison failed:
+ Path crossing deleted edge                         0
+ Length difference of two paths greater than two    28788
+ Mismatch score greater than cutoff (2)             57754
+ Mismatch score ratio greater than cutoff (0.1)     0
+ Path length shorter than (Kmer-1)                  20106
+DFibHeap: 669434 node(s) allocated.
+484624 edge(s) concatenated in cycle 1.
+10534 edge(s) concatenated in cycle 2.
+78 edge(s) concatenated in cycle 3.
+0 edge(s) concatenated in cycle 4.
+Time spent on pinching bubbles: 36s.
+Start to destroy weak inner edges.
+1563 weak inner edge(s) destroyed in cycle 1.
+6 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+3127 dead arc(s) removed.
+8579 inner edge(s) with coverage lower than or equal to 1 destroyed.
+26601 dead arc(s) removed.
+9602 edge(s) concatenated in cycle 1.
+0 edge(s) concatenated in cycle 2.
+Before compacting, 12385205 edge(s) existed.
+After compacting, 11148815 edge(s) left.
+
+Strict: 0, cutoff length: 50.
+96328 tips cut in cycle 1.
+17560 tips cut in cycle 2.
+3997 tips cut in cycle 3.
+1546 tips cut in cycle 4.
+839 tips cut in cycle 5.
+498 tips cut in cycle 6.
+326 tips cut in cycle 7.
+218 tips cut in cycle 8.
+152 tips cut in cycle 9.
+134 tips cut in cycle 10.
+85 tips cut in cycle 11.
+81 tips cut in cycle 12.
+77 tips cut in cycle 13.
+36 tips cut in cycle 14.
+19 tips cut in cycle 15.
+15 tips cut in cycle 16.
+8 tips cut in cycle 17.
+2 tips cut in cycle 18.
+1 tips cut in cycle 19.
+0 tips cut in cycle 20.
+81211 dead arc(s) removed.
+59064 edge(s) concatenated in cycle 1.
+224 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+Before compacting, 11148815 edge(s) existed.
+After compacting, 10786395 edge(s) left.
+
+There are 510587 contig(s) longer than 100, sum up 215954119 bp, with average length 422.
+The longest length is 13136 bp, contig N50 is 758 bp,contig N90 is 153 bp.
+5393428 contig(s) longer than 26 output.
+
+Time spent on constructing contig: 2m.
+
+
+Version 2.04: released on July 13th, 2012
+Compile Mar 30 2016	17:29:11
+
+********************
+Pregraph
+********************
+
+Parameters: pregraph -p 32 -K 31 -d 1 -s sample.config -o assembly_31 
+
+In sample.config, 1 lib(s), maximum read length 75, maximum name length 256.
+
+32 thread(s) initialized.
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004451_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004451_2.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004452_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004452_2.fastq.gz
+--- 100000000th reads.
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004453_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004453_2.fastq.gz
+Time spent on hashing reads: 6564s, 195479108 read(s) processed.
+LIB(s) information:
+ [LIB] 0, avg_ins 200, reverse 0.
+392549262 node(s) allocated, 6712252009 kmer(s) in reads, 6712252009 kmer(s) processed.
+done hashing nodes
+110861676 kmer(s) removed.
+Time spent on delowcvgNode: 11s.
+276715041 linear node(s) marked.
+Time spent on marking linear nodes: 9s.
+Time spent on pre-graph construction: 6586s.
+
+Start to remove tips with minority links.
+1042895 tip(s) removed in cycle 1.
+4175 tip(s) removed in cycle 2.
+23 tip(s) removed in cycle 3.
+0 tip(s) removed in cycle 4.
+Total 1047093 tip(s) removed.
+32 thread(s) initialized.
+0 linear node(s) marked.
+Time spent on removing tips: 57s.
+
+8891594 (4446083) edge(s) and 894358 extra node(s) constructed.
+Time spent on constructing edges: 265s.
+
+In file: sample.config, max seq len 75, max name len 256.
+32 thread(s) initialized.
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004451_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004451_2.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004452_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004452_2.fastq.gz
+--- 100000000th reads.
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004453_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004453_2.fastq.gz
+195479108 read(s) processed.
+Time spent on:
+ importing reads: 808s,
+ chopping reads to kmers: 856s,
+ searching kmers: 4329s,
+ aligning reads to edges: 528s,
+ searching (K+1)mers: 598s,
+ adding pre-arcs: 641s,
+ recording read paths: 0s.
+0 marker(s) output.
+Reads alignment done, 4773029 read(s) deleted, 11355907 pre-arc(s) added.
+LIB(s) information:
+ [LIB] 0, avg_ins 200, reverse 0.
+Time spent on aligning reads: 7851s.
+
+3010942 vertex(es) output.
+Overall time spent on constructing pre-graph: 246m.
+
+
+Version 2.04: released on July 13th, 2012
+Compile Mar 30 2016	17:29:11
+
+********************
+Contig
+********************
+
+Parameters: contig -g assembly_31 
+
+There are 3010942 kmer(s) in vertex file.
+There are 8891594 edge(s) in edge file.
+Kmers sorted.
+8891594 edge(s) input.
+11635554 pre-arcs loaded.
+2222441 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+8891594 edge(s) sorted.
+Arcs sorted.
+Start to pinch bubbles, cutoff 0.100000, MAX NODE NUM 3, MAX DIFF NUM 2.
+121874 start points, 8149416 dheap nodes.
+2788829 pair(s) found, 134019 pair of path(s) compared, 68796 pair(s) merged.
+Sequence comparison failed:
+ Path crossing deleted edge                         0
+ Length difference of two paths greater than two    16599
+ Mismatch score greater than cutoff (2)             37042
+ Mismatch score ratio greater than cutoff (0.1)     0
+ Path length shorter than (Kmer-1)                  11582
+DFibHeap: 401639 node(s) allocated.
+290817 edge(s) concatenated in cycle 1.
+6793 edge(s) concatenated in cycle 2.
+51 edge(s) concatenated in cycle 3.
+0 edge(s) concatenated in cycle 4.
+Time spent on pinching bubbles: 22s.
+Start to destroy weak inner edges.
+472 weak inner edge(s) destroyed in cycle 1.
+1 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+944 dead arc(s) removed.
+3681 inner edge(s) with coverage lower than or equal to 1 destroyed.
+11466 dead arc(s) removed.
+4114 edge(s) concatenated in cycle 1.
+0 edge(s) concatenated in cycle 2.
+Before compacting, 8891594 edge(s) existed.
+After compacting, 8139470 edge(s) left.
+
+Strict: 0, cutoff length: 62.
+85450 tips cut in cycle 1.
+16347 tips cut in cycle 2.
+4485 tips cut in cycle 3.
+2269 tips cut in cycle 4.
+1507 tips cut in cycle 5.
+1074 tips cut in cycle 6.
+799 tips cut in cycle 7.
+582 tips cut in cycle 8.
+395 tips cut in cycle 9.
+319 tips cut in cycle 10.
+261 tips cut in cycle 11.
+169 tips cut in cycle 12.
+113 tips cut in cycle 13.
+63 tips cut in cycle 14.
+33 tips cut in cycle 15.
+33 tips cut in cycle 16.
+28 tips cut in cycle 17.
+25 tips cut in cycle 18.
+21 tips cut in cycle 19.
+18 tips cut in cycle 20.
+14 tips cut in cycle 21.
+8 tips cut in cycle 22.
+6 tips cut in cycle 23.
+3 tips cut in cycle 24.
+2 tips cut in cycle 25.
+5 tips cut in cycle 26.
+3 tips cut in cycle 27.
+3 tips cut in cycle 28.
+3 tips cut in cycle 29.
+3 tips cut in cycle 30.
+2 tips cut in cycle 31.
+3 tips cut in cycle 32.
+1 tips cut in cycle 33.
+4 tips cut in cycle 34.
+3 tips cut in cycle 35.
+1 tips cut in cycle 36.
+1 tips cut in cycle 37.
+0 tips cut in cycle 38.
+68024 dead arc(s) removed.
+50927 edge(s) concatenated in cycle 1.
+239 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+Before compacting, 8139470 edge(s) existed.
+After compacting, 7809026 edge(s) left.
+
+There are 521219 contig(s) longer than 100, sum up 237769807 bp, with average length 456.
+The longest length is 18915 bp, contig N50 is 972 bp,contig N90 is 150 bp.
+3904722 contig(s) longer than 32 output.
+
+Time spent on constructing contig: 2m.
+
+
+Version 2.04: released on July 13th, 2012
+Compile Mar 30 2016	17:29:11
+
+********************
+Pregraph
+********************
+
+Parameters: pregraph -p 32 -K 35 -d 1 -s sample.config -o assembly_35 
+
+In sample.config, 1 lib(s), maximum read length 75, maximum name length 256.
+
+32 thread(s) initialized.
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004451_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004451_2.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004452_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004452_2.fastq.gz
+--- 100000000th reads.
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004453_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004453_2.fastq.gz
+Time spent on hashing reads: 5826s, 195479108 read(s) processed.
+LIB(s) information:
+ [LIB] 0, avg_ins 200, reverse 0.
+396608102 node(s) allocated, 5930719342 kmer(s) in reads, 5930719342 kmer(s) processed.
+done hashing nodes
+111951387 kmer(s) removed.
+Time spent on delowcvgNode: 11s.
+279909298 linear node(s) marked.
+Time spent on marking linear nodes: 10s.
+Time spent on pre-graph construction: 5847s.
+
+Start to remove tips with minority links.
+1147542 tip(s) removed in cycle 1.
+5060 tip(s) removed in cycle 2.
+33 tip(s) removed in cycle 3.
+0 tip(s) removed in cycle 4.
+Total 1152635 tip(s) removed.
+32 thread(s) initialized.
+0 linear node(s) marked.
+Time spent on removing tips: 67s.
+
+7314639 (3657577) edge(s) and 661736 extra node(s) constructed.
+Time spent on constructing edges: 264s.
+
+In file: sample.config, max seq len 75, max name len 256.
+32 thread(s) initialized.
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004451_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004451_2.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004452_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004452_2.fastq.gz
+--- 100000000th reads.
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004453_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004453_2.fastq.gz
+195479108 read(s) processed.
+Time spent on:
+ importing reads: 815s,
+ chopping reads to kmers: 772s,
+ searching kmers: 3859s,
+ aligning reads to edges: 462s,
+ searching (K+1)mers: 464s,
+ adding pre-arcs: 502s,
+ recording read paths: 0s.
+0 marker(s) output.
+Reads alignment done, 6106576 read(s) deleted, 9202700 pre-arc(s) added.
+LIB(s) information:
+ [LIB] 0, avg_ins 200, reverse 0.
+Time spent on aligning reads: 6955s.
+
+2553164 vertex(es) output.
+Overall time spent on constructing pre-graph: 218m.
+
+
+Version 2.04: released on July 13th, 2012
+Compile Mar 30 2016	17:29:11
+
+********************
+Contig
+********************
+
+Parameters: contig -g assembly_35 
+
+There are 2553164 kmer(s) in vertex file.
+There are 7314639 edge(s) in edge file.
+Kmers sorted.
+7314639 edge(s) input.
+9428508 pre-arcs loaded.
+1828356 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+7314639 edge(s) sorted.
+Arcs sorted.
+Start to pinch bubbles, cutoff 0.100000, MAX NODE NUM 3, MAX DIFF NUM 2.
+137749 start points, 6548778 dheap nodes.
+2197321 pair(s) found, 101397 pair of path(s) compared, 55697 pair(s) merged.
+Sequence comparison failed:
+ Path crossing deleted edge                         0
+ Length difference of two paths greater than two    11376
+ Mismatch score greater than cutoff (2)             26788
+ Mismatch score ratio greater than cutoff (0.1)     0
+ Path length shorter than (Kmer-1)                  7536
+DFibHeap: 303002 node(s) allocated.
+226709 edge(s) concatenated in cycle 1.
+5431 edge(s) concatenated in cycle 2.
+52 edge(s) concatenated in cycle 3.
+0 edge(s) concatenated in cycle 4.
+Time spent on pinching bubbles: 16s.
+Start to destroy weak inner edges.
+241 weak inner edge(s) destroyed in cycle 1.
+1 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+482 dead arc(s) removed.
+2379 inner edge(s) with coverage lower than or equal to 1 destroyed.
+7457 dead arc(s) removed.
+2464 edge(s) concatenated in cycle 1.
+0 edge(s) concatenated in cycle 2.
+Before compacting, 7314639 edge(s) existed.
+After compacting, 6726707 edge(s) left.
+
+Strict: 0, cutoff length: 70.
+81022 tips cut in cycle 1.
+16194 tips cut in cycle 2.
+4843 tips cut in cycle 3.
+2512 tips cut in cycle 4.
+1645 tips cut in cycle 5.
+1205 tips cut in cycle 6.
+830 tips cut in cycle 7.
+600 tips cut in cycle 8.
+417 tips cut in cycle 9.
+293 tips cut in cycle 10.
+235 tips cut in cycle 11.
+178 tips cut in cycle 12.
+147 tips cut in cycle 13.
+115 tips cut in cycle 14.
+92 tips cut in cycle 15.
+71 tips cut in cycle 16.
+52 tips cut in cycle 17.
+40 tips cut in cycle 18.
+37 tips cut in cycle 19.
+18 tips cut in cycle 20.
+10 tips cut in cycle 21.
+11 tips cut in cycle 22.
+12 tips cut in cycle 23.
+6 tips cut in cycle 24.
+8 tips cut in cycle 25.
+2 tips cut in cycle 26.
+2 tips cut in cycle 27.
+2 tips cut in cycle 28.
+2 tips cut in cycle 29.
+7 tips cut in cycle 30.
+3 tips cut in cycle 31.
+2 tips cut in cycle 32.
+2 tips cut in cycle 33.
+2 tips cut in cycle 34.
+1 tips cut in cycle 35.
+0 tips cut in cycle 36.
+61778 dead arc(s) removed.
+46272 edge(s) concatenated in cycle 1.
+262 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+Before compacting, 6726707 edge(s) existed.
+After compacting, 6412403 edge(s) left.
+
+There are 546370 contig(s) longer than 100, sum up 248794843 bp, with average length 455.
+The longest length is 19152 bp, contig N50 is 1018 bp,contig N90 is 148 bp.
+3206410 contig(s) longer than 36 output.
+
+Time spent on constructing contig: 1m.
+
+
+Version 2.04: released on July 13th, 2012
+Compile Mar 30 2016	17:29:11
+
+********************
+Pregraph
+********************
+
+Parameters: pregraph -p 32 -K 41 -d 1 -s sample.config -o assembly_41 
+
+In sample.config, 1 lib(s), maximum read length 75, maximum name length 256.
+
+32 thread(s) initialized.
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004451_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004451_2.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004452_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004452_2.fastq.gz
+--- 100000000th reads.
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004453_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004453_2.fastq.gz
+Time spent on hashing reads: 4850s, 195479108 read(s) processed.
+LIB(s) information:
+ [LIB] 0, avg_ins 200, reverse 0.
+393767602 node(s) allocated, 4762926532 kmer(s) in reads, 4762926532 kmer(s) processed.
+done hashing nodes
+108153709 kmer(s) removed.
+Time spent on delowcvgNode: 11s.
+280748452 linear node(s) marked.
+Time spent on marking linear nodes: 8s.
+Time spent on pre-graph construction: 4870s.
+
+Start to remove tips with minority links.
+1401493 tip(s) removed in cycle 1.
+6965 tip(s) removed in cycle 2.
+47 tip(s) removed in cycle 3.
+0 tip(s) removed in cycle 4.
+Total 1408505 tip(s) removed.
+32 thread(s) initialized.
+0 linear node(s) marked.
+Time spent on removing tips: 89s.
+
+5667902 (2834152) edge(s) and 442048 extra node(s) constructed.
+Time spent on constructing edges: 246s.
+
+In file: sample.config, max seq len 75, max name len 256.
+32 thread(s) initialized.
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004451_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004451_2.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004452_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004452_2.fastq.gz
+--- 100000000th reads.
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004453_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004453_2.fastq.gz
+195479108 read(s) processed.
+Time spent on:
+ importing reads: 794s,
+ chopping reads to kmers: 662s,
+ searching kmers: 3013s,
+ aligning reads to edges: 300s,
+ searching (K+1)mers: 334s,
+ adding pre-arcs: 368s,
+ recording read paths: 0s.
+0 marker(s) output.
+Reads alignment done, 8995651 read(s) deleted, 6803080 pre-arc(s) added.
+LIB(s) information:
+ [LIB] 0, avg_ins 200, reverse 0.
+Time spent on aligning reads: 5546s.
+
+2134310 vertex(es) output.
+Overall time spent on constructing pre-graph: 179m.
+
+
+Version 2.04: released on July 13th, 2012
+Compile Mar 30 2016	17:29:11
+
+********************
+Contig
+********************
+
+Parameters: contig -g assembly_41 
+
+There are 2134310 kmer(s) in vertex file.
+There are 5667902 edge(s) in edge file.
+Kmers sorted.
+5667902 edge(s) input.
+7001032 pre-arcs loaded.
+1417156 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+5667902 edge(s) sorted.
+Arcs sorted.
+Start to pinch bubbles, cutoff 0.100000, MAX NODE NUM 3, MAX DIFF NUM 2.
+202424 start points, 4755310 dheap nodes.
+1526538 pair(s) found, 66693 pair of path(s) compared, 40557 pair(s) merged.
+Sequence comparison failed:
+ Path crossing deleted edge                         0
+ Length difference of two paths greater than two    6415
+ Mismatch score greater than cutoff (2)             15348
+ Mismatch score ratio greater than cutoff (0.1)     0
+ Path length shorter than (Kmer-1)                  4373
+DFibHeap: 212602 node(s) allocated.
+154465 edge(s) concatenated in cycle 1.
+3672 edge(s) concatenated in cycle 2.
+34 edge(s) concatenated in cycle 3.
+0 edge(s) concatenated in cycle 4.
+Time spent on pinching bubbles: 11s.
+Start to destroy weak inner edges.
+138 weak inner edge(s) destroyed in cycle 1.
+0 weak inner edge(s) destroyed in cycle 2.
+276 dead arc(s) removed.
+1321 inner edge(s) with coverage lower than or equal to 1 destroyed.
+4251 dead arc(s) removed.
+1399 edge(s) concatenated in cycle 1.
+0 edge(s) concatenated in cycle 2.
+Before compacting, 5667902 edge(s) existed.
+After compacting, 5263544 edge(s) left.
+
+Strict: 0, cutoff length: 82.
+92139 tips cut in cycle 1.
+17026 tips cut in cycle 2.
+5377 tips cut in cycle 3.
+3065 tips cut in cycle 4.
+2023 tips cut in cycle 5.
+1590 tips cut in cycle 6.
+1254 tips cut in cycle 7.
+1058 tips cut in cycle 8.
+832 tips cut in cycle 9.
+726 tips cut in cycle 10.
+615 tips cut in cycle 11.
+537 tips cut in cycle 12.
+487 tips cut in cycle 13.
+374 tips cut in cycle 14.
+296 tips cut in cycle 15.
+248 tips cut in cycle 16.
+205 tips cut in cycle 17.
+178 tips cut in cycle 18.
+158 tips cut in cycle 19.
+134 tips cut in cycle 20.
+120 tips cut in cycle 21.
+91 tips cut in cycle 22.
+71 tips cut in cycle 23.
+68 tips cut in cycle 24.
+71 tips cut in cycle 25.
+58 tips cut in cycle 26.
+45 tips cut in cycle 27.
+40 tips cut in cycle 28.
+31 tips cut in cycle 29.
+20 tips cut in cycle 30.
+10 tips cut in cycle 31.
+6 tips cut in cycle 32.
+8 tips cut in cycle 33.
+25 tips cut in cycle 34.
+13 tips cut in cycle 35.
+7 tips cut in cycle 36.
+2 tips cut in cycle 37.
+9 tips cut in cycle 38.
+10 tips cut in cycle 39.
+6 tips cut in cycle 40.
+5 tips cut in cycle 41.
+0 tips cut in cycle 42.
+67164 dead arc(s) removed.
+51900 edge(s) concatenated in cycle 1.
+338 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+Before compacting, 5263544 edge(s) existed.
+After compacting, 4900992 edge(s) left.
+
+There are 582380 contig(s) longer than 100, sum up 256399082 bp, with average length 440.
+The longest length is 16375 bp, contig N50 is 899 bp,contig N90 is 152 bp.
+2450676 contig(s) longer than 42 output.
+
+Time spent on constructing contig: 1m.
+
+
+Version 2.04: released on July 13th, 2012
+Compile Mar 30 2016	17:29:11
+
+********************
+Pregraph
+********************
+
+Parameters: pregraph -p 32 -K 45 -d 1 -s sample.config -o assembly_45 
+
+In sample.config, 1 lib(s), maximum read length 75, maximum name length 256.
+
+32 thread(s) initialized.
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004451_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004451_2.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004452_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004452_2.fastq.gz
+--- 100000000th reads.
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004453_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004453_2.fastq.gz
+Time spent on hashing reads: 4263s, 195479108 read(s) processed.
+LIB(s) information:
+ [LIB] 0, avg_ins 200, reverse 0.
+385931775 node(s) allocated, 3987464980 kmer(s) in reads, 3987464980 kmer(s) processed.
+done hashing nodes
+102400522 kmer(s) removed.
+Time spent on delowcvgNode: 11s.
+278095717 linear node(s) marked.
+Time spent on marking linear nodes: 9s.
+Time spent on pre-graph construction: 4283s.
+
+Start to remove tips with minority links.
+1735529 tip(s) removed in cycle 1.
+9643 tip(s) removed in cycle 2.
+65 tip(s) removed in cycle 3.
+1 tip(s) removed in cycle 4.
+0 tip(s) removed in cycle 5.
+Total 1745238 tip(s) removed.
+32 thread(s) initialized.
+0 linear node(s) marked.
+Time spent on removing tips: 154s.
+
+4862045 (2431167) edge(s) and 335597 extra node(s) constructed.
+Time spent on constructing edges: 236s.
+
+In file: sample.config, max seq len 75, max name len 256.
+32 thread(s) initialized.
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004451_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004451_2.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004452_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004452_2.fastq.gz
+--- 100000000th reads.
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004453_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004453_2.fastq.gz
+195479108 read(s) processed.
+Time spent on:
+ importing reads: 781s,
+ chopping reads to kmers: 602s,
+ searching kmers: 2668s,
+ aligning reads to edges: 339s,
+ searching (K+1)mers: 273s,
+ adding pre-arcs: 307s,
+ recording read paths: 0s.
+0 marker(s) output.
+Reads alignment done, 12632513 read(s) deleted, 5435431 pre-arc(s) added.
+LIB(s) information:
+ [LIB] 0, avg_ins 200, reverse 0.
+Time spent on aligning reads: 5042s.
+
+2022238 vertex(es) output.
+Overall time spent on constructing pre-graph: 161m.
+
+
+Version 2.04: released on July 13th, 2012
+Compile Mar 30 2016	17:29:11
+
+********************
+Contig
+********************
+
+Parameters: contig -g assembly_45 
+
+There are 2022238 kmer(s) in vertex file.
+There are 4862045 edge(s) in edge file.
+Kmers sorted.
+4862045 edge(s) input.
+5628662 pre-arcs loaded.
+1215080 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+4862045 edge(s) sorted.
+Arcs sorted.
+Start to pinch bubbles, cutoff 0.100000, MAX NODE NUM 3, MAX DIFF NUM 2.
+307182 start points, 3726773 dheap nodes.
+1144440 pair(s) found, 48770 pair of path(s) compared, 32014 pair(s) merged.
+Sequence comparison failed:
+ Path crossing deleted edge                         0
+ Length difference of two paths greater than two    4052
+ Mismatch score greater than cutoff (2)             9595
+ Mismatch score ratio greater than cutoff (0.1)     0
+ Path length shorter than (Kmer-1)                  3109
+DFibHeap: 154721 node(s) allocated.
+115033 edge(s) concatenated in cycle 1.
+2912 edge(s) concatenated in cycle 2.
+17 edge(s) concatenated in cycle 3.
+0 edge(s) concatenated in cycle 4.
+Time spent on pinching bubbles: 8s.
+Start to destroy weak inner edges.
+92 weak inner edge(s) destroyed in cycle 1.
+0 weak inner edge(s) destroyed in cycle 2.
+184 dead arc(s) removed.
+828 inner edge(s) with coverage lower than or equal to 1 destroyed.
+2651 dead arc(s) removed.
+908 edge(s) concatenated in cycle 1.
+0 edge(s) concatenated in cycle 2.
+Before compacting, 4862045 edge(s) existed.
+After compacting, 4557577 edge(s) left.
+
+Strict: 0, cutoff length: 90.
+111481 tips cut in cycle 1.
+18772 tips cut in cycle 2.
+5873 tips cut in cycle 3.
+3076 tips cut in cycle 4.
+1944 tips cut in cycle 5.
+1512 tips cut in cycle 6.
+1179 tips cut in cycle 7.
+953 tips cut in cycle 8.
+759 tips cut in cycle 9.
+616 tips cut in cycle 10.
+492 tips cut in cycle 11.
+466 tips cut in cycle 12.
+384 tips cut in cycle 13.
+314 tips cut in cycle 14.
+259 tips cut in cycle 15.
+243 tips cut in cycle 16.
+218 tips cut in cycle 17.
+156 tips cut in cycle 18.
+145 tips cut in cycle 19.
+147 tips cut in cycle 20.
+90 tips cut in cycle 21.
+60 tips cut in cycle 22.
+53 tips cut in cycle 23.
+58 tips cut in cycle 24.
+34 tips cut in cycle 25.
+19 tips cut in cycle 26.
+19 tips cut in cycle 27.
+9 tips cut in cycle 28.
+4 tips cut in cycle 29.
+8 tips cut in cycle 30.
+5 tips cut in cycle 31.
+1 tips cut in cycle 32.
+0 tips cut in cycle 33.
+79282 dead arc(s) removed.
+63386 edge(s) concatenated in cycle 1.
+433 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+Before compacting, 4557577 edge(s) existed.
+After compacting, 4131241 edge(s) left.
+
+There are 631037 contig(s) longer than 100, sum up 254369665 bp, with average length 403.
+The longest length is 10587 bp, contig N50 is 685 bp,contig N90 is 157 bp.
+2065750 contig(s) longer than 46 output.
+
+Time spent on constructing contig: 1m.
+
+
+Version 2.04: released on July 13th, 2012
+Compile Mar 30 2016	17:29:11
+
+********************
+Pregraph
+********************
+
+Parameters: pregraph -p 32 -K 51 -d 1 -s sample.config -o assembly_51 
+
+In sample.config, 1 lib(s), maximum read length 75, maximum name length 256.
+
+32 thread(s) initialized.
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004451_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004451_2.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004452_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004452_2.fastq.gz
+--- 100000000th reads.
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004453_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004453_2.fastq.gz
+Time spent on hashing reads: 3426s, 195479108 read(s) processed.
+LIB(s) information:
+ [LIB] 0, avg_ins 200, reverse 0.
+364773277 node(s) allocated, 2831844374 kmer(s) in reads, 2831844374 kmer(s) processed.
+done hashing nodes
+91367550 kmer(s) removed.
+Time spent on delowcvgNode: 11s.
+264793865 linear node(s) marked.
+Time spent on marking linear nodes: 9s.
+Time spent on pre-graph construction: 3446s.
+
+Start to remove tips with minority links.
+3282958 tip(s) removed in cycle 1.
+21582 tip(s) removed in cycle 2.
+216 tip(s) removed in cycle 3.
+2 tip(s) removed in cycle 4.
+0 tip(s) removed in cycle 5.
+Total 3304758 tip(s) removed.
+32 thread(s) initialized.
+0 linear node(s) marked.
+Time spent on removing tips: 316s.
+
+3843519 (1921839) edge(s) and 182179 extra node(s) constructed.
+Time spent on constructing edges: 193s.
+
+In file: sample.config, max seq len 75, max name len 256.
+32 thread(s) initialized.
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004451_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004451_2.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004452_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004452_2.fastq.gz
+--- 100000000th reads.
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004453_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004453_2.fastq.gz
+195479108 read(s) processed.
+Time spent on:
+ importing reads: 763s,
+ chopping reads to kmers: 482s,
+ searching kmers: 1951s,
+ aligning reads to edges: 243s,
+ searching (K+1)mers: 211s,
+ adding pre-arcs: 220s,
+ recording read paths: 0s.
+0 marker(s) output.
+Reads alignment done, 33543277 read(s) deleted, 3292390 pre-arc(s) added.
+LIB(s) information:
+ [LIB] 0, avg_ins 200, reverse 0.
+Time spent on aligning reads: 3941s.
+
+2086092 vertex(es) output.
+Overall time spent on constructing pre-graph: 131m.
+
+
+Version 2.04: released on July 13th, 2012
+Compile Mar 30 2016	17:29:11
+
+********************
+Contig
+********************
+
+Parameters: contig -g assembly_51 
+
+There are 2086092 kmer(s) in vertex file.
+There are 3843519 edge(s) in edge file.
+Kmers sorted.
+3843519 edge(s) input.
+3479882 pre-arcs loaded.
+959612 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+3843519 edge(s) sorted.
+Arcs sorted.
+Start to pinch bubbles, cutoff 0.100000, MAX NODE NUM 3, MAX DIFF NUM 2.
+622514 start points, 2095263 dheap nodes.
+575422 pair(s) found, 23265 pair of path(s) compared, 17378 pair(s) merged.
+Sequence comparison failed:
+ Path crossing deleted edge                         0
+ Length difference of two paths greater than two    1518
+ Mismatch score greater than cutoff (2)             2970
+ Mismatch score ratio greater than cutoff (0.1)     0
+ Path length shorter than (Kmer-1)                  1399
+DFibHeap: 65038 node(s) allocated.
+63699 edge(s) concatenated in cycle 1.
+1361 edge(s) concatenated in cycle 2.
+9 edge(s) concatenated in cycle 3.
+0 edge(s) concatenated in cycle 4.
+Time spent on pinching bubbles: 4s.
+Start to destroy weak inner edges.
+123 weak inner edge(s) destroyed in cycle 1.
+0 weak inner edge(s) destroyed in cycle 2.
+246 dead arc(s) removed.
+373 inner edge(s) with coverage lower than or equal to 1 destroyed.
+1202 dead arc(s) removed.
+585 edge(s) concatenated in cycle 1.
+0 edge(s) concatenated in cycle 2.
+Before compacting, 3843519 edge(s) existed.
+After compacting, 3675987 edge(s) left.
+
+Strict: 0, cutoff length: 102.
+179979 tips cut in cycle 1.
+27540 tips cut in cycle 2.
+7263 tips cut in cycle 3.
+3419 tips cut in cycle 4.
+2192 tips cut in cycle 5.
+1668 tips cut in cycle 6.
+1333 tips cut in cycle 7.
+1023 tips cut in cycle 8.
+826 tips cut in cycle 9.
+711 tips cut in cycle 10.
+600 tips cut in cycle 11.
+516 tips cut in cycle 12.
+433 tips cut in cycle 13.
+370 tips cut in cycle 14.
+250 tips cut in cycle 15.
+241 tips cut in cycle 16.
+225 tips cut in cycle 17.
+176 tips cut in cycle 18.
+155 tips cut in cycle 19.
+130 tips cut in cycle 20.
+140 tips cut in cycle 21.
+132 tips cut in cycle 22.
+103 tips cut in cycle 23.
+91 tips cut in cycle 24.
+65 tips cut in cycle 25.
+66 tips cut in cycle 26.
+42 tips cut in cycle 27.
+49 tips cut in cycle 28.
+41 tips cut in cycle 29.
+25 tips cut in cycle 30.
+16 tips cut in cycle 31.
+13 tips cut in cycle 32.
+11 tips cut in cycle 33.
+6 tips cut in cycle 34.
+3 tips cut in cycle 35.
+6 tips cut in cycle 36.
+4 tips cut in cycle 37.
+5 tips cut in cycle 38.
+2 tips cut in cycle 39.
+1 tips cut in cycle 40.
+0 tips cut in cycle 41.
+117933 dead arc(s) removed.
+95893 edge(s) concatenated in cycle 1.
+1015 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+Before compacting, 3675987 edge(s) existed.
+After compacting, 3022429 edge(s) left.
+
+There are 809572 contig(s) longer than 100, sum up 223218052 bp, with average length 275.
+The longest length is 7141 bp, contig N50 is 312 bp,contig N90 is 159 bp.
+1511284 contig(s) longer than 52 output.
+
+Time spent on constructing contig: 0m.
+
+
+Version 2.04: released on July 13th, 2012
+Compile Mar 30 2016	17:29:11
+
+********************
+Pregraph
+********************
+
+Parameters: pregraph -p 32 -K 55 -d 1 -s sample.config -o assembly_55 
+
+In sample.config, 1 lib(s), maximum read length 75, maximum name length 256.
+
+32 thread(s) initialized.
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004451_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004451_2.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004452_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004452_2.fastq.gz
+--- 100000000th reads.
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004453_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004453_2.fastq.gz
+Time spent on hashing reads: 2758s, 195479108 read(s) processed.
+LIB(s) information:
+ [LIB] 0, avg_ins 200, reverse 0.
+341588918 node(s) allocated, 2066576806 kmer(s) in reads, 2066576806 kmer(s) processed.
+done hashing nodes
+85924647 kmer(s) removed.
+Time spent on delowcvgNode: 11s.
+240400419 linear node(s) marked.
+Time spent on marking linear nodes: 9s.
+Time spent on pre-graph construction: 2778s.
+
+Start to remove tips with minority links.
+6912234 tip(s) removed in cycle 1.
+45621 tip(s) removed in cycle 2.
+591 tip(s) removed in cycle 3.
+9 tip(s) removed in cycle 4.
+0 tip(s) removed in cycle 5.
+Total 6958455 tip(s) removed.
+32 thread(s) initialized.
+0 linear node(s) marked.
+Time spent on removing tips: 295s.
+
+2378839 (1189468) edge(s) and 87112 extra node(s) constructed.
+Time spent on constructing edges: 98s.
+
+In file: sample.config, max seq len 75, max name len 256.
+32 thread(s) initialized.
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004451_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004451_2.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004452_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004452_2.fastq.gz
+--- 100000000th reads.
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004453_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004453_2.fastq.gz
+195479108 read(s) processed.
+Time spent on:
+ importing reads: 747s,
+ chopping reads to kmers: 385s,
+ searching kmers: 1416s,
+ aligning reads to edges: 179s,
+ searching (K+1)mers: 150s,
+ adding pre-arcs: 154s,
+ recording read paths: 0s.
+0 marker(s) output.
+Reads alignment done, 90745307 read(s) deleted, 1700188 pre-arc(s) added.
+LIB(s) information:
+ [LIB] 0, avg_ins 200, reverse 0.
+Time spent on aligning reads: 3093s.
+
+1438451 vertex(es) output.
+Overall time spent on constructing pre-graph: 104m.
+
+
+Version 2.04: released on July 13th, 2012
+Compile Mar 30 2016	17:29:11
+
+********************
+Contig
+********************
+
+Parameters: contig -g assembly_55 
+
+There are 1438451 kmer(s) in vertex file.
+There are 2378839 edge(s) in edge file.
+Kmers sorted.
+2378839 edge(s) input.
+1857072 pre-arcs loaded.
+595775 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+2378839 edge(s) sorted.
+Arcs sorted.
+Start to pinch bubbles, cutoff 0.100000, MAX NODE NUM 3, MAX DIFF NUM 2.
+529778 start points, 927077 dheap nodes.
+213500 pair(s) found, 8243 pair of path(s) compared, 6692 pair(s) merged.
+Sequence comparison failed:
+ Path crossing deleted edge                         0
+ Length difference of two paths greater than two    472
+ Mismatch score greater than cutoff (2)             550
+ Mismatch score ratio greater than cutoff (0.1)     0
+ Path length shorter than (Kmer-1)                  529
+DFibHeap: 22448 node(s) allocated.
+29459 edge(s) concatenated in cycle 1.
+370 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+Time spent on pinching bubbles: 2s.
+Start to destroy weak inner edges.
+213 weak inner edge(s) destroyed in cycle 1.
+0 weak inner edge(s) destroyed in cycle 2.
+425 dead arc(s) removed.
+170 inner edge(s) with coverage lower than or equal to 1 destroyed.
+517 dead arc(s) removed.
+560 edge(s) concatenated in cycle 1.
+0 edge(s) concatenated in cycle 2.
+Before compacting, 2378839 edge(s) existed.
+After compacting, 2303659 edge(s) left.
+
+Strict: 0, cutoff length: 110.
+234569 tips cut in cycle 1.
+38819 tips cut in cycle 2.
+9850 tips cut in cycle 3.
+4173 tips cut in cycle 4.
+2419 tips cut in cycle 5.
+1668 tips cut in cycle 6.
+1321 tips cut in cycle 7.
+1027 tips cut in cycle 8.
+879 tips cut in cycle 9.
+720 tips cut in cycle 10.
+667 tips cut in cycle 11.
+596 tips cut in cycle 12.
+535 tips cut in cycle 13.
+483 tips cut in cycle 14.
+490 tips cut in cycle 15.
+474 tips cut in cycle 16.
+414 tips cut in cycle 17.
+372 tips cut in cycle 18.
+317 tips cut in cycle 19.
+310 tips cut in cycle 20.
+251 tips cut in cycle 21.
+227 tips cut in cycle 22.
+246 tips cut in cycle 23.
+245 tips cut in cycle 24.
+234 tips cut in cycle 25.
+241 tips cut in cycle 26.
+230 tips cut in cycle 27.
+233 tips cut in cycle 28.
+230 tips cut in cycle 29.
+209 tips cut in cycle 30.
+182 tips cut in cycle 31.
+134 tips cut in cycle 32.
+149 tips cut in cycle 33.
+157 tips cut in cycle 34.
+170 tips cut in cycle 35.
+155 tips cut in cycle 36.
+188 tips cut in cycle 37.
+182 tips cut in cycle 38.
+199 tips cut in cycle 39.
+216 tips cut in cycle 40.
+190 tips cut in cycle 41.
+195 tips cut in cycle 42.
+153 tips cut in cycle 43.
+99 tips cut in cycle 44.
+80 tips cut in cycle 45.
+84 tips cut in cycle 46.
+79 tips cut in cycle 47.
+62 tips cut in cycle 48.
+43 tips cut in cycle 49.
+36 tips cut in cycle 50.
+43 tips cut in cycle 51.
+57 tips cut in cycle 52.
+61 tips cut in cycle 53.
+61 tips cut in cycle 54.
+84 tips cut in cycle 55.
+77 tips cut in cycle 56.
+95 tips cut in cycle 57.
+71 tips cut in cycle 58.
+55 tips cut in cycle 59.
+63 tips cut in cycle 60.
+53 tips cut in cycle 61.
+49 tips cut in cycle 62.
+46 tips cut in cycle 63.
+38 tips cut in cycle 64.
+45 tips cut in cycle 65.
+45 tips cut in cycle 66.
+32 tips cut in cycle 67.
+35 tips cut in cycle 68.
+48 tips cut in cycle 69.
+54 tips cut in cycle 70.
+84 tips cut in cycle 71.
+62 tips cut in cycle 72.
+65 tips cut in cycle 73.
+59 tips cut in cycle 74.
+74 tips cut in cycle 75.
+70 tips cut in cycle 76.
+65 tips cut in cycle 77.
+38 tips cut in cycle 78.
+47 tips cut in cycle 79.
+33 tips cut in cycle 80.
+46 tips cut in cycle 81.
+40 tips cut in cycle 82.
+41 tips cut in cycle 83.
+45 tips cut in cycle 84.
+23 tips cut in cycle 85.
+26 tips cut in cycle 86.
+22 tips cut in cycle 87.
+12 tips cut in cycle 88.
+11 tips cut in cycle 89.
+2 tips cut in cycle 90.
+3 tips cut in cycle 91.
+0 tips cut in cycle 92.
+107238 dead arc(s) removed.
+86782 edge(s) concatenated in cycle 1.
+1665 edge(s) concatenated in cycle 2.
+1 edge(s) concatenated in cycle 3.
+0 edge(s) concatenated in cycle 4.
+Before compacting, 2303659 edge(s) existed.
+After compacting, 1512399 edge(s) left.
+
+There are 483102 contig(s) longer than 100, sum up 105581551 bp, with average length 218.
+The longest length is 7149 bp, contig N50 is 216 bp,contig N90 is 168 bp.
+756248 contig(s) longer than 56 output.
+
+Time spent on constructing contig: 0m.
+
+
+Version 2.04: released on July 13th, 2012
+Compile Mar 30 2016	17:29:11
+
+********************
+Pregraph
+********************
+
+Parameters: pregraph -p 32 -K 61 -d 1 -s sample.config -o assembly_61 
+
+In sample.config, 1 lib(s), maximum read length 75, maximum name length 256.
+
+32 thread(s) initialized.
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004451_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004451_2.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004452_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004452_2.fastq.gz
+--- 100000000th reads.
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004453_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004453_2.fastq.gz
+Time spent on hashing reads: 1805s, 195479108 read(s) processed.
+LIB(s) information:
+ [LIB] 0, avg_ins 200, reverse 0.
+269905325 node(s) allocated, 932685248 kmer(s) in reads, 932685248 kmer(s) processed.
+done hashing nodes
+96649140 kmer(s) removed.
+Time spent on delowcvgNode: 11s.
+126314182 linear node(s) marked.
+Time spent on marking linear nodes: 8s.
+Time spent on pre-graph construction: 1826s.
+
+Start to remove tips with minority links.
+23308315 tip(s) removed in cycle 1.
+52361 tip(s) removed in cycle 2.
+771 tip(s) removed in cycle 3.
+10 tip(s) removed in cycle 4.
+1 tip(s) removed in cycle 5.
+0 tip(s) removed in cycle 6.
+Total 23361458 tip(s) removed.
+32 thread(s) initialized.
+0 linear node(s) marked.
+Time spent on removing tips: 102s.
+
+471658 (235837) edge(s) and 35127 extra node(s) constructed.
+Time spent on constructing edges: 9s.
+
+In file: sample.config, max seq len 75, max name len 256.
+32 thread(s) initialized.
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004451_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004451_2.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004452_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004452_2.fastq.gz
+--- 100000000th reads.
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004453_1.fastq.gz
+Import reads from file:
+ /usr/users/sl/rallapag/scratch/assemblies/rice/pr_DRR004453_2.fastq.gz
+195479108 read(s) processed.
+Time spent on:
+ importing reads: 745s,
+ chopping reads to kmers: 257s,
+ searching kmers: 663s,
+ aligning reads to edges: 116s,
+ searching (K+1)mers: 85s,
+ adding pre-arcs: 80s,
+ recording read paths: 0s.
+0 marker(s) output.
+Reads alignment done, 154759152 read(s) deleted, 303011 pre-arc(s) added.
+LIB(s) information:
+ [LIB] 0, avg_ins 200, reverse 0.
+Time spent on aligning reads: 1948s.
+
+264614 vertex(es) output.
+Overall time spent on constructing pre-graph: 64m.
+
+
+Version 2.04: released on July 13th, 2012
+Compile Mar 30 2016	17:29:11
+
+********************
+Contig
+********************
+
+Parameters: contig -g assembly_61 
+
+There are 264614 kmer(s) in vertex file.
+There are 471658 edge(s) in edge file.
+Kmers sorted.
+471658 edge(s) input.
+390374 pre-arcs loaded.
+118024 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+471658 edge(s) sorted.
+Arcs sorted.
+Start to pinch bubbles, cutoff 0.100000, MAX NODE NUM 3, MAX DIFF NUM 2.
+124206 start points, 111987 dheap nodes.
+8983 pair(s) found, 840 pair of path(s) compared, 729 pair(s) merged.
+Sequence comparison failed:
+ Path crossing deleted edge                         0
+ Length difference of two paths greater than two    35
+ Mismatch score greater than cutoff (2)             30
+ Mismatch score ratio greater than cutoff (0.1)     0
+ Path length shorter than (Kmer-1)                  46
+DFibHeap: 778 node(s) allocated.
+11363 edge(s) concatenated in cycle 1.
+31 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+Time spent on pinching bubbles: 0s.
+Start to destroy weak inner edges.
+430 weak inner edge(s) destroyed in cycle 1.
+1 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+857 dead arc(s) removed.
+34 inner edge(s) with coverage lower than or equal to 1 destroyed.
+89 dead arc(s) removed.
+861 edge(s) concatenated in cycle 1.
+0 edge(s) concatenated in cycle 2.
+Before compacting, 471658 edge(s) existed.
+After compacting, 444652 edge(s) left.
+
+Strict: 0, cutoff length: 122.
+165360 tips cut in cycle 1.
+13419 tips cut in cycle 2.
+2956 tips cut in cycle 3.
+1322 tips cut in cycle 4.
+900 tips cut in cycle 5.
+608 tips cut in cycle 6.
+545 tips cut in cycle 7.
+425 tips cut in cycle 8.
+367 tips cut in cycle 9.
+372 tips cut in cycle 10.
+334 tips cut in cycle 11.
+282 tips cut in cycle 12.
+294 tips cut in cycle 13.
+265 tips cut in cycle 14.
+233 tips cut in cycle 15.
+188 tips cut in cycle 16.
+199 tips cut in cycle 17.
+180 tips cut in cycle 18.
+167 tips cut in cycle 19.
+176 tips cut in cycle 20.
+175 tips cut in cycle 21.
+176 tips cut in cycle 22.
+171 tips cut in cycle 23.
+140 tips cut in cycle 24.
+134 tips cut in cycle 25.
+131 tips cut in cycle 26.
+129 tips cut in cycle 27.
+108 tips cut in cycle 28.
+107 tips cut in cycle 29.
+98 tips cut in cycle 30.
+87 tips cut in cycle 31.
+81 tips cut in cycle 32.
+68 tips cut in cycle 33.
+67 tips cut in cycle 34.
+56 tips cut in cycle 35.
+56 tips cut in cycle 36.
+55 tips cut in cycle 37.
+45 tips cut in cycle 38.
+56 tips cut in cycle 39.
+56 tips cut in cycle 40.
+50 tips cut in cycle 41.
+46 tips cut in cycle 42.
+45 tips cut in cycle 43.
+51 tips cut in cycle 44.
+74 tips cut in cycle 45.
+56 tips cut in cycle 46.
+40 tips cut in cycle 47.
+40 tips cut in cycle 48.
+44 tips cut in cycle 49.
+59 tips cut in cycle 50.
+45 tips cut in cycle 51.
+63 tips cut in cycle 52.
+45 tips cut in cycle 53.
+58 tips cut in cycle 54.
+49 tips cut in cycle 55.
+40 tips cut in cycle 56.
+69 tips cut in cycle 57.
+42 tips cut in cycle 58.
+43 tips cut in cycle 59.
+44 tips cut in cycle 60.
+47 tips cut in cycle 61.
+24 tips cut in cycle 62.
+24 tips cut in cycle 63.
+32 tips cut in cycle 64.
+35 tips cut in cycle 65.
+22 tips cut in cycle 66.
+27 tips cut in cycle 67.
+29 tips cut in cycle 68.
+17 tips cut in cycle 69.
+16 tips cut in cycle 70.
+19 tips cut in cycle 71.
+14 tips cut in cycle 72.
+35 tips cut in cycle 73.
+19 tips cut in cycle 74.
+29 tips cut in cycle 75.
+28 tips cut in cycle 76.
+38 tips cut in cycle 77.
+45 tips cut in cycle 78.
+37 tips cut in cycle 79.
+38 tips cut in cycle 80.
+42 tips cut in cycle 81.
+31 tips cut in cycle 82.
+51 tips cut in cycle 83.
+33 tips cut in cycle 84.
+31 tips cut in cycle 85.
+34 tips cut in cycle 86.
+30 tips cut in cycle 87.
+22 tips cut in cycle 88.
+42 tips cut in cycle 89.
+38 tips cut in cycle 90.
+40 tips cut in cycle 91.
+45 tips cut in cycle 92.
+67 tips cut in cycle 93.
+51 tips cut in cycle 94.
+52 tips cut in cycle 95.
+46 tips cut in cycle 96.
+44 tips cut in cycle 97.
+47 tips cut in cycle 98.
+61 tips cut in cycle 99.
+46 tips cut in cycle 100.
+29 tips cut in cycle 101.
+33 tips cut in cycle 102.
+35 tips cut in cycle 103.
+28 tips cut in cycle 104.
+32 tips cut in cycle 105.
+26 tips cut in cycle 106.
+20 tips cut in cycle 107.
+33 tips cut in cycle 108.
+29 tips cut in cycle 109.
+22 tips cut in cycle 110.
+21 tips cut in cycle 111.
+25 tips cut in cycle 112.
+14 tips cut in cycle 113.
+10 tips cut in cycle 114.
+11 tips cut in cycle 115.
+10 tips cut in cycle 116.
+5 tips cut in cycle 117.
+6 tips cut in cycle 118.
+7 tips cut in cycle 119.
+5 tips cut in cycle 120.
+6 tips cut in cycle 121.
+12 tips cut in cycle 122.
+9 tips cut in cycle 123.
+3 tips cut in cycle 124.
+6 tips cut in cycle 125.
+3 tips cut in cycle 126.
+4 tips cut in cycle 127.
+7 tips cut in cycle 128.
+3 tips cut in cycle 129.
+8 tips cut in cycle 130.
+5 tips cut in cycle 131.
+12 tips cut in cycle 132.
+12 tips cut in cycle 133.
+7 tips cut in cycle 134.
+7 tips cut in cycle 135.
+1 tips cut in cycle 136.
+2 tips cut in cycle 137.
+1 tips cut in cycle 138.
+4 tips cut in cycle 139.
+1 tips cut in cycle 140.
+1 tips cut in cycle 141.
+4 tips cut in cycle 142.
+2 tips cut in cycle 143.
+7 tips cut in cycle 144.
+7 tips cut in cycle 145.
+8 tips cut in cycle 146.
+6 tips cut in cycle 147.
+12 tips cut in cycle 148.
+9 tips cut in cycle 149.
+11 tips cut in cycle 150.
+4 tips cut in cycle 151.
+2 tips cut in cycle 152.
+5 tips cut in cycle 153.
+10 tips cut in cycle 154.
+8 tips cut in cycle 155.
+9 tips cut in cycle 156.
+10 tips cut in cycle 157.
+6 tips cut in cycle 158.
+3 tips cut in cycle 159.
+4 tips cut in cycle 160.
+4 tips cut in cycle 161.
+4 tips cut in cycle 162.
+3 tips cut in cycle 163.
+7 tips cut in cycle 164.
+6 tips cut in cycle 165.
+10 tips cut in cycle 166.
+13 tips cut in cycle 167.
+3 tips cut in cycle 168.
+4 tips cut in cycle 169.
+5 tips cut in cycle 170.
+3 tips cut in cycle 171.
+6 tips cut in cycle 172.
+9 tips cut in cycle 173.
+3 tips cut in cycle 174.
+3 tips cut in cycle 175.
+6 tips cut in cycle 176.
+8 tips cut in cycle 177.
+2 tips cut in cycle 178.
+4 tips cut in cycle 179.
+11 tips cut in cycle 180.
+5 tips cut in cycle 181.
+14 tips cut in cycle 182.
+15 tips cut in cycle 183.
+7 tips cut in cycle 184.
+10 tips cut in cycle 185.
+10 tips cut in cycle 186.
+9 tips cut in cycle 187.
+7 tips cut in cycle 188.
+10 tips cut in cycle 189.
+2 tips cut in cycle 190.
+4 tips cut in cycle 191.
+4 tips cut in cycle 192.
+5 tips cut in cycle 193.
+4 tips cut in cycle 194.
+8 tips cut in cycle 195.
+8 tips cut in cycle 196.
+13 tips cut in cycle 197.
+11 tips cut in cycle 198.
+8 tips cut in cycle 199.
+7 tips cut in cycle 200.
+7 tips cut in cycle 201.
+3 tips cut in cycle 202.
+8 tips cut in cycle 203.
+5 tips cut in cycle 204.
+3 tips cut in cycle 205.
+7 tips cut in cycle 206.
+7 tips cut in cycle 207.
+7 tips cut in cycle 208.
+6 tips cut in cycle 209.
+4 tips cut in cycle 210.
+3 tips cut in cycle 211.
+4 tips cut in cycle 212.
+5 tips cut in cycle 213.
+6 tips cut in cycle 214.
+9 tips cut in cycle 215.
+5 tips cut in cycle 216.
+7 tips cut in cycle 217.
+11 tips cut in cycle 218.
+5 tips cut in cycle 219.
+3 tips cut in cycle 220.
+3 tips cut in cycle 221.
+2 tips cut in cycle 222.
+2 tips cut in cycle 223.
+2 tips cut in cycle 224.
+4 tips cut in cycle 225.
+3 tips cut in cycle 226.
+6 tips cut in cycle 227.
+2 tips cut in cycle 228.
+0 tips cut in cycle 229.
+11088 dead arc(s) removed.
+9049 edge(s) concatenated in cycle 1.
+409 edge(s) concatenated in cycle 2.
+4 edge(s) concatenated in cycle 3.
+0 edge(s) concatenated in cycle 4.
+Before compacting, 444652 edge(s) existed.
+After compacting, 37578 edge(s) left.
+
+There are 7032 contig(s) longer than 100, sum up 1702464 bp, with average length 242.
+The longest length is 16320 bp, contig N50 is 248 bp,contig N90 is 121 bp.
+18797 contig(s) longer than 62 output.
+
+Time spent on constructing contig: 0m.
+
