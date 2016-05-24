@@ -1,0 +1,59 @@
+[ INFO] 2016-01-28 15:15:56 : Loading assembly: /tsl/scratch/rallapag/assemblies/barley/scaffolds.fasta
+[ INFO] 2016-01-28 15:19:36 : Analysing assembly: /tsl/scratch/rallapag/assemblies/barley/scaffolds.fasta
+[ INFO] 2016-01-28 15:19:36 : Results will be saved in /tsl/scratch/rallapag/assemblies/barley/transrate_results/scaffolds
+[ INFO] 2016-01-28 15:19:36 : Calculating contig metrics...
+[ INFO] 2016-01-28 15:27:56 : Contig metrics:
+[ INFO] 2016-01-28 15:27:56 : -----------------------------------
+[ INFO] 2016-01-28 15:27:56 : n seqs                       844731
+[ INFO] 2016-01-28 15:27:56 : smallest                         19
+[ INFO] 2016-01-28 15:27:56 : largest                       26101
+[ INFO] 2016-01-28 15:27:56 : n bases                   261266285
+[ INFO] 2016-01-28 15:27:56 : mean len                     256.68
+[ INFO] 2016-01-28 15:27:56 : n under 200                  461178
+[ INFO] 2016-01-28 15:27:56 : n over 1k                     48206
+[ INFO] 2016-01-28 15:27:56 : n over 10k                       22
+[ INFO] 2016-01-28 15:27:56 : n with orf                    44599
+[ INFO] 2016-01-28 15:27:56 : mean orf percent              50.64
+[ INFO] 2016-01-28 15:27:56 : n90                             252
+[ INFO] 2016-01-28 15:27:56 : n70                             516
+[ INFO] 2016-01-28 15:27:56 : n50                            1080
+[ INFO] 2016-01-28 15:27:56 : n30                            2457
+[ INFO] 2016-01-28 15:27:56 : n10                           26101
+[ INFO] 2016-01-28 15:27:56 : gc                             0.48
+[ INFO] 2016-01-28 15:27:56 : gc skew                         0.0
+[ INFO] 2016-01-28 15:27:56 : at skew                         0.0
+[ INFO] 2016-01-28 15:27:56 : cpg ratio                      1.86
+[ INFO] 2016-01-28 15:27:56 : bases n                        8688
+[ INFO] 2016-01-28 15:27:56 : proportion n                    0.0
+[ INFO] 2016-01-28 15:27:56 : linguistic complexity          0.06
+[ INFO] 2016-01-28 15:27:56 : Contig metrics done in 501 seconds
+[ INFO] 2016-01-28 15:27:56 : Calculating read diagnostics...
+[ INFO] 2016-01-28 18:25:41 : Read mapping metrics:
+[ INFO] 2016-01-28 18:25:41 : -----------------------------------
+[ INFO] 2016-01-28 18:25:41 : fragments                  69747007
+[ INFO] 2016-01-28 18:25:41 : fragments mapped           62813338
+[ INFO] 2016-01-28 18:25:41 : p fragments mapped              0.9
+[ INFO] 2016-01-28 18:25:41 : good mappings              55414365
+[ INFO] 2016-01-28 18:25:41 : p good mapping                 0.79
+[ INFO] 2016-01-28 18:25:41 : bad mappings                7398973
+[ INFO] 2016-01-28 18:25:41 : potential bridges            158607
+[ INFO] 2016-01-28 18:25:41 : bases uncovered            33594296
+[ INFO] 2016-01-28 18:25:41 : p bases uncovered              0.13
+[ INFO] 2016-01-28 18:25:41 : contigs uncovbase            568616
+[ INFO] 2016-01-28 18:25:41 : p contigs uncovbase            0.67
+[ INFO] 2016-01-28 18:25:41 : contigs uncovered            411625
+[ INFO] 2016-01-28 18:25:41 : p contigs uncovered            0.49
+[ INFO] 2016-01-28 18:25:41 : contigs lowcovered           412173
+[ INFO] 2016-01-28 18:25:41 : p contigs lowcovered           0.49
+[ INFO] 2016-01-28 18:25:41 : contigs segmented             37526
+[ INFO] 2016-01-28 18:25:41 : p contigs segmented            0.04
+[ INFO] 2016-01-28 18:25:41 : Read metrics done in 10665 seconds
+[ INFO] 2016-01-28 18:25:41 : No reference provided, skipping comparative diagnostics
+[ INFO] 2016-01-28 18:25:44 : TRANSRATE ASSEMBLY SCORE     0.0505
+[ INFO] 2016-01-28 18:25:44 : -----------------------------------
+[ INFO] 2016-01-28 18:25:44 : TRANSRATE OPTIMAL SCORE      0.4471
+[ INFO] 2016-01-28 18:25:44 : TRANSRATE OPTIMAL CUTOFF     0.4985
+[ INFO] 2016-01-28 18:25:45 : good contigs                 216972
+[ INFO] 2016-01-28 18:25:45 : p good contigs                 0.26
+[ INFO] 2016-01-28 18:25:45 : Writing contig metrics for each contig to /tsl/scratch/rallapag/assemblies/barley/transrate_results/scaffolds/contigs.csv
+[ INFO] 2016-01-28 18:33:44 : Writing analysis results to assemblies.csv
