@@ -1,0 +1,4 @@
+- left reads: [/tsl/scratch/rallapag/assemblies/barley/ERR430660_1.fastq.gz]
+  orientation: fr
+  right reads: [/tsl/scratch/rallapag/assemblies/barley/ERR430660_2.fastq.gz]
+  type: paired-end

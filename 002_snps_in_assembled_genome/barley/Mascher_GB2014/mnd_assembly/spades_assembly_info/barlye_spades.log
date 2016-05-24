@@ -1,0 +1,1433 @@
+Command line: /tsl/software/testing/bin/core/../..//spades/3.6.0/x86_64/bin/spades.py --careful -1 /tsl/scratch/rallapag/assemblies/barley/ERR430660_1.fastq.gz -2 /tsl/scratch/rallapag/assemblies/barley/ERR430660_2.fastq.gz -o /tsl/scratch/rallapag/assemblies/barley/spades 
+
+System information:
+  SPAdes version: 3.6.0
+  Python version: 2.7.4
+  OS: Linux-2.6.32-504.16.2.el6.x86_64-x86_64-with-centos-6.6-Final
+
+Output dir: /tsl/scratch/rallapag/assemblies/barley/spades
+Mode: read error correction and assembling
+Debug mode is turned OFF
+
+Dataset parameters:
+  Multi-cell mode (you should set '--sc' flag if input data was obtained with MDA (single-cell) technology or --meta flag if processing metagenomic dataset)
+  Reads:
+    Library number: 1, library type: paired-end
+      orientation: fr
+      left reads: ['/tsl/scratch/rallapag/assemblies/barley/ERR430660_1.fastq.gz']
+      right reads: ['/tsl/scratch/rallapag/assemblies/barley/ERR430660_2.fastq.gz']
+      interlaced reads: not specified
+      single reads: not specified
+Read error correction parameters:
+  Iterations: 1
+  PHRED offset will be auto-detected
+  Corrected reads will be compressed (with gzip)
+Assembly parameters:
+  k: automatic selection based on read length
+  Mismatch careful mode is turned ON
+  Repeat resolution is enabled
+  MismatchCorrector will be used
+  Coverage cutoff is turned OFF
+Other parameters:
+  Dir for temp files: /tsl/scratch/rallapag/assemblies/barley/spades/tmp
+  Threads: 16
+  Memory limit (in Gb): 250
+
+
+======= SPAdes pipeline started. Log can be found here: /tsl/scratch/rallapag/assemblies/barley/spades/spades.log
+
+
+===== Read error correction started. 
+
+
+== Running read error correction tool: /tsl/software/testing/spades/3.6.0/x86_64/bin/hammer /tsl/scratch/rallapag/assemblies/barley/spades/corrected/configs/config.info
+
+  0:00:00.000     4M / 4M    INFO    General                 (main.cpp                  :  83)   Loading config from /tsl/scratch/rallapag/assemblies/barley/spades/corrected/configs/config.info
+  0:00:00.004     4M / 4M    INFO    General                 (memory_limit.hpp          :  43)   Memory limit set to 250 Gb
+  0:00:00.004     4M / 4M    INFO    General                 (main.cpp                  :  92)   Trying to determine PHRED offset
+  0:00:00.111     4M / 4M    INFO    General                 (main.cpp                  :  98)   Determined value is 33
+  0:00:00.111     4M / 4M    INFO    General                 (hammer_tools.cpp          :  36)   Hamming graph threshold tau=1, k=21, subkmer positions = [ 0 10 ]
+  0:00:00.111     4M / 4M    INFO    General                 (main.cpp                  : 119)   Size of aux. kmer data 24 bytes
+     === ITERATION 0 begins ===
+  0:00:00.115     4M / 4M    INFO   K-mer Index Building     (kmer_index.hpp            : 464)   Building kmer index
+  0:00:00.115     4M / 4M    INFO   K-mer Splitting          (kmer_data.cpp             : 141)   Splitting kmer instances into 256 buckets. This might take a while.
+  0:00:00.116     4M / 4M    INFO    General                 (file_limit.hpp            :  30)   Open file limit set to 4096
+  0:00:00.116     4M / 4M    INFO   K-mer Splitting          (kmer_data.cpp             : 159)   Memory available for splitting buffers: 5.20825 Gb
+  0:00:00.116     4M / 4M    INFO   K-mer Splitting          (kmer_data.cpp             : 167)   Using cell size of 262144
+  0:00:03.379     8G / 8G    INFO   K-mer Splitting          (kmer_data.cpp             : 181)   Processing /tsl/scratch/rallapag/assemblies/barley/ERR430660_1.fastq.gz
+  0:01:07.995     8G / 9G    INFO   K-mer Splitting          (kmer_data.cpp             : 190)   Processed 5706381 reads
+  0:02:11.177     8G / 9G    INFO   K-mer Splitting          (kmer_data.cpp             : 190)   Processed 11131656 reads
+  0:03:15.592     8G / 9G    INFO   K-mer Splitting          (kmer_data.cpp             : 190)   Processed 16643452 reads
+  0:04:21.133     8G / 9G    INFO   K-mer Splitting          (kmer_data.cpp             : 190)   Processed 22293388 reads
+  0:05:26.340     8G / 9G    INFO   K-mer Splitting          (kmer_data.cpp             : 190)   Processed 27987322 reads
+  0:06:28.302     8G / 9G    INFO   K-mer Splitting          (kmer_data.cpp             : 190)   Processed 33390900 reads
+  0:07:31.381     8G / 9G    INFO   K-mer Splitting          (kmer_data.cpp             : 190)   Processed 38924890 reads
+  0:08:36.700     8G / 9G    INFO   K-mer Splitting          (kmer_data.cpp             : 190)   Processed 44500956 reads
+  0:09:39.359     8G / 9G    INFO   K-mer Splitting          (kmer_data.cpp             : 190)   Processed 49741998 reads
+  0:10:42.891     8G / 9G    INFO   K-mer Splitting          (kmer_data.cpp             : 190)   Processed 55161449 reads
+  0:11:47.403     8G / 9G    INFO   K-mer Splitting          (kmer_data.cpp             : 190)   Processed 60712966 reads
+  0:13:36.035     8G / 9G    INFO   K-mer Splitting          (kmer_data.cpp             : 190)   Processed 69747007 reads
+  0:13:36.036     8G / 9G    INFO   K-mer Splitting          (kmer_data.cpp             : 181)   Processing /tsl/scratch/rallapag/assemblies/barley/ERR430660_2.fastq.gz
+  0:27:45.183     8G / 9G    INFO   K-mer Splitting          (kmer_data.cpp             : 190)   Processed 138548076 reads
+  0:28:02.580     8G / 9G    INFO   K-mer Splitting          (kmer_data.cpp             : 195)   Processed 139494014 reads
+  0:28:03.751    64M / 9G    INFO    General                 (kmer_index.hpp            : 342)   Starting k-mer counting.
+  0:37:55.947    64M / 9G    INFO    General                 (kmer_index.hpp            : 348)   K-mer counting done. There are 1710703758 kmers in total.
+  0:37:55.947    64M / 9G    INFO    General                 (kmer_index.hpp            : 350)   Merging temporary buckets.
+  0:41:37.656    64M / 9G    INFO   K-mer Index Building     (kmer_index.hpp            : 473)   Building perfect hash indices
+  0:44:42.100   576M / 42G   INFO    General                 (kmer_index.hpp            : 368)   Merging final buckets.
+  0:46:57.685   576M / 42G   INFO   K-mer Index Building     (kmer_index.hpp            : 521)   Index built. Total 558919128 bytes occupied (2.61375 bits per kmer).
+  0:46:59.241   576M / 42G   INFO   K-mer Counting           (kmer_data.cpp             : 280)   Arranging kmers in hash map order
+  1:10:23.537    26G / 42G   INFO    General                 (main.cpp                  : 154)   Clustering Hamming graph.
+  1:10:23.543    26G / 42G   INFO   Hamming Clustering       (hamcluster.cpp            : 120)   Serializing sub-kmers.
+  1:10:23.543    26G / 42G   INFO   Hamming Clustering       (hamcluster.cpp            : 125)   Serializing: [0, 10)
+  1:23:06.799    26G / 42G   INFO   Hamming Clustering       (hamcluster.cpp            : 125)   Serializing: [10, 21)
+  1:36:25.720    26G / 42G   INFO   Hamming Clustering       (hamcluster.cpp            : 137)   Splitting sub-kmers, pass 1.
+  2:54:10.211    26G / 64G   INFO   Hamming Clustering       (hamcluster.cpp            : 162)   Splitting done. Processed 2 blocks. Produced 5242880 blocks.
+  2:54:13.025    26G / 64G   INFO   Hamming Clustering       (hamcluster.cpp            : 171)   Merge done, total 5239383 new blocks generated.
+  2:54:13.025    26G / 64G   INFO   Hamming Clustering       (hamcluster.cpp            : 176)   Spliting sub-kmers, pass 2.
+  4:09:16.241    26G / 64G   INFO   Hamming Clustering       (hamcluster.cpp            : 195)   Splitting done. Processed 10478766 blocks. Produced 3852369661 blocks.
+  4:09:16.241    26G / 64G   INFO   Hamming Clustering       (hamcluster.cpp            : 202)   Merge done, saw 474491 big blocks out of 3852369661 processed.
+  4:36:03.032    26G / 64G   INFO    General                 (main.cpp                  : 168)   Clustering done. Total clusters: 675420505
+  4:36:03.358    13G / 64G   INFO   K-mer Counting           (kmer_data.cpp             : 295)   Collecting K-mer information, this takes a while.
+  4:36:29.901    51G / 64G   INFO   K-mer Counting           (kmer_data.cpp             : 301)   Processing /tsl/scratch/rallapag/assemblies/barley/ERR430660_1.fastq.gz
+  4:53:05.421    51G / 64G   INFO   K-mer Counting           (kmer_data.cpp             : 301)   Processing /tsl/scratch/rallapag/assemblies/barley/ERR430660_2.fastq.gz
+  5:09:23.758    51G / 64G   INFO   K-mer Counting           (kmer_data.cpp             : 308)   Collection done, postprocessing.
+  5:09:46.218    51G / 64G   INFO   K-mer Counting           (kmer_data.cpp             : 321)   There are 1710703758 kmers in total. Among them 913922268 (53.4238%) are singletons.
+  5:09:46.218    51G / 64G   INFO    General                 (main.cpp                  : 174)   Subclustering Hamming graph
+ 42:00:52.652    51G / 64G   INFO   Hamming Subclustering    (kmer_cluster.cpp          : 634)   Subclustering done. Total 73459 non-read kmers were generated.
+ 42:00:52.652    51G / 64G   INFO   Hamming Subclustering    (kmer_cluster.cpp          : 635)   Subclustering statistics:
+ 42:00:52.652    51G / 64G   INFO   Hamming Subclustering    (kmer_cluster.cpp          : 636)     Total singleton hamming clusters: 533221434. Among them 379013663 (71.08%) are good
+ 42:00:52.652    51G / 64G   INFO   Hamming Subclustering    (kmer_cluster.cpp          : 637)     Total singleton subclusters: 18099453. Among them 18094383 (99.972%) are good
+ 42:00:52.652    51G / 64G   INFO   Hamming Subclustering    (kmer_cluster.cpp          : 638)     Total non-singleton subcluster centers: 188844791. Among them 148378127 (78.5715%) are good
+ 42:00:52.652    51G / 64G   INFO   Hamming Subclustering    (kmer_cluster.cpp          : 639)     Average size of non-trivial subcluster: 6.22332 kmers
+ 42:00:52.652    51G / 64G   INFO   Hamming Subclustering    (kmer_cluster.cpp          : 640)     Average number of sub-clusters per non-singleton cluster: 1.45531
+ 42:00:52.652    51G / 64G   INFO   Hamming Subclustering    (kmer_cluster.cpp          : 641)     Total solid k-mers: 545486173
+ 42:00:52.652    51G / 64G   INFO   Hamming Subclustering    (kmer_cluster.cpp          : 642)     Substitution probabilities: [4,4]((0.93354,0.0178433,0.0291336,0.0194828),(0.0342265,0.905565,0.0182174,0.0419908),(0.0415231,0.0179023,0.905856,0.0347183),(0.019105,0.028396,0.0173117,0.935187))
+ 42:00:53.818    51G / 64G   INFO    General                 (main.cpp                  : 179)   Finished clustering.
+ 42:00:53.818    51G / 64G   INFO    General                 (main.cpp                  : 198)   Starting solid k-mers expansion in 16 threads.
+ 42:15:54.009    51G / 64G   INFO    General                 (main.cpp                  : 219)   Solid k-mers iteration 0 produced 154485292 new k-mers.
+ 42:30:45.107    51G / 64G   INFO    General                 (main.cpp                  : 219)   Solid k-mers iteration 1 produced 27218202 new k-mers.
+ 42:45:36.670    51G / 64G   INFO    General                 (main.cpp                  : 219)   Solid k-mers iteration 2 produced 4013801 new k-mers.
+ 43:00:28.892    51G / 64G   INFO    General                 (main.cpp                  : 219)   Solid k-mers iteration 3 produced 616245 new k-mers.
+ 43:15:19.697    51G / 64G   INFO    General                 (main.cpp                  : 219)   Solid k-mers iteration 4 produced 101915 new k-mers.
+ 43:30:11.012    51G / 64G   INFO    General                 (main.cpp                  : 219)   Solid k-mers iteration 5 produced 17685 new k-mers.
+ 43:45:00.431    51G / 64G   INFO    General                 (main.cpp                  : 219)   Solid k-mers iteration 6 produced 2982 new k-mers.
+ 43:59:52.236    51G / 64G   INFO    General                 (main.cpp                  : 219)   Solid k-mers iteration 7 produced 421 new k-mers.
+ 44:14:41.537    51G / 64G   INFO    General                 (main.cpp                  : 219)   Solid k-mers iteration 8 produced 37 new k-mers.
+ 44:29:33.468    51G / 64G   INFO    General                 (main.cpp                  : 219)   Solid k-mers iteration 9 produced 0 new k-mers.
+ 44:29:33.469    51G / 64G   INFO    General                 (main.cpp                  : 223)   Solid k-mers finalized
+ 44:29:33.469    51G / 64G   INFO    General                 (hammer_tools.cpp          : 210)   Starting read correction in 16 threads.
+ 44:29:33.469    51G / 64G   INFO    General                 (hammer_tools.cpp          : 221)   Correcting pair of reads: /tsl/scratch/rallapag/assemblies/barley/ERR430660_1.fastq.gz and /tsl/scratch/rallapag/assemblies/barley/ERR430660_2.fastq.gz
+ 44:30:54.980    52G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 0 of 1600000 reads.
+ 44:31:16.538    52G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 0
+ 44:31:32.034    52G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 0
+ 44:32:28.293    52G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 1 of 1600000 reads.
+ 44:32:49.879    52G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 1
+ 44:33:05.407    52G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 1
+ 44:33:29.878    52G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 2 of 1600000 reads.
+ 44:33:51.646    52G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 2
+ 44:34:07.016    52G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 2
+ 44:34:24.799    52G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 3 of 1600000 reads.
+ 44:34:48.075    52G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 3
+ 44:35:08.477    52G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 3
+ 44:35:24.882    52G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 4 of 1600000 reads.
+ 44:35:46.622    52G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 4
+ 44:36:08.400    52G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 4
+ 44:36:26.464    52G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 5 of 1600000 reads.
+ 44:36:48.990    52G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 5
+ 44:37:09.154    52G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 5
+ 44:37:31.062    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 6 of 1600000 reads.
+ 44:37:53.077    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 6
+ 44:38:15.540    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 6
+ 44:38:33.461    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 7 of 1600000 reads.
+ 44:38:56.616    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 7
+ 44:39:15.810    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 7
+ 44:39:30.393    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 8 of 1600000 reads.
+ 44:39:55.858    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 8
+ 44:40:15.325    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 8
+ 44:40:29.970    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 9 of 1600000 reads.
+ 44:40:53.468    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 9
+ 44:41:15.182    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 9
+ 44:41:31.048    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 10 of 1600000 reads.
+ 44:41:57.903    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 10
+ 44:42:16.664    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 10
+ 44:42:31.479    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 11 of 1600000 reads.
+ 44:42:53.032    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 11
+ 44:43:14.980    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 11
+ 44:43:29.879    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 12 of 1600000 reads.
+ 44:43:52.597    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 12
+ 44:44:15.075    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 12
+ 44:44:30.037    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 13 of 1600000 reads.
+ 44:44:52.708    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 13
+ 44:45:15.781    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 13
+ 44:45:30.613    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 14 of 1600000 reads.
+ 44:46:46.423    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 14
+ 44:47:03.262    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 14
+ 44:47:17.812    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 15 of 1600000 reads.
+ 44:47:42.107    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 15
+ 44:48:02.483    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 15
+ 44:48:17.093    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 16 of 1600000 reads.
+ 44:48:48.833    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 16
+ 44:49:07.603    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 16
+ 44:49:22.376    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 17 of 1600000 reads.
+ 44:49:45.213    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 17
+ 44:50:08.587    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 17
+ 44:50:23.266    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 18 of 1600000 reads.
+ 44:51:09.247    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 18
+ 44:51:25.437    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 18
+ 44:51:40.364    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 19 of 1600000 reads.
+ 44:52:03.981    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 19
+ 44:52:24.032    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 19
+ 44:52:38.994    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 20 of 1600000 reads.
+ 44:53:02.417    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 20
+ 44:53:23.521    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 20
+ 44:53:38.377    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 21 of 1600000 reads.
+ 44:54:01.386    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 21
+ 44:54:23.277    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 21
+ 44:54:37.816    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 22 of 1600000 reads.
+ 44:54:59.754    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 22
+ 44:55:23.358    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 22
+ 44:55:38.011    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 23 of 1600000 reads.
+ 44:56:00.748    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 23
+ 44:56:22.811    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 23
+ 44:56:37.504    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 24 of 1600000 reads.
+ 44:56:59.778    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 24
+ 44:57:22.335    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 24
+ 44:57:37.014    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 25 of 1600000 reads.
+ 44:58:00.152    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 25
+ 44:58:23.821    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 25
+ 44:58:38.507    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 26 of 1600000 reads.
+ 44:59:02.735    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 26
+ 44:59:24.001    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 26
+ 44:59:38.863    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 27 of 1600000 reads.
+ 45:00:01.760    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 27
+ 45:00:23.763    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 27
+ 45:00:38.714    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 28 of 1600000 reads.
+ 45:01:08.435    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 28
+ 45:01:27.976    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 28
+ 45:01:42.488    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 29 of 1600000 reads.
+ 45:02:05.673    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 29
+ 45:02:25.637    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 29
+ 45:02:40.222    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 30 of 1600000 reads.
+ 45:03:01.896    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 30
+ 45:03:24.076    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 30
+ 45:03:38.681    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 31 of 1600000 reads.
+ 45:04:00.994    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 31
+ 45:04:25.475    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 31
+ 45:04:40.227    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 32 of 1600000 reads.
+ 45:05:02.519    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 32
+ 45:05:24.941    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 32
+ 45:05:39.651    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 33 of 1600000 reads.
+ 45:06:02.025    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 33
+ 45:06:25.491    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 33
+ 45:06:40.348    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 34 of 1600000 reads.
+ 45:07:05.089    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 34
+ 45:07:26.274    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 34
+ 45:07:41.185    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 35 of 1600000 reads.
+ 45:08:04.847    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 35
+ 45:08:27.208    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 35
+ 45:08:41.788    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 36 of 1600000 reads.
+ 45:09:11.470    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 36
+ 45:09:29.101    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 36
+ 45:09:43.608    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 37 of 1600000 reads.
+ 45:10:14.358    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 37
+ 45:10:30.113    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 37
+ 45:10:44.660    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 38 of 1600000 reads.
+ 45:11:08.626    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 38
+ 45:11:31.854    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 38
+ 45:11:46.557    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 39 of 1600000 reads.
+ 45:12:08.897    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 39
+ 45:12:31.362    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 39
+ 45:12:46.029    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 40 of 1600000 reads.
+ 45:13:07.867    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 40
+ 45:13:31.225    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 40
+ 45:13:45.986    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 41 of 1600000 reads.
+ 45:14:08.806    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 41
+ 45:14:31.966    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 41
+ 45:14:46.820    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 42 of 1600000 reads.
+ 45:15:09.876    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 42
+ 45:15:33.040    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 42
+ 45:15:41.918    53G / 64G   INFO    General                 (hammer_tools.cpp          : 166)   Prepared batch 43 of 947007 reads.
+ 45:15:56.073    53G / 64G   INFO    General                 (hammer_tools.cpp          : 175)   Processed batch 43
+ 45:16:06.263    53G / 64G   INFO    General                 (hammer_tools.cpp          : 185)   Written batch 43
+ 45:16:15.092    51G / 64G   INFO    General                 (hammer_tools.cpp          : 269)   Correction done. Changed 26329089 bases in 17383504 reads.
+ 45:16:15.092    51G / 64G   INFO    General                 (hammer_tools.cpp          : 270)   Failed to correct 4584570 bases out of 13728226076.
+ 45:16:15.545    64M / 64G   INFO    General                 (main.cpp                  : 256)   Saving corrected dataset description to /tsl/scratch/rallapag/assemblies/barley/spades/corrected/corrected.yaml
+ 45:16:15.575    64M / 64G   INFO    General                 (main.cpp                  : 263)   All done. Exiting.
+
+== Compressing corrected reads (with gzip)
+
+== Dataset description file was created: /tsl/scratch/rallapag/assemblies/barley/spades/corrected/corrected.yaml
+
+
+===== Read error correction finished. 
+
+
+===== Assembling started.
+
+
+== Running assembler: K21
+
+  0:00:00.000     4M / 4M    INFO    General                 (memory_limit.hpp          :  43)   Memory limit set to 250 Gb
+  0:00:00.001     4M / 4M    INFO    General                 (main.cpp                  : 147)   Assembling dataset (/tsl/scratch/rallapag/assemblies/barley/spades/dataset.info) with K=21
+  0:00:00.001     4M / 4M    INFO    General                 (launch.hpp                :  30)   SPAdes started
+  0:00:00.001     4M / 4M    INFO    General                 (launch.hpp                :  31)   Starting from stage: construction
+  0:00:00.001     4M / 4M    INFO    General                 (launch.hpp                :  34)   Two-step RR enabled: 0
+  0:00:00.004     4M / 4M    INFO   StageManager             (stage.cpp                 : 126)   STAGE == Construction
+  0:00:00.009     4M / 4M    INFO    General                 (read_converter.hpp        :  79)   Converting reads to binary format (takes a while)
+  0:00:00.009     4M / 4M    INFO    General                 (read_converter.hpp        :  81)   Paired reads for library #0
+  0:00:02.922    80M / 80M   INFO    General                 (binary_converter.hpp      : 139)   16384 reads processed
+  0:00:03.239    88M / 88M   INFO    General                 (binary_converter.hpp      : 139)   32768 reads processed
+  0:00:03.871   112M / 112M  INFO    General                 (binary_converter.hpp      : 139)   65536 reads processed
+  0:00:05.134   160M / 160M  INFO    General                 (binary_converter.hpp      : 139)   131072 reads processed
+  0:00:07.659   252M / 252M  INFO    General                 (binary_converter.hpp      : 139)   262144 reads processed
+  0:00:12.771   440M / 440M  INFO    General                 (binary_converter.hpp      : 139)   524288 reads processed
+  0:00:24.875   740M / 740M  INFO    General                 (binary_converter.hpp      : 139)   1048576 reads processed
+  0:00:47.549   792M / 792M  INFO    General                 (binary_converter.hpp      : 139)   2097152 reads processed
+  0:01:33.515   788M / 796M  INFO    General                 (binary_converter.hpp      : 139)   4194304 reads processed
+  0:03:08.318   772M / 796M  INFO    General                 (binary_converter.hpp      : 139)   8388608 reads processed
+  0:06:19.809   772M / 796M  INFO    General                 (binary_converter.hpp      : 139)   16777216 reads processed
+  0:12:39.958   772M / 796M  INFO    General                 (binary_converter.hpp      : 139)   33554432 reads processed
+  0:25:32.450   772M / 796M  INFO    General                 (binary_converter.hpp      : 139)   67108864 reads processed
+  0:26:20.980   404M / 796M  INFO    General                 (binary_converter.hpp      : 159)   69052282 reads written
+  0:26:21.582     4M / 796M  INFO    General                 (read_converter.hpp        :  91)   Single reads for library #0
+  0:26:23.086   136M / 796M  INFO    General                 (binary_converter.hpp      : 139)   16384 reads processed
+  0:26:23.280   144M / 796M  INFO    General                 (binary_converter.hpp      : 139)   32768 reads processed
+  0:26:23.677   156M / 796M  INFO    General                 (binary_converter.hpp      : 139)   65536 reads processed
+  0:26:24.469   180M / 796M  INFO    General                 (binary_converter.hpp      : 139)   131072 reads processed
+  0:26:26.057   228M / 796M  INFO    General                 (binary_converter.hpp      : 139)   262144 reads processed
+  0:26:29.244   324M / 796M  INFO    General                 (binary_converter.hpp      : 139)   524288 reads processed
+  0:26:31.861   384M / 796M  INFO    General                 (binary_converter.hpp      : 159)   684623 reads written
+  0:26:34.231     4M / 796M  INFO    General                 (graph_construction.hpp    : 130)   Constructing DeBruijn graph for k=21
+  0:26:34.239     4M / 796M  INFO    General                 (kmer_splitters.hpp        : 179)   Splitting kmer instances into 256 buckets. This might take a while.
+  0:26:34.240     4M / 796M  INFO    General                 (file_limit.hpp            :  30)   Open file limit set to 4096
+  0:26:34.240     4M / 796M  INFO    General                 (kmer_splitters.hpp        : 197)   Memory available for splitting buffers: 5.20825 Gb
+  0:26:34.240     4M / 796M  INFO    General                 (kmer_splitters.hpp        : 206)   Using cell size of 262144
+  0:27:11.207     9G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 27524432 reads
+  0:27:44.771     9G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 55121148 reads
+  0:28:20.501     9G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 82676820 reads
+  0:28:54.875     9G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 110282929 reads
+  0:29:29.804     9G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 137914520 reads
+  0:30:05.643     9G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 165440462 reads
+  0:30:41.497     9G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 193054802 reads
+  0:31:17.886     9G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 220598677 reads
+  0:31:53.480     9G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 248178911 reads
+  0:32:28.393     9G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 275789813 reads
+  0:32:36.297     9G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 277578374 reads
+  0:32:36.297     9G / 9G    INFO    General                 (kmer_splitters.hpp        : 241)   Adding contigs from previous K
+  0:32:36.297     9G / 9G    INFO    General                 (kmer_splitters.hpp        : 252)   Used 277578374 reads. Maximum read length 101
+  0:32:36.298     9G / 9G    INFO    General                 (kmer_splitters.hpp        : 253)   Average read length 98.8075
+  0:32:38.561    64M / 9G    INFO    General                 (kmer_index.hpp            : 342)   Starting k-mer counting.
+  0:34:35.356    64M / 9G    INFO    General                 (kmer_index.hpp            : 348)   K-mer counting done. There are 636389993 kmers in total.
+  0:34:35.356    64M / 9G    INFO    General                 (kmer_index.hpp            : 350)   Merging temporary buckets.
+  0:35:51.695    64M / 9G    INFO   K-mer Index Building     (kmer_index.hpp            : 464)   Building kmer index
+  0:35:51.695    64M / 9G    INFO    General                 (kmer_splitters.hpp        : 386)   Splitting kmer instances into 256 buckets. This might take a while.
+  0:35:51.696    64M / 9G    INFO    General                 (file_limit.hpp            :  30)   Open file limit set to 4096
+  0:35:51.696    64M / 9G    INFO    General                 (kmer_splitters.hpp        : 404)   Memory available for splitting buffers: 5.20703 Gb
+  0:35:51.696    64M / 9G    INFO    General                 (kmer_splitters.hpp        : 412)   Using cell size of 262144
+  0:37:33.185     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 435)   Processed 536870912 kmers
+  0:38:00.689     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 435)   Processed 636389993 kmers
+  0:38:00.689     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 444)   Used 636389993 kmers.
+  0:38:02.729    64M / 9G    INFO    General                 (kmer_index.hpp            : 342)   Starting k-mer counting.
+  0:38:57.950    64M / 9G    INFO    General                 (kmer_index.hpp            : 348)   K-mer counting done. There are 617044861 kmers in total.
+  0:38:57.950    64M / 9G    INFO    General                 (kmer_index.hpp            : 350)   Merging temporary buckets.
+  0:40:00.647    64M / 9G    INFO   K-mer Index Building     (kmer_index.hpp            : 473)   Building perfect hash indices
+  0:41:10.130   256M / 15G   INFO    General                 (kmer_index.hpp            : 368)   Merging final buckets.
+  0:41:59.581   256M / 15G   INFO   K-mer Index Building     (kmer_index.hpp            : 521)   Index built. Total 201600256 bytes occupied (2.61375 bits per kmer).
+  0:42:00.754   848M / 15G   INFO   DeBruijnExtensionIndexBu (kmer_extension_index.hpp  : 391)   Building k-mer extensions from k+1-mers
+  0:43:41.775   848M / 15G   INFO   DeBruijnExtensionIndexBu (kmer_extension_index.hpp  : 395)   Building k-mer extensions from k+1-mers finished.
+  0:43:41.784   848M / 15G   INFO   Early tip clipping       (early_simplification.hpp  : 243)   Early tip clipping
+  1:38:14.492   848M / 15G   INFO   Early tip clipping       (early_simplification.hpp  : 246)   101218952 22-mers were removed by early tip clipper
+  1:38:14.492   848M / 15G   INFO    General                 (graph_construction.hpp    : 146)   Condensing graph
+  1:38:14.492   848M / 15G   INFO   UnbranchingPathExtractor (debruijn_graph_constructor: 338)   Extracting unbranching paths
+  1:51:38.182     8G / 15G   INFO   UnbranchingPathExtractor (debruijn_graph_constructor: 352)   Extracting unbranching paths finished. 99409754 sequences extracted
+  1:52:48.520     8G / 15G   INFO   UnbranchingPathExtractor (debruijn_graph_constructor: 312)   Collecting perfect loops
+  2:01:07.334     8G / 15G   INFO   UnbranchingPathExtractor (debruijn_graph_constructor: 327)   Collecting perfect loops finished. 2742 loops collected
+  2:02:21.030    19G / 25G   INFO    General                 (graph_construction.hpp    : 151)   Building index with from graph
+  2:02:21.042    19G / 25G   INFO   K-mer Index Building     (kmer_index.hpp            : 464)   Building kmer index
+  2:02:21.042    19G / 25G   INFO    General                 (kmer_splitters.hpp        : 296)   Splitting kmer instances into 16 buckets. This might take a while.
+  2:02:21.042    19G / 25G   INFO    General                 (file_limit.hpp            :  30)   Open file limit set to 4096
+  2:02:21.042    19G / 25G   INFO    General                 (kmer_splitters.hpp        : 314)   Memory available for splitting buffers: 76.9154 Gb
+  2:02:21.042    19G / 25G   INFO    General                 (kmer_splitters.hpp        : 319)   Using cell size of 4194304
+  2:02:44.275    19G / 25G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 12473184 edges
+  2:03:07.702    19G / 25G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 24934381 edges
+  2:03:31.413    20G / 25G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 37387569 edges
+  2:03:54.775    20G / 25G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 49853431 edges
+  2:04:19.486    20G / 25G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 62343824 edges
+  2:04:42.787    20G / 25G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 74804561 edges
+  2:05:06.430    20G / 25G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 87268365 edges
+  2:05:29.165    20G / 25G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 99412496 edges
+  2:05:29.165    20G / 25G   INFO    General                 (kmer_splitters.hpp        : 337)   Used 99412496 sequences.
+  2:05:29.229    19G / 25G   INFO    General                 (kmer_index.hpp            : 342)   Starting k-mer counting.
+  2:08:32.269    19G / 25G   INFO    General                 (kmer_index.hpp            : 348)   K-mer counting done. There are 535171041 kmers in total.
+  2:08:32.269    19G / 25G   INFO    General                 (kmer_index.hpp            : 350)   Merging temporary buckets.
+  2:09:49.211    19G / 25G   INFO   K-mer Index Building     (kmer_index.hpp            : 473)   Building perfect hash indices
+  2:17:29.953    19G / 25G   INFO    General                 (kmer_index.hpp            : 368)   Merging final buckets.
+  2:18:13.965    19G / 25G   INFO   K-mer Index Building     (kmer_index.hpp            : 521)   Index built. Total 174850552 bytes occupied (2.61375 bits per kmer).
+  2:18:18.821    31G / 31G   INFO    General                 (edge_index_builders.hpp   :  28)   Collecting k-mer coverage information from graph, this takes a while.
+  2:37:59.896    30G / 31G   INFO    General                 (graph_construction.hpp    : 183)   Filling coverage index
+  2:37:59.896    30G / 31G   INFO    General                 (edge_index_builders.hpp   : 106)   Collecting k-mer coverage information from reads, this takes a while.
+  2:52:29.255    30G / 31G   INFO    General                 (graph_construction.hpp    : 185)   Filling coverage and flanking coverage from index
+  2:54:47.303    30G / 31G   INFO    General                 (construction.cpp          :  34)   Figured out: read length = 101
+  2:54:47.303    30G / 31G   INFO   StageManager             (stage.cpp                 : 126)   STAGE == EC Threshold Finding
+  2:55:11.189    30G / 31G   INFO    General                 (kmer_coverage_model.cpp   : 179)   Kmer coverage valley at: 237
+  2:55:11.198    30G / 31G   INFO    General                 (kmer_coverage_model.cpp   : 199)   K-mer histogram maximum: 239
+  2:55:11.199    30G / 31G   INFO    General                 (kmer_coverage_model.cpp   : 235)   Estimated median coverage: 240. Coverage mad: 2.9652
+  2:55:11.209    30G / 31G   INFO    General                 (kmer_coverage_model.cpp   : 262)   Fitting coverage model
+  2:55:12.212    30G / 31G   INFO    General                 (kmer_coverage_model.cpp   : 297)   ... iteration 2
+  2:55:14.846    30G / 31G   INFO    General                 (kmer_coverage_model.cpp   : 297)   ... iteration 4
+  2:55:21.515    30G / 31G   INFO    General                 (kmer_coverage_model.cpp   : 297)   ... iteration 8
+  2:55:35.693    30G / 31G   INFO    General                 (kmer_coverage_model.cpp   : 297)   ... iteration 16
+  2:56:08.224    30G / 31G   INFO    General                 (kmer_coverage_model.cpp   : 297)   ... iteration 32
+  2:56:57.668    30G / 31G   INFO    General                 (kmer_coverage_model.cpp   : 297)   ... iteration 64
+  2:57:02.211    30G / 31G   INFO    General                 (kmer_coverage_model.cpp   : 310)   Fitted mean coverage: 136.567. Fitted coverage std. dev: 41.9815
+  2:57:02.211    30G / 31G   WARN    General                 (kmer_coverage_model.cpp   : 328)   Valley value was estimated improperly, reset to 40
+  2:57:02.227    30G / 31G   INFO    General                 (kmer_coverage_model.cpp   : 335)   Probability of erroneous kmer at valley: 1
+  2:57:02.227    30G / 31G   WARN    General                 (kmer_coverage_model.cpp   : 367)   Failed to determine erroneous kmer threshold. Threshold set to: 40
+  2:57:02.227    30G / 31G   INFO    General                 (kmer_coverage_model.cpp   : 376)   Estimated genome size (ignoring repeats): 58159613
+  2:57:02.227    30G / 31G   INFO    General                 (genomic_info_filler.cpp   : 107)   Failed to estimate mean coverage
+  2:57:02.230    30G / 31G   INFO    General                 (genomic_info_filler.cpp   : 119)   EC coverage threshold value was calculated as 40
+  2:57:02.230    30G / 31G   INFO    General                 (genomic_info_filler.cpp   : 120)   Trusted kmer low bound: 0
+  2:57:02.230    30G / 31G   INFO   StageManager             (stage.cpp                 : 126)   STAGE == Simplification
+  2:57:02.312    18G / 31G   WARN    General                 (graph_simplification.hpp  : 670)   Mean coverage wasn't reliably estimated
+  2:57:02.318    18G / 31G   INFO    General                 (graph_simplification.hpp  : 970)   Graph simplification started
+  2:57:02.318    18G / 31G   INFO    General                 (graph_simplification.hpp  : 975)   Fast simplification mode disabled
+  2:57:02.318    18G / 31G   INFO    General                 (graph_simplification.hpp  : 695)   PROCEDURE == Presimplification
+  2:57:02.318    18G / 31G   INFO    General                 (graph_simplification.hpp  : 213)   Removing short low covered self-conjugate connections
+  2:57:10.813    18G / 31G   INFO    General                 (graph_simplification.hpp  : 699)   Further presimplification is disabled
+  2:57:10.813    18G / 31G   INFO    General                 (graph_simplification.hpp  : 925)   PROCEDURE == Simplification cycle, iteration 1
+  2:59:54.403    20G / 31G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  3:07:02.076    20G / 31G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  6:05:04.827    20G / 31G   INFO    General                 (graph_simplification.hpp  : 190)   Removing low covered connections
+  6:20:10.176    19G / 31G   INFO    General                 (graph_simplification.hpp  : 925)   PROCEDURE == Simplification cycle, iteration 2
+  6:21:06.400    19G / 31G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  6:22:48.129    19G / 31G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  6:42:00.302    19G / 31G   INFO    General                 (graph_simplification.hpp  : 190)   Removing low covered connections
+  6:43:45.193    19G / 31G   INFO    General                 (graph_simplification.hpp  : 925)   PROCEDURE == Simplification cycle, iteration 3
+  6:44:14.049    19G / 31G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  6:45:04.792    19G / 31G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  6:52:15.127    18G / 31G   INFO    General                 (graph_simplification.hpp  : 190)   Removing low covered connections
+  6:52:57.423    18G / 31G   INFO    General                 (graph_simplification.hpp  : 925)   PROCEDURE == Simplification cycle, iteration 4
+  6:53:17.601    18G / 31G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  6:53:53.778    18G / 31G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  6:57:57.133    18G / 31G   INFO    General                 (graph_simplification.hpp  : 190)   Removing low covered connections
+  6:58:23.983    17G / 31G   INFO    General                 (graph_simplification.hpp  : 925)   PROCEDURE == Simplification cycle, iteration 5
+  6:58:41.732    17G / 31G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  6:59:11.741    17G / 31G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  7:02:07.498    17G / 31G   INFO    General                 (graph_simplification.hpp  : 190)   Removing low covered connections
+  7:02:26.123    17G / 31G   INFO    General                 (graph_simplification.hpp  : 925)   PROCEDURE == Simplification cycle, iteration 6
+  7:02:41.647    17G / 31G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  7:03:06.704    17G / 31G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  7:05:20.048    16G / 31G   INFO    General                 (graph_simplification.hpp  : 190)   Removing low covered connections
+  7:05:33.656    16G / 31G   INFO    General                 (graph_simplification.hpp  : 925)   PROCEDURE == Simplification cycle, iteration 7
+  7:05:47.156    16G / 31G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  7:06:09.934    16G / 31G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  7:07:54.179    16G / 31G   INFO    General                 (graph_simplification.hpp  : 190)   Removing low covered connections
+  7:08:04.731    16G / 31G   INFO    General                 (graph_simplification.hpp  : 925)   PROCEDURE == Simplification cycle, iteration 8
+  7:08:17.108    16G / 31G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  7:08:36.776    16G / 31G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  7:10:02.812    15G / 31G   INFO    General                 (graph_simplification.hpp  : 190)   Removing low covered connections
+  7:10:12.123    15G / 31G   INFO    General                 (graph_simplification.hpp  : 925)   PROCEDURE == Simplification cycle, iteration 9
+  7:10:23.563    15G / 31G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  7:10:42.311    15G / 31G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  7:11:54.293    15G / 31G   INFO    General                 (graph_simplification.hpp  : 190)   Removing low covered connections
+  7:12:01.242    15G / 31G   INFO    General                 (graph_simplification.hpp  : 925)   PROCEDURE == Simplification cycle, iteration 10
+  7:12:11.485    15G / 31G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  7:12:28.564    15G / 31G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  7:13:30.457    15G / 31G   INFO    General                 (graph_simplification.hpp  : 190)   Removing low covered connections
+  7:13:36.036    15G / 31G   INFO    General                 (graph_simplification.hpp  : 839)   PROCEDURE == Post simplification
+  7:13:36.036    15G / 31G   INFO    General                 (graph_simplification.hpp  : 856)   Iteration 0
+  7:13:36.036    15G / 31G   INFO    General                 (graph_simplification.hpp  : 255)   Removal of relatively low covered connections disabled
+  7:13:36.037    15G / 31G   INFO    General                 (graph_simplification.hpp  : 530)   Complex tip clipping disabled
+  7:13:45.804    15G / 31G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  7:14:01.586    15G / 31G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  7:14:43.130    14G / 31G   INFO    General                 (graph_simplification.hpp  : 856)   Iteration 1
+  7:14:43.130    14G / 31G   INFO    General                 (graph_simplification.hpp  : 255)   Removal of relatively low covered connections disabled
+  7:14:43.130    14G / 31G   INFO    General                 (graph_simplification.hpp  : 530)   Complex tip clipping disabled
+  7:14:52.722    14G / 31G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  7:15:07.248    14G / 31G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  7:15:43.119    14G / 31G   INFO    General                 (graph_simplification.hpp  : 856)   Iteration 2
+  7:15:43.119    14G / 31G   INFO    General                 (graph_simplification.hpp  : 255)   Removal of relatively low covered connections disabled
+  7:15:43.119    14G / 31G   INFO    General                 (graph_simplification.hpp  : 530)   Complex tip clipping disabled
+  7:15:52.326    14G / 31G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  7:16:07.209    14G / 31G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  7:16:44.690    14G / 31G   INFO   StageManager             (stage.cpp                 : 126)   STAGE == Simplification Cleanup
+  7:16:44.693    14G / 31G   INFO    General                 (graph_simplification.hpp  : 406)   Removing isolated edges
+  7:16:44.693    14G / 31G   INFO    General                 (graph_simplification.hpp  : 407)   All edges shorter than 150 will be removed
+  7:16:44.693    14G / 31G   INFO    General                 (graph_simplification.hpp  : 408)   Also edges shorter than 0 and coverage smaller than 2 will be removed
+  7:17:01.892    12G / 31G   INFO    General                 (simplification.cpp        :  75)   Removing all the edges having coverage 0 and less
+  7:17:19.373    12G / 31G   INFO    General                 (simplification.cpp        :  87)   Counting average coverage
+  7:17:21.022    12G / 31G   INFO    General                 (simplification.cpp        :  90)   Average coverage = 80.5745
+  7:17:21.022    12G / 31G   INFO   StageManager             (stage.cpp                 : 126)   STAGE == Contig Output
+  7:17:21.022    12G / 31G   INFO    General                 (contig_output.hpp         : 283)   Outputting contigs to /tsl/scratch/rallapag/assemblies/barley/spades//K21/simplified_contigs.fasta
+  7:17:52.797    12G / 31G   INFO    General                 (contig_output.hpp         : 283)   Outputting contigs to /tsl/scratch/rallapag/assemblies/barley/spades//K21/before_rr.fasta
+  7:19:34.073    12G / 31G   INFO    General                 (contig_output.hpp         : 283)   Outputting contigs to /tsl/scratch/rallapag/assemblies/barley/spades//K21/final_contigs.fasta
+  7:21:16.279    12G / 31G   INFO    General                 (launch.hpp                : 107)   SPAdes finished
+  7:22:01.891    64M / 31G   INFO    General                 (main.cpp                  : 167)   Assembling time: 7 hours 22 minutes 1 seconds
+
+== Running assembler: K33
+
+  0:00:00.000     4M / 4M    INFO    General                 (memory_limit.hpp          :  43)   Memory limit set to 250 Gb
+  0:00:00.001     4M / 4M    INFO    General                 (main.cpp                  : 147)   Assembling dataset (/tsl/scratch/rallapag/assemblies/barley/spades/dataset.info) with K=33
+  0:00:00.001     4M / 4M    INFO    General                 (launch.hpp                :  30)   SPAdes started
+  0:00:00.001     4M / 4M    INFO    General                 (launch.hpp                :  31)   Starting from stage: construction
+  0:00:00.001     4M / 4M    INFO    General                 (launch.hpp                :  34)   Two-step RR enabled: 0
+  0:00:00.003     4M / 4M    INFO   StageManager             (stage.cpp                 : 126)   STAGE == Construction
+  0:00:00.003     4M / 4M    INFO    General                 (construction.cpp          :  45)   Contigs from previous K will be used
+  0:00:00.078     4M / 4M    INFO    General                 (read_converter.hpp        :  49)   Binary reads detected
+  0:00:00.138     4M / 4M    INFO    General                 (graph_construction.hpp    : 130)   Constructing DeBruijn graph for k=33
+  0:00:00.144     4M / 4M    INFO    General                 (kmer_splitters.hpp        : 179)   Splitting kmer instances into 256 buckets. This might take a while.
+  0:00:00.146     4M / 4M    INFO    General                 (file_limit.hpp            :  30)   Open file limit set to 4096
+  0:00:00.146     4M / 4M    INFO    General                 (kmer_splitters.hpp        : 197)   Memory available for splitting buffers: 5.20825 Gb
+  0:00:00.146     4M / 4M    INFO    General                 (kmer_splitters.hpp        : 206)   Using cell size of 131072
+  0:00:44.115     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 16268060 reads
+  0:01:25.950     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 32516742 reads
+  0:02:09.116     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 48848092 reads
+  0:02:52.272     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 65121954 reads
+  0:03:35.215     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 81410247 reads
+  0:04:19.513     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 97776482 reads
+  0:05:02.656     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 114042501 reads
+  0:05:48.558     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 130350787 reads
+  0:06:29.763     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 146688889 reads
+  0:07:14.258     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 162935154 reads
+  0:07:55.361     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 179234298 reads
+  0:08:38.484     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 195556974 reads
+  0:09:22.785     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 211820861 reads
+  0:12:19.923     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 277232171 reads
+  0:12:23.765     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 241)   Adding contigs from previous K
+  0:13:27.303     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 252)   Used 277578374 reads. Maximum read length 101
+  0:13:27.303     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 253)   Average read length 98.8075
+  0:13:29.536    64M / 9G    INFO    General                 (kmer_index.hpp            : 342)   Starting k-mer counting.
+  0:22:10.394    64M / 9G    INFO    General                 (kmer_index.hpp            : 348)   K-mer counting done. There are 827000729 kmers in total.
+  0:22:10.395    64M / 9G    INFO    General                 (kmer_index.hpp            : 350)   Merging temporary buckets.
+  0:26:02.676    64M / 9G    INFO   K-mer Index Building     (kmer_index.hpp            : 464)   Building kmer index
+  0:26:02.676    64M / 9G    INFO    General                 (kmer_splitters.hpp        : 386)   Splitting kmer instances into 256 buckets. This might take a while.
+  0:26:02.677    64M / 9G    INFO    General                 (file_limit.hpp            :  30)   Open file limit set to 4096
+  0:26:02.677    64M / 9G    INFO    General                 (kmer_splitters.hpp        : 404)   Memory available for splitting buffers: 5.20703 Gb
+  0:26:02.677    64M / 9G    INFO    General                 (kmer_splitters.hpp        : 412)   Using cell size of 131072
+  0:28:01.966     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 435)   Processed 268435456 kmers
+  0:30:07.606     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 435)   Processed 536870912 kmers
+  0:32:10.943     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 435)   Processed 805306368 kmers
+  0:32:25.751     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 435)   Processed 827000729 kmers
+  0:32:25.751     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 444)   Used 827000729 kmers.
+  0:32:27.798    64M / 9G    INFO    General                 (kmer_index.hpp            : 342)   Starting k-mer counting.
+  0:37:11.893    64M / 9G    INFO    General                 (kmer_index.hpp            : 348)   K-mer counting done. There are 813941145 kmers in total.
+  0:37:11.893    64M / 9G    INFO    General                 (kmer_index.hpp            : 350)   Merging temporary buckets.
+  0:41:07.038    64M / 9G    INFO   K-mer Index Building     (kmer_index.hpp            : 473)   Building perfect hash indices
+  0:43:36.392   320M / 20G   INFO    General                 (kmer_index.hpp            : 368)   Merging final buckets.
+  0:45:47.836   320M / 20G   INFO   K-mer Index Building     (kmer_index.hpp            : 521)   Index built. Total 265929984 bytes occupied (2.61375 bits per kmer).
+  0:45:49.407     1G / 20G   INFO   DeBruijnExtensionIndexBu (kmer_extension_index.hpp  : 391)   Building k-mer extensions from k+1-mers
+  0:47:55.751     1G / 20G   INFO   DeBruijnExtensionIndexBu (kmer_extension_index.hpp  : 395)   Building k-mer extensions from k+1-mers finished.
+  0:47:55.778     1G / 20G   INFO   Early tip clipping       (early_simplification.hpp  : 243)   Early tip clipping
+  1:54:24.355     1G / 20G   INFO   Early tip clipping       (early_simplification.hpp  : 246)   161676645 34-mers were removed by early tip clipper
+  1:54:24.355     1G / 20G   INFO    General                 (graph_construction.hpp    : 146)   Condensing graph
+  1:54:24.355     1G / 20G   INFO   UnbranchingPathExtractor (debruijn_graph_constructor: 338)   Extracting unbranching paths
+  2:11:59.234     8G / 20G   INFO   UnbranchingPathExtractor (debruijn_graph_constructor: 352)   Extracting unbranching paths finished. 83014115 sequences extracted
+  2:13:26.981     8G / 20G   INFO   UnbranchingPathExtractor (debruijn_graph_constructor: 312)   Collecting perfect loops
+  2:24:48.471     8G / 20G   INFO   UnbranchingPathExtractor (debruijn_graph_constructor: 327)   Collecting perfect loops finished. 3110 loops collected
+  2:25:52.818    17G / 22G   INFO    General                 (graph_construction.hpp    : 151)   Building index with from graph
+  2:25:52.829    17G / 22G   INFO   K-mer Index Building     (kmer_index.hpp            : 464)   Building kmer index
+  2:25:52.829    17G / 22G   INFO    General                 (kmer_splitters.hpp        : 296)   Splitting kmer instances into 16 buckets. This might take a while.
+  2:25:52.829    17G / 22G   INFO    General                 (file_limit.hpp            :  30)   Open file limit set to 4096
+  2:25:52.830    17G / 22G   INFO    General                 (kmer_splitters.hpp        : 314)   Memory available for splitting buffers: 77.5768 Gb
+  2:25:52.830    17G / 22G   INFO    General                 (kmer_splitters.hpp        : 319)   Using cell size of 2097152
+  2:26:07.039    17G / 22G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 4179698 edges
+  2:26:20.775    17G / 22G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 8356496 edges
+  2:26:34.305    17G / 22G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 12545768 edges
+  2:26:47.468    17G / 22G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 16733766 edges
+  2:27:01.262    17G / 22G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 20918253 edges
+  2:27:14.998    18G / 22G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 25111795 edges
+  2:27:28.290    18G / 22G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 29296577 edges
+  2:27:41.570    18G / 22G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 33491467 edges
+  2:27:54.885    18G / 22G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 37682030 edges
+  2:28:08.097    18G / 22G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 41863004 edges
+  2:28:21.557    18G / 22G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 46048955 edges
+  2:28:35.464    18G / 22G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 50237371 edges
+  2:28:48.948    18G / 22G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 54424993 edges
+  2:29:02.146    18G / 22G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 58613793 edges
+  2:29:15.591    18G / 22G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 62786105 edges
+  2:29:29.191    18G / 22G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 66979166 edges
+  2:29:42.750    18G / 22G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 71166342 edges
+  2:30:21.088    18G / 22G   INFO    General                 (kmer_splitters.hpp        : 337)   Used 83017225 sequences.
+  2:30:21.158    17G / 22G   INFO    General                 (kmer_index.hpp            : 342)   Starting k-mer counting.
+  2:36:45.503    17G / 22G   INFO    General                 (kmer_index.hpp            : 348)   K-mer counting done. There are 665324084 kmers in total.
+  2:36:45.504    17G / 22G   INFO    General                 (kmer_index.hpp            : 350)   Merging temporary buckets.
+  2:39:58.996    17G / 22G   INFO   K-mer Index Building     (kmer_index.hpp            : 473)   Building perfect hash indices
+  2:50:24.511    17G / 22G   INFO    General                 (kmer_index.hpp            : 368)   Merging final buckets.
+  2:52:13.042    17G / 22G   INFO   K-mer Index Building     (kmer_index.hpp            : 521)   Index built. Total 217374016 bytes occupied (2.61375 bits per kmer).
+  2:54:33.558    32G / 32G   INFO    General                 (edge_index_builders.hpp   :  28)   Collecting k-mer coverage information from graph, this takes a while.
+  3:21:44.017    31G / 32G   INFO    General                 (graph_construction.hpp    : 183)   Filling coverage index
+  3:21:44.017    31G / 32G   INFO    General                 (edge_index_builders.hpp   : 106)   Collecting k-mer coverage information from reads, this takes a while.
+  3:35:11.484    31G / 32G   INFO    General                 (graph_construction.hpp    : 185)   Filling coverage and flanking coverage from index
+  3:38:46.315    31G / 32G   INFO    General                 (construction.cpp          :  34)   Figured out: read length = 101
+  3:38:46.315    31G / 32G   INFO   StageManager             (stage.cpp                 : 126)   STAGE == EC Threshold Finding
+  3:39:16.450    31G / 32G   INFO    General                 (kmer_coverage_model.cpp   : 179)   Kmer coverage valley at: 262
+  3:39:16.456    31G / 32G   INFO    General                 (kmer_coverage_model.cpp   : 199)   K-mer histogram maximum: 264
+  3:39:16.456    31G / 32G   INFO    General                 (kmer_coverage_model.cpp   : 235)   Estimated median coverage: 265. Coverage mad: 2.9652
+  3:39:16.463    31G / 32G   INFO    General                 (kmer_coverage_model.cpp   : 262)   Fitting coverage model
+  3:39:17.491    31G / 32G   INFO    General                 (kmer_coverage_model.cpp   : 297)   ... iteration 2
+  3:39:19.839    31G / 32G   INFO    General                 (kmer_coverage_model.cpp   : 297)   ... iteration 4
+  3:39:25.074    31G / 32G   INFO    General                 (kmer_coverage_model.cpp   : 297)   ... iteration 8
+  3:39:35.852    31G / 32G   INFO    General                 (kmer_coverage_model.cpp   : 297)   ... iteration 16
+  3:39:57.958    31G / 32G   INFO    General                 (kmer_coverage_model.cpp   : 297)   ... iteration 32
+  3:40:47.692    31G / 32G   INFO    General                 (kmer_coverage_model.cpp   : 297)   ... iteration 64
+  3:42:21.343    31G / 32G   INFO    General                 (kmer_coverage_model.cpp   : 310)   Fitted mean coverage: 152.034. Fitted coverage std. dev: 27.9796
+  3:42:21.343    31G / 32G   WARN    General                 (kmer_coverage_model.cpp   : 328)   Valley value was estimated improperly, reset to 57
+  3:42:21.361    31G / 32G   INFO    General                 (kmer_coverage_model.cpp   : 335)   Probability of erroneous kmer at valley: 1
+  3:42:21.361    31G / 32G   WARN    General                 (kmer_coverage_model.cpp   : 367)   Failed to determine erroneous kmer threshold. Threshold set to: 57
+  3:42:21.361    31G / 32G   INFO    General                 (kmer_coverage_model.cpp   : 376)   Estimated genome size (ignoring repeats): 37449858
+  3:42:21.361    31G / 32G   INFO    General                 (genomic_info_filler.cpp   : 107)   Failed to estimate mean coverage
+  3:42:21.363    31G / 32G   INFO    General                 (genomic_info_filler.cpp   : 119)   EC coverage threshold value was calculated as 57
+  3:42:21.363    31G / 32G   INFO    General                 (genomic_info_filler.cpp   : 120)   Trusted kmer low bound: 0
+  3:42:21.363    31G / 32G   INFO   StageManager             (stage.cpp                 : 126)   STAGE == Simplification
+  3:42:21.519    16G / 32G   WARN    General                 (graph_simplification.hpp  : 670)   Mean coverage wasn't reliably estimated
+  3:42:21.526    16G / 32G   INFO    General                 (graph_simplification.hpp  : 970)   Graph simplification started
+  3:42:21.526    16G / 32G   INFO    General                 (graph_simplification.hpp  : 975)   Fast simplification mode disabled
+  3:42:21.526    16G / 32G   INFO    General                 (graph_simplification.hpp  : 695)   PROCEDURE == Presimplification
+  3:42:21.526    16G / 32G   INFO    General                 (graph_simplification.hpp  : 213)   Removing short low covered self-conjugate connections
+  3:42:28.596    16G / 32G   INFO    General                 (graph_simplification.hpp  : 699)   Further presimplification is disabled
+  3:42:28.596    16G / 32G   INFO    General                 (graph_simplification.hpp  : 925)   PROCEDURE == Simplification cycle, iteration 1
+  3:44:59.386    18G / 32G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  3:51:31.386    17G / 32G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  5:38:58.833    18G / 32G   INFO    General                 (graph_simplification.hpp  : 190)   Removing low covered connections
+  5:54:26.086    17G / 32G   INFO    General                 (graph_simplification.hpp  : 925)   PROCEDURE == Simplification cycle, iteration 2
+  5:55:09.130    17G / 32G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  5:56:23.537    16G / 32G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  6:04:32.490    16G / 32G   INFO    General                 (graph_simplification.hpp  : 190)   Removing low covered connections
+  6:05:29.823    16G / 32G   INFO    General                 (graph_simplification.hpp  : 925)   PROCEDURE == Simplification cycle, iteration 3
+  6:05:48.712    16G / 32G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  6:06:21.504    16G / 32G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  6:08:51.118    16G / 32G   INFO    General                 (graph_simplification.hpp  : 190)   Removing low covered connections
+  6:09:11.746    15G / 32G   INFO    General                 (graph_simplification.hpp  : 925)   PROCEDURE == Simplification cycle, iteration 4
+  6:09:26.683    15G / 32G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  6:09:52.785    15G / 32G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  6:11:01.542    15G / 32G   INFO    General                 (graph_simplification.hpp  : 190)   Removing low covered connections
+  6:11:12.758    15G / 32G   INFO    General                 (graph_simplification.hpp  : 925)   PROCEDURE == Simplification cycle, iteration 5
+  6:11:25.066    15G / 32G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  6:11:46.606    15G / 32G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  6:12:33.401    15G / 32G   INFO    General                 (graph_simplification.hpp  : 190)   Removing low covered connections
+  6:12:42.411    15G / 32G   INFO    General                 (graph_simplification.hpp  : 925)   PROCEDURE == Simplification cycle, iteration 6
+  6:12:54.716    15G / 32G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  6:13:14.569    15G / 32G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  6:13:50.902    15G / 32G   INFO    General                 (graph_simplification.hpp  : 190)   Removing low covered connections
+  6:13:58.211    14G / 32G   INFO    General                 (graph_simplification.hpp  : 925)   PROCEDURE == Simplification cycle, iteration 7
+  6:14:09.447    14G / 32G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  6:14:28.339    14G / 32G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  6:14:59.582    14G / 32G   INFO    General                 (graph_simplification.hpp  : 190)   Removing low covered connections
+  6:15:06.264    14G / 32G   INFO    General                 (graph_simplification.hpp  : 925)   PROCEDURE == Simplification cycle, iteration 8
+  6:15:17.880    14G / 32G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  6:15:35.081    14G / 32G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  6:16:01.547    14G / 32G   INFO    General                 (graph_simplification.hpp  : 190)   Removing low covered connections
+  6:16:07.086    14G / 32G   INFO    General                 (graph_simplification.hpp  : 925)   PROCEDURE == Simplification cycle, iteration 9
+  6:16:17.423    14G / 32G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  6:16:34.614    14G / 32G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  6:16:59.344    14G / 32G   INFO    General                 (graph_simplification.hpp  : 190)   Removing low covered connections
+  6:17:04.774    14G / 32G   INFO    General                 (graph_simplification.hpp  : 925)   PROCEDURE == Simplification cycle, iteration 10
+  6:17:15.605    14G / 32G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  6:17:33.284    14G / 32G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  6:17:55.681    14G / 32G   INFO    General                 (graph_simplification.hpp  : 190)   Removing low covered connections
+  6:18:00.652    14G / 32G   INFO    General                 (graph_simplification.hpp  : 839)   PROCEDURE == Post simplification
+  6:18:00.652    14G / 32G   INFO    General                 (graph_simplification.hpp  : 856)   Iteration 0
+  6:18:00.652    14G / 32G   INFO    General                 (graph_simplification.hpp  : 255)   Removal of relatively low covered connections disabled
+  6:18:00.652    14G / 32G   INFO    General                 (graph_simplification.hpp  : 530)   Complex tip clipping disabled
+  6:18:10.553    14G / 32G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  6:18:26.879    14G / 32G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  6:18:34.889    14G / 32G   INFO    General                 (graph_simplification.hpp  : 856)   Iteration 1
+  6:18:34.889    14G / 32G   INFO    General                 (graph_simplification.hpp  : 255)   Removal of relatively low covered connections disabled
+  6:18:34.889    14G / 32G   INFO    General                 (graph_simplification.hpp  : 530)   Complex tip clipping disabled
+  6:18:44.660    14G / 32G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  6:19:01.336    14G / 32G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  6:19:08.355    14G / 32G   INFO    General                 (graph_simplification.hpp  : 856)   Iteration 2
+  6:19:08.355    14G / 32G   INFO    General                 (graph_simplification.hpp  : 255)   Removal of relatively low covered connections disabled
+  6:19:08.355    14G / 32G   INFO    General                 (graph_simplification.hpp  : 530)   Complex tip clipping disabled
+  6:19:18.212    14G / 32G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  6:19:34.536    14G / 32G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  6:19:44.805    14G / 32G   INFO   StageManager             (stage.cpp                 : 126)   STAGE == Simplification Cleanup
+  6:19:44.807    14G / 32G   INFO    General                 (graph_simplification.hpp  : 406)   Removing isolated edges
+  6:19:44.807    14G / 32G   INFO    General                 (graph_simplification.hpp  : 407)   All edges shorter than 150 will be removed
+  6:19:44.807    14G / 32G   INFO    General                 (graph_simplification.hpp  : 408)   Also edges shorter than 0 and coverage smaller than 2 will be removed
+  6:20:31.886     7G / 32G   INFO    General                 (simplification.cpp        :  75)   Removing all the edges having coverage 0 and less
+  6:20:38.005     7G / 32G   INFO    General                 (simplification.cpp        :  87)   Counting average coverage
+  6:20:38.799     7G / 32G   INFO    General                 (simplification.cpp        :  90)   Average coverage = 57.161
+  6:20:38.799     7G / 32G   INFO   StageManager             (stage.cpp                 : 126)   STAGE == Contig Output
+  6:20:38.799     7G / 32G   INFO    General                 (contig_output.hpp         : 283)   Outputting contigs to /tsl/scratch/rallapag/assemblies/barley/spades//K33/simplified_contigs.fasta
+  6:20:56.194     7G / 32G   INFO    General                 (contig_output.hpp         : 283)   Outputting contigs to /tsl/scratch/rallapag/assemblies/barley/spades//K33/before_rr.fasta
+  6:21:47.748     7G / 32G   INFO    General                 (contig_output.hpp         : 283)   Outputting contigs to /tsl/scratch/rallapag/assemblies/barley/spades//K33/final_contigs.fasta
+  6:22:39.184     7G / 32G   INFO    General                 (launch.hpp                : 107)   SPAdes finished
+  6:23:05.278    64M / 32G   INFO    General                 (main.cpp                  : 167)   Assembling time: 6 hours 23 minutes 5 seconds
+
+== Running assembler: K55
+
+  0:00:00.000     4M / 4M    INFO    General                 (memory_limit.hpp          :  43)   Memory limit set to 250 Gb
+  0:00:00.001     4M / 4M    INFO    General                 (main.cpp                  : 147)   Assembling dataset (/tsl/scratch/rallapag/assemblies/barley/spades/dataset.info) with K=55
+  0:00:00.001     4M / 4M    INFO    General                 (launch.hpp                :  30)   SPAdes started
+  0:00:00.001     4M / 4M    INFO    General                 (launch.hpp                :  31)   Starting from stage: construction
+  0:00:00.001     4M / 4M    INFO    General                 (launch.hpp                :  34)   Two-step RR enabled: 0
+  0:00:00.003     4M / 4M    INFO    General                 (launch.hpp                :  53)   Will need read mapping, kmer mapper will be attached
+  0:00:00.003     4M / 4M    INFO   StageManager             (stage.cpp                 : 126)   STAGE == Construction
+  0:00:00.003     4M / 4M    INFO    General                 (construction.cpp          :  45)   Contigs from previous K will be used
+  0:00:00.071     4M / 4M    INFO    General                 (read_converter.hpp        :  49)   Binary reads detected
+  0:00:00.093     4M / 4M    INFO    General                 (graph_construction.hpp    : 130)   Constructing DeBruijn graph for k=55
+  0:00:00.099     4M / 4M    INFO    General                 (kmer_splitters.hpp        : 179)   Splitting kmer instances into 256 buckets. This might take a while.
+  0:00:00.101     4M / 4M    INFO    General                 (file_limit.hpp            :  30)   Open file limit set to 4096
+  0:00:00.101     4M / 4M    INFO    General                 (kmer_splitters.hpp        : 197)   Memory available for splitting buffers: 5.20825 Gb
+  0:00:00.101     4M / 4M    INFO    General                 (kmer_splitters.hpp        : 206)   Using cell size of 131072
+  0:00:50.887     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 24296527 reads
+  0:01:37.618     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 48680905 reads
+  0:02:26.221     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 73005700 reads
+  0:03:14.815     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 97472135 reads
+  0:04:03.916     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 121793575 reads
+  0:04:51.854     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 146241421 reads
+  0:05:40.007     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 170516632 reads
+  0:06:27.528     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 194946048 reads
+  0:07:14.481     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 219267597 reads
+  0:08:02.654     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 243661574 reads
+  0:08:55.974     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 267990348 reads
+  0:09:26.276     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 235)   Processed 277578374 reads
+  0:09:26.276     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 241)   Adding contigs from previous K
+  0:10:26.249     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 252)   Used 277578374 reads. Maximum read length 101
+  0:10:26.249     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 253)   Average read length 98.8075
+  0:10:28.481    64M / 9G    INFO    General                 (kmer_index.hpp            : 342)   Starting k-mer counting.
+  0:18:00.077    64M / 9G    INFO    General                 (kmer_index.hpp            : 348)   K-mer counting done. There are 943085366 kmers in total.
+  0:18:00.077    64M / 9G    INFO    General                 (kmer_index.hpp            : 350)   Merging temporary buckets.
+  0:21:22.271    64M / 9G    INFO   K-mer Index Building     (kmer_index.hpp            : 464)   Building kmer index
+  0:21:22.271    64M / 9G    INFO    General                 (kmer_splitters.hpp        : 386)   Splitting kmer instances into 256 buckets. This might take a while.
+  0:21:22.273    64M / 9G    INFO    General                 (file_limit.hpp            :  30)   Open file limit set to 4096
+  0:21:22.273    64M / 9G    INFO    General                 (kmer_splitters.hpp        : 404)   Memory available for splitting buffers: 5.20703 Gb
+  0:21:22.273    64M / 9G    INFO    General                 (kmer_splitters.hpp        : 412)   Using cell size of 131072
+  0:23:16.589     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 435)   Processed 268435456 kmers
+  0:25:19.159     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 435)   Processed 536870912 kmers
+  0:27:15.848     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 435)   Processed 805306368 kmers
+  0:28:22.433     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 435)   Processed 943085366 kmers
+  0:28:22.433     8G / 9G    INFO    General                 (kmer_splitters.hpp        : 444)   Used 943085366 kmers.
+  0:28:24.534    64M / 9G    INFO    General                 (kmer_index.hpp            : 342)   Starting k-mer counting.
+  0:31:43.824    64M / 9G    INFO    General                 (kmer_index.hpp            : 348)   K-mer counting done. There are 945138275 kmers in total.
+  0:31:43.824    64M / 9G    INFO    General                 (kmer_index.hpp            : 350)   Merging temporary buckets.
+  0:35:31.180    64M / 9G    INFO   K-mer Index Building     (kmer_index.hpp            : 473)   Building perfect hash indices
+  0:38:24.798   384M / 23G   INFO    General                 (kmer_index.hpp            : 368)   Merging final buckets.
+  0:41:00.211   384M / 23G   INFO   K-mer Index Building     (kmer_index.hpp            : 521)   Index built. Total 308794520 bytes occupied (2.61375 bits per kmer).
+  0:41:01.947     1G / 23G   INFO   DeBruijnExtensionIndexBu (kmer_extension_index.hpp  : 391)   Building k-mer extensions from k+1-mers
+  0:43:38.377     1G / 23G   INFO   DeBruijnExtensionIndexBu (kmer_extension_index.hpp  : 395)   Building k-mer extensions from k+1-mers finished.
+  0:43:38.389     1G / 23G   INFO    General                 (graph_construction.hpp    : 146)   Condensing graph
+  0:43:38.389     1G / 23G   INFO   UnbranchingPathExtractor (debruijn_graph_constructor: 338)   Extracting unbranching paths
+  1:02:06.427     9G / 23G   INFO   UnbranchingPathExtractor (debruijn_graph_constructor: 352)   Extracting unbranching paths finished. 88597488 sequences extracted
+  1:04:12.025     9G / 23G   INFO   UnbranchingPathExtractor (debruijn_graph_constructor: 312)   Collecting perfect loops
+  1:17:30.751     9G / 23G   INFO   UnbranchingPathExtractor (debruijn_graph_constructor: 327)   Collecting perfect loops finished. 220 loops collected
+  1:19:01.444    21G / 27G   INFO    General                 (graph_construction.hpp    : 151)   Building index with from graph
+  1:19:01.451    21G / 27G   INFO   K-mer Index Building     (kmer_index.hpp            : 464)   Building kmer index
+  1:19:01.451    21G / 27G   INFO    General                 (kmer_splitters.hpp        : 296)   Splitting kmer instances into 16 buckets. This might take a while.
+  1:19:01.451    21G / 27G   INFO    General                 (file_limit.hpp            :  30)   Open file limit set to 4096
+  1:19:01.451    21G / 27G   INFO    General                 (kmer_splitters.hpp        : 314)   Memory available for splitting buffers: 76.1146 Gb
+  1:19:01.451    21G / 27G   INFO    General                 (kmer_splitters.hpp        : 319)   Using cell size of 2097152
+  1:19:14.820    22G / 27G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 3151204 edges
+  1:19:28.024    22G / 27G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 6308406 edges
+  1:19:41.333    22G / 27G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 9459381 edges
+  1:19:54.343    22G / 27G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 12612793 edges
+  1:20:07.652    22G / 27G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 15767965 edges
+  1:20:20.991    22G / 27G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 18924670 edges
+  1:20:34.338    22G / 27G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 22080636 edges
+  1:20:47.539    22G / 27G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 25232554 edges
+  1:21:00.680    22G / 27G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 28380574 edges
+  1:21:13.778    22G / 27G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 31531311 edges
+  1:21:26.795    22G / 27G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 34687316 edges
+  1:21:39.838    22G / 27G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 37841327 edges
+  1:21:52.741    22G / 27G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 40990463 edges
+  1:22:05.690    22G / 27G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 44144467 edges
+  1:22:18.688    22G / 27G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 47298244 edges
+  1:22:32.411    22G / 27G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 50451439 edges
+  1:23:51.091    22G / 27G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 69358568 edges
+  1:25:12.781    22G / 27G   INFO    General                 (kmer_splitters.hpp        : 337)   Used 88597708 sequences.
+  1:25:12.843    21G / 27G   INFO    General                 (kmer_index.hpp            : 342)   Starting k-mer counting.
+  1:34:17.721    21G / 27G   INFO    General                 (kmer_index.hpp            : 348)   K-mer counting done. There are 943085366 kmers in total.
+  1:34:17.721    21G / 27G   INFO    General                 (kmer_index.hpp            : 350)   Merging temporary buckets.
+  1:38:47.415    21G / 27G   INFO   K-mer Index Building     (kmer_index.hpp            : 473)   Building perfect hash indices
+  1:55:34.935    22G / 27G   INFO    General                 (kmer_index.hpp            : 368)   Merging final buckets.
+  1:58:06.906    22G / 27G   INFO   K-mer Index Building     (kmer_index.hpp            : 521)   Index built. Total 308123800 bytes occupied (2.61375 bits per kmer).
+  2:32:00.007    43G / 43G   INFO    General                 (edge_index_builders.hpp   :  28)   Collecting k-mer coverage information from graph, this takes a while.
+  3:09:15.410    41G / 43G   INFO    General                 (graph_construction.hpp    : 183)   Filling coverage index
+  3:09:15.410    41G / 43G   INFO    General                 (edge_index_builders.hpp   : 106)   Collecting k-mer coverage information from reads, this takes a while.
+  3:18:31.698    41G / 43G   INFO    General                 (graph_construction.hpp    : 185)   Filling coverage and flanking coverage from index
+  3:23:09.003    41G / 43G   INFO    General                 (construction.cpp          :  34)   Figured out: read length = 101
+  3:23:09.003    41G / 43G   INFO   StageManager             (stage.cpp                 : 126)   STAGE == EC Threshold Finding
+  3:23:43.974    41G / 43G   INFO    General                 (kmer_coverage_model.cpp   : 179)   Kmer coverage valley at: 240
+  3:23:43.978    41G / 43G   INFO    General                 (kmer_coverage_model.cpp   : 199)   K-mer histogram maximum: 242
+  3:23:43.978    41G / 43G   INFO    General                 (kmer_coverage_model.cpp   : 235)   Estimated median coverage: 243. Coverage mad: 2.9652
+  3:23:43.980    41G / 43G   INFO    General                 (kmer_coverage_model.cpp   : 262)   Fitting coverage model
+  3:23:44.840    41G / 43G   INFO    General                 (kmer_coverage_model.cpp   : 297)   ... iteration 2
+  3:23:47.471    41G / 43G   INFO    General                 (kmer_coverage_model.cpp   : 297)   ... iteration 4
+  3:23:54.380    41G / 43G   INFO    General                 (kmer_coverage_model.cpp   : 297)   ... iteration 8
+  3:24:09.999    41G / 43G   INFO    General                 (kmer_coverage_model.cpp   : 297)   ... iteration 16
+  3:24:48.246    41G / 43G   INFO    General                 (kmer_coverage_model.cpp   : 297)   ... iteration 32
+  3:25:34.730    41G / 43G   INFO    General                 (kmer_coverage_model.cpp   : 297)   ... iteration 64
+  3:26:21.837    41G / 43G   INFO    General                 (kmer_coverage_model.cpp   : 310)   Fitted mean coverage: 41.1537. Fitted coverage std. dev: 23.5369
+  3:26:21.837    41G / 43G   WARN    General                 (kmer_coverage_model.cpp   : 328)   Valley value was estimated improperly, reset to 5
+  3:26:21.853    41G / 43G   INFO    General                 (kmer_coverage_model.cpp   : 335)   Probability of erroneous kmer at valley: 1
+  3:26:21.853    41G / 43G   WARN    General                 (kmer_coverage_model.cpp   : 367)   Failed to determine erroneous kmer threshold. Threshold set to: 5
+  3:26:21.853    41G / 43G   INFO    General                 (kmer_coverage_model.cpp   : 376)   Estimated genome size (ignoring repeats): 149171814
+  3:26:21.855    41G / 43G   INFO    General                 (genomic_info_filler.cpp   : 107)   Failed to estimate mean coverage
+  3:26:21.856    41G / 43G   INFO    General                 (genomic_info_filler.cpp   : 119)   EC coverage threshold value was calculated as 5
+  3:26:21.856    41G / 43G   INFO    General                 (genomic_info_filler.cpp   : 120)   Trusted kmer low bound: 0
+  3:26:21.856    41G / 43G   INFO   StageManager             (stage.cpp                 : 126)   STAGE == Gap Closer
+  3:26:21.888    41G / 43G   INFO    General                 (gap_closer.cpp            : 165)   Preparing shift maps
+  3:28:45.217    46G / 46G   INFO    General                 (gap_closer.cpp            : 125)   Processing paired reads (takes a while)
+  3:33:59.066    54G / 54G   INFO    General                 (gap_closer.cpp            : 144)   Used 138104564 paired reads
+  3:33:59.066    54G / 54G   INFO    General                 (gap_closer.cpp            : 146)   Merging paired indices
+  3:36:53.115    43G / 54G   INFO   GapCloser                (gap_closer.cpp            : 403)   Closing short gaps
+  3:44:58.893    43G / 54G   INFO   GapCloser                (gap_closer.cpp            : 432)   Closing short gaps complete: filled 203893 gaps after checking 1975972 candidates
+  3:47:31.914    41G / 54G   INFO   StageManager             (stage.cpp                 : 126)   STAGE == Simplification
+  3:47:32.085    20G / 54G   WARN    General                 (graph_simplification.hpp  : 670)   Mean coverage wasn't reliably estimated
+  3:47:32.096    20G / 54G   INFO    General                 (graph_simplification.hpp  : 970)   Graph simplification started
+  3:47:32.096    20G / 54G   INFO    General                 (graph_simplification.hpp  : 975)   Fast simplification mode disabled
+  3:47:32.096    20G / 54G   INFO    General                 (graph_simplification.hpp  : 695)   PROCEDURE == Presimplification
+  3:47:32.096    20G / 54G   INFO    General                 (graph_simplification.hpp  : 213)   Removing short low covered self-conjugate connections
+  3:47:44.897    20G / 54G   INFO    General                 (graph_simplification.hpp  : 699)   Further presimplification is disabled
+  3:47:44.897    20G / 54G   INFO    General                 (graph_simplification.hpp  : 925)   PROCEDURE == Simplification cycle, iteration 1
+  3:50:58.620    22G / 54G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  4:02:25.041    21G / 54G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  4:25:22.405    27G / 54G   INFO    General                 (graph_simplification.hpp  : 190)   Removing low covered connections
+  4:25:31.129    27G / 54G   INFO    General                 (graph_simplification.hpp  : 925)   PROCEDURE == Simplification cycle, iteration 2
+  4:26:59.922    27G / 54G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  4:29:30.644    27G / 54G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  4:41:29.086    27G / 54G   INFO    General                 (graph_simplification.hpp  : 190)   Removing low covered connections
+  4:43:26.180    27G / 54G   INFO    General                 (graph_simplification.hpp  : 925)   PROCEDURE == Simplification cycle, iteration 3
+  4:44:40.079    27G / 54G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  4:46:46.289    27G / 54G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  4:59:54.090    29G / 54G   INFO    General                 (graph_simplification.hpp  : 190)   Removing low covered connections
+  5:00:42.133    29G / 54G   INFO    General                 (graph_simplification.hpp  : 925)   PROCEDURE == Simplification cycle, iteration 4
+  5:01:42.708    29G / 54G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  5:03:25.870    29G / 54G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  5:11:24.731    29G / 54G   INFO    General                 (graph_simplification.hpp  : 190)   Removing low covered connections
+  5:12:18.646    29G / 54G   INFO    General                 (graph_simplification.hpp  : 925)   PROCEDURE == Simplification cycle, iteration 5
+  5:13:11.699    29G / 54G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  5:14:35.591    29G / 54G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  5:21:02.003    30G / 54G   INFO    General                 (graph_simplification.hpp  : 190)   Removing low covered connections
+  5:21:30.560    30G / 54G   INFO    General                 (graph_simplification.hpp  : 925)   PROCEDURE == Simplification cycle, iteration 6
+  5:22:16.850    30G / 54G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  5:23:32.170    30G / 54G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  5:27:43.577    31G / 54G   INFO    General                 (graph_simplification.hpp  : 190)   Removing low covered connections
+  5:28:10.942    31G / 54G   INFO    General                 (graph_simplification.hpp  : 925)   PROCEDURE == Simplification cycle, iteration 7
+  5:28:53.071    31G / 54G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  5:30:00.824    31G / 54G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  5:33:24.834    31G / 54G   INFO    General                 (graph_simplification.hpp  : 190)   Removing low covered connections
+  5:33:43.191    31G / 54G   INFO    General                 (graph_simplification.hpp  : 925)   PROCEDURE == Simplification cycle, iteration 8
+  5:34:21.838    31G / 54G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  5:35:23.967    31G / 54G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  5:37:57.895    31G / 54G   INFO    General                 (graph_simplification.hpp  : 190)   Removing low covered connections
+  5:38:17.073    31G / 54G   INFO    General                 (graph_simplification.hpp  : 925)   PROCEDURE == Simplification cycle, iteration 9
+  5:38:54.341    31G / 54G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  5:39:56.392    31G / 54G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  5:42:08.841    32G / 54G   INFO    General                 (graph_simplification.hpp  : 190)   Removing low covered connections
+  5:42:25.395    32G / 54G   INFO    General                 (graph_simplification.hpp  : 925)   PROCEDURE == Simplification cycle, iteration 10
+  5:43:02.810    32G / 54G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  5:44:02.927    32G / 54G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  5:45:55.056    32G / 54G   INFO    General                 (graph_simplification.hpp  : 190)   Removing low covered connections
+  5:46:10.719    32G / 54G   INFO    General                 (graph_simplification.hpp  : 839)   PROCEDURE == Post simplification
+  5:46:10.719    32G / 54G   INFO    General                 (graph_simplification.hpp  : 856)   Iteration 0
+  5:46:10.719    32G / 54G   INFO    General                 (graph_simplification.hpp  : 255)   Removal of relatively low covered connections disabled
+  5:46:10.719    32G / 54G   INFO    General                 (graph_simplification.hpp  : 530)   Complex tip clipping disabled
+  5:46:45.999    32G / 54G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  5:47:41.227    32G / 54G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  5:48:37.092    32G / 54G   INFO    General                 (graph_simplification.hpp  : 856)   Iteration 1
+  5:48:37.092    32G / 54G   INFO    General                 (graph_simplification.hpp  : 255)   Removal of relatively low covered connections disabled
+  5:48:37.092    32G / 54G   INFO    General                 (graph_simplification.hpp  : 530)   Complex tip clipping disabled
+  5:49:11.769    32G / 54G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  5:50:08.140    32G / 54G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  5:50:47.232    32G / 54G   INFO    General                 (graph_simplification.hpp  : 856)   Iteration 2
+  5:50:47.232    32G / 54G   INFO    General                 (graph_simplification.hpp  : 255)   Removal of relatively low covered connections disabled
+  5:50:47.232    32G / 54G   INFO    General                 (graph_simplification.hpp  : 530)   Complex tip clipping disabled
+  5:51:22.078    32G / 54G   INFO    General                 (graph_simplification.hpp  :  96)   Clipping tips
+  5:52:17.725    32G / 54G   INFO    General                 (graph_simplification.hpp  : 150)   Removing bulges
+  5:53:07.505    32G / 54G   INFO   StageManager             (stage.cpp                 : 126)   STAGE == Gap Closer
+  5:53:07.505    32G / 54G   INFO    General                 (graph_pack.hpp            :  85)   Index refill
+  5:53:07.540    32G / 54G   INFO   K-mer Index Building     (kmer_index.hpp            : 464)   Building kmer index
+  5:53:07.540    32G / 54G   INFO    General                 (kmer_splitters.hpp        : 296)   Splitting kmer instances into 16 buckets. This might take a while.
+  5:53:07.541    32G / 54G   INFO    General                 (file_limit.hpp            :  30)   Open file limit set to 4096
+  5:53:07.541    32G / 54G   INFO    General                 (kmer_splitters.hpp        : 314)   Memory available for splitting buffers: 72.543 Gb
+  5:53:07.541    32G / 54G   INFO    General                 (kmer_splitters.hpp        : 319)   Using cell size of 2097152
+  5:53:18.979    32G / 54G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 1043591 edges
+  5:53:30.365    32G / 54G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 2088435 edges
+  5:53:41.634    32G / 54G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 3130058 edges
+  5:53:53.008    32G / 54G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 4174103 edges
+  5:54:04.441    32G / 54G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 5214709 edges
+  5:54:16.508    32G / 54G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 6260323 edges
+  5:54:28.218    32G / 54G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 7296557 edges
+  5:54:39.653    32G / 54G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 8340207 edges
+  5:54:51.477    32G / 54G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 9383932 edges
+  5:55:03.805    32G / 54G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 10430700 edges
+  5:55:15.223    32G / 54G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 11469819 edges
+  5:55:26.673    32G / 54G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 12511519 edges
+  5:55:38.370    32G / 54G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 13557147 edges
+  5:55:49.849    32G / 54G   INFO    General                 (kmer_splitters.hpp        : 332)   Processed 14600777 edges
+  5:55:54.010    32G / 54G   INFO    General                 (kmer_splitters.hpp        : 337)   Used 14965569 sequences.
+  5:55:54.015    32G / 54G   INFO    General                 (kmer_index.hpp            : 342)   Starting k-mer counting.
+  6:00:16.761    32G / 54G   INFO    General                 (kmer_index.hpp            : 348)   K-mer counting done. There are 481506291 kmers in total.
+  6:00:16.761    32G / 54G   INFO    General                 (kmer_index.hpp            : 350)   Merging temporary buckets.
+  6:02:31.401    32G / 54G   INFO   K-mer Index Building     (kmer_index.hpp            : 473)   Building perfect hash indices
+  6:08:14.757    32G / 54G   INFO    General                 (kmer_index.hpp            : 368)   Merging final buckets.
+  6:09:32.590    32G / 54G   INFO   K-mer Index Building     (kmer_index.hpp            : 521)   Index built. Total 157317256 bytes occupied (2.61375 bits per kmer).
+  6:10:33.106    43G / 54G   INFO    General                 (edge_index_builders.hpp   :  28)   Collecting k-mer coverage information from graph, this takes a while.
+  6:28:39.974    43G / 54G   INFO    General                 (gap_closer.cpp            : 165)   Preparing shift maps
+  6:30:07.473    44G / 54G   INFO    General                 (gap_closer.cpp            : 125)   Processing paired reads (takes a while)
+  6:39:08.909    48G / 54G   INFO    General                 (gap_closer.cpp            : 144)   Used 138104564 paired reads
+  6:39:08.909    48G / 54G   INFO    General                 (gap_closer.cpp            : 146)   Merging paired indices
+  6:40:21.865    43G / 54G   INFO   GapCloser                (gap_closer.cpp            : 403)   Closing short gaps
+  6:41:31.866    43G / 54G   INFO   GapCloser                (gap_closer.cpp            : 432)   Closing short gaps complete: filled 13777 gaps after checking 827143 candidates
+  6:42:11.145    43G / 54G   INFO   StageManager             (stage.cpp                 : 126)   STAGE == Simplification Cleanup
+  6:42:11.146    43G / 54G   INFO    General                 (graph_simplification.hpp  : 406)   Removing isolated edges
+  6:42:11.147    43G / 54G   INFO    General                 (graph_simplification.hpp  : 407)   All edges shorter than 150 will be removed
+  6:42:11.147    43G / 54G   INFO    General                 (graph_simplification.hpp  : 408)   Also edges shorter than 0 and coverage smaller than 2 will be removed
+  6:52:59.961    38G / 54G   INFO    General                 (simplification.cpp        :  75)   Removing all the edges having coverage 0 and less
+  6:53:17.206    38G / 54G   INFO    General                 (simplification.cpp        :  87)   Counting average coverage
+  6:53:19.268    38G / 54G   INFO    General                 (simplification.cpp        :  90)   Average coverage = 28.2266
+  6:53:19.268    38G / 54G   INFO   StageManager             (stage.cpp                 : 126)   STAGE == Mismatch Correction
+  7:20:34.334    63G / 63G   INFO    General                 (mismatch_shall_not_pass.hp: 189)   Finished collecting potential mismatches positions
+  7:23:30.874    40G / 63G   INFO    General                 (mismatch_shall_not_pass.hp: 292)   All edges processed
+  7:23:41.026    38G / 63G   INFO    General                 (mismatch_correction.cpp   :  19)   Corrected 3685 nucleotides
+  7:23:41.026    38G / 63G   INFO   StageManager             (stage.cpp                 : 126)   STAGE == Paired Information Counting
+  7:23:55.596    39G / 63G   INFO    General                 (pair_info_count.cpp       : 166)   Min edge length for estimation: 549
+  7:23:55.596    39G / 63G   INFO    General                 (pair_info_count.cpp       : 168)   Estimating insert size for library #0
+  7:23:55.596    39G / 63G   INFO    General                 (pair_info_count.cpp       :  32)   Estimating insert size (takes a while)
+  7:23:55.605    39G / 63G   INFO    General                 (short_read_mapper.hpp     :  93)   Selecting usual mapper
+  7:24:10.180    39G / 63G   INFO    General                 (sequence_mapper_notifier.h:  82)   Processed 200000 reads
+  7:24:10.264    39G / 63G   INFO    General                 (sequence_mapper_notifier.h:  82)   Processed 400000 reads
+  7:24:10.591    39G / 63G   INFO    General                 (sequence_mapper_notifier.h:  82)   Processed 600000 reads
+  7:24:10.629    39G / 63G   INFO    General                 (sequence_mapper_notifier.h:  82)   Processed 800000 reads
+  7:24:10.773    39G / 63G   INFO    General                 (sequence_mapper_notifier.h:  82)   Processed 1000000 reads
+  7:24:10.850    39G / 63G   INFO    General                 (sequence_mapper_notifier.h:  82)   Processed 1200000 reads
+  7:24:11.023    39G / 63G   INFO    General                 (sequence_mapper_notifier.h:  82)   Processed 2200000 reads
+  7:24:26.192    39G / 63G   INFO    General                 (sequence_mapper_notifier.h:  82)   Processed 4200000 reads
+  7:24:42.201    39G / 63G   INFO    General                 (sequence_mapper_notifier.h:  82)   Processed 8400000 reads
+  7:25:27.420    39G / 63G   INFO    General                 (sequence_mapper_notifier.h:  82)   Processed 16800000 reads
+  7:26:44.654    39G / 63G   INFO    General                 (sequence_mapper_notifier.h:  82)   Processed 33600000 reads
+  7:29:23.170    39G / 63G   INFO    General                 (sequence_mapper_notifier.h:  82)   Processed 67231536 reads
+  7:29:33.906    39G / 63G   INFO    General                 (sequence_mapper_notifier.h:  90)   Processed 69052282 reads
+  7:29:33.906    39G / 63G   INFO    General                 (pair_info_count.cpp       :  43)   31361974 paired reads (45.4177% of all) aligned to long edges
+  7:29:33.908    39G / 63G   INFO    General                 (pair_info_count.cpp       : 186)     Estimated insert size for paired library #0
+  7:29:33.908    39G / 63G   INFO    General                 (pair_info_count.cpp       : 191)     Insert size = 225.751, deviation = 52.5591, left quantile = 153, right quantile = 294, read length = 101
+  7:29:33.908    39G / 63G   INFO    General                 (pair_info_count.cpp       : 197)   Mapping library #0
+  7:29:33.908    39G / 63G   INFO    General                 (pair_info_count.cpp       : 207)   Mapping paired reads (takes a while)
+  7:29:33.908    39G / 63G   INFO    General                 (pair_info_count.cpp       :  84)   Left insert size qauntile 153, right insert size quantile 294
+  7:29:33.917    39G / 63G   INFO    General                 (short_read_mapper.hpp     :  93)   Selecting usual mapper
+  7:31:57.010    43G / 63G   INFO    General                 (sequence_mapper_notifier.h:  82)   Processed 200000 reads
+  7:32:15.462    43G / 63G   INFO    General                 (sequence_mapper_notifier.h:  82)   Processed 400000 reads
+  7:32:35.958    43G / 63G   INFO    General                 (sequence_mapper_notifier.h:  82)   Processed 600000 reads
+  7:32:56.296    44G / 63G   INFO    General                 (sequence_mapper_notifier.h:  82)   Processed 800000 reads
+  7:33:17.441    44G / 63G   INFO    General                 (sequence_mapper_notifier.h:  82)   Processed 1000000 reads
+  7:33:40.195    44G / 63G   INFO    General                 (sequence_mapper_notifier.h:  82)   Processed 1200000 reads
+  7:35:36.689    46G / 63G   INFO    General                 (sequence_mapper_notifier.h:  82)   Processed 2200000 reads
+  7:39:50.144    48G / 63G   INFO    General                 (sequence_mapper_notifier.h:  82)   Processed 4200000 reads
+  7:49:23.522    52G / 63G   INFO    General                 (sequence_mapper_notifier.h:  82)   Processed 8400000 reads
+  8:08:54.171    58G / 63G   INFO    General                 (sequence_mapper_notifier.h:  82)   Processed 16800000 reads
+  8:51:50.462    68G / 68G   INFO    General                 (sequence_mapper_notifier.h:  82)   Processed 33600000 reads
+ 10:19:40.375    82G / 82G   INFO    General                 (sequence_mapper_notifier.h:  82)   Processed 67200000 reads
+ 13:07:27.293   102G / 102G  INFO    General                 (sequence_mapper_notifier.h:  82)   Processed 134400000 reads
+ 13:16:28.995    96G / 102G  INFO    General                 (sequence_mapper_notifier.h:  90)   Processed 138104564 reads
+ 13:18:30.647    96G / 102G  INFO    General                 (split_graph_pair_info.hpp : 351)   Threshold for paired information 0.0703762
+ 13:21:24.503    69G / 102G  INFO   StageManager             (stage.cpp                 : 126)   STAGE == Distance Estimation
+ 13:21:24.504    69G / 102G  INFO    General                 (distance_estimation.cpp   : 235)   Processing library #0
+ 13:21:24.522    69G / 102G  INFO    General                 (distance_estimation.cpp   : 137)   Weight Filter Done
+ 13:21:24.522    69G / 102G  INFO   DistanceEstimator        (distance_estimation.hpp   : 188)   Using SIMPLE distance estimator
+ 18:00:45.863   129G / 129G  INFO   DistanceEstimator        (distance_estimation.hpp   : 209)   Merging maps
+ 19:18:17.700   120G / 133G  INFO    General                 (distance_estimation.cpp   :  39)   Filtering info
+ 19:48:37.772   120G / 133G  INFO    General                 (pair_info_filters.hpp     : 355)   Pruning the index
+ 19:50:05.742   120G / 133G  INFO    General                 (distance_estimation.cpp   : 185)   Refining clustered pair information
+ 19:51:23.958   120G / 133G  INFO    General                 (distance_estimation.cpp   : 187)   The refining of clustered pair information has been finished
+ 19:51:23.958   120G / 133G  INFO    General                 (distance_estimation.cpp   : 189)   Improving paired information
+ 23:37:18.223   120G / 133G  INFO   PairInfoImprover         (pair_info_improver.hpp    :  62)   Paired info stats: missing = 25632759; contradictional = 40
+ 27:20:04.126   120G / 133G  INFO   PairInfoImprover         (pair_info_improver.hpp    :  62)   Paired info stats: missing = 3987535; contradictional = 0
+ 27:20:04.127   120G / 133G  INFO    General                 (distance_estimation.cpp   : 194)   Filling scaffolding index
+ 27:20:04.127   120G / 133G  INFO   DistanceEstimator        (distance_estimation.hpp   : 188)   Using SMOOTHING distance estimator
+ 31:44:06.718   122G / 133G  INFO   DistanceEstimator        (distance_estimation.hpp   : 209)   Merging maps
+ 31:45:34.067   120G / 133G  INFO    General                 (distance_estimation.cpp   :  39)   Filtering info
+ 31:45:50.908   120G / 133G  INFO    General                 (pair_info_filters.hpp     : 355)   Pruning the index
+ 31:53:26.311    90G / 133G  INFO   StageManager             (stage.cpp                 : 126)   STAGE == Repeat Resolving
+ 31:53:26.311    90G / 133G  INFO    General                 (contig_output.hpp         : 283)   Outputting contigs to /tsl/scratch/rallapag/assemblies/barley/spades//K55/before_rr.fasta
+ 31:55:36.719    90G / 133G  INFO    General                 (repeat_resolving.cpp      :  70)   Using Path-Extend repeat resolving
+ 31:55:36.719    90G / 133G  INFO    General                 (path_extend_launch.hpp    : 461)   ExSPAnder repeat resolving tool started
+ 31:55:36.725    90G / 133G  INFO    General                 (path_extend_launch.hpp    : 471)   SUBSTAGE = paired-end libraries
+ 31:55:36.725    90G / 133G  INFO    General                 (path_extend_launch.hpp    : 321)   Threshold for library #0 is 0.0703762
+ 31:55:39.215    90G / 133G  INFO    General                 (path_extend_launch.hpp    : 423)   Using 1 paired-end library
+ 31:55:39.215    90G / 133G  INFO    General                 (path_extend_launch.hpp    : 424)   Using 1 paired-end scaffolding library
+ 31:55:39.215    90G / 133G  INFO    General                 (path_extend_launch.hpp    : 425)   Using 0 mate-pair libraries
+ 31:55:39.215    90G / 133G  INFO    General                 (path_extend_launch.hpp    : 426)   Using 0 single read libraries
+ 31:55:39.215    90G / 133G  INFO    General                 (path_extend_launch.hpp    : 427)   Scaffolder is on
+ 31:56:11.998    95G / 133G  INFO    General                 (path_extend_launch.hpp    : 482)   Growing paths using paired-end and long single reads
+ 31:56:11.999    95G / 133G  INFO   PathExtender             (path_extender.hpp         : 670)   Processed 0 paths from 1477460 (0%)
+ 31:56:12.036    95G / 133G  INFO   PathExtender             (path_extender.hpp         : 668)   Processed 128 paths from 1477460 (0%)
+ 31:56:12.102    95G / 133G  INFO   PathExtender             (path_extender.hpp         : 668)   Processed 256 paths from 1477460 (0%)
+ 31:56:12.206    95G / 133G  INFO   PathExtender             (path_extender.hpp         : 668)   Processed 512 paths from 1477460 (0%)
+ 31:56:12.434    95G / 133G  INFO   PathExtender             (path_extender.hpp         : 668)   Processed 1024 paths from 1477460 (0%)
+ 31:56:12.785    95G / 133G  INFO   PathExtender             (path_extender.hpp         : 668)   Processed 2048 paths from 1477460 (0%)
+ 31:56:13.576    95G / 133G  INFO   PathExtender             (path_extender.hpp         : 668)   Processed 4096 paths from 1477460 (0%)
+ 31:56:15.102    95G / 133G  INFO   PathExtender             (path_extender.hpp         : 668)   Processed 8192 paths from 1477460 (0%)
+ 31:56:18.085    95G / 133G  INFO   PathExtender             (path_extender.hpp         : 668)   Processed 16384 paths from 1477460 (1%)
+ 31:56:24.854    95G / 133G  INFO   PathExtender             (path_extender.hpp         : 668)   Processed 32768 paths from 1477460 (2%)
+ 31:56:41.931    95G / 133G  INFO   PathExtender             (path_extender.hpp         : 668)   Processed 65536 paths from 1477460 (4%)
+ 31:57:29.928    95G / 133G  INFO   PathExtender             (path_extender.hpp         : 668)   Processed 131072 paths from 1477460 (8%)
+ 31:57:42.676    95G / 133G  INFO   PathExtender             (path_extender.hpp         : 670)   Processed 147747 paths from 1477460 (10%)
+ 31:59:20.306    96G / 133G  INFO   PathExtender             (path_extender.hpp         : 668)   Processed 262144 paths from 1477460 (17%)
+ 31:59:48.695    96G / 133G  INFO   PathExtender             (path_extender.hpp         : 670)   Processed 295494 paths from 1477460 (20%)
+ 32:07:47.279    96G / 133G  INFO   PathExtender             (path_extender.hpp         : 670)   Processed 443241 paths from 1477460 (30%)
+ 32:25:21.664    97G / 133G  INFO   PathExtender             (path_extender.hpp         : 668)   Processed 524288 paths from 1477460 (35%)
+ 32:39:33.033    97G / 133G  INFO   PathExtender             (path_extender.hpp         : 670)   Processed 590988 paths from 1477460 (40%)
+ 33:04:31.521    97G / 133G  INFO   PathExtender             (path_extender.hpp         : 670)   Processed 738735 paths from 1477460 (50%)
+ 33:20:37.966    98G / 133G  INFO   PathExtender             (path_extender.hpp         : 670)   Processed 886482 paths from 1477460 (60%)
+ 33:31:37.978    98G / 133G  INFO   PathExtender             (path_extender.hpp         : 670)   Processed 1034229 paths from 1477460 (70%)
+ 33:32:37.628    98G / 133G  INFO   PathExtender             (path_extender.hpp         : 668)   Processed 1048576 paths from 1477460 (70%)
+ 33:38:32.142    98G / 133G  INFO   PathExtender             (path_extender.hpp         : 670)   Processed 1181976 paths from 1477460 (80%)
+ 33:42:04.676    98G / 133G  INFO   PathExtender             (path_extender.hpp         : 670)   Processed 1329723 paths from 1477460 (90%)
+ 33:50:44.536   102G / 133G  INFO   PathExtendIO             (pe_io.hpp                 : 339)   Constructing FASTG file from paths
+ 33:51:42.226   102G / 133G  INFO   PathExtendIO             (pe_io.hpp                 : 342)   Writing contigs in FASTG to /tsl/scratch/rallapag/assemblies/barley/spades//K55/final_contigs.fastg
+ 33:51:42.226   102G / 133G  INFO   PathExtendIO             (pe_io.hpp                 : 343)   Writing contigs in FASTA to /tsl/scratch/rallapag/assemblies/barley/spades//K55/final_contigs.fasta
+ 33:53:17.767   102G / 133G  INFO   PathExtendIO             (pe_io.hpp                 : 339)   Constructing FASTG file from paths
+ 33:54:26.556   102G / 133G  INFO   PathExtendIO             (pe_io.hpp                 : 342)   Writing contigs in FASTG to /tsl/scratch/rallapag/assemblies/barley/spades//K55/path_extend/pe_before_traversal.fastg
+ 33:54:26.556   102G / 133G  INFO   PathExtendIO             (pe_io.hpp                 : 343)   Writing contigs in FASTA to /tsl/scratch/rallapag/assemblies/barley/spades//K55/path_extend/pe_before_traversal.fasta
+ 33:56:08.248   102G / 133G  INFO    General                 (path_extend_launch.hpp    : 222)   Traversing tandem repeats
+ 33:56:55.585   102G / 133G  INFO   PathExtendIO             (pe_io.hpp                 : 339)   Constructing FASTG file from paths
+ 33:58:05.322   102G / 133G  INFO   PathExtendIO             (pe_io.hpp                 : 342)   Writing contigs in FASTG to /tsl/scratch/rallapag/assemblies/barley/spades//K55/scaffolds.fastg
+ 33:58:05.322   102G / 133G  INFO   PathExtendIO             (pe_io.hpp                 : 343)   Writing contigs in FASTA to /tsl/scratch/rallapag/assemblies/barley/spades//K55/scaffolds.fasta
+ 34:00:04.917   100G / 133G  INFO    General                 (launch.hpp                : 107)   SPAdes finished
+ 34:07:01.673    12G / 133G  INFO    General                 (main.cpp                  : 167)   Assembling time: 34 hours 7 minutes 1 seconds
+
+===== Assembling finished. 
+
+
+===== Mismatch correction started.
+
+== Processing of contigs
+
+
+== Running contig polishing tool: /tsl/software/testing/spades/3.6.0/x86_64/bin/corrector /tsl/scratch/rallapag/assemblies/barley/spades/mismatch_corrector/contigs/configs/corrector.info /tsl/scratch/rallapag/assemblies/barley/spades/misc/assembled_contigs.fasta
+
+
+== Dataset description file was created: /tsl/scratch/rallapag/assemblies/barley/spades/mismatch_corrector/contigs/configs/corrector.info
+
+  0:00:00.020     4M / 4M    INFO    General                 (dataset_processor.cpp     : 236)   Splitting assembly...
+  0:00:00.021     4M / 4M    INFO    General                 (dataset_processor.cpp     : 237)   Assembly file: /tsl/scratch/rallapag/assemblies/barley/spades/misc/assembled_contigs.fasta
+  1:08:59.466   680M / 680M  INFO    General                 (dataset_processor.cpp     : 244)   Processing paired sublib of number 0
+  1:08:59.466   680M / 680M  INFO    General                 (dataset_processor.cpp     : 247)   /tsl/scratch/rallapag/assemblies/barley/ERR430660_1.fastq.gz /tsl/scratch/rallapag/assemblies/barley/ERR430660_2.fastq.gz
+  1:08:59.468   680M / 680M  INFO    General                 (dataset_processor.cpp     : 143)   Running bwa index ...: /tsl/software/testing/spades/3.6.0/x86_64/bin/bwa-spades index -a is /tsl/scratch/rallapag/assemblies/barley/spades/misc/assembled_contigs.fasta  2>/tsl/scratch/rallapag/assemblies/barley/spades/mismatch_corrector/contigs/tmp/lib0_qfDaaL/bwa.flood
+  1:15:42.007   680M / 680M  INFO    General                 (dataset_processor.cpp     : 166)   Running bwa mem ...:/tsl/software/testing/spades/3.6.0/x86_64/bin/bwa-spades mem /tsl/scratch/rallapag/assemblies/barley/spades/misc/assembled_contigs.fasta /tsl/scratch/rallapag/assemblies/barley/ERR430660_1.fastq.gz /tsl/scratch/rallapag/assemblies/barley/ERR430660_2.fastq.gz  > /tsl/scratch/rallapag/assemblies/barley/spades/mismatch_corrector/contigs/tmp/lib0_qfDaaL/tmp.sam 2>/tsl/scratch/rallapag/assemblies/barley/spades/mismatch_corrector/contigs/tmp/lib0_qfDaaL/isize.txt
+ 15:02:43.852   680M / 680M  INFO    General                 (dataset_processor.cpp     : 250)   Adding samfile /tsl/scratch/rallapag/assemblies/barley/spades/mismatch_corrector/contigs/tmp/lib0_qfDaaL/tmp.sam
+ 16:25:22.903   920M / 920M  INFO    General                 (dataset_processor.cpp     : 105)   processed 1000000reads, flushing
+ 17:21:30.358   924M / 924M  INFO    General                 (dataset_processor.cpp     : 105)   processed 2000000reads, flushing
+ 18:14:50.623   924M / 924M  INFO    General                 (dataset_processor.cpp     : 105)   processed 3000000reads, flushing
+ 18:50:11.824   928M / 928M  INFO    General                 (dataset_processor.cpp     : 105)   processed 4000000reads, flushing
+ 19:20:11.953   928M / 928M  INFO    General                 (dataset_processor.cpp     : 105)   processed 5000000reads, flushing
+ 19:38:02.250   928M / 928M  INFO    General                 (dataset_processor.cpp     : 105)   processed 6000000reads, flushing
+ 19:52:19.889   928M / 928M  INFO    General                 (dataset_processor.cpp     : 105)   processed 7000000reads, flushing
+ 20:07:58.336   928M / 932M  INFO    General                 (dataset_processor.cpp     : 105)   processed 8000000reads, flushing
+ 20:22:40.900   932M / 932M  INFO    General                 (dataset_processor.cpp     : 105)   processed 9000000reads, flushing
+ 20:36:24.518   932M / 932M  INFO    General                 (dataset_processor.cpp     : 105)   processed 10000000reads, flushing
+ 20:50:02.256   932M / 932M  INFO    General                 (dataset_processor.cpp     : 105)   processed 11000000reads, flushing
+ 21:03:22.670   932M / 932M  INFO    General                 (dataset_processor.cpp     : 105)   processed 12000000reads, flushing
+ 21:18:46.012   932M / 932M  INFO    General                 (dataset_processor.cpp     : 105)   processed 13000000reads, flushing
+ 21:34:05.234   932M / 932M  INFO    General                 (dataset_processor.cpp     : 105)   processed 14000000reads, flushing
+ 21:48:26.282   932M / 932M  INFO    General                 (dataset_processor.cpp     : 105)   processed 15000000reads, flushing
+ 22:03:20.931   932M / 932M  INFO    General                 (dataset_processor.cpp     : 105)   processed 16000000reads, flushing
+ 22:18:41.844   932M / 932M  INFO    General                 (dataset_processor.cpp     : 105)   processed 17000000reads, flushing
+ 22:32:35.248   932M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 18000000reads, flushing
+ 22:45:52.867   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 19000000reads, flushing
+ 22:59:17.453   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 20000000reads, flushing
+ 23:11:59.949   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 21000000reads, flushing
+ 23:25:11.127   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 22000000reads, flushing
+ 23:38:16.525   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 23000000reads, flushing
+ 23:50:59.017   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 24000000reads, flushing
+ 24:09:12.931   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 25000000reads, flushing
+ 24:25:47.206   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 26000000reads, flushing
+ 24:39:49.019   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 27000000reads, flushing
+ 24:53:25.628   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 28000000reads, flushing
+ 25:06:32.943   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 29000000reads, flushing
+ 25:23:11.516   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 30000000reads, flushing
+ 25:37:19.072   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 31000000reads, flushing
+ 25:52:02.031   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 32000000reads, flushing
+ 26:12:36.501   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 33000000reads, flushing
+ 26:28:30.502   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 34000000reads, flushing
+ 26:42:53.717   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 35000000reads, flushing
+ 26:57:04.969   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 36000000reads, flushing
+ 27:11:08.995   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 37000000reads, flushing
+ 27:25:41.747   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 38000000reads, flushing
+ 27:39:35.279   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 39000000reads, flushing
+ 27:54:29.365   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 40000000reads, flushing
+ 28:20:24.709   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 41000000reads, flushing
+ 28:39:38.981   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 42000000reads, flushing
+ 28:56:48.239   936M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 43000000reads, flushing
+ 29:15:09.178   936M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 44000000reads, flushing
+ 29:33:49.025   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 45000000reads, flushing
+ 29:53:17.658   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 46000000reads, flushing
+ 30:17:28.864   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 47000000reads, flushing
+ 30:36:07.759   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 48000000reads, flushing
+ 30:55:45.589   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 49000000reads, flushing
+ 31:13:49.470   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 50000000reads, flushing
+ 31:39:06.729   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 51000000reads, flushing
+ 32:00:03.082   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 52000000reads, flushing
+ 32:32:08.588   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 53000000reads, flushing
+ 32:55:24.185   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 54000000reads, flushing
+ 33:13:00.756   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 55000000reads, flushing
+ 33:31:12.244   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 56000000reads, flushing
+ 33:50:00.250   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 57000000reads, flushing
+ 34:16:00.924   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 58000000reads, flushing
+ 34:40:38.500   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 59000000reads, flushing
+ 35:03:17.017   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 60000000reads, flushing
+ 35:23:27.783   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 61000000reads, flushing
+ 35:39:17.252   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 62000000reads, flushing
+ 35:54:50.421   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 63000000reads, flushing
+ 36:13:09.149   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 64000000reads, flushing
+ 36:26:50.098   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 65000000reads, flushing
+ 36:42:05.911   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 66000000reads, flushing
+ 36:55:22.666   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 67000000reads, flushing
+ 37:12:01.074   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 68000000reads, flushing
+ 37:29:53.991   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 69000000reads, flushing
+ 37:48:08.811   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 70000000reads, flushing
+ 38:07:38.586   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 71000000reads, flushing
+ 38:26:10.359   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 72000000reads, flushing
+ 38:44:37.519   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 73000000reads, flushing
+ 39:02:39.936   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 74000000reads, flushing
+ 39:20:15.150   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 75000000reads, flushing
+ 39:38:17.418   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 76000000reads, flushing
+ 39:55:36.208   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 77000000reads, flushing
+ 40:26:44.733   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 78000000reads, flushing
+ 41:02:38.695   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 79000000reads, flushing
+ 41:40:27.486   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 80000000reads, flushing
+ 42:10:46.194   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 81000000reads, flushing
+ 42:39:04.742   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 82000000reads, flushing
+ 43:07:03.499   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 83000000reads, flushing
+ 43:22:36.409   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 84000000reads, flushing
+ 43:36:14.398   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 85000000reads, flushing
+ 43:50:41.106   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 86000000reads, flushing
+ 44:04:28.664   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 87000000reads, flushing
+ 44:19:05.042   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 88000000reads, flushing
+ 44:32:22.216   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 89000000reads, flushing
+ 44:45:56.981   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 90000000reads, flushing
+ 44:59:39.277   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 91000000reads, flushing
+ 45:15:05.241   940M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 92000000reads, flushing
+ 45:30:50.178   940M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 93000000reads, flushing
+ 45:46:09.731   940M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 94000000reads, flushing
+ 46:01:32.785   940M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 95000000reads, flushing
+ 46:16:47.124   940M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 96000000reads, flushing
+ 46:31:40.106   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 97000000reads, flushing
+ 46:45:45.323   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 98000000reads, flushing
+ 46:59:21.781   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 99000000reads, flushing
+ 47:12:51.456   940M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 100000000reads, flushing
+ 47:26:28.646   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 101000000reads, flushing
+ 47:39:55.608   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 102000000reads, flushing
+ 47:53:21.209   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 103000000reads, flushing
+ 48:14:59.045   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 104000000reads, flushing
+ 48:31:02.724   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 105000000reads, flushing
+ 48:46:28.837   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 106000000reads, flushing
+ 49:00:54.798   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 107000000reads, flushing
+ 49:16:39.133   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 108000000reads, flushing
+ 49:33:25.292   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 109000000reads, flushing
+ 49:47:48.052   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 110000000reads, flushing
+ 50:04:57.273   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 111000000reads, flushing
+ 50:20:51.887   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 112000000reads, flushing
+ 50:37:16.417   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 113000000reads, flushing
+ 50:52:43.863   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 114000000reads, flushing
+ 51:06:30.185   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 115000000reads, flushing
+ 51:20:15.544   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 116000000reads, flushing
+ 51:33:31.403   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 117000000reads, flushing
+ 51:46:33.756   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 118000000reads, flushing
+ 52:01:23.102   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 119000000reads, flushing
+ 52:21:10.170   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 120000000reads, flushing
+ 52:54:30.102   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 121000000reads, flushing
+ 53:13:00.727   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 122000000reads, flushing
+ 53:32:10.650   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 123000000reads, flushing
+ 53:50:27.563   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 124000000reads, flushing
+ 54:14:59.201   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 125000000reads, flushing
+ 54:35:20.945   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 126000000reads, flushing
+ 54:53:48.162   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 127000000reads, flushing
+ 55:19:33.322   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 128000000reads, flushing
+ 56:01:35.299   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 129000000reads, flushing
+ 56:56:30.493   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 130000000reads, flushing
+ 57:48:05.828   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 131000000reads, flushing
+ 58:35:44.742   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 132000000reads, flushing
+ 59:15:32.479   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 133000000reads, flushing
+ 59:42:02.399   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 134000000reads, flushing
+ 60:03:11.707   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 135000000reads, flushing
+ 60:20:50.467   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 136000000reads, flushing
+ 60:36:00.807   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 137000000reads, flushing
+ 60:50:41.253   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 138000000reads, flushing
+ 61:04:47.854   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 139000000reads, flushing
+ 61:21:42.002   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 140000000reads, flushing
+ 61:38:52.457   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 141000000reads, flushing
+ 61:54:24.520   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 142000000reads, flushing
+ 62:15:06.112   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 143000000reads, flushing
+ 62:38:18.375   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 144000000reads, flushing
+ 63:03:08.044   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 145000000reads, flushing
+ 63:26:52.286   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 146000000reads, flushing
+ 63:51:47.858   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 147000000reads, flushing
+ 64:19:32.319   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 148000000reads, flushing
+ 64:44:22.409   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 149000000reads, flushing
+ 65:12:14.803   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 150000000reads, flushing
+ 65:44:22.967   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 151000000reads, flushing
+ 66:12:22.325   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 152000000reads, flushing
+ 66:39:11.895   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 153000000reads, flushing
+ 67:04:35.361   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 154000000reads, flushing
+ 67:34:55.735   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 155000000reads, flushing
+ 68:04:44.216   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 156000000reads, flushing
+ 68:33:07.535   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 157000000reads, flushing
+ 69:00:43.333   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 158000000reads, flushing
+ 69:35:31.046   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 159000000reads, flushing
+ 70:10:39.537   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 160000000reads, flushing
+ 70:39:14.280   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 161000000reads, flushing
+ 71:03:04.697   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 162000000reads, flushing
+ 71:25:45.843   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 163000000reads, flushing
+ 71:51:39.920   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 164000000reads, flushing
+ 72:21:29.527   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 165000000reads, flushing
+ 72:46:28.909   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 166000000reads, flushing
+ 73:15:13.245   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 167000000reads, flushing
+ 73:37:09.539   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 168000000reads, flushing
+ 73:56:28.533   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 169000000reads, flushing
+ 74:20:07.745   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 170000000reads, flushing
+ 74:38:26.856   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 171000000reads, flushing
+ 74:53:22.091   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 172000000reads, flushing
+ 75:09:37.855   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 173000000reads, flushing
+ 75:24:40.712   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 174000000reads, flushing
+ 75:39:31.137   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 175000000reads, flushing
+ 76:07:55.080   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 176000000reads, flushing
+ 76:56:14.130   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 177000000reads, flushing
+ 77:28:34.264   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 178000000reads, flushing
+ 78:00:41.798   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 179000000reads, flushing
+ 78:41:31.963   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 180000000reads, flushing
+ 79:23:16.811   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 181000000reads, flushing
+ 80:11:31.703   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 182000000reads, flushing
+ 81:05:39.000   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 183000000reads, flushing
+ 81:45:47.633   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 184000000reads, flushing
+ 82:19:04.276   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 185000000reads, flushing
+ 82:46:50.442   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 186000000reads, flushing
+ 83:02:00.357   916M / 944M  INFO    General                 (dataset_processor.cpp     : 276)   Processing contigs
+ 83:02:38.574     1G / 1G    INFO    General                 (dataset_processor.cpp     : 292)   Contig NODE_3_length_20494_cov_20.2602_ID_19071916 processed with 3 changes in thread 10
+ 83:02:46.111     1G / 1G    INFO    General                 (dataset_processor.cpp     : 292)   Contig NODE_1_length_26101_cov_30.1262_ID_19071912 processed with 3 changes in thread 6
+ 83:02:49.545     1G / 1G    INFO    General                 (dataset_processor.cpp     : 292)   Contig NODE_2_length_22115_cov_11.7724_ID_19071914 processed with 0 changes in thread 13
+ 85:43:52.810   988M / 1G    INFO    General                 (dataset_processor.cpp     : 296)   Gluing processed contigs
+ 87:19:29.498   972M / 1G    INFO    General                 (main.cpp                  :  55)   Correcting time: 87 hours 19 minutes 29 seconds
+
+== Processing of scaffolds
+
+
+== Running contig polishing tool: /tsl/software/testing/spades/3.6.0/x86_64/bin/corrector /tsl/scratch/rallapag/assemblies/barley/spades/mismatch_corrector/scaffolds/configs/corrector.info /tsl/scratch/rallapag/assemblies/barley/spades/misc/assembled_scaffolds.fasta
+
+
+== Dataset description file was created: /tsl/scratch/rallapag/assemblies/barley/spades/mismatch_corrector/scaffolds/configs/corrector.info
+
+  0:00:00.019     4M / 4M    INFO    General                 (dataset_processor.cpp     : 236)   Splitting assembly...
+  0:00:00.021     4M / 4M    INFO    General                 (dataset_processor.cpp     : 237)   Assembly file: /tsl/scratch/rallapag/assemblies/barley/spades/misc/assembled_scaffolds.fasta
+  1:31:38.103   680M / 680M  INFO    General                 (dataset_processor.cpp     : 244)   Processing paired sublib of number 0
+  1:31:38.110   680M / 680M  INFO    General                 (dataset_processor.cpp     : 247)   /tsl/scratch/rallapag/assemblies/barley/ERR430660_1.fastq.gz /tsl/scratch/rallapag/assemblies/barley/ERR430660_2.fastq.gz
+  1:31:38.115   680M / 680M  INFO    General                 (dataset_processor.cpp     : 143)   Running bwa index ...: /tsl/software/testing/spades/3.6.0/x86_64/bin/bwa-spades index -a is /tsl/scratch/rallapag/assemblies/barley/spades/misc/assembled_scaffolds.fasta  2>/tsl/scratch/rallapag/assemblies/barley/spades/mismatch_corrector/scaffolds/tmp/lib0_vTlDd9/bwa.flood
+  1:41:43.218   680M / 680M  INFO    General                 (dataset_processor.cpp     : 166)   Running bwa mem ...:/tsl/software/testing/spades/3.6.0/x86_64/bin/bwa-spades mem /tsl/scratch/rallapag/assemblies/barley/spades/misc/assembled_scaffolds.fasta /tsl/scratch/rallapag/assemblies/barley/ERR430660_1.fastq.gz /tsl/scratch/rallapag/assemblies/barley/ERR430660_2.fastq.gz  > /tsl/scratch/rallapag/assemblies/barley/spades/mismatch_corrector/scaffolds/tmp/lib0_vTlDd9/tmp.sam 2>/tsl/scratch/rallapag/assemblies/barley/spades/mismatch_corrector/scaffolds/tmp/lib0_vTlDd9/isize.txt
+ 16:53:50.154   680M / 680M  INFO    General                 (dataset_processor.cpp     : 250)   Adding samfile /tsl/scratch/rallapag/assemblies/barley/spades/mismatch_corrector/scaffolds/tmp/lib0_vTlDd9/tmp.sam
+ 19:12:31.196   920M / 920M  INFO    General                 (dataset_processor.cpp     : 105)   processed 1000000reads, flushing
+ 19:42:31.208   924M / 924M  INFO    General                 (dataset_processor.cpp     : 105)   processed 2000000reads, flushing
+ 20:11:59.411   924M / 924M  INFO    General                 (dataset_processor.cpp     : 105)   processed 3000000reads, flushing
+ 20:38:39.372   928M / 928M  INFO    General                 (dataset_processor.cpp     : 105)   processed 4000000reads, flushing
+ 21:09:34.915   928M / 928M  INFO    General                 (dataset_processor.cpp     : 105)   processed 5000000reads, flushing
+ 21:33:11.859   928M / 928M  INFO    General                 (dataset_processor.cpp     : 105)   processed 6000000reads, flushing
+ 21:52:47.735   928M / 928M  INFO    General                 (dataset_processor.cpp     : 105)   processed 7000000reads, flushing
+ 22:11:35.533   928M / 928M  INFO    General                 (dataset_processor.cpp     : 105)   processed 8000000reads, flushing
+ 22:29:08.270   932M / 932M  INFO    General                 (dataset_processor.cpp     : 105)   processed 9000000reads, flushing
+ 22:46:40.483   932M / 932M  INFO    General                 (dataset_processor.cpp     : 105)   processed 10000000reads, flushing
+ 23:03:02.567   932M / 932M  INFO    General                 (dataset_processor.cpp     : 105)   processed 11000000reads, flushing
+ 23:21:12.136   932M / 932M  INFO    General                 (dataset_processor.cpp     : 105)   processed 12000000reads, flushing
+ 23:42:50.504   932M / 932M  INFO    General                 (dataset_processor.cpp     : 105)   processed 13000000reads, flushing
+ 24:03:43.493   932M / 932M  INFO    General                 (dataset_processor.cpp     : 105)   processed 14000000reads, flushing
+ 24:20:33.907   932M / 932M  INFO    General                 (dataset_processor.cpp     : 105)   processed 15000000reads, flushing
+ 24:35:30.424   932M / 932M  INFO    General                 (dataset_processor.cpp     : 105)   processed 16000000reads, flushing
+ 24:55:06.987   932M / 932M  INFO    General                 (dataset_processor.cpp     : 105)   processed 17000000reads, flushing
+ 25:12:45.173   932M / 932M  INFO    General                 (dataset_processor.cpp     : 105)   processed 18000000reads, flushing
+ 25:29:15.111   932M / 932M  INFO    General                 (dataset_processor.cpp     : 105)   processed 19000000reads, flushing
+ 25:54:29.279   932M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 20000000reads, flushing
+ 26:11:52.974   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 21000000reads, flushing
+ 26:28:31.641   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 22000000reads, flushing
+ 26:43:51.780   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 23000000reads, flushing
+ 26:58:29.566   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 24000000reads, flushing
+ 27:15:30.676   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 25000000reads, flushing
+ 27:34:34.586   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 26000000reads, flushing
+ 28:01:52.217   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 27000000reads, flushing
+ 28:26:31.123   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 28000000reads, flushing
+ 28:52:39.780   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 29000000reads, flushing
+ 29:47:41.741   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 30000000reads, flushing
+ 30:31:04.632   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 31000000reads, flushing
+ 30:56:45.593   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 32000000reads, flushing
+ 31:18:32.130   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 33000000reads, flushing
+ 31:46:09.004   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 34000000reads, flushing
+ 32:17:06.282   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 35000000reads, flushing
+ 32:51:41.495   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 36000000reads, flushing
+ 33:12:17.073   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 37000000reads, flushing
+ 33:38:03.025   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 38000000reads, flushing
+ 34:14:26.387   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 39000000reads, flushing
+ 34:31:28.241   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 40000000reads, flushing
+ 34:46:38.818   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 41000000reads, flushing
+ 35:01:35.147   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 42000000reads, flushing
+ 35:16:54.731   936M / 936M  INFO    General                 (dataset_processor.cpp     : 105)   processed 43000000reads, flushing
+ 35:30:56.036   936M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 44000000reads, flushing
+ 35:46:43.842   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 45000000reads, flushing
+ 36:01:40.384   936M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 46000000reads, flushing
+ 36:15:34.727   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 47000000reads, flushing
+ 36:29:51.288   936M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 48000000reads, flushing
+ 36:43:25.802   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 49000000reads, flushing
+ 37:01:04.833   936M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 50000000reads, flushing
+ 37:16:50.818   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 51000000reads, flushing
+ 37:32:48.942   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 52000000reads, flushing
+ 37:49:00.529   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 53000000reads, flushing
+ 38:02:59.995   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 54000000reads, flushing
+ 38:16:34.381   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 55000000reads, flushing
+ 38:32:50.899   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 56000000reads, flushing
+ 38:47:42.271   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 57000000reads, flushing
+ 39:02:23.970   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 58000000reads, flushing
+ 39:18:52.236   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 59000000reads, flushing
+ 39:32:56.704   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 60000000reads, flushing
+ 40:01:21.331   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 61000000reads, flushing
+ 40:36:04.732   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 62000000reads, flushing
+ 41:13:00.367   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 63000000reads, flushing
+ 41:46:34.088   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 64000000reads, flushing
+ 42:14:44.408   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 65000000reads, flushing
+ 42:46:59.007   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 66000000reads, flushing
+ 43:05:10.581   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 67000000reads, flushing
+ 43:19:41.221   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 68000000reads, flushing
+ 43:34:16.468   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 69000000reads, flushing
+ 43:48:34.498   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 70000000reads, flushing
+ 44:02:33.013   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 71000000reads, flushing
+ 44:16:15.456   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 72000000reads, flushing
+ 44:30:05.213   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 73000000reads, flushing
+ 44:43:26.218   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 74000000reads, flushing
+ 45:00:41.839   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 75000000reads, flushing
+ 45:16:09.677   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 76000000reads, flushing
+ 45:31:54.269   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 77000000reads, flushing
+ 45:46:52.613   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 78000000reads, flushing
+ 46:01:57.623   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 79000000reads, flushing
+ 46:15:48.442   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 80000000reads, flushing
+ 46:29:15.471   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 81000000reads, flushing
+ 46:42:19.331   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 82000000reads, flushing
+ 46:55:25.013   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 83000000reads, flushing
+ 47:08:55.080   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 84000000reads, flushing
+ 47:21:47.299   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 85000000reads, flushing
+ 47:36:26.617   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 86000000reads, flushing
+ 47:54:56.561   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 87000000reads, flushing
+ 48:12:19.981   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 88000000reads, flushing
+ 48:26:55.358   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 89000000reads, flushing
+ 48:41:07.362   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 90000000reads, flushing
+ 48:58:05.586   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 91000000reads, flushing
+ 49:14:20.554   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 92000000reads, flushing
+ 49:29:56.615   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 93000000reads, flushing
+ 49:49:32.484   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 94000000reads, flushing
+ 50:06:02.724   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 95000000reads, flushing
+ 50:23:56.262   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 96000000reads, flushing
+ 50:40:06.540   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 97000000reads, flushing
+ 50:54:40.712   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 98000000reads, flushing
+ 51:09:00.268   940M / 940M  INFO    General                 (dataset_processor.cpp     : 105)   processed 99000000reads, flushing
+ 51:23:45.284   940M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 100000000reads, flushing
+ 51:41:29.011   940M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 101000000reads, flushing
+ 52:04:20.013   940M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 102000000reads, flushing
+ 52:24:36.387   940M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 103000000reads, flushing
+ 52:43:08.950   940M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 104000000reads, flushing
+ 53:06:14.120   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 105000000reads, flushing
+ 53:27:43.577   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 106000000reads, flushing
+ 53:54:09.233   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 107000000reads, flushing
+ 54:18:08.691   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 108000000reads, flushing
+ 54:40:47.116   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 109000000reads, flushing
+ 55:00:45.712   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 110000000reads, flushing
+ 55:18:28.820   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 111000000reads, flushing
+ 55:49:22.294   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 112000000reads, flushing
+ 56:25:50.003   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 113000000reads, flushing
+ 56:47:47.115   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 114000000reads, flushing
+ 57:05:44.453   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 115000000reads, flushing
+ 57:21:27.997   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 116000000reads, flushing
+ 57:43:07.866   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 117000000reads, flushing
+ 58:01:03.960   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 118000000reads, flushing
+ 58:19:24.530   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 119000000reads, flushing
+ 58:34:59.192   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 120000000reads, flushing
+ 58:51:25.899   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 121000000reads, flushing
+ 59:13:16.875   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 122000000reads, flushing
+ 59:43:03.841   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 123000000reads, flushing
+ 60:11:00.688   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 124000000reads, flushing
+ 60:30:49.630   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 125000000reads, flushing
+ 60:48:42.488   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 126000000reads, flushing
+ 61:06:09.582   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 127000000reads, flushing
+ 61:24:19.183   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 128000000reads, flushing
+ 61:43:49.419   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 129000000reads, flushing
+ 62:01:21.690   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 130000000reads, flushing
+ 62:18:46.824   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 131000000reads, flushing
+ 62:37:53.780   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 132000000reads, flushing
+ 62:55:52.610   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 133000000reads, flushing
+ 63:13:39.122   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 134000000reads, flushing
+ 63:30:02.009   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 135000000reads, flushing
+ 63:54:15.998   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 136000000reads, flushing
+ 64:27:38.229   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 137000000reads, flushing
+ 65:03:52.178   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 138000000reads, flushing
+ 65:40:21.752   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 139000000reads, flushing
+ 66:13:15.358   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 140000000reads, flushing
+ 66:45:12.089   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 141000000reads, flushing
+ 67:10:24.755   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 142000000reads, flushing
+ 67:26:00.061   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 143000000reads, flushing
+ 67:41:53.252   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 144000000reads, flushing
+ 68:00:59.975   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 145000000reads, flushing
+ 68:16:16.377   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 146000000reads, flushing
+ 68:31:12.785   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 147000000reads, flushing
+ 68:46:16.965   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 148000000reads, flushing
+ 69:04:53.645   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 149000000reads, flushing
+ 69:21:35.609   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 150000000reads, flushing
+ 69:37:14.919   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 151000000reads, flushing
+ 69:53:03.812   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 152000000reads, flushing
+ 70:09:41.246   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 153000000reads, flushing
+ 70:35:30.943   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 154000000reads, flushing
+ 70:50:09.176   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 155000000reads, flushing
+ 71:04:53.988   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 156000000reads, flushing
+ 71:19:12.949   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 157000000reads, flushing
+ 71:33:02.513   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 158000000reads, flushing
+ 71:56:20.767   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 159000000reads, flushing
+ 72:15:08.337   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 160000000reads, flushing
+ 72:30:47.892   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 161000000reads, flushing
+ 72:46:03.811   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 162000000reads, flushing
+ 73:03:17.086   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 163000000reads, flushing
+ 73:19:59.304   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 164000000reads, flushing
+ 73:40:42.110   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 165000000reads, flushing
+ 73:58:02.026   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 166000000reads, flushing
+ 74:15:47.919   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 167000000reads, flushing
+ 74:31:47.226   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 168000000reads, flushing
+ 74:46:33.947   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 169000000reads, flushing
+ 75:01:36.989   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 170000000reads, flushing
+ 75:16:27.140   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 171000000reads, flushing
+ 75:31:32.900   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 172000000reads, flushing
+ 75:55:45.235   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 173000000reads, flushing
+ 76:19:38.602   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 174000000reads, flushing
+ 76:39:33.824   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 175000000reads, flushing
+ 77:04:06.283   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 176000000reads, flushing
+ 77:27:28.393   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 177000000reads, flushing
+ 77:56:20.292   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 178000000reads, flushing
+ 78:21:06.695   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 179000000reads, flushing
+ 78:41:36.238   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 180000000reads, flushing
+ 79:00:46.661   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 181000000reads, flushing
+ 79:20:52.922   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 182000000reads, flushing
+ 79:47:36.536   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 183000000reads, flushing
+ 80:14:11.824   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 184000000reads, flushing
+ 80:35:55.762   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 185000000reads, flushing
+ 80:55:34.377   944M / 944M  INFO    General                 (dataset_processor.cpp     : 105)   processed 186000000reads, flushing
+ 81:03:31.626   916M / 944M  INFO    General                 (dataset_processor.cpp     : 276)   Processing contigs
+ 81:03:35.545     1G / 1G    INFO    General                 (dataset_processor.cpp     : 292)   Contig NODE_2_length_22115_cov_11.7724_ID_2955079 processed with 0 changes in thread 8
+ 81:03:36.073     1G / 1G    INFO    General                 (dataset_processor.cpp     : 292)   Contig NODE_3_length_20494_cov_20.2602_ID_2956896 processed with 2 changes in thread 0
+ 81:03:37.335  1020M / 1G    INFO    General                 (dataset_processor.cpp     : 292)   Contig NODE_1_length_26101_cov_30.1262_ID_3097527 processed with 3 changes in thread 14
+ 83:14:33.005   988M / 1G    INFO    General                 (dataset_processor.cpp     : 296)   Gluing processed contigs
+ 84:06:49.405   972M / 1G    INFO    General                 (main.cpp                  :  55)   Correcting time: 84 hours 6 minutes 49 seconds
+
+===== Mismatch correction finished.
+
+ * Corrected reads are in /tsl/scratch/rallapag/assemblies/barley/spades/corrected/
+ * Assembled contigs are in /tsl/scratch/rallapag/assemblies/barley/spades/contigs.fasta (contigs.fastg)
+ * Assembled scaffolds are in /tsl/scratch/rallapag/assemblies/barley/spades/scaffolds.fasta (scaffolds.fastg)
+
+======= SPAdes pipeline finished WITH WARNINGS!
+
+=== Error correction and assembling warnings:
+ * 2:57:02.211    30G / 31G   WARN    General                 (kmer_coverage_model.cpp   : 328)   Valley value was estimated improperly, reset to 40
+ * 2:57:02.227    30G / 31G   WARN    General                 (kmer_coverage_model.cpp   : 367)   Failed to determine erroneous kmer threshold. Threshold set to: 40
+ * 2:57:02.312    18G / 31G   WARN    General                 (graph_simplification.hpp  : 670)   Mean coverage wasn't reliably estimated
+ * 3:42:21.343    31G / 32G   WARN    General                 (kmer_coverage_model.cpp   : 328)   Valley value was estimated improperly, reset to 57
+ * 3:42:21.361    31G / 32G   WARN    General                 (kmer_coverage_model.cpp   : 367)   Failed to determine erroneous kmer threshold. Threshold set to: 57
+ * 3:26:21.837    41G / 43G   WARN    General                 (kmer_coverage_model.cpp   : 328)   Valley value was estimated improperly, reset to 5
+ * 3:26:21.853    41G / 43G   WARN    General                 (kmer_coverage_model.cpp   : 367)   Failed to determine erroneous kmer threshold. Threshold set to: 5
+======= Warnings saved to /tsl/scratch/rallapag/assemblies/barley/spades/warnings.log
+
+SPAdes log can be found here: /tsl/scratch/rallapag/assemblies/barley/spades/spades.log
+
+Thank you for using SPAdes!
