@@ -11,3 +11,4 @@ Hordeum_vulgare.082214v1.29.dna.genome.fa.gz
 filtered_mnd_samtools_varscan_variants.vcf
 mnd_samtools_varscan_variants.vcf
 wt_samtools_varscan_variants.vcf
+10m_lines.pileup.gz
