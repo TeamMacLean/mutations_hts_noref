@@ -17,7 +17,7 @@ spades 3.6.0 is used for assembly
 
 assembly inputs and assembly log are [available in following directory] (./spades_assembly_info)
 
-assembled contigs can be [downloaded from this link] ()
+assembled contigs can be [downloaded from this link] (http://www.mediafire.com/download/4z5aq7k2052lgoz/barley_mnd_exome_spades_contigs.fa.gz)
 
 * info about assembled contigs
 
