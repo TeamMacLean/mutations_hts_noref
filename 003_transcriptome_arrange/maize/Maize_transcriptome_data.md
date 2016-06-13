@@ -48,13 +48,17 @@ source trinity-2.0.6; Trinity --seqType fq --max_memory 50G --single trim_SRR396
 
 sh soap-trans_kmer_iter.sh
 source ruby-2.0.0; ruby ~/lib/fasta_pooled_changename.rb contig 100 > combined_contigs.fa
-source ruby-2.0.0; ruby ~/lib/read_write_fasta.rb 95.0_combined_contigs.fa 200 > sel_cdhit_combined_contigs.fa
+source ruby-2.0.0; ruby ~/lib/read_write_fasta.rb 95.0_combined_contigs.fa 200 > maize_sel_cdhit_combined_soap_contigs.fa
 
 ```
-
+Assembly log for trinity is [available here](./maize_assembly_log_trinity.txt)  
 Number of sequences assembled by Trinity default params: 33563
 
+Default params trinity assembly is [available here](http://www.mediafire.com/download/zfcto6xteknz9jj/maize_trinity_out.fa.gz)
+
 Number of sequences in cdhit reduced (identity threshold - 0.975): 29288
+
+Cd-hit reduced trinity assembly is [available here](http://www.mediafire.com/download/7r1198ntacpo8cz/maize_cdhit_97.5_trinity_out.fa.gz)
 
 Number of contigs from soapdenovo-trans from all kmers pooled: 240601
 
@@ -66,10 +70,21 @@ Number of contigs from soapdenovo-trans from all kmers pooled: 240601
 | assembly_51.contig | 6968   |
 | assembly_61.contig | 20     |
 
-pooled sequecnes >=100bp: 174915
-cdhit reduced contigs at 0.95 identity threshold: 79358
+pooled sequecnes >=100bp: 174915  
+combined contig assembly is [available here](http://www.mediafire.com/download/3ccyyi567jaiau9/maize_combined_soap_contigs.fa.gz)
+
+cdhit reduced contigs at 0.95 identity threshold: 79358  
 sequences selected >= 200bp: 29505
 
+Combined and cdhit reduced  assembly is [available here](http://www.mediafire.com/download/1nmzv8y1wvq96mh/maize_sel_cdhit_combined_soap_contigs.fa.gz)
+
+```
+md5sums of the assembly archives
+10bffdf9c0df6210e11b976a0e91bfa4  maize_trinity_out.fa.gz
+3ef761d9ce21937438bda238b4463e42  maize_cdhit_97.5_trinity_out.fa.gz
+a24eb7a33871aa5fc250be481dfb15b2  maize_combined_soap_contigs.fa.gz
+67ff944b5b18824b20e6007ed9850963  maize_sel_cdhit_combined_soap_contigs.fa.gz
+```
 Assemblies of Trinity and soapdenovo-trans was compared along with cd-hit-est reduced trinity assembly using detonate software (v1.8.1).
 
 ```
@@ -160,6 +175,7 @@ source ruby-2.0.0; xvfb-run ruby ~/fastqc_reports/wheat_data/variants/homeosplit
 source ruby-2.0.0; ruby ~/lib/read_write_fasta_filter.rb sdm_log_0_0.5/4_5_selected_frags.txt sel_trinity_cdhit97.5.fa > chosen_sel_trinity_cdhit97.5.fa
 ```
 
+sdm analysis is provided in the [following folder](./sdm_analysis)
 
 Then attempted to display the transcripts assembled and transcripts selected from sdm on the genome.
 Used mummer to do this
@@ -217,3 +233,7 @@ Number of fragments with variants are now 80 and Mummer was used to depict again
 
 ![assembled_transcripts](./transcripts_on_genome/trimmo_trascripts_selected_mpileup_bam.png)
 
+
+And futher plotting only transcripts on chromosome 4 shows that majority of the transcript selected are at the distal end of chromosome as found in the manuscript [See Figure 1D in published manuscript] (http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0036406#s2).
+
+![assembled_transcripts_on_chr4](./transcripts_on_genome/trimmo_trascripts_selected_on_chr4.png)
