@@ -12,6 +12,7 @@ sample = pars['sample']  # 9600 + 500 random numbers (contig number)
 distri = pars['distri'] # distribtuion to apply to selecte random number for fragment lengths
 mean = pars['mean']   # 11885 bp is mean / 7.889536 is mean of log of lengths
 sd = pars['sd']    # 30160 bp is std. deviation / 1.56288 is sd of log of lengths
+iter_start = pars['iter_start'] # iteration counter start value
 iterations = pars['iterations'] # number of iterations of framenting
 @discard_n = pars['discard_n'] # boolean option to discarding sequences with 50% or more 'N's
 
@@ -40,6 +41,7 @@ def write_fasta(hash, array, filename)
       warn "#{element}\tno seq present to write to fasta file\n"
     end
   end
+  outfile.close
 end
 
 # Input 0: Filename by which to save an array with filetype extension, one value per line
@@ -107,7 +109,7 @@ end
 @random = SimpleRandom.new
 FileUtils.mkdir_p 'outseq_lengths'
 
-for iteration in 1..iterations
+for iteration in iter_start..(iterations+iter_start-1)
   # generate an array of random numbers using mean and sample number provided
   # exponential distribution is used
   @random.set_seed
@@ -163,6 +165,11 @@ for iteration in 1..iterations
     end
   end
 
+  # close discarded frags file if it is used to write ambigous sequences
+  unless disfrags == ''
+    disfrags.close
+  end
+
   # print vcf header and variant location file to iteration folder
   write_array("#{newname}/snps.vcf", vcf_header)
 
@@ -192,6 +199,7 @@ for iteration in 1..iterations
       current_frag += 1
     end
   end
+  snpvcf.close
 
   # write ordered and shuffled fragments for current iteration
   # write_fasta(frags[:seq], frags[:seq].keys.sort, "#{newname}/frags_ordered.fasta")
@@ -199,6 +207,7 @@ for iteration in 1..iterations
   frags[:seq].keys.sort.each do  | key |
     order.puts "seq_id_#{key}"
   end
+  order.close
 
   shuffled = frags[:seq].keys.shuffle(random: Random.new_seed)
   write_fasta(frags[:seq], shuffled, "#{newname}/frags_shuffled.fasta")
@@ -208,7 +217,11 @@ for iteration in 1..iterations
   Bio::FastaFormat.open("#{newname}/frags_shuffled.fasta").each do |inseq|
       output.puts "#{inseq.entry_id}\t#{inseq.length}"
   end
+  output.close
+  %x[gzip #{newname}/frags_shuffled.fasta]
 
+  # setting fragmented sequence hash to nil to clear memory
+  frags = nil
   # warn "sequences fragment iteration:\t#{iteration}\n"
 
 end

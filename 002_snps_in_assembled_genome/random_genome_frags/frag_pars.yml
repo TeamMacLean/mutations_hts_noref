@@ -3,5 +3,6 @@ sample: 14000
 distri: exponential
 mean: 7.889536
 sd: 1.56288
-iterations: 2
+iter_start: 1
+iterations: 3
 discard_n: false
