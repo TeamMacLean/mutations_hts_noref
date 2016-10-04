@@ -61,16 +61,13 @@ def splice_sequence (inseq, nameindex, lenindex, fragshash, discardsfile)
       #warn "#{ncount}\t#{nameindex}\t#{discardsfile}\n"
       seqout = Bio::Sequence::NA.new(inseq).upcase
       discardsfile.puts seqout.to_fasta("seq_id_#{nameindex}", 80)
-    else
-      fragshash[:seq][nameindex] = inseq
-      fragshash[:len][nameindex] = [lenindex, lenindex+seqlen-1].join(':')
-      lenindex += seqlen
+      return [fragshash, lenindex]
     end
-  else
-    fragshash[:seq][nameindex] = inseq
-    fragshash[:len][nameindex] = [lenindex, lenindex+seqlen-1].join(':')
-    lenindex += seqlen
   end
+  fragshash[:seq][nameindex] = inseq
+  fragshash[:len][nameindex] = [lenindex, lenindex+seqlen-1].join(':')
+  lenindex += seqlen
+
   [fragshash, lenindex]
 end
 
@@ -87,13 +84,11 @@ File.open(ARGV[1], 'r').each do |line|
     if chrseq[:len].has_key?(v.chrom.to_s)
       if v.info['HET'].to_i == 1
         v.info['AF'] = 0.5
-        v.pos = v.pos.to_i + chrseq[:len][v.chrom.to_s]
-        vars[v.pos] = v.to_s
       elsif v.info['HOM'].to_i == 1
         v.info['AF'] = 1.0
-        v.pos = v.pos.to_i + chrseq[:len][v.chrom.to_s]
-        vars[v.pos] = v.to_s
       end
+      v.pos = v.pos.to_i + chrseq[:len][v.chrom.to_s]
+      vars[v.pos] = v.to_s
     else
       warn "No sequnce in fasta file for\t#{v.chrom.to_s}\n"
     end
@@ -159,12 +154,11 @@ for iteration in 1..iterations
     while seq.length > 500
       if seq.length < 1000
         sequence = seq.slice!(0..-1)
-        frags,len_start = splice_sequence(sequence, name_index, len_start, frags, disfrags)
       else
         index = number_array.shift.to_i
         sequence = seq.slice!(0...index)
-        frags,len_start = splice_sequence(sequence, name_index, len_start, frags, disfrags)
       end
+      frags,len_start = splice_sequence(sequence, name_index, len_start, frags, disfrags)
       name_index += 1
     end
   end
