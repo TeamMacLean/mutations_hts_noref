@@ -213,9 +213,11 @@ for iteration in iter_start..(iterations+iter_start-1)
   write_fasta(frags[:seq], shuffled, "#{newname}/frags_shuffled.fasta")
 
   output = File.open("outseq_lengths/#{newname}_lengths.txt", 'w')
-  output.puts "fragment_id\tlength"
+  output.puts "fragment_id\tlength\tGC"
   Bio::FastaFormat.open("#{newname}/frags_shuffled.fasta").each do |inseq|
-      output.puts "#{inseq.entry_id}\t#{inseq.length}"
+    gc_count = inseq.seq.composition['G'] + inseq.seq.composition['C']
+    gc = (gc_count.to_f/inseq.length) * 100
+    output.puts "#{inseq.entry_id}\t#{inseq.length}\t#{gc.round(2)}"
   end
   output.close
   %x[gzip #{newname}/frags_shuffled.fasta]
