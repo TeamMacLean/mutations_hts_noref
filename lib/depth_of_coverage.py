@@ -46,8 +46,12 @@ def coverage(bam, mtchr = None):
     coverage_dict = {}
     for c in contigs.keys():
         command = "samtools depth -r %s %s | awk '{sum+=$3;cnt++}END{print cnt \"\t\" sum}'" % (c, bam)
+        outcome = Popen(command, stdout=PIPE, shell = True).communicate()[0].strip()
+        # ignore contigs with out alignments
+        if outcome == '':
+          continue
         coverage_dict[c] = {}
-        coverage_dict[c]["Bases Mapped"], coverage_dict[c]["Sum of Depths"] = map(int,Popen(command, stdout=PIPE, shell = True).communicate()[0].strip().split("\t"))
+        coverage_dict[c]["Bases Mapped"], coverage_dict[c]["Sum of Depths"] = map(int, outcome.split("\t"))
         coverage_dict[c]["Breadth of Coverage"] = coverage_dict[c]["Bases Mapped"] / float(contigs[c])
         coverage_dict[c]["Depth of Coverage"] = coverage_dict[c]["Sum of Depths"] / float(contigs[c])
         coverage_dict[c]["Length"] = int(contigs[c])
