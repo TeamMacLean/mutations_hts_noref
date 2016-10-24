@@ -32,14 +32,14 @@ def get_contigs(bam):
     contigs[x[0]] = int(x[1])
   return contigs
 
-def coverage(bam):
+def coverage(bam, filename):
   # Check to see if file exists
   if os.path.isfile(bam) == False:
     raise Exception('Bam file does not exist')
   contigs = get_contigs(bam)
 
   coverage_dict = {}
-  outfile = open('breadth_depth_coverage.txt', 'w')
+  outfile = open(filename, 'w')
   print >>outfile, '\t'.join(('id', 'Length', 'Depth of Coverage', 'Breadth of Coverage', 'Bases Mapped','Sum of Depths'))
 
   for c in contigs.keys():
@@ -77,10 +77,10 @@ def coverage(bam):
 
 
 def main():
-  if len(sys.argv) == 2:
-    coverage(sys.argv[1])
+  if len(sys.argv) == 3:
+    coverage(sys.argv[1], sys.argv[2])
   else:
-    sys.exit('Provide a bam file as input argument\n')
+    sys.exit('Provide a bam file and output file name as input arguments\n')
 
   pass
 
