@@ -1,0 +1,1996 @@
+
+The version 1.03: released on July 19th, 2013
+
+In sample.config, 1 libs, max seq len 120, max name len 256
+
+32 thread created
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_2.fq.gz
+--- 100000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_2.fq.gz
+--- 200000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_2.fq.gz
+time spent on hash reads: 5399s, 285996286 reads processed
+[LIB] 0, avg_ins 200, reverse 0 
+503590149 nodes allocated, 16454093811 kmer in reads, 16454093811 kmer processed
+283840126 kmer removed
+time spent on delowcvgNode 10s
+200401659 linear nodes
+time spent on marking linear nodes 11s
+time spent on pre-graph construction: 5421s
+
+deLowKmer 1, deLowEdge 1
+Start to remove kmer of out frequency kmers < 0.050000
+8180829 kmers off
+32 thread created
+0 linear nodes
+time spent on cut kmer: 71s
+
+Start to remove tips which don't contribute the most links
+kmer set 0 done
+kmer set 1 done
+kmer set 2 done
+kmer set 3 done
+kmer set 4 done
+kmer set 5 done
+kmer set 6 done
+kmer set 7 done
+kmer set 8 done
+kmer set 9 done
+kmer set 10 done
+kmer set 11 done
+kmer set 12 done
+kmer set 13 done
+kmer set 14 done
+kmer set 15 done
+kmer set 16 done
+kmer set 17 done
+kmer set 18 done
+kmer set 19 done
+kmer set 20 done
+kmer set 21 done
+kmer set 22 done
+kmer set 23 done
+kmer set 24 done
+kmer set 25 done
+kmer set 26 done
+kmer set 27 done
+kmer set 28 done
+kmer set 29 done
+kmer set 30 done
+kmer set 31 done
+7119186 tips off
+32 thread created
+0 linear nodes
+time spent on cutTipe: 289s
+
+8392467 (4196328) edges 584430 extra nodes
+time spent on making edges: 228s
+
+In file: sample.config, max seq len 120, max name len 256
+
+32 thread created
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_2.fq.gz
+--- 100000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_2.fq.gz
+--- 200000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_2.fq.gz
+285996286 reads processed
+time 860,572,2747,668,327,402,0
+0 markers outputed
+done mapping reads, 10015486 reads deleted, 6779780 arcs created
+[LIB] 0, avg_ins 200, reverse 0 
+time spent on mapping reads: 5582s
+
+4786035 vertex outputed
+overall time for lightgraph: 193m
+
+
+The version 1.03: released on July 19th, 2013
+
+there're 4786035 kmers in vertex file
+there're 8392467 edge in edge file
+done sort
+input 8392467 edges
+8032756 pre-arcs loaded
+start to pinch bubbles, cutoff 0.100000, MAX NODE NUM 3, MAX DIFF 2
+.............100000
+.............200000
+1448559 startingPoints, 3355067 dheap nodes
+721033 pairs found, 404117 pairs of paths compared, 251235 pairs merged
+sequenc compare failure: 0 58297 94585 0
+DFibHeap: 44898 Nodes allocated
+a linear concatenation lap, 645740 concatenated
+a linear concatenation lap, 32145 concatenated
+a linear concatenation lap, 383 concatenated
+a linear concatenation lap, 0 concatenated
+6522854 edges in graph
+time spent on bubblePinch: 14s
+
+Start to remove the low coverage edge < 2
+0 edges removed
+
+strict 0, cutLen 50
+a cutTipsInGraph lap, 1277757 tips cut
+a cutTipsInGraph lap, 182028 tips cut
+a cutTipsInGraph lap, 56785 tips cut
+a cutTipsInGraph lap, 18965 tips cut
+a cutTipsInGraph lap, 7599 tips cut
+a cutTipsInGraph lap, 3919 tips cut
+a cutTipsInGraph lap, 2299 tips cut
+a cutTipsInGraph lap, 1137 tips cut
+a cutTipsInGraph lap, 479 tips cut
+a cutTipsInGraph lap, 255 tips cut
+a cutTipsInGraph lap, 127 tips cut
+a cutTipsInGraph lap, 95 tips cut
+a cutTipsInGraph lap, 75 tips cut
+a cutTipsInGraph lap, 38 tips cut
+a cutTipsInGraph lap, 21 tips cut
+a cutTipsInGraph lap, 16 tips cut
+a cutTipsInGraph lap, 15 tips cut
+a cutTipsInGraph lap, 8 tips cut
+a cutTipsInGraph lap, 9 tips cut
+a cutTipsInGraph lap, 1 tips cut
+a cutTipsInGraph lap, 7 tips cut
+a cutTipsInGraph lap, 5 tips cut
+a cutTipsInGraph lap, 3 tips cut
+a cutTipsInGraph lap, 3 tips cut
+a cutTipsInGraph lap, 2 tips cut
+a cutTipsInGraph lap, 1 tips cut
+a cutTipsInGraph lap, 3 tips cut
+a cutTipsInGraph lap, 0 tips cut
+184773 dead arcs removed
+a linear concatenation lap, 136607 concatenated
+a linear concatenation lap, 1476 concatenated
+a linear concatenation lap, 1 concatenated
+a linear concatenation lap, 0 concatenated
+3143384 edges in graph
+there're 8392467 edges
+after compacting 3143599 edges left
+
+delete unlike arc :998282
+1 time to delete light arcs 
+6600 loops removed in Graph
+Start to remove light arc using the rate 0.050000 and 0.020000
+delete light arc :1114/2894
+a linear concatenation lap, 392620 concatenated
+a linear concatenation lap, 23175 concatenated
+a linear concatenation lap, 170 concatenated
+a linear concatenation lap, 0 concatenated
+2311474 edges in graph
+there're 3143599 edges
+after compacting 2311669 edges left
+
+2 time to delete light arcs 
+2112 loops removed in Graph
+Start to remove light arc using the rate 0.050000 and 0.020000
+delete light arc :83/125
+a linear concatenation lap, 858 concatenated
+a linear concatenation lap, 2 concatenated
+a linear concatenation lap, 0 concatenated
+2309754 edges in graph
+there're 2311669 edges
+after compacting 2309949 edges left
+
+3 time to delete light arcs 
+44 loops removed in Graph
+Start to remove light arc using the rate 0.050000 and 0.020000
+delete light arc :4/6
+a linear concatenation lap, 24 concatenated
+a linear concatenation lap, 0 concatenated
+2309706 edges in graph
+there're 2309949 edges
+after compacting 2309901 edges left
+
+4 time to delete light arcs 
+0 loops removed in Graph
+Start to remove light arc using the rate 0.050000 and 0.020000
+delete light arc :0/0
+
+252848 short contig(<48) removed 
+a linear concatenation lap, 42952 concatenated
+a linear concatenation lap, 316 concatenated
+a linear concatenation lap, 0 concatenated
+1717796 edges in graph
+there're 2309901 edges
+after compacting 1717828 edges left
+
+412956 ctgs longer than 100, sum up 91003350bp, with average length 220
+the longest is 7607bp, contig N50 is 246 bp,contig N90 is 113 bp
+858928 contigs longer than 26 output
+time elapsed: 2m
+
+
+The version 1.03: released on July 19th, 2013
+
+In sample.config, 1 libs, max seq len 120, max name len 256
+
+32 thread created
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_2.fq.gz
+--- 100000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_2.fq.gz
+--- 200000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_2.fq.gz
+time spent on hash reads: 4299s, 285996286 reads processed
+[LIB] 0, avg_ins 200, reverse 0 
+550432231 nodes allocated, 14744278826 kmer in reads, 14744278826 kmer processed
+326756289 kmer removed
+time spent on delowcvgNode 11s
+204793102 linear nodes
+time spent on marking linear nodes 9s
+time spent on pre-graph construction: 4320s
+
+deLowKmer 1, deLowEdge 1
+Start to remove kmer of out frequency kmers < 0.050000
+7383063 kmers off
+32 thread created
+0 linear nodes
+time spent on cut kmer: 66s
+
+Start to remove tips which don't contribute the most links
+kmer set 0 done
+kmer set 1 done
+kmer set 2 done
+kmer set 3 done
+kmer set 4 done
+kmer set 5 done
+kmer set 6 done
+kmer set 7 done
+kmer set 8 done
+kmer set 9 done
+kmer set 10 done
+kmer set 11 done
+kmer set 12 done
+kmer set 13 done
+kmer set 14 done
+kmer set 15 done
+kmer set 16 done
+kmer set 17 done
+kmer set 18 done
+kmer set 19 done
+kmer set 20 done
+kmer set 21 done
+kmer set 22 done
+kmer set 23 done
+kmer set 24 done
+kmer set 25 done
+kmer set 26 done
+kmer set 27 done
+kmer set 28 done
+kmer set 29 done
+kmer set 30 done
+kmer set 31 done
+7275646 tips off
+32 thread created
+0 linear nodes
+time spent on cutTipe: 269s
+
+6217387 (3108730) edges 377523 extra nodes
+time spent on making edges: 205s
+
+In file: sample.config, max seq len 120, max name len 256
+
+32 thread created
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_2.fq.gz
+--- 100000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_2.fq.gz
+--- 200000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_2.fq.gz
+285996286 reads processed
+time 864,520,2459,577,292,300,0
+0 markers outputed
+done mapping reads, 14247810 reads deleted, 5016175 arcs created
+[LIB] 0, avg_ins 200, reverse 0 
+time spent on mapping reads: 5028s
+
+3772652 vertex outputed
+overall time for lightgraph: 165m
+
+
+The version 1.03: released on July 19th, 2013
+
+there're 3772652 kmers in vertex file
+there're 6217387 edge in edge file
+done sort
+input 6217387 edges
+5971322 pre-arcs loaded
+start to pinch bubbles, cutoff 0.100000, MAX NODE NUM 3, MAX DIFF 2
+.............100000
+1111217 startingPoints, 2282648 dheap nodes
+467220 pairs found, 276650 pairs of paths compared, 175257 pairs merged
+sequenc compare failure: 0 37153 64240 0
+DFibHeap: 16943 Nodes allocated
+a linear concatenation lap, 413390 concatenated
+a linear concatenation lap, 21954 concatenated
+a linear concatenation lap, 218 concatenated
+a linear concatenation lap, 0 concatenated
+4987772 edges in graph
+time spent on bubblePinch: 10s
+
+Start to remove the low coverage edge < 2
+0 edges removed
+
+strict 0, cutLen 62
+a cutTipsInGraph lap, 1058722 tips cut
+a cutTipsInGraph lap, 145680 tips cut
+a cutTipsInGraph lap, 45087 tips cut
+a cutTipsInGraph lap, 16953 tips cut
+a cutTipsInGraph lap, 6410 tips cut
+a cutTipsInGraph lap, 3179 tips cut
+a cutTipsInGraph lap, 1612 tips cut
+a cutTipsInGraph lap, 700 tips cut
+a cutTipsInGraph lap, 272 tips cut
+a cutTipsInGraph lap, 89 tips cut
+a cutTipsInGraph lap, 38 tips cut
+a cutTipsInGraph lap, 19 tips cut
+a cutTipsInGraph lap, 17 tips cut
+a cutTipsInGraph lap, 11 tips cut
+a cutTipsInGraph lap, 1 tips cut
+a cutTipsInGraph lap, 1 tips cut
+a cutTipsInGraph lap, 3 tips cut
+a cutTipsInGraph lap, 2 tips cut
+a cutTipsInGraph lap, 5 tips cut
+a cutTipsInGraph lap, 0 tips cut
+151990 dead arcs removed
+a linear concatenation lap, 111772 concatenated
+a linear concatenation lap, 1270 concatenated
+a linear concatenation lap, 1 concatenated
+a linear concatenation lap, 0 concatenated
+2204088 edges in graph
+there're 6217387 edges
+after compacting 2204175 edges left
+
+delete unlike arc :670020
+1 time to delete light arcs 
+4636 loops removed in Graph
+Start to remove light arc using the rate 0.050000 and 0.020000
+delete light arc :725/1809
+a linear concatenation lap, 266388 concatenated
+a linear concatenation lap, 14651 concatenated
+a linear concatenation lap, 93 concatenated
+a linear concatenation lap, 0 concatenated
+1641836 edges in graph
+there're 2204175 edges
+after compacting 1641911 edges left
+
+2 time to delete light arcs 
+1252 loops removed in Graph
+Start to remove light arc using the rate 0.050000 and 0.020000
+delete light arc :67/95
+a linear concatenation lap, 499 concatenated
+a linear concatenation lap, 0 concatenated
+1640838 edges in graph
+there're 1641911 edges
+after compacting 1640913 edges left
+
+3 time to delete light arcs 
+32 loops removed in Graph
+Start to remove light arc using the rate 0.050000 and 0.020000
+delete light arc :4/8
+a linear concatenation lap, 14 concatenated
+a linear concatenation lap, 0 concatenated
+1640810 edges in graph
+there're 1640913 edges
+after compacting 1640885 edges left
+
+4 time to delete light arcs 
+0 loops removed in Graph
+Start to remove light arc using the rate 0.050000 and 0.020000
+delete light arc :0/0
+
+146537 short contig(<48) removed 
+a linear concatenation lap, 29183 concatenated
+a linear concatenation lap, 169 concatenated
+a linear concatenation lap, 0 concatenated
+1289174 edges in graph
+there're 1640885 edges
+after compacting 1289177 edges left
+
+469455 ctgs longer than 100, sum up 100915087bp, with average length 214
+the longest is 7241bp, contig N50 is 235 bp,contig N90 is 113 bp
+644590 contigs longer than 32 output
+time elapsed: 1m
+
+
+The version 1.03: released on July 19th, 2013
+
+In sample.config, 1 libs, max seq len 120, max name len 256
+
+32 thread created
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_2.fq.gz
+--- 100000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_2.fq.gz
+--- 200000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_2.fq.gz
+time spent on hash reads: 3802s, 285996286 reads processed
+[LIB] 0, avg_ins 200, reverse 0 
+589965679 nodes allocated, 11938277130 kmer in reads, 11938277130 kmer processed
+371906718 kmer removed
+time spent on delowcvgNode 12s
+199953341 linear nodes
+time spent on marking linear nodes 8s
+time spent on pre-graph construction: 3822s
+
+deLowKmer 1, deLowEdge 1
+Start to remove kmer of out frequency kmers < 0.050000
+6180518 kmers off
+32 thread created
+0 linear nodes
+time spent on cut kmer: 60s
+
+Start to remove tips which don't contribute the most links
+kmer set 0 done
+kmer set 1 done
+kmer set 2 done
+kmer set 3 done
+kmer set 4 done
+kmer set 5 done
+kmer set 6 done
+kmer set 7 done
+kmer set 8 done
+kmer set 9 done
+kmer set 10 done
+kmer set 11 done
+kmer set 12 done
+kmer set 13 done
+kmer set 14 done
+kmer set 15 done
+kmer set 16 done
+kmer set 17 done
+kmer set 18 done
+kmer set 19 done
+kmer set 20 done
+kmer set 21 done
+kmer set 22 done
+kmer set 23 done
+kmer set 24 done
+kmer set 25 done
+kmer set 26 done
+kmer set 27 done
+kmer set 28 done
+kmer set 29 done
+kmer set 30 done
+kmer set 31 done
+7238452 tips off
+32 thread created
+0 linear nodes
+time spent on cutTipe: 262s
+
+4258413 (2129219) edges 267048 extra nodes
+time spent on making edges: 179s
+
+In file: sample.config, max seq len 120, max name len 256
+
+32 thread created
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_2.fq.gz
+--- 100000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_2.fq.gz
+--- 200000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_2.fq.gz
+285996286 reads processed
+time 842,458,2062,479,237,229,0
+0 markers outputed
+done mapping reads, 21309264 reads deleted, 3298900 arcs created
+[LIB] 0, avg_ins 200, reverse 0 
+time spent on mapping reads: 4312s
+
+2810103 vertex outputed
+overall time for lightgraph: 144m
+
+
+The version 1.03: released on July 19th, 2013
+
+there're 2810103 kmers in vertex file
+there're 4258413 edge in edge file
+done sort
+input 4258413 edges
+4026056 pre-arcs loaded
+start to pinch bubbles, cutoff 0.100000, MAX NODE NUM 3, MAX DIFF 2
+836967 startingPoints, 1350522 dheap nodes
+244557 pairs found, 146670 pairs of paths compared, 99483 pairs merged
+sequenc compare failure: 0 17809 29378 0
+DFibHeap: 3715 Nodes allocated
+a linear concatenation lap, 226356 concatenated
+a linear concatenation lap, 12067 concatenated
+a linear concatenation lap, 96 concatenated
+a linear concatenation lap, 0 concatenated
+3576870 edges in graph
+time spent on bubblePinch: 8s
+
+Start to remove the low coverage edge < 2
+0 edges removed
+
+strict 0, cutLen 82
+a cutTipsInGraph lap, 848353 tips cut
+a cutTipsInGraph lap, 120657 tips cut
+a cutTipsInGraph lap, 38333 tips cut
+a cutTipsInGraph lap, 12840 tips cut
+a cutTipsInGraph lap, 3746 tips cut
+a cutTipsInGraph lap, 1399 tips cut
+a cutTipsInGraph lap, 624 tips cut
+a cutTipsInGraph lap, 234 tips cut
+a cutTipsInGraph lap, 100 tips cut
+a cutTipsInGraph lap, 55 tips cut
+a cutTipsInGraph lap, 41 tips cut
+a cutTipsInGraph lap, 23 tips cut
+a cutTipsInGraph lap, 14 tips cut
+a cutTipsInGraph lap, 3 tips cut
+a cutTipsInGraph lap, 7 tips cut
+a cutTipsInGraph lap, 3 tips cut
+a cutTipsInGraph lap, 1 tips cut
+a cutTipsInGraph lap, 2 tips cut
+a cutTipsInGraph lap, 3 tips cut
+a cutTipsInGraph lap, 1 tips cut
+a cutTipsInGraph lap, 0 tips cut
+112281 dead arcs removed
+a linear concatenation lap, 82664 concatenated
+a linear concatenation lap, 1021 concatenated
+a linear concatenation lap, 0 concatenated
+1356622 edges in graph
+there're 4258413 edges
+after compacting 1356649 edges left
+
+delete unlike arc :372634
+1 time to delete light arcs 
+2704 loops removed in Graph
+Start to remove light arc using the rate 0.050000 and 0.020000
+delete light arc :398/987
+a linear concatenation lap, 147186 concatenated
+a linear concatenation lap, 7156 concatenated
+a linear concatenation lap, 31 concatenated
+a linear concatenation lap, 0 concatenated
+1047876 edges in graph
+there're 1356649 edges
+after compacting 1047903 edges left
+
+2 time to delete light arcs 
+472 loops removed in Graph
+Start to remove light arc using the rate 0.050000 and 0.020000
+delete light arc :19/28
+a linear concatenation lap, 209 concatenated
+a linear concatenation lap, 0 concatenated
+1047458 edges in graph
+there're 1047903 edges
+after compacting 1047485 edges left
+
+3 time to delete light arcs 
+16 loops removed in Graph
+Start to remove light arc using the rate 0.050000 and 0.020000
+delete light arc :2/3
+a linear concatenation lap, 8 concatenated
+a linear concatenation lap, 0 concatenated
+1047442 edges in graph
+there're 1047485 edges
+after compacting 1047469 edges left
+
+4 time to delete light arcs 
+0 loops removed in Graph
+Start to remove light arc using the rate 0.050000 and 0.020000
+delete light arc :1/2
+a linear concatenation lap, 1 concatenated
+a linear concatenation lap, 0 concatenated
+1047440 edges in graph
+there're 1047469 edges
+after compacting 1047467 edges left
+
+5 time to delete light arcs 
+0 loops removed in Graph
+Start to remove light arc using the rate 0.050000 and 0.020000
+delete light arc :0/0
+
+66980 short contig(<48) removed 
+a linear concatenation lap, 16045 concatenated
+a linear concatenation lap, 77 concatenated
+a linear concatenation lap, 0 concatenated
+881282 edges in graph
+there're 1047467 edges
+after compacting 881286 edges left
+
+384103 ctgs longer than 100, sum up 95527093bp, with average length 248
+the longest is 7298bp, contig N50 is 272 bp,contig N90 is 133 bp
+440643 contigs longer than 42 output
+time elapsed: 1m
+
+
+The version 1.03: released on July 19th, 2013
+
+In sample.config, 1 libs, max seq len 120, max name len 256
+
+32 thread created
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_2.fq.gz
+--- 100000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_2.fq.gz
+--- 200000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_2.fq.gz
+time spent on hash reads: 3216s, 285996286 reads processed
+[LIB] 0, avg_ins 200, reverse 0 
+583271261 nodes allocated, 9221481504 kmer in reads, 9221481504 kmer processed
+383804723 kmer removed
+time spent on delowcvgNode 11s
+182369419 linear nodes
+time spent on marking linear nodes 9s
+time spent on pre-graph construction: 3236s
+
+deLowKmer 1, deLowEdge 1
+Start to remove kmer of out frequency kmers < 0.050000
+4990547 kmers off
+32 thread created
+0 linear nodes
+time spent on cut kmer: 56s
+
+Start to remove tips which don't contribute the most links
+kmer set 0 done
+kmer set 1 done
+kmer set 2 done
+kmer set 3 done
+kmer set 4 done
+kmer set 5 done
+kmer set 6 done
+kmer set 7 done
+kmer set 8 done
+kmer set 9 done
+kmer set 10 done
+kmer set 11 done
+kmer set 12 done
+kmer set 13 done
+kmer set 14 done
+kmer set 15 done
+kmer set 16 done
+kmer set 17 done
+kmer set 18 done
+kmer set 19 done
+kmer set 20 done
+kmer set 21 done
+kmer set 22 done
+kmer set 23 done
+kmer set 24 done
+kmer set 25 done
+kmer set 26 done
+kmer set 27 done
+kmer set 28 done
+kmer set 29 done
+kmer set 30 done
+kmer set 31 done
+7000035 tips off
+32 thread created
+0 linear nodes
+time spent on cutTipe: 259s
+
+2858079 (1429042) edges 162767 extra nodes
+time spent on making edges: 160s
+
+In file: sample.config, max seq len 120, max name len 256
+
+32 thread created
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_2.fq.gz
+--- 100000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_2.fq.gz
+--- 200000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_2.fq.gz
+285996286 reads processed
+time 837,395,1581,396,189,188,0
+0 markers outputed
+done mapping reads, 27953387 reads deleted, 2151765 arcs created
+[LIB] 0, avg_ins 200, reverse 0 
+time spent on mapping reads: 3597s
+
+2081933 vertex outputed
+overall time for lightgraph: 122m
+
+
+The version 1.03: released on July 19th, 2013
+
+there're 2081933 kmers in vertex file
+there're 2858079 edge in edge file
+done sort
+input 2858079 edges
+2611384 pre-arcs loaded
+start to pinch bubbles, cutoff 0.100000, MAX NODE NUM 3, MAX DIFF 2
+597454 startingPoints, 837075 dheap nodes
+142808 pairs found, 81633 pairs of paths compared, 60293 pairs merged
+sequenc compare failure: 0 9492 11848 0
+DFibHeap: 395 Nodes allocated
+a linear concatenation lap, 128522 concatenated
+a linear concatenation lap, 6600 concatenated
+a linear concatenation lap, 38 concatenated
+a linear concatenation lap, 0 concatenated
+2464156 edges in graph
+time spent on bubblePinch: 5s
+
+Start to remove the low coverage edge < 2
+0 edges removed
+
+strict 0, cutLen 102
+a cutTipsInGraph lap, 615568 tips cut
+a cutTipsInGraph lap, 74665 tips cut
+a cutTipsInGraph lap, 22581 tips cut
+a cutTipsInGraph lap, 7099 tips cut
+a cutTipsInGraph lap, 1583 tips cut
+a cutTipsInGraph lap, 669 tips cut
+a cutTipsInGraph lap, 323 tips cut
+a cutTipsInGraph lap, 180 tips cut
+a cutTipsInGraph lap, 86 tips cut
+a cutTipsInGraph lap, 52 tips cut
+a cutTipsInGraph lap, 14 tips cut
+a cutTipsInGraph lap, 4 tips cut
+a cutTipsInGraph lap, 7 tips cut
+a cutTipsInGraph lap, 7 tips cut
+a cutTipsInGraph lap, 4 tips cut
+a cutTipsInGraph lap, 3 tips cut
+a cutTipsInGraph lap, 7 tips cut
+a cutTipsInGraph lap, 12 tips cut
+a cutTipsInGraph lap, 10 tips cut
+a cutTipsInGraph lap, 6 tips cut
+a cutTipsInGraph lap, 1 tips cut
+a cutTipsInGraph lap, 2 tips cut
+a cutTipsInGraph lap, 1 tips cut
+a cutTipsInGraph lap, 0 tips cut
+83299 dead arcs removed
+a linear concatenation lap, 60834 concatenated
+a linear concatenation lap, 749 concatenated
+a linear concatenation lap, 0 concatenated
+895222 edges in graph
+there're 2858079 edges
+after compacting 895227 edges left
+
+delete unlike arc :224524
+1 time to delete light arcs 
+1408 loops removed in Graph
+Start to remove light arc using the rate 0.050000 and 0.020000
+delete light arc :155/364
+a linear concatenation lap, 86710 concatenated
+a linear concatenation lap, 3807 concatenated
+a linear concatenation lap, 12 concatenated
+a linear concatenation lap, 0 concatenated
+714164 edges in graph
+there're 895227 edges
+after compacting 714169 edges left
+
+2 time to delete light arcs 
+244 loops removed in Graph
+Start to remove light arc using the rate 0.050000 and 0.020000
+delete light arc :10/17
+a linear concatenation lap, 99 concatenated
+a linear concatenation lap, 0 concatenated
+713966 edges in graph
+there're 714169 edges
+after compacting 713971 edges left
+
+3 time to delete light arcs 
+16 loops removed in Graph
+Start to remove light arc using the rate 0.050000 and 0.020000
+delete light arc :1/2
+a linear concatenation lap, 7 concatenated
+a linear concatenation lap, 0 concatenated
+713952 edges in graph
+there're 713971 edges
+after compacting 713957 edges left
+
+4 time to delete light arcs 
+4 loops removed in Graph
+Start to remove light arc using the rate 0.050000 and 0.020000
+delete light arc :0/0
+
+23179 short contig(<48) removed 
+a linear concatenation lap, 5782 concatenated
+a linear concatenation lap, 18 concatenated
+a linear concatenation lap, 0 concatenated
+656004 edges in graph
+there're 713957 edges
+after compacting 656004 edges left
+
+302096 ctgs longer than 100, sum up 84762727bp, with average length 280
+the longest is 7089bp, contig N50 is 313 bp,contig N90 is 157 bp
+328002 contigs longer than 52 output
+time elapsed: 0m
+
+
+The version 1.03: released on July 19th, 2013
+
+In sample.config, 1 libs, max seq len 120, max name len 256
+
+32 thread created
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_2.fq.gz
+--- 100000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_2.fq.gz
+--- 200000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_2.fq.gz
+time spent on hash reads: 2632s, 285996286 reads processed
+[LIB] 0, avg_ins 200, reverse 0 
+528191650 nodes allocated, 6645623795 kmer in reads, 6645623795 kmer processed
+357754920 kmer removed
+time spent on delowcvgNode 10s
+154710785 linear nodes
+time spent on marking linear nodes 7s
+time spent on pre-graph construction: 2649s
+
+deLowKmer 1, deLowEdge 1
+Start to remove kmer of out frequency kmers < 0.050000
+3801363 kmers off
+32 thread created
+0 linear nodes
+time spent on cut kmer: 55s
+
+Start to remove tips which don't contribute the most links
+kmer set 0 done
+kmer set 1 done
+kmer set 2 done
+kmer set 3 done
+kmer set 4 done
+kmer set 5 done
+kmer set 6 done
+kmer set 7 done
+kmer set 8 done
+kmer set 9 done
+kmer set 10 done
+kmer set 11 done
+kmer set 12 done
+kmer set 13 done
+kmer set 14 done
+kmer set 15 done
+kmer set 16 done
+kmer set 17 done
+kmer set 18 done
+kmer set 19 done
+kmer set 20 done
+kmer set 21 done
+kmer set 22 done
+kmer set 23 done
+kmer set 24 done
+kmer set 25 done
+kmer set 26 done
+kmer set 27 done
+kmer set 28 done
+kmer set 29 done
+kmer set 30 done
+kmer set 31 done
+6565187 tips off
+32 thread created
+0 linear nodes
+time spent on cutTipe: 232s
+
+1843744 (921872) edges 87440 extra nodes
+time spent on making edges: 135s
+
+In file: sample.config, max seq len 120, max name len 256
+
+32 thread created
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_2.fq.gz
+--- 100000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_2.fq.gz
+--- 200000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_2.fq.gz
+285996286 reads processed
+time 794,265,1021,255,130,116,0
+0 markers outputed
+done mapping reads, 33063166 reads deleted, 1361936 arcs created
+[LIB] 0, avg_ins 200, reverse 0 
+time spent on mapping reads: 2589s
+
+1493254 vertex outputed
+overall time for lightgraph: 94m
+
+
+The version 1.03: released on July 19th, 2013
+
+there're 1493254 kmers in vertex file
+there're 1843744 edge in edge file
+done sort
+input 1843744 edges
+1617584 pre-arcs loaded
+start to pinch bubbles, cutoff 0.100000, MAX NODE NUM 3, MAX DIFF 2
+403281 startingPoints, 519443 dheap nodes
+87220 pairs found, 44085 pairs of paths compared, 34905 pairs merged
+sequenc compare failure: 0 4960 4220 0
+DFibHeap: 174 Nodes allocated
+a linear concatenation lap, 73744 concatenated
+a linear concatenation lap, 3550 concatenated
+a linear concatenation lap, 10 concatenated
+a linear concatenation lap, 0 concatenated
+1617708 edges in graph
+time spent on bubblePinch: 3s
+
+Start to remove the low coverage edge < 2
+0 edges removed
+
+strict 0, cutLen 122
+a cutTipsInGraph lap, 415404 tips cut
+a cutTipsInGraph lap, 36404 tips cut
+a cutTipsInGraph lap, 10241 tips cut
+a cutTipsInGraph lap, 3416 tips cut
+a cutTipsInGraph lap, 866 tips cut
+a cutTipsInGraph lap, 320 tips cut
+a cutTipsInGraph lap, 228 tips cut
+a cutTipsInGraph lap, 112 tips cut
+a cutTipsInGraph lap, 66 tips cut
+a cutTipsInGraph lap, 56 tips cut
+a cutTipsInGraph lap, 37 tips cut
+a cutTipsInGraph lap, 27 tips cut
+a cutTipsInGraph lap, 35 tips cut
+a cutTipsInGraph lap, 19 tips cut
+a cutTipsInGraph lap, 8 tips cut
+a cutTipsInGraph lap, 10 tips cut
+a cutTipsInGraph lap, 12 tips cut
+a cutTipsInGraph lap, 8 tips cut
+a cutTipsInGraph lap, 12 tips cut
+a cutTipsInGraph lap, 5 tips cut
+a cutTipsInGraph lap, 3 tips cut
+a cutTipsInGraph lap, 0 tips cut
+62457 dead arcs removed
+a linear concatenation lap, 44425 concatenated
+a linear concatenation lap, 579 concatenated
+a linear concatenation lap, 0 concatenated
+593122 edges in graph
+there're 1843744 edges
+after compacting 593122 edges left
+
+delete unlike arc :137080
+1 time to delete light arcs 
+764 loops removed in Graph
+Start to remove light arc using the rate 0.050000 and 0.020000
+delete light arc :68/161
+a linear concatenation lap, 51407 concatenated
+a linear concatenation lap, 1959 concatenated
+a linear concatenation lap, 1 concatenated
+a linear concatenation lap, 0 concatenated
+486388 edges in graph
+there're 593122 edges
+after compacting 486388 edges left
+
+2 time to delete light arcs 
+136 loops removed in Graph
+Start to remove light arc using the rate 0.050000 and 0.020000
+delete light arc :5/9
+a linear concatenation lap, 61 concatenated
+a linear concatenation lap, 0 concatenated
+486266 edges in graph
+there're 486388 edges
+after compacting 486266 edges left
+
+3 time to delete light arcs 
+0 loops removed in Graph
+Start to remove light arc using the rate 0.050000 and 0.020000
+delete light arc :0/0
+
+9090 short contig(<48) removed 
+a linear concatenation lap, 2474 concatenated
+a linear concatenation lap, 2 concatenated
+a linear concatenation lap, 0 concatenated
+463134 edges in graph
+there're 486266 edges
+after compacting 463134 edges left
+
+218816 ctgs longer than 100, sum up 70277119bp, with average length 321
+the longest is 7024bp, contig N50 is 359 bp,contig N90 is 183 bp
+231567 contigs longer than 62 output
+time elapsed: 0m
+
+
+The version 1.03: released on July 19th, 2013
+
+In sample.config, 1 libs, max seq len 120, max name len 256
+
+32 thread created
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_2.fq.gz
+--- 100000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_2.fq.gz
+--- 200000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_2.fq.gz
+time spent on hash reads: 1147s, 285996286 reads processed
+[LIB] 0, avg_ins 200, reverse 0 
+423360464 nodes allocated, 4245768150 kmer in reads, 4245768150 kmer processed
+290319820 kmer removed
+time spent on delowcvgNode 7s
+118693283 linear nodes
+time spent on marking linear nodes 5s
+time spent on pre-graph construction: 1160s
+
+deLowKmer 1, deLowEdge 1
+Start to remove kmer of out frequency kmers < 0.050000
+2611606 kmers off
+32 thread created
+0 linear nodes
+time spent on cut kmer: 44s
+
+Start to remove tips which don't contribute the most links
+kmer set 0 done
+kmer set 1 done
+kmer set 2 done
+kmer set 3 done
+kmer set 4 done
+kmer set 5 done
+kmer set 6 done
+kmer set 7 done
+kmer set 8 done
+kmer set 9 done
+kmer set 10 done
+kmer set 11 done
+kmer set 12 done
+kmer set 13 done
+kmer set 14 done
+kmer set 15 done
+kmer set 16 done
+kmer set 17 done
+kmer set 18 done
+kmer set 19 done
+kmer set 20 done
+kmer set 21 done
+kmer set 22 done
+kmer set 23 done
+kmer set 24 done
+kmer set 25 done
+kmer set 26 done
+kmer set 27 done
+kmer set 28 done
+kmer set 29 done
+kmer set 30 done
+kmer set 31 done
+6121536 tips off
+32 thread created
+0 linear nodes
+time spent on cutTipe: 204s
+
+1114604 (557302) edges 33797 extra nodes
+time spent on making edges: 113s
+
+In file: sample.config, max seq len 120, max name len 256
+
+32 thread created
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_2.fq.gz
+--- 100000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_2.fq.gz
+--- 200000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_2.fq.gz
+285996286 reads processed
+time 706,77,206,83,49,33,0
+0 markers outputed
+done mapping reads, 37774337 reads deleted, 808918 arcs created
+[LIB] 0, avg_ins 200, reverse 0 
+time spent on mapping reads: 1163s
+
+1017617 vertex outputed
+overall time for lightgraph: 45m
+
+
+The version 1.03: released on July 19th, 2013
+
+there're 1017617 kmers in vertex file
+there're 1114604 edge in edge file
+done sort
+input 1114604 edges
+926084 pre-arcs loaded
+start to pinch bubbles, cutoff 0.100000, MAX NODE NUM 3, MAX DIFF 2
+254836 startingPoints, 302466 dheap nodes
+51307 pairs found, 23085 pairs of paths compared, 19436 pairs merged
+sequenc compare failure: 0 2400 1249 0
+DFibHeap: 63 Nodes allocated
+a linear concatenation lap, 43464 concatenated
+a linear concatenation lap, 1743 concatenated
+a linear concatenation lap, 1 concatenated
+a linear concatenation lap, 0 concatenated
+984564 edges in graph
+time spent on bubblePinch: 2s
+
+Start to remove the low coverage edge < 2
+0 edges removed
+
+strict 0, cutLen 142
+a cutTipsInGraph lap, 253590 tips cut
+a cutTipsInGraph lap, 11516 tips cut
+a cutTipsInGraph lap, 2284 tips cut
+a cutTipsInGraph lap, 691 tips cut
+a cutTipsInGraph lap, 311 tips cut
+a cutTipsInGraph lap, 144 tips cut
+a cutTipsInGraph lap, 80 tips cut
+a cutTipsInGraph lap, 59 tips cut
+a cutTipsInGraph lap, 42 tips cut
+a cutTipsInGraph lap, 24 tips cut
+a cutTipsInGraph lap, 21 tips cut
+a cutTipsInGraph lap, 14 tips cut
+a cutTipsInGraph lap, 10 tips cut
+a cutTipsInGraph lap, 2 tips cut
+a cutTipsInGraph lap, 7 tips cut
+a cutTipsInGraph lap, 2 tips cut
+a cutTipsInGraph lap, 0 tips cut
+46341 dead arcs removed
+a linear concatenation lap, 31640 concatenated
+a linear concatenation lap, 433 concatenated
+a linear concatenation lap, 3 concatenated
+a linear concatenation lap, 0 concatenated
+382820 edges in graph
+there're 1114604 edges
+after compacting 382820 edges left
+
+delete unlike arc :82718
+1 time to delete light arcs 
+392 loops removed in Graph
+Start to remove light arc using the rate 0.050000 and 0.020000
+delete light arc :34/90
+a linear concatenation lap, 29586 concatenated
+a linear concatenation lap, 940 concatenated
+a linear concatenation lap, 3 concatenated
+a linear concatenation lap, 0 concatenated
+321762 edges in graph
+there're 382820 edges
+after compacting 321762 edges left
+
+2 time to delete light arcs 
+48 loops removed in Graph
+Start to remove light arc using the rate 0.050000 and 0.020000
+delete light arc :0/0
+
+4182 short contig(<48) removed 
+a linear concatenation lap, 1102 concatenated
+a linear concatenation lap, 3 concatenated
+a linear concatenation lap, 0 concatenated
+311188 edges in graph
+there're 321762 edges
+after compacting 311188 edges left
+
+149596 ctgs longer than 100, sum up 54876544bp, with average length 366
+the longest is 6979bp, contig N50 is 407 bp,contig N90 is 214 bp
+155594 contigs longer than 72 output
+time elapsed: 0m
+
+
+The version 1.03: released on July 19th, 2013
+
+In sample.config, 1 libs, max seq len 120, max name len 256
+
+32 thread created
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_2.fq.gz
+--- 100000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_2.fq.gz
+--- 200000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_2.fq.gz
+time spent on hash reads: 864s, 285996286 reads processed
+[LIB] 0, avg_ins 200, reverse 0 
+261133584 nodes allocated, 2081763877 kmer in reads, 2081763877 kmer processed
+175827287 kmer removed
+time spent on delowcvgNode 4s
+79747484 linear nodes
+time spent on marking linear nodes 3s
+time spent on pre-graph construction: 873s
+
+deLowKmer 1, deLowEdge 1
+Start to remove kmer of out frequency kmers < 0.050000
+867672 kmers off
+32 thread created
+0 linear nodes
+time spent on cut kmer: 20s
+
+Start to remove tips which don't contribute the most links
+kmer set 0 done
+kmer set 1 done
+kmer set 2 done
+kmer set 3 done
+kmer set 4 done
+kmer set 5 done
+kmer set 6 done
+kmer set 7 done
+kmer set 8 done
+kmer set 9 done
+kmer set 10 done
+kmer set 11 done
+kmer set 12 done
+kmer set 13 done
+kmer set 14 done
+kmer set 15 done
+kmer set 16 done
+kmer set 17 done
+kmer set 18 done
+kmer set 19 done
+kmer set 20 done
+kmer set 21 done
+kmer set 22 done
+kmer set 23 done
+kmer set 24 done
+kmer set 25 done
+kmer set 26 done
+kmer set 27 done
+kmer set 28 done
+kmer set 29 done
+kmer set 30 done
+kmer set 31 done
+2344305 tips off
+32 thread created
+0 linear nodes
+time spent on cutTipe: 121s
+
+586610 (293305) edges 13181 extra nodes
+time spent on making edges: 71s
+
+In file: sample.config, max seq len 120, max name len 256
+
+32 thread created
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_2.fq.gz
+--- 100000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_2.fq.gz
+--- 200000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_2.fq.gz
+285996286 reads processed
+time 249,29,92,18,20,18,0
+0 markers outputed
+done mapping reads, 14238073 reads deleted, 440913 arcs created
+[LIB] 0, avg_ins 200, reverse 0 
+time spent on mapping reads: 885s
+
+448276 vertex outputed
+overall time for lightgraph: 33m
+
+
+The version 1.03: released on July 19th, 2013
+
+there're 448276 kmers in vertex file
+there're 586610 edge in edge file
+done sort
+input 586610 edges
+496792 pre-arcs loaded
+start to pinch bubbles, cutoff 0.100000, MAX NODE NUM 3, MAX DIFF 2
+131447 startingPoints, 161858 dheap nodes
+28780 pairs found, 11827 pairs of paths compared, 10548 pairs merged
+sequenc compare failure: 0 987 292 0
+DFibHeap: 46 Nodes allocated
+a linear concatenation lap, 22074 concatenated
+a linear concatenation lap, 821 concatenated
+a linear concatenation lap, 3 concatenated
+a linear concatenation lap, 0 concatenated
+519436 edges in graph
+time spent on bubblePinch: 1s
+
+Start to remove the low coverage edge < 2
+0 edges removed
+
+strict 0, cutLen 162
+a cutTipsInGraph lap, 112034 tips cut
+a cutTipsInGraph lap, 5869 tips cut
+a cutTipsInGraph lap, 1125 tips cut
+a cutTipsInGraph lap, 373 tips cut
+a cutTipsInGraph lap, 161 tips cut
+a cutTipsInGraph lap, 68 tips cut
+a cutTipsInGraph lap, 59 tips cut
+a cutTipsInGraph lap, 27 tips cut
+a cutTipsInGraph lap, 9 tips cut
+a cutTipsInGraph lap, 11 tips cut
+a cutTipsInGraph lap, 13 tips cut
+a cutTipsInGraph lap, 4 tips cut
+a cutTipsInGraph lap, 2 tips cut
+a cutTipsInGraph lap, 0 tips cut
+28583 dead arcs removed
+a linear concatenation lap, 17621 concatenated
+a linear concatenation lap, 236 concatenated
+a linear concatenation lap, 0 concatenated
+244212 edges in graph
+there're 586610 edges
+after compacting 244212 edges left
+
+delete unlike arc :46878
+1 time to delete light arcs 
+196 loops removed in Graph
+Start to remove light arc using the rate 0.050000 and 0.020000
+delete light arc :9/23
+a linear concatenation lap, 16723 concatenated
+a linear concatenation lap, 471 concatenated
+a linear concatenation lap, 0 concatenated
+209824 edges in graph
+there're 244212 edges
+after compacting 209824 edges left
+
+2 time to delete light arcs 
+24 loops removed in Graph
+Start to remove light arc using the rate 0.050000 and 0.020000
+delete light arc :0/0
+
+1580 short contig(<48) removed 
+a linear concatenation lap, 392 concatenated
+a linear concatenation lap, 1 concatenated
+a linear concatenation lap, 0 concatenated
+205878 edges in graph
+there're 209824 edges
+after compacting 205878 edges left
+
+100697 ctgs longer than 100, sum up 40961748bp, with average length 406
+the longest is 6274bp, contig N50 is 444 bp,contig N90 is 246 bp
+102939 contigs longer than 82 output
+time elapsed: 0m
+
+
+The version 1.03: released on July 19th, 2013
+
+In sample.config, 1 libs, max seq len 120, max name len 256
+
+32 thread created
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_2.fq.gz
+--- 100000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_2.fq.gz
+--- 200000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_2.fq.gz
+time spent on hash reads: 800s, 285996286 reads processed
+[LIB] 0, avg_ins 200, reverse 0 
+202481983 nodes allocated, 1380862357 kmer in reads, 1380862357 kmer processed
+134234292 kmer removed
+time spent on delowcvgNode 3s
+63223757 linear nodes
+time spent on marking linear nodes 1s
+time spent on pre-graph construction: 806s
+
+deLowKmer 1, deLowEdge 1
+Start to remove kmer of out frequency kmers < 0.050000
+571676 kmers off
+32 thread created
+0 linear nodes
+time spent on cut kmer: 11s
+
+Start to remove tips which don't contribute the most links
+kmer set 0 done
+kmer set 1 done
+kmer set 2 done
+kmer set 3 done
+kmer set 4 done
+kmer set 5 done
+kmer set 6 done
+kmer set 7 done
+kmer set 8 done
+kmer set 9 done
+kmer set 10 done
+kmer set 11 done
+kmer set 12 done
+kmer set 13 done
+kmer set 14 done
+kmer set 15 done
+kmer set 16 done
+kmer set 17 done
+kmer set 18 done
+kmer set 19 done
+kmer set 20 done
+kmer set 21 done
+kmer set 22 done
+kmer set 23 done
+kmer set 24 done
+kmer set 25 done
+kmer set 26 done
+kmer set 27 done
+kmer set 28 done
+kmer set 29 done
+kmer set 30 done
+kmer set 31 done
+2184446 tips off
+32 thread created
+0 linear nodes
+time spent on cutTipe: 83s
+
+408142 (204071) edges 10877 extra nodes
+time spent on making edges: 48s
+
+In file: sample.config, max seq len 120, max name len 256
+
+32 thread created
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_2.fq.gz
+--- 100000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_2.fq.gz
+--- 200000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_2.fq.gz
+285996286 reads processed
+time 234,20,62,13,10,11,0
+0 markers outputed
+done mapping reads, 14548263 reads deleted, 275268 arcs created
+[LIB] 0, avg_ins 200, reverse 0 
+time spent on mapping reads: 817s
+
+326387 vertex outputed
+overall time for lightgraph: 29m
+
+
+The version 1.03: released on July 19th, 2013
+
+there're 326387 kmers in vertex file
+there're 408142 edge in edge file
+done sort
+input 408142 edges
+316890 pre-arcs loaded
+start to pinch bubbles, cutoff 0.100000, MAX NODE NUM 3, MAX DIFF 2
+103682 startingPoints, 100389 dheap nodes
+15201 pairs found, 5580 pairs of paths compared, 5184 pairs merged
+sequenc compare failure: 0 377 19 0
+DFibHeap: 20 Nodes allocated
+a linear concatenation lap, 11083 concatenated
+a linear concatenation lap, 340 concatenated
+a linear concatenation lap, 2 concatenated
+a linear concatenation lap, 0 concatenated
+374834 edges in graph
+time spent on bubblePinch: 1s
+
+Start to remove the low coverage edge < 2
+0 edges removed
+
+strict 0, cutLen 182
+a cutTipsInGraph lap, 91684 tips cut
+a cutTipsInGraph lap, 4229 tips cut
+a cutTipsInGraph lap, 778 tips cut
+a cutTipsInGraph lap, 246 tips cut
+a cutTipsInGraph lap, 74 tips cut
+a cutTipsInGraph lap, 22 tips cut
+a cutTipsInGraph lap, 27 tips cut
+a cutTipsInGraph lap, 11 tips cut
+a cutTipsInGraph lap, 9 tips cut
+a cutTipsInGraph lap, 9 tips cut
+a cutTipsInGraph lap, 3 tips cut
+a cutTipsInGraph lap, 0 tips cut
+22048 dead arcs removed
+a linear concatenation lap, 13312 concatenated
+a linear concatenation lap, 208 concatenated
+a linear concatenation lap, 0 concatenated
+153610 edges in graph
+there're 408142 edges
+after compacting 153610 edges left
+
+delete unlike arc :25830
+1 time to delete light arcs 
+84 loops removed in Graph
+Start to remove light arc using the rate 0.050000 and 0.020000
+delete light arc :1/3
+a linear concatenation lap, 8434 concatenated
+a linear concatenation lap, 194 concatenated
+a linear concatenation lap, 0 concatenated
+136354 edges in graph
+there're 153610 edges
+after compacting 136354 edges left
+
+2 time to delete light arcs 
+4 loops removed in Graph
+Start to remove light arc using the rate 0.050000 and 0.020000
+delete light arc :0/0
+
+651 short contig(<48) removed 
+a linear concatenation lap, 158 concatenated
+a linear concatenation lap, 1 concatenated
+a linear concatenation lap, 0 concatenated
+134734 edges in graph
+there're 136354 edges
+after compacting 134734 edges left
+
+66812 ctgs longer than 100, sum up 29438521bp, with average length 440
+the longest is 5967bp, contig N50 is 472 bp,contig N90 is 280 bp
+67367 contigs longer than 92 output
+time elapsed: 0m
+
+
+The version 1.03: released on July 19th, 2013
+
+In sample.config, 1 libs, max seq len 120, max name len 256
+
+32 thread created
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_2.fq.gz
+--- 100000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_2.fq.gz
+--- 200000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_2.fq.gz
+time spent on hash reads: 768s, 285996286 reads processed
+[LIB] 0, avg_ins 200, reverse 0 
+141018313 nodes allocated, 789791828 kmer in reads, 789791828 kmer processed
+90976081 kmer removed
+time spent on delowcvgNode 2s
+45426619 linear nodes
+time spent on marking linear nodes 1s
+time spent on pre-graph construction: 772s
+
+deLowKmer 1, deLowEdge 1
+Start to remove kmer of out frequency kmers < 0.050000
+316040 kmers off
+32 thread created
+0 linear nodes
+time spent on cut kmer: 10s
+
+Start to remove tips which don't contribute the most links
+kmer set 0 done
+kmer set 1 done
+kmer set 2 done
+kmer set 3 done
+kmer set 4 done
+kmer set 5 done
+kmer set 6 done
+kmer set 7 done
+kmer set 8 done
+kmer set 9 done
+kmer set 10 done
+kmer set 11 done
+kmer set 12 done
+kmer set 13 done
+kmer set 14 done
+kmer set 15 done
+kmer set 16 done
+kmer set 17 done
+kmer set 18 done
+kmer set 19 done
+kmer set 20 done
+kmer set 21 done
+kmer set 22 done
+kmer set 23 done
+kmer set 24 done
+kmer set 25 done
+kmer set 26 done
+kmer set 27 done
+kmer set 28 done
+kmer set 29 done
+kmer set 30 done
+kmer set 31 done
+2083881 tips off
+32 thread created
+0 linear nodes
+time spent on cutTipe: 73s
+
+275834 (137917) edges 10076 extra nodes
+time spent on making edges: 34s
+
+In file: sample.config, max seq len 120, max name len 256
+
+32 thread created
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_2.fq.gz
+--- 100000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_2.fq.gz
+--- 200000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_2.fq.gz
+285996286 reads processed
+time 239,14,35,9,10,10,0
+0 markers outputed
+done mapping reads, 15325402 reads deleted, 149725 arcs created
+[LIB] 0, avg_ins 200, reverse 0 
+time spent on mapping reads: 774s
+
+229296 vertex outputed
+overall time for lightgraph: 27m
+
+
+The version 1.03: released on July 19th, 2013
+
+there're 229296 kmers in vertex file
+there're 275834 edge in edge file
+done sort
+input 275834 edges
+182792 pre-arcs loaded
+start to pinch bubbles, cutoff 0.100000, MAX NODE NUM 3, MAX DIFF 2
+83188 startingPoints, 54729 dheap nodes
+5618 pairs found, 58 pairs of paths compared, 0 pairs merged
+sequenc compare failure: 0 58 0 0
+DFibHeap: 12 Nodes allocated
+a linear concatenation lap, 1187 concatenated
+a linear concatenation lap, 0 concatenated
+273460 edges in graph
+time spent on bubblePinch: 0s
+
+Start to remove the low coverage edge < 2
+0 edges removed
+
+strict 0, cutLen 202
+a cutTipsInGraph lap, 83021 tips cut
+a cutTipsInGraph lap, 3179 tips cut
+a cutTipsInGraph lap, 792 tips cut
+a cutTipsInGraph lap, 233 tips cut
+a cutTipsInGraph lap, 72 tips cut
+a cutTipsInGraph lap, 35 tips cut
+a cutTipsInGraph lap, 23 tips cut
+a cutTipsInGraph lap, 18 tips cut
+a cutTipsInGraph lap, 8 tips cut
+a cutTipsInGraph lap, 6 tips cut
+a cutTipsInGraph lap, 9 tips cut
+a cutTipsInGraph lap, 2 tips cut
+a cutTipsInGraph lap, 2 tips cut
+a cutTipsInGraph lap, 2 tips cut
+a cutTipsInGraph lap, 1 tips cut
+a cutTipsInGraph lap, 3 tips cut
+a cutTipsInGraph lap, 1 tips cut
+a cutTipsInGraph lap, 0 tips cut
+14735 dead arcs removed
+a linear concatenation lap, 8910 concatenated
+a linear concatenation lap, 124 concatenated
+a linear concatenation lap, 0 concatenated
+80578 edges in graph
+there're 275834 edges
+after compacting 80578 edges left
+
+delete unlike arc :11394
+1 time to delete light arcs 
+60 loops removed in Graph
+Start to remove light arc using the rate 0.050000 and 0.020000
+delete light arc :3/9
+a linear concatenation lap, 3323 concatenated
+a linear concatenation lap, 59 concatenated
+a linear concatenation lap, 0 concatenated
+73814 edges in graph
+there're 80578 edges
+after compacting 73814 edges left
+
+2 time to delete light arcs 
+4 loops removed in Graph
+Start to remove light arc using the rate 0.050000 and 0.020000
+delete light arc :0/0
+
+302 short contig(<48) removed 
+a linear concatenation lap, 51 concatenated
+a linear concatenation lap, 0 concatenated
+73108 edges in graph
+there're 73814 edges
+after compacting 73108 edges left
+
+36554 ctgs longer than 100, sum up 16403610bp, with average length 448
+the longest is 5788bp, contig N50 is 474 bp,contig N90 is 307 bp
+36554 contigs longer than 102 output
+time elapsed: 0m
+

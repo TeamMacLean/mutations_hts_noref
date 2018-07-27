@@ -1,0 +1,59 @@
+[ INFO] 2016-01-27 11:42:35 : Loading assembly: /tsl/scratch/rallapag/assemblies/wheat_trans/all/compare_transrate/selected_kmer_contigs.fa
+[ INFO] 2016-01-27 11:52:45 : Analysing assembly: /tsl/scratch/rallapag/assemblies/wheat_trans/all/compare_transrate/selected_kmer_contigs.fa
+[ INFO] 2016-01-27 11:52:45 : Results will be saved in /tsl/scratch/rallapag/assemblies/wheat_trans/all/compare_transrate/transrate_results/selected_kmer_contigs
+[ INFO] 2016-01-27 11:52:45 : Calculating contig metrics...
+[ INFO] 2016-01-27 12:19:00 : Contig metrics:
+[ INFO] 2016-01-27 12:19:00 : -----------------------------------
+[ INFO] 2016-01-27 12:19:00 : n seqs                      2141085
+[ INFO] 2016-01-27 12:19:00 : smallest                        100
+[ INFO] 2016-01-27 12:19:00 : largest                        7607
+[ INFO] 2016-01-27 12:19:00 : n bases                   584165799
+[ INFO] 2016-01-27 12:19:00 : mean len                      199.2
+[ INFO] 2016-01-27 12:19:00 : n under 200                 1119362
+[ INFO] 2016-01-27 12:19:00 : n over 1k                     43599
+[ INFO] 2016-01-27 12:19:00 : n over 10k                        0
+[ INFO] 2016-01-27 12:19:00 : n with orf                   143538
+[ INFO] 2016-01-27 12:19:00 : mean orf percent              72.89
+[ INFO] 2016-01-27 12:19:00 : n90                             250
+[ INFO] 2016-01-27 12:19:00 : n70                             380
+[ INFO] 2016-01-27 12:19:00 : n50                             628
+[ INFO] 2016-01-27 12:19:00 : n30                            1940
+[ INFO] 2016-01-27 12:19:00 : n10                            7607
+[ INFO] 2016-01-27 12:19:00 : gc                             0.47
+[ INFO] 2016-01-27 12:19:00 : gc skew                        -0.0
+[ INFO] 2016-01-27 12:19:00 : at skew                         0.0
+[ INFO] 2016-01-27 12:19:00 : cpg ratio                       1.8
+[ INFO] 2016-01-27 12:19:00 : bases n                           0
+[ INFO] 2016-01-27 12:19:00 : proportion n                    0.0
+[ INFO] 2016-01-27 12:19:00 : linguistic complexity          0.06
+[ INFO] 2016-01-27 12:19:00 : Contig metrics done in 1575 seconds
+[ INFO] 2016-01-27 12:19:00 : Calculating read diagnostics...
+[ INFO] 2016-01-27 21:17:19 : Read mapping metrics:
+[ INFO] 2016-01-27 21:17:19 : -----------------------------------
+[ INFO] 2016-01-27 21:17:19 : fragments                 142998143
+[ INFO] 2016-01-27 21:17:19 : fragments mapped          109213902
+[ INFO] 2016-01-27 21:17:19 : p fragments mapped             0.76
+[ INFO] 2016-01-27 21:17:19 : good mappings              93434306
+[ INFO] 2016-01-27 21:17:19 : p good mapping                 0.65
+[ INFO] 2016-01-27 21:17:19 : bad mappings               15779596
+[ INFO] 2016-01-27 21:17:19 : potential bridges            243272
+[ INFO] 2016-01-27 21:17:19 : bases uncovered           265363712
+[ INFO] 2016-01-27 21:17:19 : p bases uncovered              0.45
+[ INFO] 2016-01-27 21:17:19 : contigs uncovbase           1889621
+[ INFO] 2016-01-27 21:17:19 : p contigs uncovbase            0.88
+[ INFO] 2016-01-27 21:17:19 : contigs uncovered           1366470
+[ INFO] 2016-01-27 21:17:19 : p contigs uncovered            0.64
+[ INFO] 2016-01-27 21:17:19 : contigs lowcovered          1374472
+[ INFO] 2016-01-27 21:17:19 : p contigs lowcovered           0.64
+[ INFO] 2016-01-27 21:17:19 : contigs segmented             79361
+[ INFO] 2016-01-27 21:17:19 : p contigs segmented            0.04
+[ INFO] 2016-01-27 21:17:19 : Read metrics done in 32299 seconds
+[ INFO] 2016-01-27 21:17:19 : No reference provided, skipping comparative diagnostics
+[ INFO] 2016-01-27 21:17:25 : TRANSRATE ASSEMBLY SCORE     0.0229
+[ INFO] 2016-01-27 21:17:25 : -----------------------------------
+[ INFO] 2016-01-27 21:17:25 : TRANSRATE OPTIMAL SCORE      0.3682
+[ INFO] 2016-01-27 21:17:25 : TRANSRATE OPTIMAL CUTOFF     0.3554
+[ INFO] 2016-01-27 21:17:30 : good contigs                 542117
+[ INFO] 2016-01-27 21:17:30 : p good contigs                 0.25
+[ INFO] 2016-01-27 21:17:30 : Writing contig metrics for each contig to /tsl/scratch/rallapag/assemblies/wheat_trans/all/compare_transrate/transrate_results/selected_kmer_contigs/contigs.csv
+[ INFO] 2016-01-27 21:40:09 : Writing analysis results to assemblies.csv

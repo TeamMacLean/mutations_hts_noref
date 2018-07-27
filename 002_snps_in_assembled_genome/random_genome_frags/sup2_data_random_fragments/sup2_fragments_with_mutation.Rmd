@@ -161,4 +161,14 @@ summary(selected$hmpercent)
 
 ...
 
+
+
+#### summary about rank of fragment with causative mutation as percentage of all fragments with more hm variants from all iterations
+```{r sub-report4, echo=FALSE}
+
+summary(selected$length)
+```
+
+...
+
 ...

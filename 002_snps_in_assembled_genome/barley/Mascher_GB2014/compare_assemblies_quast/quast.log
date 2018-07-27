@@ -1,0 +1,345 @@
+/tsl/software/testing/quast/4.0/src/quast-4.0/quast.py --memory-efficient  -e  -s  -R /tsl/data/sequences/plants/h_vulgare/release-30/Hordeum_vulgare.082214v1.30.dna.genome.fa.gz -m 0 -t 16 -o compare_quast_assembly barley_multikmer.scafSeq scaffolds_barley_multikmer_300bp.fa spades_scaffolds.fa spades_scaffolds_selected.fa
+
+Version: 4.0, build 19.04.2016 14:51
+
+System information:
+  OS: Linux-3.10.0-327.10.1.el7.x86_64-x86_64-with-centos-7.2.1511-Core (linux_64)
+  Python version: 2.7.11
+  CPUs number: 32
+
+Started: 2016-06-14 15:42:59
+
+Logging to /tsl/scratch/rallapag/assemblies/barley/soap_multi_k/compare_quast_assembly/quast.log
+
+Main parameters: 
+  Threads: 16, scaffolds: true, eukaryotic: true, ambiguity: one, threshold for extensive misassembly size: 1000
+
+Reference:
+WARNING: Skipping chromosome 6_dna_chromosome_chromosome_082214v1_6_1_538755036_1 because its length is greater than 536870908 (Nucmer's constraint).
+WARNING: Skipping chromosome 4_dna_chromosome_chromosome_082214v1_4_1_544168226_1 because its length is greater than 536870908 (Nucmer's constraint).
+WARNING: Skipping chromosome 5_dna_chromosome_chromosome_082214v1_5_1_561411686_1 because its length is greater than 536870908 (Nucmer's constraint).
+WARNING: Skipping chromosome 3_dna_chromosome_chromosome_082214v1_3_1_564427874_1 because its length is greater than 536870908 (Nucmer's constraint).
+WARNING: Skipping chromosome 7_dna_chromosome_chromosome_082214v1_7_1_601597413_1 because its length is greater than 536870908 (Nucmer's constraint).
+WARNING: Skipping chromosome 2_dna_chromosome_chromosome_082214v1_2_1_628342783_1 because its length is greater than 536870908 (Nucmer's constraint).
+  /tsl/data/sequences/plants/h_vulgare/release-30/Hordeum_vulgare.082214v1.30.dna.genome.fa.gz ==> Hordeum_vulgare.082214v1.30.dna.genome
+
+Contigs:
+  1    breaking scaffolds into contigs:
+  3    breaking scaffolds into contigs:
+  2    breaking scaffolds into contigs:
+  4    breaking scaffolds into contigs:
+  1  barley_multikmer.scafSeq ==> barley_multikmer.scafSeq
+  1      6146478 scaffolds (barley_multikmer.scafSeq) were broken into 6172232 contigs (barley_multikmer.scafSeq broken)
+  2  scaffolds_barley_multikmer_300bp.fa ==> scaffolds_barley_multikmer_300bp
+  2      253137 scaffolds (scaffolds_barley_multikmer_300bp) were broken into 278891 contigs (scaffolds_barley_multikmer_300bp broken)
+  3  spades_scaffolds.fa ==> spades_scaffolds
+  3      844731 scaffolds (spades_scaffolds) were broken into 844966 contigs (spades_scaffolds broken)
+  4  spades_scaffolds_selected.fa ==> spades_scaffolds_selected
+  4      137265 scaffolds (spades_scaffolds_selected) were broken into 137439 contigs (spades_scaffolds_selected broken)
+
+2016-06-14 16:24:34
+Running Basic statistics processor...
+  Reference genome:
+    Hordeum_vulgare.082214v1.30.dna.genome.fa, Reference length = 4045300851, Reference GC % = 44.34
+  Contig files: 
+    1  barley_multikmer.scafSeq
+    2  scaffolds_barley_multikmer_300bp
+    3  spades_scaffolds
+    4  spades_scaffolds_selected
+    5  barley_multikmer.scafSeq broken
+    6  scaffolds_barley_multikmer_300bp broken
+    7  spades_scaffolds broken
+    8  spades_scaffolds_selected broken
+  Calculating N50 and L50...
+    1  barley_multikmer.scafSeq, N50 = 138, L50 = 1926393, Total length = 921333186, GC % = 46.84, # N's per 100 kbp =  116.95
+    2  scaffolds_barley_multikmer_300bp, N50 = 722, L50 = 65378, Total length = 166512155, GC % = 47.99, # N's per 100 kbp =  647.12
+    3  spades_scaffolds, N50 = 578, L50 = 100256, Total length = 261266285, GC % = 48.15, # N's per 100 kbp =  3.33
+    4  spades_scaffolds_selected, N50 = 1312, L50 = 28271, Total length = 132213141, GC % = 47.98, # N's per 100 kbp =  5.05
+    5  barley_multikmer.scafSeq broken, N50 = 138, L50 = 1955633, Total length = 920266722, GC % = 46.84, # N's per 100 kbp =  1.20
+    6  scaffolds_barley_multikmer_300bp broken, N50 = 666, L50 = 68448, Total length = 165445691, GC % = 47.99, # N's per 100 kbp =  6.69
+    7  spades_scaffolds broken, N50 = 578, L50 = 100371, Total length = 261258413, GC % = 48.15, # N's per 100 kbp =  0.31
+    8  spades_scaffolds_selected broken, N50 = 1310, L50 = 28323, Total length = 132206695, GC % = 47.98, # N's per 100 kbp =  0.18
+  Drawing Nx plot...
+    saved to /tsl/scratch/rallapag/assemblies/barley/soap_multi_k/compare_quast_assembly/basic_stats/Nx_plot.pdf
+  Drawing NGx plot...
+    saved to /tsl/scratch/rallapag/assemblies/barley/soap_multi_k/compare_quast_assembly/basic_stats/NGx_plot.pdf
+  Drawing cumulative plot...
+    saved to /tsl/scratch/rallapag/assemblies/barley/soap_multi_k/compare_quast_assembly/basic_stats/cumulative_plot.pdf
+  Drawing GC content plot...
+    saved to /tsl/scratch/rallapag/assemblies/barley/soap_multi_k/compare_quast_assembly/basic_stats/GC_content_plot.pdf
+Done.
+
+2016-06-14 16:42:34
+Running Contig analyzer...
+  1  barley_multikmer.scafSeq
+  1  Logging to files /tsl/scratch/rallapag/assemblies/barley/soap_multi_k/compare_quast_assembly/contigs_reports/contigs_report_barley_multikmer.scafSeq.stdout and contigs_report_barley_multikmer.scafSeq.stderr...
+  1  Running Nucmer
+  1  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/barley_multikmer.scafSeq_part_1.fa \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_1.fa compare_quast_assembly/quast_corrected_input/barley_multikmer.scafSeq \
+     >> compare_quast_assembly/contigs_reports/contigs_report_barley_multikmer.scafSeq.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_barley_multikmer.scafSeq.stderr_part1
+  1  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/barley_multikmer.scafSeq_part_2.fa \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_2.fa compare_quast_assembly/quast_corrected_input/barley_multikmer.scafSeq \
+     >> compare_quast_assembly/contigs_reports/contigs_report_barley_multikmer.scafSeq.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_barley_multikmer.scafSeq.stderr_part2
+  1  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/delta-filter \
+     -i 95 -l 0 compare_quast_assembly/contigs_reports/nucmer_output/barley_multikmer.scafSeq.delta \
+     > compare_quast_assembly/contigs_reports/nucmer_output/barley_multikmer.scafSeq.fdelta \
+     2> compare_quast_assembly/contigs_reports/contigs_report_barley_multikmer.scafSeq.stderr
+  1  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/show-coords \
+     compare_quast_assembly/contigs_reports/nucmer_output/barley_multikmer.scafSeq.delta \
+     > compare_quast_assembly/contigs_reports/nucmer_output/barley_multikmer.scafSeq.coords_tmp \
+     2> compare_quast_assembly/contigs_reports/contigs_report_barley_multikmer.scafSeq.stderr
+  1  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/show-snps \
+     -S -T -H compare_quast_assembly/contigs_reports/nucmer_output/barley_multikmer.scafSeq.delta \
+     < compare_quast_assembly/contigs_reports/nucmer_output/barley_multikmer.scafSeq.coords.headless \
+     > compare_quast_assembly/contigs_reports/nucmer_output/barley_multikmer.scafSeq.all_snps \
+     2> compare_quast_assembly/contigs_reports/contigs_report_barley_multikmer.scafSeq.stderr
+  1  Alignments: compare_quast_assembly/contigs_reports/alignments_barley_multikmer.scafSeq.tsv
+  1  Analysis is finished.
+
+  2  scaffolds_barley_multikmer_300bp
+  2  Logging to files /tsl/scratch/rallapag/assemblies/barley/soap_multi_k/compare_quast_assembly/contigs_reports/contigs_report_scaffolds_barley_multikmer_300bp.stdout and contigs_report_scaffolds_barley_multikmer_300bp.stderr...
+  2  Running Nucmer
+  2  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_barley_multikmer_300bp_part_1.fa \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_1.fa compare_quast_assembly/quast_corrected_input/scaffolds_barley_multikmer_300bp.fa \
+     >> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_barley_multikmer_300bp.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_barley_multikmer_300bp.stderr_part1
+  2  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_barley_multikmer_300bp_part_2.fa \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_2.fa compare_quast_assembly/quast_corrected_input/scaffolds_barley_multikmer_300bp.fa \
+     >> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_barley_multikmer_300bp.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_barley_multikmer_300bp.stderr_part2
+  2  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/delta-filter \
+     -i 95 -l 0 compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_barley_multikmer_300bp.delta \
+     > compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_barley_multikmer_300bp.fdelta \
+     2> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_barley_multikmer_300bp.stderr
+  2  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/show-coords \
+     compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_barley_multikmer_300bp.delta \
+     > compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_barley_multikmer_300bp.coords_tmp \
+     2> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_barley_multikmer_300bp.stderr
+  2  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/show-snps \
+     -S -T -H compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_barley_multikmer_300bp.delta \
+     < compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_barley_multikmer_300bp.coords.headless \
+     > compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_barley_multikmer_300bp.all_snps \
+     2> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_barley_multikmer_300bp.stderr
+  2  Alignments: compare_quast_assembly/contigs_reports/alignments_scaffolds_barley_multikmer_300bp.tsv
+  2  Analysis is finished.
+
+  3  spades_scaffolds
+  3  Logging to files /tsl/scratch/rallapag/assemblies/barley/soap_multi_k/compare_quast_assembly/contigs_reports/contigs_report_spades_scaffolds.stdout and contigs_report_spades_scaffolds.stderr...
+  3  Running Nucmer
+  3  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/spades_scaffolds_part_1.fa \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_1.fa compare_quast_assembly/quast_corrected_input/spades_scaffolds.fa \
+     >> compare_quast_assembly/contigs_reports/contigs_report_spades_scaffolds.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_spades_scaffolds.stderr_part1
+  3  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/spades_scaffolds_part_2.fa \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_2.fa compare_quast_assembly/quast_corrected_input/spades_scaffolds.fa \
+     >> compare_quast_assembly/contigs_reports/contigs_report_spades_scaffolds.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_spades_scaffolds.stderr_part2
+  3  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/delta-filter \
+     -i 95 -l 0 compare_quast_assembly/contigs_reports/nucmer_output/spades_scaffolds.delta \
+     > compare_quast_assembly/contigs_reports/nucmer_output/spades_scaffolds.fdelta \
+     2> compare_quast_assembly/contigs_reports/contigs_report_spades_scaffolds.stderr
+  3  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/show-coords \
+     compare_quast_assembly/contigs_reports/nucmer_output/spades_scaffolds.delta > \
+     compare_quast_assembly/contigs_reports/nucmer_output/spades_scaffolds.coords_tmp \
+     2> compare_quast_assembly/contigs_reports/contigs_report_spades_scaffolds.stderr
+  3  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/show-snps \
+     -S -T -H compare_quast_assembly/contigs_reports/nucmer_output/spades_scaffolds.delta \
+     < compare_quast_assembly/contigs_reports/nucmer_output/spades_scaffolds.coords.headless \
+     > compare_quast_assembly/contigs_reports/nucmer_output/spades_scaffolds.all_snps \
+     2> compare_quast_assembly/contigs_reports/contigs_report_spades_scaffolds.stderr
+  3  Alignments: compare_quast_assembly/contigs_reports/alignments_spades_scaffolds.tsv
+  3  Analysis is finished.
+
+  4  spades_scaffolds_selected
+  4  Logging to files /tsl/scratch/rallapag/assemblies/barley/soap_multi_k/compare_quast_assembly/contigs_reports/contigs_report_spades_scaffolds_selected.stdout and contigs_report_spades_scaffolds_selected.stderr...
+  4  Running Nucmer
+  4  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/spades_scaffolds_selected_part_1.fa \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_1.fa compare_quast_assembly/quast_corrected_input/spades_scaffolds_selected.fa \
+     >> compare_quast_assembly/contigs_reports/contigs_report_spades_scaffolds_selected.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_spades_scaffolds_selected.stderr_part1
+  4  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/spades_scaffolds_selected_part_2.fa \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_2.fa compare_quast_assembly/quast_corrected_input/spades_scaffolds_selected.fa \
+     >> compare_quast_assembly/contigs_reports/contigs_report_spades_scaffolds_selected.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_spades_scaffolds_selected.stderr_part2
+  4  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/delta-filter \
+     -i 95 -l 0 compare_quast_assembly/contigs_reports/nucmer_output/spades_scaffolds_selected.delta \
+     > compare_quast_assembly/contigs_reports/nucmer_output/spades_scaffolds_selected.fdelta \
+     2> compare_quast_assembly/contigs_reports/contigs_report_spades_scaffolds_selected.stderr
+  4  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/show-coords \
+     compare_quast_assembly/contigs_reports/nucmer_output/spades_scaffolds_selected.delta \
+     > compare_quast_assembly/contigs_reports/nucmer_output/spades_scaffolds_selected.coords_tmp \
+     2> compare_quast_assembly/contigs_reports/contigs_report_spades_scaffolds_selected.stderr
+  4  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/show-snps \
+     -S -T -H compare_quast_assembly/contigs_reports/nucmer_output/spades_scaffolds_selected.delta \
+     < compare_quast_assembly/contigs_reports/nucmer_output/spades_scaffolds_selected.coords.headless \
+     > compare_quast_assembly/contigs_reports/nucmer_output/spades_scaffolds_selected.all_snps \
+     2> compare_quast_assembly/contigs_reports/contigs_report_spades_scaffolds_selected.stderr
+  4  Alignments: compare_quast_assembly/contigs_reports/alignments_spades_scaffolds_selected.tsv
+  4  Analysis is finished.
+
+  5  barley_multikmer.scafSeq_broken
+  5  Logging to files /tsl/scratch/rallapag/assemblies/barley/soap_multi_k/compare_quast_assembly/contigs_reports/contigs_report_barley_multikmer.scafSeq_broken.stdout and contigs_report_barley_multikmer.scafSeq_broken.stderr...
+  5  Running Nucmer
+  5  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/barley_multikmer.scafSeq_broken_part_1.fa \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_1.fa compare_quast_assembly/quast_corrected_input/barley_multikmer_broken \
+     >> compare_quast_assembly/contigs_reports/contigs_report_barley_multikmer.scafSeq_broken.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_barley_multikmer.scafSeq_broken.stderr_part1
+  5  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/barley_multikmer.scafSeq_broken_part_2.fa \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_2.fa compare_quast_assembly/quast_corrected_input/barley_multikmer_broken \
+     >> compare_quast_assembly/contigs_reports/contigs_report_barley_multikmer.scafSeq_broken.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_barley_multikmer.scafSeq_broken.stderr_part2
+  5  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/delta-filter \
+     -i 95 -l 0 compare_quast_assembly/contigs_reports/nucmer_output/barley_multikmer.scafSeq_broken.delta \
+     > compare_quast_assembly/contigs_reports/nucmer_output/barley_multikmer.scafSeq_broken.fdelta \
+     2> compare_quast_assembly/contigs_reports/contigs_report_barley_multikmer.scafSeq_broken.stderr
+  5  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/show-coords \
+     compare_quast_assembly/contigs_reports/nucmer_output/barley_multikmer.scafSeq_broken.delta \
+     > compare_quast_assembly/contigs_reports/nucmer_output/barley_multikmer.scafSeq_broken.coords_tmp \
+     2> compare_quast_assembly/contigs_reports/contigs_report_barley_multikmer.scafSeq_broken.stderr
+  5  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/show-snps \
+     -S -T -H compare_quast_assembly/contigs_reports/nucmer_output/barley_multikmer.scafSeq_broken.delta \
+     < compare_quast_assembly/contigs_reports/nucmer_output/barley_multikmer.scafSeq_broken.coords.headless \
+     > compare_quast_assembly/contigs_reports/nucmer_output/barley_multikmer.scafSeq_broken.all_snps \
+     2> compare_quast_assembly/contigs_reports/contigs_report_barley_multikmer.scafSeq_broken.stderr
+  5  Alignments: compare_quast_assembly/contigs_reports/alignments_barley_multikmer.scafSeq_broken.tsv
+  5  Analysis is finished.
+
+  6  scaffolds_barley_multikmer_300bp_broken
+  6  Logging to files /tsl/scratch/rallapag/assemblies/barley/soap_multi_k/compare_quast_assembly/contigs_reports/contigs_report_scaffolds_barley_multikmer_300bp_broken.stdout and contigs_report_scaffolds_barley_multikmer_300bp_broken.stderr...
+  6  Running Nucmer
+  6  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_barley_multikmer_300bp_broken_part_1.fa \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_1.fa compare_quast_assembly/quast_corrected_input/scaffolds_barley_multikmer_300bp_broken.fa \
+     >> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_barley_multikmer_300bp_broken.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_barley_multikmer_300bp_broken.stderr_part1
+  6  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_barley_multikmer_300bp_broken_part_2.fa \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_2.fa compare_quast_assembly/quast_corrected_input/scaffolds_barley_multikmer_300bp_broken.fa \
+     >> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_barley_multikmer_300bp_broken.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_barley_multikmer_300bp_broken.stderr_part2
+  6  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/delta-filter \
+     -i 95 -l 0 compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_barley_multikmer_300bp_broken.delta \
+     > compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_barley_multikmer_300bp_broken.fdelta \
+     2> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_barley_multikmer_300bp_broken.stderr
+  6  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/show-coords \
+     compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_barley_multikmer_300bp_broken.delta \
+     > compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_barley_multikmer_300bp_broken.coords_tmp \
+     2> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_barley_multikmer_300bp_broken.stderr
+  6  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/show-snps \
+     -S -T -H compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_barley_multikmer_300bp_broken.delta \
+     < compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_barley_multikmer_300bp_broken.coords.headless \
+     > compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_barley_multikmer_300bp_broken.all_snps \
+     2> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_barley_multikmer_300bp_broken.stderr
+  6  Alignments: compare_quast_assembly/contigs_reports/alignments_scaffolds_barley_multikmer_300bp_broken.tsv
+  6  Analysis is finished.
+
+  7  spades_scaffolds_broken
+  7  Logging to files /tsl/scratch/rallapag/assemblies/barley/soap_multi_k/compare_quast_assembly/contigs_reports/contigs_report_spades_scaffolds_broken.stdout and contigs_report_spades_scaffolds_broken.stderr...
+  7  Running Nucmer
+  7  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/spades_scaffolds_broken_part_1.fa \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_1.fa compare_quast_assembly/quast_corrected_input/spades_scaffolds_broken.fa \
+     >> compare_quast_assembly/contigs_reports/contigs_report_spades_scaffolds_broken.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_spades_scaffolds_broken.stderr_part1
+  7  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/spades_scaffolds_broken_part_2.fa \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_2.fa compare_quast_assembly/quast_corrected_input/spades_scaffolds_broken.fa \
+     >> compare_quast_assembly/contigs_reports/contigs_report_spades_scaffolds_broken.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_spades_scaffolds_broken.stderr_part2
+  7  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/delta-filter \
+     -i 95 -l 0 compare_quast_assembly/contigs_reports/nucmer_output/spades_scaffolds_broken.delta \
+     > compare_quast_assembly/contigs_reports/nucmer_output/spades_scaffolds_broken.fdelta \
+     2> compare_quast_assembly/contigs_reports/contigs_report_spades_scaffolds_broken.stderr
+  7  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/show-coords \
+     compare_quast_assembly/contigs_reports/nucmer_output/spades_scaffolds_broken.delta \
+     > compare_quast_assembly/contigs_reports/nucmer_output/spades_scaffolds_broken.coords_tmp \
+     2> compare_quast_assembly/contigs_reports/contigs_report_spades_scaffolds_broken.stderr
+  7  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/show-snps \
+     -S -T -H compare_quast_assembly/contigs_reports/nucmer_output/spades_scaffolds_broken.delta \
+     < compare_quast_assembly/contigs_reports/nucmer_output/spades_scaffolds_broken.coords.headless \
+     > compare_quast_assembly/contigs_reports/nucmer_output/spades_scaffolds_broken.all_snps \
+     2> compare_quast_assembly/contigs_reports/contigs_report_spades_scaffolds_broken.stderr
+  7  Alignments: compare_quast_assembly/contigs_reports/alignments_spades_scaffolds_broken.tsv
+  7  Analysis is finished.
+
+  8  spades_scaffolds_selected_broken
+  8  Logging to files /tsl/scratch/rallapag/assemblies/barley/soap_multi_k/compare_quast_assembly/contigs_reports/contigs_report_spades_scaffolds_selected_broken.stdout and contigs_report_spades_scaffolds_selected_broken.stderr...
+  8  Running Nucmer
+  8  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/spades_scaffolds_selected_broken_part_1.fa \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_1.fa compare_quast_assembly/quast_corrected_input/spades_scaffolds_selected_broken.fa \
+     >> compare_quast_assembly/contigs_reports/contigs_report_spades_scaffolds_selected_broken.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_spades_scaffolds_selected_broken.stderr_part1
+  8  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/spades_scaffolds_selected_broken_part_2.fa \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_2.fa compare_quast_assembly/quast_corrected_input/spades_scaffolds_selected_broken.fa \
+     >> compare_quast_assembly/contigs_reports/contigs_report_spades_scaffolds_selected_broken.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_spades_scaffolds_selected_broken.stderr_part2
+  8  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/delta-filter \
+     -i 95 -l 0 compare_quast_assembly/contigs_reports/nucmer_output/spades_scaffolds_selected_broken.delta \
+     > compare_quast_assembly/contigs_reports/nucmer_output/spades_scaffolds_selected_broken.fdelta \
+     2> compare_quast_assembly/contigs_reports/contigs_report_spades_scaffolds_selected_broken.stderr
+  8  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/show-coords \
+     compare_quast_assembly/contigs_reports/nucmer_output/spades_scaffolds_selected_broken.delta \
+     > compare_quast_assembly/contigs_reports/nucmer_output/spades_scaffolds_selected_broken.coords_tmp \
+     2> compare_quast_assembly/contigs_reports/contigs_report_spades_scaffolds_selected_broken.stderr
+  8  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/show-snps \
+     -S -T -H compare_quast_assembly/contigs_reports/nucmer_output/spades_scaffolds_selected_broken.delta \
+     < compare_quast_assembly/contigs_reports/nucmer_output/spades_scaffolds_selected_broken.coords.headless \
+     > compare_quast_assembly/contigs_reports/nucmer_output/spades_scaffolds_selected_broken.all_snps \
+     2> compare_quast_assembly/contigs_reports/contigs_report_spades_scaffolds_selected_broken.stderr
+  8  Alignments: compare_quast_assembly/contigs_reports/alignments_spades_scaffolds_selected_broken.tsv
+  8  Analysis is finished.
+
+  Creating total report...
+    saved to /tsl/scratch/rallapag/assemblies/barley/soap_multi_k/compare_quast_assembly/contigs_reports/misassemblies_report.txt, misassemblies_report.tsv, and misassemblies_report.tex
+  Transposed version of total report...
+    saved to /tsl/scratch/rallapag/assemblies/barley/soap_multi_k/compare_quast_assembly/contigs_reports/transposed_report_misassemblies.txt, transposed_report_misassemblies.tsv, and transposed_report_misassemblies.tex
+  Creating total report...
+    saved to /tsl/scratch/rallapag/assemblies/barley/soap_multi_k/compare_quast_assembly/contigs_reports/unaligned_report.txt, unaligned_report.tsv, and unaligned_report.tex
+  Drawing misassemblies by types plot...
+    saved to /tsl/scratch/rallapag/assemblies/barley/soap_multi_k/compare_quast_assembly/contigs_reports/misassemblies_plot.pdf
+Done.
+
+2016-06-16 08:31:06
+Running NA-NGA calculation...
+  1  barley_multikmer.scafSeq, Largest alignment = 8490, NA50 = None, LA50 = None
+  2  scaffolds_barley_multikmer_300bp, Largest alignment = 8490, NA50 = None, LA50 = None
+  3  spades_scaffolds, Largest alignment = 17057, NA50 = None, LA50 = None
+  4  spades_scaffolds_selected, Largest alignment = 17057, NA50 = None, LA50 = None
+  5  barley_multikmer.scafSeq broken, Largest alignment = 7239, NA50 = None, LA50 = None
+  6  scaffolds_barley_multikmer_300bp broken, Largest alignment = 7239, NA50 = None, LA50 = None
+  7  spades_scaffolds broken, Largest alignment = 17057, NA50 = None, LA50 = None
+  8  spades_scaffolds_selected broken, Largest alignment = 17057, NA50 = None, LA50 = None
+  Drawing cumulative plot...
+    saved to /tsl/scratch/rallapag/assemblies/barley/soap_multi_k/compare_quast_assembly/aligned_stats/cumulative_plot.pdf
+  Drawing NAx plot...
+    saved to /tsl/scratch/rallapag/assemblies/barley/soap_multi_k/compare_quast_assembly/aligned_stats/NAx_plot.pdf
+  Drawing NGAx plot...
+    saved to /tsl/scratch/rallapag/assemblies/barley/soap_multi_k/compare_quast_assembly/aligned_stats/NGAx_plot.pdf
+Done.
+
+2016-06-16 08:37:58
+Running Genome analyzer...
+  NOTICE: No file with genes provided. Use the -G option if you want to specify it.
+  NOTICE: No file with operons provided. Use the -O option if you want to specify it.
+  1  barley_multikmer.scafSeq
+  2  scaffolds_barley_multikmer_300bp
+  3  spades_scaffolds
+  4  spades_scaffolds_selected
+  5  barley_multikmer.scafSeq_broken
+  6  scaffolds_barley_multikmer_300bp_broken
+  7  spades_scaffolds_broken
+  8  spades_scaffolds_selected_broken

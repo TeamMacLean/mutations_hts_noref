@@ -1,0 +1,4496 @@
+
+Version 2.04: released on July 13th, 2012
+Compile Mar 30 2016	17:29:11
+
+********************
+Pregraph
+********************
+
+Parameters: pregraph -s sample.config -K 25 -d 1 -R -o barley_multikmer 
+
+In sample.config, 1 lib(s), maximum read length 101, maximum name length 256.
+
+8 thread(s) initialized.
+Import reads from file:
+ /tsl/data/extReads/rallapag/barley/mnd_exome_PRJEB5319/wildtype_pool/ERR430660_1.fastq.gz
+Import reads from file:
+ /tsl/data/extReads/rallapag/barley/mnd_exome_PRJEB5319/wildtype_pool/ERR430660_2.fastq.gz
+--- 100000000th reads.
+Time spent on hashing reads: 6055s, 139494014 read(s) processed.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+1139846458 node(s) allocated, 10741039078 kmer(s) in reads, 10741039078 kmer(s) processed.
+done hashing nodes
+699382699 kmer(s) removed.
+Time spent on delowcvgNode: 37s.
+406620316 linear node(s) marked.
+Time spent on marking linear nodes: 69s.
+Time spent on pre-graph construction: 6163s.
+
+Start to remove tips with minority links.
+9133351 tip(s) removed in cycle 1.
+59625 tip(s) removed in cycle 2.
+275 tip(s) removed in cycle 3.
+0 tip(s) removed in cycle 4.
+Total 9193251 tip(s) removed.
+8 thread(s) initialized.
+0 linear node(s) marked.
+Time spent on removing tips: 1025s.
+
+--- 10000000 edge(s) built.
+--- 30000000 edge(s) built.
+--- 40000000 edge(s) built.
+--- 50000000 edge(s) built.
+52289256 (26145079) edge(s) and 6664971 extra node(s) constructed.
+Time spent on constructing edges: 1075s.
+
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+Import reads from file:
+ /tsl/data/extReads/rallapag/barley/mnd_exome_PRJEB5319/wildtype_pool/ERR430660_1.fastq.gz
+Import reads from file:
+ /tsl/data/extReads/rallapag/barley/mnd_exome_PRJEB5319/wildtype_pool/ERR430660_2.fastq.gz
+--- 100000000th reads.
+139494014 read(s) processed.
+Time spent on:
+ importing reads: 267s,
+ chopping reads to kmers: 693s,
+ searching kmers: 4692s,
+ aligning reads to edges: 958s,
+ searching (K+1)mers: 461s,
+ adding pre-arcs: 867s,
+ recording read paths: 387s.
+1832837976 marker(s) output.
+Reads alignment done, 5344016 read(s) deleted, 59916691 pre-arc(s) added.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+Time spent on aligning reads: 8452s.
+
+17711976 vertex(es) output.
+Overall time spent on constructing pre-graph: 280m.
+
+
+********************
+Contig
+********************
+
+Parameters: contig -g barley_multikmer -M 1 -R -s sample.config -m 95 -E 
+
+There are 17711976 kmer(s) in vertex file.
+There are 52289256 edge(s) in edge file.
+Kmers sorted.
+52289256 edge(s) input.
+68935312 pre-arcs loaded.
+1176705888 markers overall.
+1176705888 markers loaded.
+13073427 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+52289256 edge(s) sorted.
+Arcs sorted.
+621126 repeat(s) are solvable, 1242852 more edge(s).
+2485704 dead arc(s) removed.
+Time spent on solving repeat: 66s.
+Start to pinch bubbles, cutoff 0.100000, MAX NODE NUM 3, MAX DIFF NUM 2.
+.............100000 bubbles merged.
+1254315 start points, 46064139 dheap nodes.
+16244074 pair(s) found, 430497 pair of path(s) compared, 161513 pair(s) merged.
+Sequence comparison failed:
+ Path crossing deleted edge                         0
+ Length difference of two paths greater than two    14220
+ Mismatch score greater than cutoff (2)             25564
+ Mismatch score ratio greater than cutoff (0.1)     0
+ Path length shorter than (Kmer-1)                  14437
+DFibHeap: 4332096 node(s) allocated.
+3554256 edge(s) concatenated in cycle 1.
+99439 edge(s) concatenated in cycle 2.
+185 edge(s) concatenated in cycle 3.
+0 edge(s) concatenated in cycle 4.
+161513 clean bubbles merged.
+Start to pinch bubbles, cutoff 0.100000, MAX NODE NUM 3, MAX DIFF NUM 2.
+1149608 start points, 40218565 dheap nodes.
+16076328 pair(s) found, 331448 pair of path(s) compared, 11911 pair(s) merged.
+Sequence comparison failed:
+ Path crossing deleted edge                         0
+ Length difference of two paths greater than two    19035
+ Mismatch score greater than cutoff (2)             45277
+ Mismatch score ratio greater than cutoff (0.1)     0
+ Path length shorter than (Kmer-1)                  15677
+DFibHeap: 3997428 node(s) allocated.
+22727 edge(s) concatenated in cycle 1.
+121 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+11911 clean bubbles merged.
+Start to pinch bubbles, cutoff 0.100000, MAX NODE NUM 3, MAX DIFF NUM 2.
+1149722 start points, 40173213 dheap nodes.
+16064222 pair(s) found, 320569 pair of path(s) compared, 200 pair(s) merged.
+Sequence comparison failed:
+ Path crossing deleted edge                         0
+ Length difference of two paths greater than two    19107
+ Mismatch score greater than cutoff (2)             45894
+ Mismatch score ratio greater than cutoff (0.1)     0
+ Path length shorter than (Kmer-1)                  15686
+DFibHeap: 3996691 node(s) allocated.
+374 edge(s) concatenated in cycle 1.
+4 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+200 clean bubbles merged.
+Time spent on pinching clean bubbles: 2750s.
+Start to destroy weak inner edges.
+337145 weak inner edge(s) destroyed in cycle 1.
+3275 weak inner edge(s) destroyed in cycle 2.
+38 weak inner edge(s) destroyed in cycle 3.
+2 weak inner edge(s) destroyed in cycle 4.
+0 weak inner edge(s) destroyed in cycle 5.
+673781 dead arc(s) removed.
+353 inner edge(s) with coverage lower than or equal to 1 destroyed.
+749 dead arc(s) removed.
+461102 edge(s) concatenated in cycle 1.
+109 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+Before compacting, 53532108 edge(s) existed.
+After compacting, 44226088 edge(s) left.
+
+Strict: 0, cutoff length: 50.
+1946597 tips cut in cycle 1.
+247526 tips cut in cycle 2.
+32567 tips cut in cycle 3.
+8623 tips cut in cycle 4.
+3449 tips cut in cycle 5.
+1900 tips cut in cycle 6.
+1201 tips cut in cycle 7.
+797 tips cut in cycle 8.
+519 tips cut in cycle 9.
+431 tips cut in cycle 10.
+319 tips cut in cycle 11.
+220 tips cut in cycle 12.
+160 tips cut in cycle 13.
+126 tips cut in cycle 14.
+107 tips cut in cycle 15.
+118 tips cut in cycle 16.
+87 tips cut in cycle 17.
+65 tips cut in cycle 18.
+64 tips cut in cycle 19.
+53 tips cut in cycle 20.
+44 tips cut in cycle 21.
+25 tips cut in cycle 22.
+19 tips cut in cycle 23.
+11 tips cut in cycle 24.
+12 tips cut in cycle 25.
+4 tips cut in cycle 26.
+7 tips cut in cycle 27.
+4 tips cut in cycle 28.
+10 tips cut in cycle 29.
+5 tips cut in cycle 30.
+9 tips cut in cycle 31.
+3 tips cut in cycle 32.
+8 tips cut in cycle 33.
+5 tips cut in cycle 34.
+5 tips cut in cycle 35.
+5 tips cut in cycle 36.
+3 tips cut in cycle 37.
+0 tips cut in cycle 38.
+1370289 dead arc(s) removed.
+964888 edge(s) concatenated in cycle 1.
+3144 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+Before compacting, 44226088 edge(s) existed.
+After compacting, 37799808 edge(s) left.
+
+There are 793223 contig(s) longer than 100, sum up 158020402 bp, with average length 199.
+The longest length is 6210 bp, contig N50 is 211 bp, contig N90 is 101 bp.
+
+Iteration start.
+
+***************************
+Iteration 1, kmer: 26
+Edge number: 37799808
+Construct 26mer graph.
+Construct new kmer hash.
+0 edge(s) deleted in length of 0.
+32793329 new kmer(s).
+37799808 edge(s) updated to 26mer edge.
+Time spent on building hash graph: 483s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+Import reads from file:
+ /tsl/data/extReads/rallapag/barley/mnd_exome_PRJEB5319/wildtype_pool/ERR430660_1.fastq.gz
+Import reads from file:
+ /tsl/data/extReads/rallapag/barley/mnd_exome_PRJEB5319/wildtype_pool/ERR430660_2.fastq.gz
+--- 100000000th reads.
+139494016 read(s) processed.
+Time spent on:
+ importing reads: 502s,
+ chopping reads to kmers: 273s,
+ searching kmers in hash: 3530s,
+ parsing reads: 423s.
+88954479 reads available.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+6520 unreliable arc(s) deleted.
+Time spent on adding arcs: 4811s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 55s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+165 weak inner edge(s) destroyed in cycle 1.
+1 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+331 dead arc(s) removed.
+84 inner edge(s) with coverage lower than or equal to 1 destroyed.
+211 dead arc(s) removed.
+351 edge(s) concatenated in cycle 1.
+0 edge(s) concatenated in cycle 2.
+27785114 edge(s) in the graph.
+Before compacting, 37799808 edge(s) existed.
+After compacting, 37798606 edge(s) left.
+Time spent on removing Edges: 165s
+Refresh edges.
+There are 37798606 edge(s).
+Add edges to the graph: 7298544 arc(s) deleted, 14597088 arc(s) added.
+Refresh edge: 7298544 edge(s) added.
+6075605 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 45097150 edge(s) existed.
+After compacting, 45097150 edge(s) left.
+Time spent on refreshing edges: 412s.
+
+There are 806792 contig(s) longer than 100, sum up 159859398 bp, with average length 198.
+The longest length is 6210 bp, contig N50 is 209 bp, contig N90 is 101 bp.
+Time spent on this round: 101m.
+
+
+***************************
+Iteration 2, kmer: 27
+Edge number: 45097150
+Construct 27mer graph.
+Construct new kmer hash.
+1945660 edge(s) deleted in length of 0.
+34886569 new kmer(s).
+41205996 edge(s) updated to 27mer edge.
+Time spent on building hash graph: 569s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 506s,
+ chopping reads to kmers: 150s,
+ searching kmers in hash: 2235s,
+ parsing reads: 115s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+296 unreliable arc(s) deleted.
+Time spent on adding arcs: 3080s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 52s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+3962 weak inner edge(s) destroyed in cycle 1.
+9 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+7932 dead arc(s) removed.
+0 inner edge(s) with coverage lower than or equal to 1 destroyed.
+0 dead arc(s) removed.
+308307 edge(s) concatenated in cycle 1.
+208 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+28360468 edge(s) in the graph.
+Before compacting, 45097150 edge(s) existed.
+After compacting, 40581024 edge(s) left.
+Time spent on removing Edges: 208s
+Refresh edges.
+There are 40581024 edge(s).
+Add edges to the graph: 7659110 arc(s) deleted, 15318220 arc(s) added.
+Refresh edge: 7659110 edge(s) added.
+6435910 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 48240134 edge(s) existed.
+After compacting, 48240134 edge(s) left.
+Time spent on refreshing edges: 427s.
+
+There are 823966 contig(s) longer than 100, sum up 162797397 bp, with average length 197.
+The longest length is 6210 bp, contig N50 is 207 bp, contig N90 is 101 bp.
+Time spent on this round: 75m.
+
+
+***************************
+Iteration 3, kmer: 28
+Edge number: 48240134
+Construct 28mer graph.
+Construct new kmer hash.
+1995213 edge(s) deleted in length of 0.
+37437612 new kmer(s).
+44249708 edge(s) updated to 28mer edge.
+Time spent on building hash graph: 596s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 43s,
+ chopping reads to kmers: 298s,
+ searching kmers in hash: 5007s,
+ parsing reads: 122s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+254 unreliable arc(s) deleted.
+Time spent on adding arcs: 5548s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 55s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+6168 weak inner edge(s) destroyed in cycle 1.
+16 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+12342 dead arc(s) removed.
+9 inner edge(s) with coverage lower than or equal to 1 destroyed.
+18 dead arc(s) removed.
+415984 edge(s) concatenated in cycle 1.
+711 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+30312166 edge(s) in the graph.
+Before compacting, 48240134 edge(s) existed.
+After compacting, 43403932 edge(s) left.
+Time spent on removing Edges: 228s
+Refresh edges.
+There are 43403932 edge(s).
+Add edges to the graph: 7325632 arc(s) deleted, 14651264 arc(s) added.
+Refresh edge: 7325632 edge(s) added.
+6793035 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 50729564 edge(s) existed.
+After compacting, 50729564 edge(s) left.
+Time spent on refreshing edges: 463s.
+
+There are 843509 contig(s) longer than 100, sum up 166010949 bp, with average length 196.
+The longest length is 6210 bp, contig N50 is 205 bp, contig N90 is 101 bp.
+Time spent on this round: 118m.
+
+
+***************************
+Iteration 4, kmer: 29
+Edge number: 50729564
+Construct 29mer graph.
+Construct new kmer hash.
+2051999 edge(s) deleted in length of 0.
+39643120 new kmer(s).
+46625632 edge(s) updated to 29mer edge.
+Time spent on building hash graph: 640s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 44s,
+ chopping reads to kmers: 275s,
+ searching kmers in hash: 4785s,
+ parsing reads: 126s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+220 unreliable arc(s) deleted.
+Time spent on adding arcs: 5311s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 57s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+8512 weak inner edge(s) destroyed in cycle 1.
+26 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+17025 dead arc(s) removed.
+15 inner edge(s) with coverage lower than or equal to 1 destroyed.
+34 dead arc(s) removed.
+494343 edge(s) concatenated in cycle 1.
+926 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+32217148 edge(s) in the graph.
+Before compacting, 50729564 edge(s) existed.
+After compacting, 45617988 edge(s) left.
+Time spent on removing Edges: 216s
+Refresh edges.
+There are 45617988 edge(s).
+Add edges to the graph: 7111882 arc(s) deleted, 14223764 arc(s) added.
+Refresh edge: 7111882 edge(s) added.
+7077135 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 52729870 edge(s) existed.
+After compacting, 52729870 edge(s) left.
+Time spent on refreshing edges: 457s.
+
+There are 865449 contig(s) longer than 100, sum up 169544517 bp, with average length 195.
+The longest length is 6210 bp, contig N50 is 202 bp, contig N90 is 101 bp.
+Time spent on this round: 114m.
+
+
+***************************
+Iteration 5, kmer: 30
+Edge number: 52729870
+Construct 30mer graph.
+Construct new kmer hash.
+2192915 edge(s) deleted in length of 0.
+41426222 new kmer(s).
+48344040 edge(s) updated to 30mer edge.
+Time spent on building hash graph: 633s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 34s,
+ chopping reads to kmers: 276s,
+ searching kmers in hash: 4036s,
+ parsing reads: 113s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+236 unreliable arc(s) deleted.
+Time spent on adding arcs: 4537s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 45s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+11008 weak inner edge(s) destroyed in cycle 1.
+37 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+22011 dead arc(s) removed.
+44 inner edge(s) with coverage lower than or equal to 1 destroyed.
+101 dead arc(s) removed.
+600039 edge(s) concatenated in cycle 1.
+908 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+33886804 edge(s) in the graph.
+Before compacting, 52729870 edge(s) existed.
+After compacting, 47119968 edge(s) left.
+Time spent on removing Edges: 177s
+Refresh edges.
+There are 47119968 edge(s).
+Add edges to the graph: 7452264 arc(s) deleted, 14904528 arc(s) added.
+Refresh edge: 7452264 edge(s) added.
+7307792 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 54572232 edge(s) existed.
+After compacting, 54572232 edge(s) left.
+Time spent on refreshing edges: 431s.
+
+There are 889926 contig(s) longer than 100, sum up 173463124 bp, with average length 194.
+The longest length is 6210 bp, contig N50 is 199 bp, contig N90 is 101 bp.
+Time spent on this round: 99m.
+
+
+***************************
+Iteration 6, kmer: 31
+Edge number: 54572232
+Construct 31mer graph.
+Construct new kmer hash.
+2118688 edge(s) deleted in length of 0.
+43028786 new kmer(s).
+50334900 edge(s) updated to 31mer edge.
+Time spent on building hash graph: 639s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 48s,
+ chopping reads to kmers: 506s,
+ searching kmers in hash: 6962s,
+ parsing reads: 101s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+196 unreliable arc(s) deleted.
+Time spent on adding arcs: 7681s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 48s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+12668 weak inner edge(s) destroyed in cycle 1.
+72 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+25337 dead arc(s) removed.
+95 inner edge(s) with coverage lower than or equal to 1 destroyed.
+207 dead arc(s) removed.
+586419 edge(s) concatenated in cycle 1.
+542 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+35115344 edge(s) in the graph.
+Before compacting, 54572232 edge(s) existed.
+After compacting, 49135308 edge(s) left.
+Time spent on removing Edges: 188s
+Refresh edges.
+There are 49135308 edge(s).
+Add edges to the graph: 6811212 arc(s) deleted, 13622424 arc(s) added.
+Refresh edge: 6811212 edge(s) added.
+7483542 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 55946520 edge(s) existed.
+After compacting, 55946520 edge(s) left.
+Time spent on refreshing edges: 484s.
+
+There are 915682 contig(s) longer than 100, sum up 177536020 bp, with average length 193.
+The longest length is 6210 bp, contig N50 is 196 bp, contig N90 is 101 bp.
+Time spent on this round: 153m.
+
+
+***************************
+Iteration 7, kmer: 32
+Edge number: 55946520
+Construct 32mer graph.
+Construct new kmer hash.
+2171651 edge(s) deleted in length of 0.
+44455081 new kmer(s).
+51603218 edge(s) updated to 32mer edge.
+Time spent on building hash graph: 683s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 94s,
+ chopping reads to kmers: 646s,
+ searching kmers in hash: 6768s,
+ parsing reads: 104s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+188 unreliable arc(s) deleted.
+Time spent on adding arcs: 7680s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 51s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+15141 weak inner edge(s) destroyed in cycle 1.
+94 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+30292 dead arc(s) removed.
+119 inner edge(s) with coverage lower than or equal to 1 destroyed.
+264 dead arc(s) removed.
+634936 edge(s) concatenated in cycle 1.
+593 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+36587248 edge(s) in the graph.
+Before compacting, 55946520 edge(s) existed.
+After compacting, 50301452 edge(s) left.
+Time spent on removing Edges: 198s
+Refresh edges.
+There are 50301452 edge(s).
+Add edges to the graph: 6844928 arc(s) deleted, 13689856 arc(s) added.
+Refresh edge: 6844928 edge(s) added.
+7658985 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 57146380 edge(s) existed.
+After compacting, 57146380 edge(s) left.
+Time spent on refreshing edges: 498s.
+
+There are 943983 contig(s) longer than 100, sum up 181931755 bp, with average length 192.
+The longest length is 6396 bp, contig N50 is 193 bp, contig N90 is 101 bp.
+Time spent on this round: 154m.
+
+
+***************************
+Iteration 8, kmer: 33
+Edge number: 57146380
+Construct 33mer graph.
+Construct new kmer hash.
+2222167 edge(s) deleted in length of 0.
+45533021 new kmer(s).
+52702077 edge(s) updated to 33mer edge.
+Time spent on building hash graph: 711s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 101s,
+ chopping reads to kmers: 636s,
+ searching kmers in hash: 6923s,
+ parsing reads: 106s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+198 unreliable arc(s) deleted.
+Time spent on adding arcs: 7835s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 53s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+17055 weak inner edge(s) destroyed in cycle 1.
+126 weak inner edge(s) destroyed in cycle 2.
+1 weak inner edge(s) destroyed in cycle 3.
+0 weak inner edge(s) destroyed in cycle 4.
+34113 dead arc(s) removed.
+234 inner edge(s) with coverage lower than or equal to 1 destroyed.
+536 dead arc(s) removed.
+697605 edge(s) concatenated in cycle 1.
+643 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+37537786 edge(s) in the graph.
+Before compacting, 57146380 edge(s) existed.
+After compacting, 51270749 edge(s) left.
+Time spent on removing Edges: 216s
+Refresh edges.
+There are 51270749 edge(s).
+Add edges to the graph: 6758514 arc(s) deleted, 13517028 arc(s) added.
+Refresh edge: 6758514 edge(s) added.
+7761147 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 58029263 edge(s) existed.
+After compacting, 58029263 edge(s) left.
+Time spent on refreshing edges: 518s.
+
+There are 975966 contig(s) longer than 100, sum up 186827865 bp, with average length 191.
+The longest length is 6396 bp, contig N50 is 190 bp, contig N90 is 101 bp.
+Time spent on this round: 158m.
+
+
+***************************
+Iteration 9, kmer: 34
+Edge number: 58029263
+Construct 34mer graph.
+Construct new kmer hash.
+2174288 edge(s) deleted in length of 0.
+46494934 new kmer(s).
+53680687 edge(s) updated to 34mer edge.
+Time spent on building hash graph: 756s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 83s,
+ chopping reads to kmers: 636s,
+ searching kmers in hash: 6800s,
+ parsing reads: 101s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+200 unreliable arc(s) deleted.
+Time spent on adding arcs: 7691s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 56s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+18146 weak inner edge(s) destroyed in cycle 1.
+127 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+36308 dead arc(s) removed.
+397 inner edge(s) with coverage lower than or equal to 1 destroyed.
+919 dead arc(s) removed.
+688964 edge(s) concatenated in cycle 1.
+644 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+38489118 edge(s) in the graph.
+Before compacting, 58029263 edge(s) existed.
+After compacting, 52264131 edge(s) left.
+Time spent on removing Edges: 216s
+Refresh edges.
+There are 52264131 edge(s).
+Add edges to the graph: 6448762 arc(s) deleted, 12897524 arc(s) added.
+Refresh edge: 6448762 edge(s) added.
+7834699 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 58712893 edge(s) existed.
+After compacting, 58712893 edge(s) left.
+Time spent on refreshing edges: 513s.
+
+There are 1012975 contig(s) longer than 100, sum up 192255915 bp, with average length 189.
+The longest length is 6396 bp, contig N50 is 187 bp, contig N90 is 101 bp.
+Time spent on this round: 156m.
+
+
+***************************
+Iteration 10, kmer: 35
+Edge number: 58712893
+Construct 35mer graph.
+Construct new kmer hash.
+2130455 edge(s) deleted in length of 0.
+47270536 new kmer(s).
+54452025 edge(s) updated to 35mer edge.
+Time spent on building hash graph: 749s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 82s,
+ chopping reads to kmers: 615s,
+ searching kmers in hash: 7040s,
+ parsing reads: 104s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+114 unreliable arc(s) deleted.
+Time spent on adding arcs: 7912s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 57s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+19418 weak inner edge(s) destroyed in cycle 1.
+171 weak inner edge(s) destroyed in cycle 2.
+2 weak inner edge(s) destroyed in cycle 3.
+0 weak inner edge(s) destroyed in cycle 4.
+38848 dead arc(s) removed.
+558 inner edge(s) with coverage lower than or equal to 1 destroyed.
+1267 dead arc(s) removed.
+688235 edge(s) concatenated in cycle 1.
+486 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+39252750 edge(s) in the graph.
+Before compacting, 58712893 edge(s) existed.
+After compacting, 53034285 edge(s) left.
+Time spent on removing Edges: 231s
+Refresh edges.
+There are 53034285 edge(s).
+Add edges to the graph: 6121574 arc(s) deleted, 12243148 arc(s) added.
+Refresh edge: 6121574 edge(s) added.
+7869507 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 59155859 edge(s) existed.
+After compacting, 59155859 edge(s) left.
+Time spent on refreshing edges: 524s.
+
+There are 1052308 contig(s) longer than 100, sum up 198014902 bp, with average length 188.
+The longest length is 6396 bp, contig N50 is 183 bp, contig N90 is 101 bp.
+Time spent on this round: 160m.
+
+
+***************************
+Iteration 11, kmer: 36
+Edge number: 59155859
+Construct 36mer graph.
+Construct new kmer hash.
+2232117 edge(s) deleted in length of 0.
+47817341 new kmer(s).
+54691625 edge(s) updated to 36mer edge.
+Time spent on building hash graph: 763s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 86s,
+ chopping reads to kmers: 640s,
+ searching kmers in hash: 6951s,
+ parsing reads: 104s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+214 unreliable arc(s) deleted.
+Time spent on adding arcs: 7854s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 58s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+21188 weak inner edge(s) destroyed in cycle 1.
+191 weak inner edge(s) destroyed in cycle 2.
+1 weak inner edge(s) destroyed in cycle 3.
+0 weak inner edge(s) destroyed in cycle 4.
+42396 dead arc(s) removed.
+689 inner edge(s) with coverage lower than or equal to 1 destroyed.
+1596 dead arc(s) removed.
+777531 edge(s) concatenated in cycle 1.
+1022 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+39934330 edge(s) in the graph.
+Before compacting, 59155859 edge(s) existed.
+After compacting, 53090381 edge(s) left.
+Time spent on removing Edges: 237s
+Refresh edges.
+There are 53090381 edge(s).
+Add edges to the graph: 6359914 arc(s) deleted, 12719828 arc(s) added.
+Refresh edge: 6359914 edge(s) added.
+7888600 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 59450295 edge(s) existed.
+After compacting, 59450295 edge(s) left.
+Time spent on refreshing edges: 531s.
+
+There are 1094769 contig(s) longer than 100, sum up 204240977 bp, with average length 186.
+The longest length is 6396 bp, contig N50 is 180 bp, contig N90 is 101 bp.
+Time spent on this round: 160m.
+
+
+***************************
+Iteration 12, kmer: 37
+Edge number: 59450295
+Construct 37mer graph.
+Construct new kmer hash.
+2084110 edge(s) deleted in length of 0.
+48221568 new kmer(s).
+55282146 edge(s) updated to 37mer edge.
+Time spent on building hash graph: 783s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 84s,
+ chopping reads to kmers: 615s,
+ searching kmers in hash: 7416s,
+ parsing reads: 105s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+122 unreliable arc(s) deleted.
+Time spent on adding arcs: 8293s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 60s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+21663 weak inner edge(s) destroyed in cycle 1.
+206 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+43328 dead arc(s) removed.
+941 inner edge(s) with coverage lower than or equal to 1 destroyed.
+2215 dead arc(s) removed.
+712567 edge(s) concatenated in cycle 1.
+443 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+40273586 edge(s) in the graph.
+Before compacting, 59450295 edge(s) existed.
+After compacting, 53810506 edge(s) left.
+Time spent on removing Edges: 233s
+Refresh edges.
+There are 53810506 edge(s).
+Add edges to the graph: 5719102 arc(s) deleted, 11438204 arc(s) added.
+Refresh edge: 5719102 edge(s) added.
+7870478 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 59529608 edge(s) existed.
+After compacting, 59529608 edge(s) left.
+Time spent on refreshing edges: 536s.
+
+There are 1139221 contig(s) longer than 100, sum up 210701002 bp, with average length 184.
+The longest length is 6396 bp, contig N50 is 177 bp, contig N90 is 101 bp.
+Time spent on this round: 167m.
+
+
+***************************
+Iteration 13, kmer: 38
+Edge number: 59529608
+Construct 38mer graph.
+Construct new kmer hash.
+2095622 edge(s) deleted in length of 0.
+48577951 new kmer(s).
+55338364 edge(s) updated to 38mer edge.
+Time spent on building hash graph: 794s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 88s,
+ chopping reads to kmers: 516s,
+ searching kmers in hash: 7548s,
+ parsing reads: 105s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+118 unreliable arc(s) deleted.
+Time spent on adding arcs: 8329s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 61s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+22510 weak inner edge(s) destroyed in cycle 1.
+204 weak inner edge(s) destroyed in cycle 2.
+1 weak inner edge(s) destroyed in cycle 3.
+0 weak inner edge(s) destroyed in cycle 4.
+45017 dead arc(s) removed.
+1044 inner edge(s) with coverage lower than or equal to 1 destroyed.
+2436 dead arc(s) removed.
+744911 edge(s) concatenated in cycle 1.
+882 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+40839298 edge(s) in the graph.
+Before compacting, 59529608 edge(s) existed.
+After compacting, 53799260 edge(s) left.
+Time spent on removing Edges: 241s
+Refresh edges.
+There are 53799260 edge(s).
+Add edges to the graph: 5656396 arc(s) deleted, 11312792 arc(s) added.
+Refresh edge: 5656396 edge(s) added.
+7866896 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 59455656 edge(s) existed.
+After compacting, 59455656 edge(s) left.
+Time spent on refreshing edges: 543s.
+
+There are 1186945 contig(s) longer than 100, sum up 217571448 bp, with average length 183.
+The longest length is 6396 bp, contig N50 is 174 bp, contig N90 is 101 bp.
+Time spent on this round: 169m.
+
+
+***************************
+Iteration 14, kmer: 39
+Edge number: 59455656
+Construct 39mer graph.
+Construct new kmer hash.
+2091215 edge(s) deleted in length of 0.
+48642296 new kmer(s).
+55273375 edge(s) updated to 39mer edge.
+Time spent on building hash graph: 794s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 94s,
+ chopping reads to kmers: 611s,
+ searching kmers in hash: 7088s,
+ parsing reads: 104s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+170 unreliable arc(s) deleted.
+Time spent on adding arcs: 7969s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 61s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+23439 weak inner edge(s) destroyed in cycle 1.
+206 weak inner edge(s) destroyed in cycle 2.
+2 weak inner edge(s) destroyed in cycle 3.
+0 weak inner edge(s) destroyed in cycle 4.
+46877 dead arc(s) removed.
+1326 inner edge(s) with coverage lower than or equal to 1 destroyed.
+3165 dead arc(s) removed.
+766495 edge(s) concatenated in cycle 1.
+600 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+40993906 edge(s) in the graph.
+Before compacting, 59455656 edge(s) existed.
+After compacting, 53689239 edge(s) left.
+Time spent on removing Edges: 243s
+Refresh edges.
+There are 53689239 edge(s).
+Add edges to the graph: 5549712 arc(s) deleted, 11099424 arc(s) added.
+Refresh edge: 5549712 edge(s) added.
+7794539 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 59238951 edge(s) existed.
+After compacting, 59238951 edge(s) left.
+Time spent on refreshing edges: 538s.
+
+There are 1236937 contig(s) longer than 100, sum up 224838963 bp, with average length 181.
+The longest length is 6396 bp, contig N50 is 171 bp, contig N90 is 101 bp.
+Time spent on this round: 162m.
+
+
+***************************
+Iteration 15, kmer: 40
+Edge number: 59238951
+Construct 40mer graph.
+Construct new kmer hash.
+2011405 edge(s) deleted in length of 0.
+48685499 new kmer(s).
+55216141 edge(s) updated to 40mer edge.
+Time spent on building hash graph: 795s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 83s,
+ chopping reads to kmers: 630s,
+ searching kmers in hash: 6827s,
+ parsing reads: 105s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+118 unreliable arc(s) deleted.
+Time spent on adding arcs: 7716s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 61s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+23717 weak inner edge(s) destroyed in cycle 1.
+190 weak inner edge(s) destroyed in cycle 2.
+2 weak inner edge(s) destroyed in cycle 3.
+0 weak inner edge(s) destroyed in cycle 4.
+47392 dead arc(s) removed.
+1522 inner edge(s) with coverage lower than or equal to 1 destroyed.
+3638 dead arc(s) removed.
+742422 edge(s) concatenated in cycle 1.
+897 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+41160438 edge(s) in the graph.
+Before compacting, 59238951 edge(s) existed.
+After compacting, 53678641 edge(s) left.
+Time spent on removing Edges: 247s
+Refresh edges.
+There are 53678641 edge(s).
+Add edges to the graph: 5222298 arc(s) deleted, 10444596 arc(s) added.
+Refresh edge: 5222298 edge(s) added.
+7719809 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 58900939 edge(s) existed.
+After compacting, 58900939 edge(s) left.
+Time spent on refreshing edges: 538s.
+
+There are 1288363 contig(s) longer than 100, sum up 232285569 bp, with average length 180.
+The longest length is 6396 bp, contig N50 is 169 bp, contig N90 is 101 bp.
+Time spent on this round: 158m.
+
+
+***************************
+Iteration 16, kmer: 41
+Edge number: 58900939
+Construct 41mer graph.
+Construct new kmer hash.
+1942948 edge(s) deleted in length of 0.
+48615101 new kmer(s).
+55015103 edge(s) updated to 41mer edge.
+Time spent on building hash graph: 794s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 82s,
+ chopping reads to kmers: 609s,
+ searching kmers in hash: 6849s,
+ parsing reads: 104s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+108 unreliable arc(s) deleted.
+Time spent on adding arcs: 7715s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 62s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+23737 weak inner edge(s) destroyed in cycle 1.
+215 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+47494 dead arc(s) removed.
+1492 inner edge(s) with coverage lower than or equal to 1 destroyed.
+3631 dead arc(s) removed.
+712477 edge(s) concatenated in cycle 1.
+438 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+41259394 edge(s) in the graph.
+Before compacting, 58900939 edge(s) existed.
+After compacting, 53538385 edge(s) left.
+Time spent on removing Edges: 239s
+Refresh edges.
+There are 53538385 edge(s).
+Add edges to the graph: 4963722 arc(s) deleted, 9927444 arc(s) added.
+Refresh edge: 4963722 edge(s) added.
+7643244 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 58502107 edge(s) existed.
+After compacting, 58502107 edge(s) left.
+Time spent on refreshing edges: 527s.
+
+There are 1341870 contig(s) longer than 100, sum up 240035620 bp, with average length 178.
+The longest length is 6396 bp, contig N50 is 167 bp, contig N90 is 101 bp.
+Time spent on this round: 158m.
+
+
+***************************
+Iteration 17, kmer: 42
+Edge number: 58502107
+Construct 42mer graph.
+Construct new kmer hash.
+1989871 edge(s) deleted in length of 0.
+48432693 new kmer(s).
+54522365 edge(s) updated to 42mer edge.
+Time spent on building hash graph: 799s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 82s,
+ chopping reads to kmers: 620s,
+ searching kmers in hash: 6423s,
+ parsing reads: 102s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+140 unreliable arc(s) deleted.
+Time spent on adding arcs: 7298s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 61s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+24561 weak inner edge(s) destroyed in cycle 1.
+247 weak inner edge(s) destroyed in cycle 2.
+1 weak inner edge(s) destroyed in cycle 3.
+0 weak inner edge(s) destroyed in cycle 4.
+49155 dead arc(s) removed.
+1590 inner edge(s) with coverage lower than or equal to 1 destroyed.
+3879 dead arc(s) removed.
+772779 edge(s) concatenated in cycle 1.
+993 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+41262174 edge(s) in the graph.
+Before compacting, 58502107 edge(s) existed.
+After compacting, 52922023 edge(s) left.
+Time spent on removing Edges: 245s
+Refresh edges.
+There are 52922023 edge(s).
+Add edges to the graph: 5034890 arc(s) deleted, 10069780 arc(s) added.
+Refresh edge: 5034890 edge(s) added.
+7514664 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 57956913 edge(s) existed.
+After compacting, 57956913 edge(s) left.
+Time spent on refreshing edges: 524s.
+
+There are 1398652 contig(s) longer than 100, sum up 248276678 bp, with average length 177.
+The longest length is 6412 bp, contig N50 is 164 bp, contig N90 is 101 bp.
+Time spent on this round: 151m.
+
+
+***************************
+Iteration 18, kmer: 43
+Edge number: 57956913
+Construct 43mer graph.
+Construct new kmer hash.
+1849151 edge(s) deleted in length of 0.
+48156468 new kmer(s).
+54258653 edge(s) updated to 43mer edge.
+Time spent on building hash graph: 792s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 83s,
+ chopping reads to kmers: 595s,
+ searching kmers in hash: 6004s,
+ parsing reads: 102s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+80 unreliable arc(s) deleted.
+Time spent on adding arcs: 6853s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 61s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+24066 weak inner edge(s) destroyed in cycle 1.
+205 weak inner edge(s) destroyed in cycle 2.
+1 weak inner edge(s) destroyed in cycle 3.
+0 weak inner edge(s) destroyed in cycle 4.
+48120 dead arc(s) removed.
+1950 inner edge(s) with coverage lower than or equal to 1 destroyed.
+4805 dead arc(s) removed.
+697670 edge(s) concatenated in cycle 1.
+408 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+41104986 edge(s) in the graph.
+Before compacting, 57956913 edge(s) existed.
+After compacting, 52810053 edge(s) left.
+Time spent on removing Edges: 244s
+Refresh edges.
+There are 52810053 edge(s).
+Add edges to the graph: 4576966 arc(s) deleted, 9153932 arc(s) added.
+Refresh edge: 4576966 edge(s) added.
+7419864 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 57387019 edge(s) existed.
+After compacting, 57387019 edge(s) left.
+Time spent on refreshing edges: 514s.
+
+There are 1456155 contig(s) longer than 100, sum up 256625566 bp, with average length 176.
+The longest length is 6412 bp, contig N50 is 162 bp, contig N90 is 102 bp.
+Time spent on this round: 143m.
+
+
+***************************
+Iteration 19, kmer: 44
+Edge number: 57387019
+Construct 44mer graph.
+Construct new kmer hash.
+1827026 edge(s) deleted in length of 0.
+47894866 new kmer(s).
+53732967 edge(s) updated to 44mer edge.
+Time spent on building hash graph: 792s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 82s,
+ chopping reads to kmers: 613s,
+ searching kmers in hash: 5891s,
+ parsing reads: 99s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+82 unreliable arc(s) deleted.
+Time spent on adding arcs: 6754s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 60s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+23998 weak inner edge(s) destroyed in cycle 1.
+180 weak inner edge(s) destroyed in cycle 2.
+2 weak inner edge(s) destroyed in cycle 3.
+0 weak inner edge(s) destroyed in cycle 4.
+47947 dead arc(s) removed.
+1844 inner edge(s) with coverage lower than or equal to 1 destroyed.
+4574 dead arc(s) removed.
+712572 edge(s) concatenated in cycle 1.
+740 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+41057942 edge(s) in the graph.
+Before compacting, 57387019 edge(s) existed.
+After compacting, 52254295 edge(s) left.
+Time spent on removing Edges: 241s
+Refresh edges.
+There are 52254295 edge(s).
+Add edges to the graph: 4452214 arc(s) deleted, 8904428 arc(s) added.
+Refresh edge: 4452214 edge(s) added.
+7316387 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 56706509 edge(s) existed.
+After compacting, 56706509 edge(s) left.
+Time spent on refreshing edges: 511s.
+
+There are 1516573 contig(s) longer than 100, sum up 265357682 bp, with average length 174.
+The longest length is 6412 bp, contig N50 is 160 bp, contig N90 is 102 bp.
+Time spent on this round: 142m.
+
+
+***************************
+Iteration 20, kmer: 45
+Edge number: 56706509
+Construct 45mer graph.
+Construct new kmer hash.
+1809827 edge(s) deleted in length of 0.
+47446834 new kmer(s).
+53086898 edge(s) updated to 45mer edge.
+Time spent on building hash graph: 784s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 99s,
+ chopping reads to kmers: 584s,
+ searching kmers in hash: 5465s,
+ parsing reads: 107s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+128 unreliable arc(s) deleted.
+Time spent on adding arcs: 6324s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 59s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+24231 weak inner edge(s) destroyed in cycle 1.
+207 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+48464 dead arc(s) removed.
+1832 inner edge(s) with coverage lower than or equal to 1 destroyed.
+4655 dead arc(s) removed.
+713984 edge(s) concatenated in cycle 1.
+506 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+40799496 edge(s) in the graph.
+Before compacting, 56706509 edge(s) existed.
+After compacting, 51605378 edge(s) left.
+Time spent on removing Edges: 236s
+Refresh edges.
+There are 51605378 edge(s).
+Add edges to the graph: 4373220 arc(s) deleted, 8746440 arc(s) added.
+Refresh edge: 4373220 edge(s) added.
+7163946 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 55978598 edge(s) existed.
+After compacting, 55978598 edge(s) left.
+Time spent on refreshing edges: 510s.
+
+There are 1579927 contig(s) longer than 100, sum up 274536039 bp, with average length 173.
+The longest length is 6412 bp, contig N50 is 159 bp, contig N90 is 102 bp.
+Time spent on this round: 134m.
+
+
+***************************
+Iteration 21, kmer: 46
+Edge number: 55978598
+Construct 46mer graph.
+Construct new kmer hash.
+1718550 edge(s) deleted in length of 0.
+47015208 new kmer(s).
+52541498 edge(s) updated to 46mer edge.
+Time spent on building hash graph: 787s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 114s,
+ chopping reads to kmers: 597s,
+ searching kmers in hash: 5443s,
+ parsing reads: 101s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+80 unreliable arc(s) deleted.
+Time spent on adding arcs: 6323s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 58s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+23263 weak inner edge(s) destroyed in cycle 1.
+223 weak inner edge(s) destroyed in cycle 2.
+2 weak inner edge(s) destroyed in cycle 3.
+0 weak inner edge(s) destroyed in cycle 4.
+46558 dead arc(s) removed.
+1966 inner edge(s) with coverage lower than or equal to 1 destroyed.
+5020 dead arc(s) removed.
+679636 edge(s) concatenated in cycle 1.
+623 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+40525446 edge(s) in the graph.
+Before compacting, 55978598 edge(s) existed.
+After compacting, 51130072 edge(s) left.
+Time spent on removing Edges: 235s
+Refresh edges.
+There are 51130072 edge(s).
+Add edges to the graph: 4078882 arc(s) deleted, 8157764 arc(s) added.
+Refresh edge: 4078882 edge(s) added.
+7018926 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 55208954 edge(s) existed.
+After compacting, 55208954 edge(s) left.
+Time spent on refreshing edges: 503s.
+
+There are 1644996 contig(s) longer than 100, sum up 283928642 bp, with average length 172.
+The longest length is 6412 bp, contig N50 is 157 bp, contig N90 is 102 bp.
+Time spent on this round: 134m.
+
+
+***************************
+Iteration 22, kmer: 47
+Edge number: 55208954
+Construct 47mer graph.
+Construct new kmer hash.
+1663212 edge(s) deleted in length of 0.
+46531357 new kmer(s).
+51882549 edge(s) updated to 47mer edge.
+Time spent on building hash graph: 783s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 107s,
+ chopping reads to kmers: 466s,
+ searching kmers in hash: 4032s,
+ parsing reads: 96s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+70 unreliable arc(s) deleted.
+Time spent on adding arcs: 4767s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 58s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+23325 weak inner edge(s) destroyed in cycle 1.
+200 weak inner edge(s) destroyed in cycle 2.
+1 weak inner edge(s) destroyed in cycle 3.
+0 weak inner edge(s) destroyed in cycle 4.
+46656 dead arc(s) removed.
+1843 inner edge(s) with coverage lower than or equal to 1 destroyed.
+4772 dead arc(s) removed.
+654960 edge(s) concatenated in cycle 1.
+352 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+40249744 edge(s) in the graph.
+Before compacting, 55208954 edge(s) existed.
+After compacting, 50521187 edge(s) left.
+Time spent on removing Edges: 231s
+Refresh edges.
+There are 50521187 edge(s).
+Add edges to the graph: 3908282 arc(s) deleted, 7816564 arc(s) added.
+Refresh edge: 3908282 edge(s) added.
+6896280 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 54429469 edge(s) existed.
+After compacting, 54429469 edge(s) left.
+Time spent on refreshing edges: 491s.
+
+There are 1712026 contig(s) longer than 100, sum up 293614177 bp, with average length 171.
+The longest length is 6412 bp, contig N50 is 156 bp, contig N90 is 102 bp.
+Time spent on this round: 108m.
+
+
+***************************
+Iteration 23, kmer: 48
+Edge number: 54429469
+Construct 48mer graph.
+Construct new kmer hash.
+1676279 edge(s) deleted in length of 0.
+45981238 new kmer(s).
+51076911 edge(s) updated to 48mer edge.
+Time spent on building hash graph: 771s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 99s,
+ chopping reads to kmers: 584s,
+ searching kmers in hash: 4956s,
+ parsing reads: 84s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+72 unreliable arc(s) deleted.
+Time spent on adding arcs: 5784s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 42s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+23004 weak inner edge(s) destroyed in cycle 1.
+184 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+45989 dead arc(s) removed.
+1701 inner edge(s) with coverage lower than or equal to 1 destroyed.
+4458 dead arc(s) removed.
+688821 edge(s) concatenated in cycle 1.
+676 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+39882034 edge(s) in the graph.
+Before compacting, 54429469 edge(s) existed.
+After compacting, 49648139 edge(s) left.
+Time spent on removing Edges: 172s
+Refresh edges.
+There are 49648139 edge(s).
+Add edges to the graph: 3908278 arc(s) deleted, 7816556 arc(s) added.
+Refresh edge: 3908278 edge(s) added.
+6740485 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 53556417 edge(s) existed.
+After compacting, 53556417 edge(s) left.
+Time spent on refreshing edges: 451s.
+
+There are 1782802 contig(s) longer than 100, sum up 303829734 bp, with average length 170.
+The longest length is 6669 bp, contig N50 is 154 bp, contig N90 is 102 bp.
+Time spent on this round: 122m.
+
+
+***************************
+Iteration 24, kmer: 49
+Edge number: 53556417
+Construct 49mer graph.
+Construct new kmer hash.
+1559537 edge(s) deleted in length of 0.
+45399930 new kmer(s).
+50437370 edge(s) updated to 49mer edge.
+Time spent on building hash graph: 735s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 98s,
+ chopping reads to kmers: 567s,
+ searching kmers in hash: 4840s,
+ parsing reads: 82s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+70 unreliable arc(s) deleted.
+Time spent on adding arcs: 5646s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 42s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+22023 weak inner edge(s) destroyed in cycle 1.
+203 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+44083 dead arc(s) removed.
+1724 inner edge(s) with coverage lower than or equal to 1 destroyed.
+4601 dead arc(s) removed.
+623916 edge(s) concatenated in cycle 1.
+338 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+39470340 edge(s) in the graph.
+Before compacting, 53556417 edge(s) existed.
+After compacting, 49140962 edge(s) left.
+Time spent on removing Edges: 172s
+Refresh edges.
+There are 49140962 edge(s).
+Add edges to the graph: 3575066 arc(s) deleted, 7150132 arc(s) added.
+Refresh edge: 3575066 edge(s) added.
+6612383 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 52716028 edge(s) existed.
+After compacting, 52716028 edge(s) left.
+Time spent on refreshing edges: 440s.
+
+There are 1858775 contig(s) longer than 100, sum up 314571513 bp, with average length 169.
+The longest length is 6670 bp, contig N50 is 153 bp, contig N90 is 102 bp.
+Time spent on this round: 119m.
+
+
+***************************
+Iteration 25, kmer: 50
+Edge number: 52716028
+Construct 50mer graph.
+Construct new kmer hash.
+1518166 edge(s) deleted in length of 0.
+44850869 new kmer(s).
+49679696 edge(s) updated to 50mer edge.
+Time spent on building hash graph: 726s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 104s,
+ chopping reads to kmers: 576s,
+ searching kmers in hash: 4516s,
+ parsing reads: 80s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+68 unreliable arc(s) deleted.
+Time spent on adding arcs: 5332s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 43s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+21543 weak inner edge(s) destroyed in cycle 1.
+160 weak inner edge(s) destroyed in cycle 2.
+1 weak inner edge(s) destroyed in cycle 3.
+0 weak inner edge(s) destroyed in cycle 4.
+43074 dead arc(s) removed.
+1658 inner edge(s) with coverage lower than or equal to 1 destroyed.
+4398 dead arc(s) removed.
+618324 edge(s) concatenated in cycle 1.
+457 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+39121242 edge(s) in the graph.
+Before compacting, 52716028 edge(s) existed.
+After compacting, 48395410 edge(s) left.
+Time spent on removing Edges: 172s
+Refresh edges.
+There are 48395410 edge(s).
+Add edges to the graph: 3439146 arc(s) deleted, 6878292 arc(s) added.
+Refresh edge: 3439146 edge(s) added.
+6452212 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 51834556 edge(s) existed.
+After compacting, 51834556 edge(s) left.
+Time spent on refreshing edges: 434s.
+
+There are 2368450 contig(s) longer than 100, sum up 369204807 bp, with average length 155.
+The longest length is 6671 bp, contig N50 is 138 bp, contig N90 is 101 bp.
+Time spent on this round: 114m.
+
+
+***************************
+Iteration 26, kmer: 51
+Edge number: 51834556
+Construct 51mer graph.
+Construct new kmer hash.
+1507095 edge(s) deleted in length of 0.
+44197602 new kmer(s).
+48820425 edge(s) updated to 51mer edge.
+Time spent on building hash graph: 724s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 99s,
+ chopping reads to kmers: 560s,
+ searching kmers in hash: 4395s,
+ parsing reads: 78s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+92 unreliable arc(s) deleted.
+Time spent on adding arcs: 5189s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 42s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+18546 weak inner edge(s) destroyed in cycle 1.
+155 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+37090 dead arc(s) removed.
+1188 inner edge(s) with coverage lower than or equal to 1 destroyed.
+3315 dead arc(s) removed.
+619466 edge(s) concatenated in cycle 1.
+354 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+38668816 edge(s) in the graph.
+Before compacting, 51834556 edge(s) existed.
+After compacting, 47541007 edge(s) left.
+Time spent on removing Edges: 166s
+Refresh edges.
+There are 47541007 edge(s).
+Add edges to the graph: 3388870 arc(s) deleted, 6777740 arc(s) added.
+Refresh edge: 3388870 edge(s) added.
+6294036 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 50929877 edge(s) existed.
+After compacting, 50929877 edge(s) left.
+Time spent on refreshing edges: 431s.
+
+There are 2465305 contig(s) longer than 100, sum up 383068133 bp, with average length 155.
+The longest length is 6672 bp, contig N50 is 137 bp, contig N90 is 102 bp.
+Time spent on this round: 111m.
+
+
+***************************
+Iteration 27, kmer: 52
+Edge number: 50929877
+Construct 52mer graph.
+Construct new kmer hash.
+1422934 edge(s) deleted in length of 0.
+43560412 new kmer(s).
+48084009 edge(s) updated to 52mer edge.
+Time spent on building hash graph: 706s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 100s,
+ chopping reads to kmers: 567s,
+ searching kmers in hash: 4088s,
+ parsing reads: 77s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+58 unreliable arc(s) deleted.
+Time spent on adding arcs: 4887s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 42s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+13374 weak inner edge(s) destroyed in cycle 1.
+103 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+26748 dead arc(s) removed.
+1236 inner edge(s) with coverage lower than or equal to 1 destroyed.
+3529 dead arc(s) removed.
+573552 edge(s) concatenated in cycle 1.
+322 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+38210130 edge(s) in the graph.
+Before compacting, 50929877 edge(s) existed.
+After compacting, 46906835 edge(s) left.
+Time spent on removing Edges: 169s
+Refresh edges.
+There are 46906835 edge(s).
+Add edges to the graph: 3148138 arc(s) deleted, 6296276 arc(s) added.
+Refresh edge: 3148138 edge(s) added.
+6151604 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 50054973 edge(s) existed.
+After compacting, 50054973 edge(s) left.
+Time spent on refreshing edges: 417s.
+
+There are 2559863 contig(s) longer than 100, sum up 396701571 bp, with average length 154.
+The longest length is 6673 bp, contig N50 is 136 bp, contig N90 is 102 bp.
+Time spent on this round: 106m.
+
+
+***************************
+Iteration 28, kmer: 53
+Edge number: 50054973
+Construct 53mer graph.
+Construct new kmer hash.
+1380725 edge(s) deleted in length of 0.
+42933729 new kmer(s).
+47293527 edge(s) updated to 53mer edge.
+Time spent on building hash graph: 700s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 102s,
+ chopping reads to kmers: 547s,
+ searching kmers in hash: 4001s,
+ parsing reads: 77s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+46 unreliable arc(s) deleted.
+Time spent on adding arcs: 4781s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 42s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+12687 weak inner edge(s) destroyed in cycle 1.
+113 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+25399 dead arc(s) removed.
+962 inner edge(s) with coverage lower than or equal to 1 destroyed.
+2780 dead arc(s) removed.
+557840 edge(s) concatenated in cycle 1.
+213 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+37764666 edge(s) in the graph.
+Before compacting, 50054973 edge(s) existed.
+After compacting, 46149897 edge(s) left.
+Time spent on removing Edges: 168s
+Refresh edges.
+There are 46149897 edge(s).
+Add edges to the graph: 3021736 arc(s) deleted, 6043472 arc(s) added.
+Refresh edge: 3021736 edge(s) added.
+6003002 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 49171633 edge(s) existed.
+After compacting, 49171633 edge(s) left.
+Time spent on refreshing edges: 409s.
+
+There are 2655786 contig(s) longer than 100, sum up 410557106 bp, with average length 154.
+The longest length is 6674 bp, contig N50 is 136 bp, contig N90 is 102 bp.
+Time spent on this round: 103m.
+
+
+***************************
+Iteration 29, kmer: 54
+Edge number: 49171633
+Construct 54mer graph.
+Construct new kmer hash.
+1380065 edge(s) deleted in length of 0.
+42253601 new kmer(s).
+46411503 edge(s) updated to 54mer edge.
+Time spent on building hash graph: 690s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 103s,
+ chopping reads to kmers: 564s,
+ searching kmers in hash: 3755s,
+ parsing reads: 75s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+66 unreliable arc(s) deleted.
+Time spent on adding arcs: 4550s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 41s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+11867 weak inner edge(s) destroyed in cycle 1.
+90 weak inner edge(s) destroyed in cycle 2.
+1 weak inner edge(s) destroyed in cycle 3.
+0 weak inner edge(s) destroyed in cycle 4.
+23740 dead arc(s) removed.
+944 inner edge(s) with coverage lower than or equal to 1 destroyed.
+2772 dead arc(s) removed.
+572830 edge(s) concatenated in cycle 1.
+339 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+37252128 edge(s) in the graph.
+Before compacting, 49171633 edge(s) existed.
+After compacting, 45239361 edge(s) left.
+Time spent on removing Edges: 170s
+Refresh edges.
+There are 45239361 edge(s).
+Add edges to the graph: 3004676 arc(s) deleted, 6009352 arc(s) added.
+Refresh edge: 3004676 edge(s) added.
+5846392 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 48244037 edge(s) existed.
+After compacting, 48244037 edge(s) left.
+Time spent on refreshing edges: 400s.
+
+There are 2755812 contig(s) longer than 100, sum up 424958679 bp, with average length 154.
+The longest length is 6675 bp, contig N50 is 135 bp, contig N90 is 102 bp.
+Time spent on this round: 99m.
+
+
+***************************
+Iteration 30, kmer: 55
+Edge number: 48244037
+Construct 55mer graph.
+Construct new kmer hash.
+1295743 edge(s) deleted in length of 0.
+41576379 new kmer(s).
+45652555 edge(s) updated to 55mer edge.
+Time spent on building hash graph: 679s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 90s,
+ chopping reads to kmers: 309s,
+ searching kmers in hash: 1903s,
+ parsing reads: 69s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+48 unreliable arc(s) deleted.
+Time spent on adding arcs: 2424s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 40s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+10867 weak inner edge(s) destroyed in cycle 1.
+86 weak inner edge(s) destroyed in cycle 2.
+1 weak inner edge(s) destroyed in cycle 3.
+0 weak inner edge(s) destroyed in cycle 4.
+21747 dead arc(s) removed.
+880 inner edge(s) with coverage lower than or equal to 1 destroyed.
+2594 dead arc(s) removed.
+529773 edge(s) concatenated in cycle 1.
+189 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+36731666 edge(s) in the graph.
+Before compacting, 48244037 edge(s) existed.
+After compacting, 44568963 edge(s) left.
+Time spent on removing Edges: 167s
+Refresh edges.
+There are 44568963 edge(s).
+Add edges to the graph: 2778410 arc(s) deleted, 5556820 arc(s) added.
+Refresh edge: 2778410 edge(s) added.
+5699122 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 47347373 edge(s) existed.
+After compacting, 47347373 edge(s) left.
+Time spent on refreshing edges: 381s.
+
+There are 2849211 contig(s) longer than 100, sum up 438691795 bp, with average length 153.
+The longest length is 6676 bp, contig N50 is 135 bp, contig N90 is 102 bp.
+Time spent on this round: 63m.
+
+
+***************************
+Iteration 31, kmer: 56
+Edge number: 47347373
+Construct 56mer graph.
+Construct new kmer hash.
+1252403 edge(s) deleted in length of 0.
+40924539 new kmer(s).
+44842567 edge(s) updated to 56mer edge.
+Time spent on building hash graph: 693s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 93s,
+ chopping reads to kmers: 203s,
+ searching kmers in hash: 1154s,
+ parsing reads: 67s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+38 unreliable arc(s) deleted.
+Time spent on adding arcs: 1567s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 40s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+10132 weak inner edge(s) destroyed in cycle 1.
+79 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+20267 dead arc(s) removed.
+786 inner edge(s) with coverage lower than or equal to 1 destroyed.
+2331 dead arc(s) removed.
+518271 edge(s) concatenated in cycle 1.
+239 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+36246752 edge(s) in the graph.
+Before compacting, 47347373 edge(s) existed.
+After compacting, 43783553 edge(s) left.
+Time spent on removing Edges: 162s
+Refresh edges.
+There are 43783553 edge(s).
+Add edges to the graph: 2654378 arc(s) deleted, 5308756 arc(s) added.
+Refresh edge: 2654378 edge(s) added.
+5567365 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 46437931 edge(s) existed.
+After compacting, 46437931 edge(s) left.
+Time spent on refreshing edges: 373s.
+
+There are 2942875 contig(s) longer than 100, sum up 452510148 bp, with average length 153.
+The longest length is 6677 bp, contig N50 is 134 bp, contig N90 is 102 bp.
+Time spent on this round: 49m.
+
+
+***************************
+Iteration 32, kmer: 57
+Edge number: 46437931
+Construct 57mer graph.
+Construct new kmer hash.
+1239620 edge(s) deleted in length of 0.
+40223156 new kmer(s).
+43958694 edge(s) updated to 57mer edge.
+Time spent on building hash graph: 668s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 81s,
+ chopping reads to kmers: 200s,
+ searching kmers in hash: 1162s,
+ parsing reads: 64s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+54 unreliable arc(s) deleted.
+Time spent on adding arcs: 1557s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 39s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+9483 weak inner edge(s) destroyed in cycle 1.
+66 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+18962 dead arc(s) removed.
+683 inner edge(s) with coverage lower than or equal to 1 destroyed.
+2043 dead arc(s) removed.
+525974 edge(s) concatenated in cycle 1.
+205 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+35707856 edge(s) in the graph.
+Before compacting, 46437931 edge(s) existed.
+After compacting, 42885872 edge(s) left.
+Time spent on removing Edges: 159s
+Refresh edges.
+There are 42885872 edge(s).
+Add edges to the graph: 2613152 arc(s) deleted, 5226304 arc(s) added.
+Refresh edge: 2613152 edge(s) added.
+5396304 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 45499024 edge(s) existed.
+After compacting, 45499024 edge(s) left.
+Time spent on refreshing edges: 355s.
+
+There are 3038319 contig(s) longer than 100, sum up 466619225 bp, with average length 153.
+The longest length is 6678 bp, contig N50 is 134 bp, contig N90 is 102 bp.
+Time spent on this round: 48m.
+
+
+***************************
+Iteration 33, kmer: 58
+Edge number: 45499024
+Construct 58mer graph.
+Construct new kmer hash.
+1162794 edge(s) deleted in length of 0.
+39526043 new kmer(s).
+43173436 edge(s) updated to 58mer edge.
+Time spent on building hash graph: 650s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 92s,
+ chopping reads to kmers: 297s,
+ searching kmers in hash: 1466s,
+ parsing reads: 63s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+46 unreliable arc(s) deleted.
+Time spent on adding arcs: 1967s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 38s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+8446 weak inner edge(s) destroyed in cycle 1.
+61 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+16892 dead arc(s) removed.
+681 inner edge(s) with coverage lower than or equal to 1 destroyed.
+2030 dead arc(s) removed.
+490416 edge(s) concatenated in cycle 1.
+202 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+35159290 edge(s) in the graph.
+Before compacting, 45499024 edge(s) existed.
+After compacting, 42173824 edge(s) left.
+Time spent on removing Edges: 152s
+Refresh edges.
+There are 42173824 edge(s).
+Add edges to the graph: 2413838 arc(s) deleted, 4827676 arc(s) added.
+Refresh edge: 2413838 edge(s) added.
+5258852 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 44587662 edge(s) existed.
+After compacting, 44587662 edge(s) left.
+Time spent on refreshing edges: 349s.
+
+There are 3132519 contig(s) longer than 100, sum up 480578884 bp, with average length 153.
+The longest length is 6679 bp, contig N50 is 134 bp, contig N90 is 102 bp.
+Time spent on this round: 54m.
+
+
+***************************
+Iteration 34, kmer: 59
+Edge number: 44587662
+Construct 59mer graph.
+Construct new kmer hash.
+1123231 edge(s) deleted in length of 0.
+38837942 new kmer(s).
+42341205 edge(s) updated to 59mer edge.
+Time spent on building hash graph: 638s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 99s,
+ chopping reads to kmers: 525s,
+ searching kmers in hash: 3031s,
+ parsing reads: 64s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+38 unreliable arc(s) deleted.
+Time spent on adding arcs: 3768s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 37s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+7781 weak inner edge(s) destroyed in cycle 1.
+59 weak inner edge(s) destroyed in cycle 2.
+1 weak inner edge(s) destroyed in cycle 3.
+0 weak inner edge(s) destroyed in cycle 4.
+15578 dead arc(s) removed.
+649 inner edge(s) with coverage lower than or equal to 1 destroyed.
+1968 dead arc(s) removed.
+478893 edge(s) concatenated in cycle 1.
+171 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+34627720 edge(s) in the graph.
+Before compacting, 44587662 edge(s) existed.
+After compacting, 41366097 edge(s) left.
+Time spent on removing Edges: 153s
+Refresh edges.
+There are 41366097 edge(s).
+Add edges to the graph: 2311876 arc(s) deleted, 4623752 arc(s) added.
+Refresh edge: 2311876 edge(s) added.
+5099825 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 43677973 edge(s) existed.
+After compacting, 43677973 edge(s) left.
+Time spent on refreshing edges: 348s.
+
+There are 3228091 contig(s) longer than 100, sum up 494710155 bp, with average length 153.
+The longest length is 6680 bp, contig N50 is 134 bp, contig N90 is 102 bp.
+Time spent on this round: 84m.
+
+
+***************************
+Iteration 35, kmer: 60
+Edge number: 43677973
+Construct 60mer graph.
+Construct new kmer hash.
+1116512 edge(s) deleted in length of 0.
+38112937 new kmer(s).
+41444949 edge(s) updated to 60mer edge.
+Time spent on building hash graph: 628s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 95s,
+ chopping reads to kmers: 533s,
+ searching kmers in hash: 2858s,
+ parsing reads: 64s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+62 unreliable arc(s) deleted.
+Time spent on adding arcs: 3596s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 36s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+7207 weak inner edge(s) destroyed in cycle 1.
+54 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+14431 dead arc(s) removed.
+599 inner edge(s) with coverage lower than or equal to 1 destroyed.
+1815 dead arc(s) removed.
+487593 edge(s) concatenated in cycle 1.
+205 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+34053414 edge(s) in the graph.
+Before compacting, 43677973 edge(s) existed.
+After compacting, 40453633 edge(s) left.
+Time spent on removing Edges: 150s
+Refresh edges.
+There are 40453633 edge(s).
+Add edges to the graph: 2291236 arc(s) deleted, 4582472 arc(s) added.
+Refresh edge: 2291236 edge(s) added.
+4927283 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 42744869 edge(s) existed.
+After compacting, 42744869 edge(s) left.
+Time spent on refreshing edges: 337s.
+
+There are 3326601 contig(s) longer than 100, sum up 509229374 bp, with average length 153.
+The longest length is 6681 bp, contig N50 is 133 bp, contig N90 is 102 bp.
+Time spent on this round: 81m.
+
+
+***************************
+Iteration 36, kmer: 61
+Edge number: 42744869
+Construct 61mer graph.
+Construct new kmer hash.
+1043240 edge(s) deleted in length of 0.
+37404439 new kmer(s).
+40658391 edge(s) updated to 61mer edge.
+Time spent on building hash graph: 620s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 99s,
+ chopping reads to kmers: 517s,
+ searching kmers in hash: 2821s,
+ parsing reads: 61s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+42 unreliable arc(s) deleted.
+Time spent on adding arcs: 3544s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 35s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+6518 weak inner edge(s) destroyed in cycle 1.
+49 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+13038 dead arc(s) removed.
+513 inner edge(s) with coverage lower than or equal to 1 destroyed.
+1566 dead arc(s) removed.
+455392 edge(s) concatenated in cycle 1.
+134 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+33479428 edge(s) in the graph.
+Before compacting, 42744869 edge(s) existed.
+After compacting, 39733179 edge(s) left.
+Time spent on removing Edges: 147s
+Refresh edges.
+There are 39733179 edge(s).
+Add edges to the graph: 2109476 arc(s) deleted, 4218952 arc(s) added.
+Refresh edge: 2109476 edge(s) added.
+4802131 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 41842655 edge(s) existed.
+After compacting, 41842655 edge(s) left.
+Time spent on refreshing edges: 327s.
+
+There are 3423013 contig(s) longer than 100, sum up 523492745 bp, with average length 152.
+The longest length is 6682 bp, contig N50 is 133 bp, contig N90 is 102 bp.
+Time spent on this round: 79m.
+
+
+***************************
+Iteration 37, kmer: 62
+Edge number: 41842655
+Construct 62mer graph.
+Construct new kmer hash.
+1003555 edge(s) deleted in length of 0.
+36713257 new kmer(s).
+39835545 edge(s) updated to 62mer edge.
+Time spent on building hash graph: 603s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 98s,
+ chopping reads to kmers: 519s,
+ searching kmers in hash: 2619s,
+ parsing reads: 60s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+18 unreliable arc(s) deleted.
+Time spent on adding arcs: 3341s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 35s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+5748 weak inner edge(s) destroyed in cycle 1.
+35 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+11497 dead arc(s) removed.
+456 inner edge(s) with coverage lower than or equal to 1 destroyed.
+1395 dead arc(s) removed.
+445105 edge(s) concatenated in cycle 1.
+163 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+32932062 edge(s) in the graph.
+Before compacting, 41842655 edge(s) existed.
+After compacting, 38932531 edge(s) left.
+Time spent on removing Edges: 142s
+Refresh edges.
+There are 38932531 edge(s).
+Add edges to the graph: 2002938 arc(s) deleted, 4005876 arc(s) added.
+Refresh edge: 2002938 edge(s) added.
+4643253 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 40935469 edge(s) existed.
+After compacting, 40935469 edge(s) left.
+Time spent on refreshing edges: 318s.
+
+There are 3528814 contig(s) longer than 100, sum up 538713047 bp, with average length 152.
+The longest length is 6682 bp, contig N50 is 133 bp, contig N90 is 102 bp.
+Time spent on this round: 75m.
+
+
+***************************
+Iteration 38, kmer: 63
+Edge number: 40935469
+Construct 63mer graph.
+Construct new kmer hash.
+994138 edge(s) deleted in length of 0.
+35987015 new kmer(s).
+38947196 edge(s) updated to 63mer edge.
+Time spent on building hash graph: 596s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 102s,
+ chopping reads to kmers: 507s,
+ searching kmers in hash: 2554s,
+ parsing reads: 58s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+56 unreliable arc(s) deleted.
+Time spent on adding arcs: 3265s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 34s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+5382 weak inner edge(s) destroyed in cycle 1.
+37 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+10782 dead arc(s) removed.
+427 inner edge(s) with coverage lower than or equal to 1 destroyed.
+1311 dead arc(s) removed.
+448642 edge(s) concatenated in cycle 1.
+157 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+32353888 edge(s) in the graph.
+Before compacting, 40935469 edge(s) existed.
+After compacting, 38037906 edge(s) left.
+Time spent on removing Edges: 141s
+Refresh edges.
+There are 38037906 edge(s).
+Add edges to the graph: 1977434 arc(s) deleted, 3954868 arc(s) added.
+Refresh edge: 1977434 edge(s) added.
+4476174 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 40015340 edge(s) existed.
+After compacting, 40015340 edge(s) left.
+Time spent on refreshing edges: 303s.
+
+There are 3645100 contig(s) longer than 100, sum up 555067757 bp, with average length 152.
+The longest length is 6682 bp, contig N50 is 133 bp, contig N90 is 102 bp.
+Time spent on this round: 74m.
+
+
+***************************
+Iteration 39, kmer: 64
+Edge number: 40015340
+Construct 64mer graph.
+Construct new kmer hash.
+928119 edge(s) deleted in length of 0.
+35275401 new kmer(s).
+38159102 edge(s) updated to 64mer edge.
+Time spent on building hash graph: 586s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 100s,
+ chopping reads to kmers: 504s,
+ searching kmers in hash: 2469s,
+ parsing reads: 54s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+20 unreliable arc(s) deleted.
+Time spent on adding arcs: 3171s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 32s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+4833 weak inner edge(s) destroyed in cycle 1.
+28 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+9662 dead arc(s) removed.
+404 inner edge(s) with coverage lower than or equal to 1 destroyed.
+1252 dead arc(s) removed.
+421012 edge(s) concatenated in cycle 1.
+122 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+31767978 edge(s) in the graph.
+Before compacting, 40015340 edge(s) existed.
+After compacting, 37306304 edge(s) left.
+Time spent on removing Edges: 133s
+Refresh edges.
+There are 37306304 edge(s).
+Add edges to the graph: 1817136 arc(s) deleted, 3634272 arc(s) added.
+Refresh edge: 1817136 edge(s) added.
+4354807 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 39123440 edge(s) existed.
+After compacting, 39123440 edge(s) left.
+Time spent on refreshing edges: 292s.
+
+There are 3760290 contig(s) longer than 100, sum up 571265441 bp, with average length 151.
+The longest length is 6682 bp, contig N50 is 132 bp, contig N90 is 101 bp.
+Time spent on this round: 72m.
+
+
+***************************
+Iteration 40, kmer: 65
+Edge number: 39123440
+Construct 65mer graph.
+Construct new kmer hash.
+892564 edge(s) deleted in length of 0.
+34580634 new kmer(s).
+37338312 edge(s) updated to 65mer edge.
+Time spent on building hash graph: 574s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 98s,
+ chopping reads to kmers: 496s,
+ searching kmers in hash: 2346s,
+ parsing reads: 53s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+22 unreliable arc(s) deleted.
+Time spent on adding arcs: 3035s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 32s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+4280 weak inner edge(s) destroyed in cycle 1.
+22 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+8567 dead arc(s) removed.
+368 inner edge(s) with coverage lower than or equal to 1 destroyed.
+1147 dead arc(s) removed.
+412425 edge(s) concatenated in cycle 1.
+127 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+31209386 edge(s) in the graph.
+Before compacting, 39123440 edge(s) existed.
+After compacting, 36503868 edge(s) left.
+Time spent on removing Edges: 129s
+Refresh edges.
+There are 36503868 edge(s).
+Add edges to the graph: 1727114 arc(s) deleted, 3454228 arc(s) added.
+Refresh edge: 1727114 edge(s) added.
+4208809 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 38230982 edge(s) existed.
+After compacting, 38230982 edge(s) left.
+Time spent on refreshing edges: 282s.
+
+There are 3876935 contig(s) longer than 100, sum up 587654327 bp, with average length 151.
+The longest length is 6682 bp, contig N50 is 132 bp, contig N90 is 101 bp.
+Time spent on this round: 69m.
+
+
+***************************
+Iteration 41, kmer: 66
+Edge number: 38230982
+Construct 66mer graph.
+Construct new kmer hash.
+879763 edge(s) deleted in length of 0.
+33857215 new kmer(s).
+36471456 edge(s) updated to 66mer edge.
+Time spent on building hash graph: 564s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 97s,
+ chopping reads to kmers: 500s,
+ searching kmers in hash: 2231s,
+ parsing reads: 51s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+48 unreliable arc(s) deleted.
+Time spent on adding arcs: 2921s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 30s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+4108 weak inner edge(s) destroyed in cycle 1.
+20 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+8215 dead arc(s) removed.
+315 inner edge(s) with coverage lower than or equal to 1 destroyed.
+977 dead arc(s) removed.
+418121 edge(s) concatenated in cycle 1.
+165 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+30613798 edge(s) in the graph.
+Before compacting, 38230982 edge(s) existed.
+After compacting, 35625998 edge(s) left.
+Time spent on removing Edges: 126s
+Refresh edges.
+There are 35625998 edge(s).
+Add edges to the graph: 1697594 arc(s) deleted, 3395188 arc(s) added.
+Refresh edge: 1697594 edge(s) added.
+4050164 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 37323592 edge(s) existed.
+After compacting, 37323592 edge(s) left.
+Time spent on refreshing edges: 271s.
+
+There are 3995974 contig(s) longer than 100, sum up 604343329 bp, with average length 151.
+The longest length is 6682 bp, contig N50 is 133 bp, contig N90 is 101 bp.
+Time spent on this round: 67m.
+
+
+***************************
+Iteration 42, kmer: 67
+Edge number: 37323592
+Construct 67mer graph.
+Construct new kmer hash.
+822761 edge(s) deleted in length of 0.
+33143352 new kmer(s).
+35678074 edge(s) updated to 67mer edge.
+Time spent on building hash graph: 553s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 100s,
+ chopping reads to kmers: 477s,
+ searching kmers in hash: 2142s,
+ parsing reads: 48s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+44 unreliable arc(s) deleted.
+Time spent on adding arcs: 2808s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 29s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+3693 weak inner edge(s) destroyed in cycle 1.
+13 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+7382 dead arc(s) removed.
+320 inner edge(s) with coverage lower than or equal to 1 destroyed.
+1007 dead arc(s) removed.
+390920 edge(s) concatenated in cycle 1.
+116 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+30026242 edge(s) in the graph.
+Before compacting, 37323592 edge(s) existed.
+After compacting, 34887950 edge(s) left.
+Time spent on removing Edges: 122s
+Refresh edges.
+There are 34887950 edge(s).
+Add edges to the graph: 1562416 arc(s) deleted, 3124832 arc(s) added.
+Refresh edge: 1562416 edge(s) added.
+3908413 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 36450366 edge(s) existed.
+After compacting, 36450366 edge(s) left.
+Time spent on refreshing edges: 261s.
+
+There are 4113817 contig(s) longer than 100, sum up 620853895 bp, with average length 150.
+The longest length is 6682 bp, contig N50 is 135 bp, contig N90 is 101 bp.
+Time spent on this round: 64m.
+
+
+***************************
+Iteration 43, kmer: 68
+Edge number: 36450366
+Construct 68mer graph.
+Construct new kmer hash.
+788730 edge(s) deleted in length of 0.
+32453384 new kmer(s).
+34872906 edge(s) updated to 68mer edge.
+Time spent on building hash graph: 539s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 100s,
+ chopping reads to kmers: 491s,
+ searching kmers in hash: 2051s,
+ parsing reads: 47s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+24 unreliable arc(s) deleted.
+Time spent on adding arcs: 2728s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 29s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+3378 weak inner edge(s) destroyed in cycle 1.
+9 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+6753 dead arc(s) removed.
+294 inner edge(s) with coverage lower than or equal to 1 destroyed.
+906 dead arc(s) removed.
+380489 edge(s) concatenated in cycle 1.
+129 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+29465240 edge(s) in the graph.
+Before compacting, 36450366 edge(s) existed.
+After compacting, 34104308 edge(s) left.
+Time spent on removing Edges: 118s
+Refresh edges.
+There are 34104308 edge(s).
+Add edges to the graph: 1485042 arc(s) deleted, 2970084 arc(s) added.
+Refresh edge: 1485042 edge(s) added.
+3785558 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 35589350 edge(s) existed.
+After compacting, 35589350 edge(s) left.
+Time spent on refreshing edges: 251s.
+
+There are 4231918 contig(s) longer than 100, sum up 637363634 bp, with average length 150.
+The longest length is 7570 bp, contig N50 is 137 bp, contig N90 is 101 bp.
+Time spent on this round: 62m.
+
+
+***************************
+Iteration 44, kmer: 69
+Edge number: 35589350
+Construct 69mer graph.
+Construct new kmer hash.
+773112 edge(s) deleted in length of 0.
+31749341 new kmer(s).
+34043129 edge(s) updated to 69mer edge.
+Time spent on building hash graph: 530s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 97s,
+ chopping reads to kmers: 464s,
+ searching kmers in hash: 1973s,
+ parsing reads: 45s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+14 unreliable arc(s) deleted.
+Time spent on adding arcs: 2617s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 28s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+3019 weak inner edge(s) destroyed in cycle 1.
+13 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+6036 dead arc(s) removed.
+264 inner edge(s) with coverage lower than or equal to 1 destroyed.
+828 dead arc(s) removed.
+384058 edge(s) concatenated in cycle 1.
+129 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+28878100 edge(s) in the graph.
+Before compacting, 35589350 edge(s) existed.
+After compacting, 33268163 edge(s) left.
+Time spent on removing Edges: 114s
+Refresh edges.
+There are 33268163 edge(s).
+Add edges to the graph: 1442570 arc(s) deleted, 2885140 arc(s) added.
+Refresh edge: 1442570 edge(s) added.
+3612957 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 34710733 edge(s) existed.
+After compacting, 34710733 edge(s) left.
+Time spent on refreshing edges: 246s.
+
+There are 4351427 contig(s) longer than 100, sum up 654076970 bp, with average length 150.
+The longest length is 7570 bp, contig N50 is 138 bp, contig N90 is 101 bp.
+Time spent on this round: 60m.
+
+
+***************************
+Iteration 45, kmer: 70
+Edge number: 34710733
+Construct 70mer graph.
+Construct new kmer hash.
+722485 edge(s) deleted in length of 0.
+31054052 new kmer(s).
+33265763 edge(s) updated to 70mer edge.
+Time spent on building hash graph: 518s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 99s,
+ chopping reads to kmers: 449s,
+ searching kmers in hash: 1877s,
+ parsing reads: 44s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+40 unreliable arc(s) deleted.
+Time spent on adding arcs: 2507s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 26s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+2885 weak inner edge(s) destroyed in cycle 1.
+11 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+5766 dead arc(s) removed.
+233 inner edge(s) with coverage lower than or equal to 1 destroyed.
+749 dead arc(s) removed.
+364825 edge(s) concatenated in cycle 1.
+132 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+28297524 edge(s) in the graph.
+Before compacting, 34710733 edge(s) existed.
+After compacting, 32529591 edge(s) left.
+Time spent on removing Edges: 112s
+Refresh edges.
+There are 32529591 edge(s).
+Add edges to the graph: 1325138 arc(s) deleted, 2650276 arc(s) added.
+Refresh edge: 1325138 edge(s) added.
+3491711 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 33854729 edge(s) existed.
+After compacting, 33854729 edge(s) left.
+Time spent on refreshing edges: 236s.
+
+There are 4469705 contig(s) longer than 100, sum up 670585287 bp, with average length 150.
+The longest length is 7570 bp, contig N50 is 138 bp, contig N90 is 101 bp.
+Time spent on this round: 58m.
+
+
+***************************
+Iteration 46, kmer: 71
+Edge number: 33854729
+Construct 71mer graph.
+Construct new kmer hash.
+688186 edge(s) deleted in length of 0.
+30368215 new kmer(s).
+32478357 edge(s) updated to 71mer edge.
+Time spent on building hash graph: 511s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 100s,
+ chopping reads to kmers: 453s,
+ searching kmers in hash: 1815s,
+ parsing reads: 42s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+24 unreliable arc(s) deleted.
+Time spent on adding arcs: 2447s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 25s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+2553 weak inner edge(s) destroyed in cycle 1.
+9 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+5107 dead arc(s) removed.
+209 inner edge(s) with coverage lower than or equal to 1 destroyed.
+668 dead arc(s) removed.
+351719 edge(s) concatenated in cycle 1.
+111 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+27731446 edge(s) in the graph.
+Before compacting, 33854729 edge(s) existed.
+After compacting, 31769155 edge(s) left.
+Time spent on removing Edges: 109s
+Refresh edges.
+There are 31769155 edge(s).
+Add edges to the graph: 1249412 arc(s) deleted, 2498824 arc(s) added.
+Refresh edge: 1249412 edge(s) added.
+3350261 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 33018567 edge(s) existed.
+After compacting, 33018567 edge(s) left.
+Time spent on refreshing edges: 225s.
+
+There are 4586737 contig(s) longer than 100, sum up 686926342 bp, with average length 149.
+The longest length is 7570 bp, contig N50 is 138 bp, contig N90 is 101 bp.
+Time spent on this round: 56m.
+
+
+***************************
+Iteration 47, kmer: 72
+Edge number: 33018567
+Construct 72mer graph.
+Construct new kmer hash.
+675523 edge(s) deleted in length of 0.
+29678811 new kmer(s).
+31667521 edge(s) updated to 72mer edge.
+Time spent on building hash graph: 494s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 98s,
+ chopping reads to kmers: 461s,
+ searching kmers in hash: 1737s,
+ parsing reads: 40s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+36 unreliable arc(s) deleted.
+Time spent on adding arcs: 2371s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 24s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+2253 weak inner edge(s) destroyed in cycle 1.
+10 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+4512 dead arc(s) removed.
+192 inner edge(s) with coverage lower than or equal to 1 destroyed.
+618 dead arc(s) removed.
+356379 edge(s) concatenated in cycle 1.
+126 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+27153296 edge(s) in the graph.
+Before compacting, 33018567 edge(s) existed.
+After compacting, 30949601 edge(s) left.
+Time spent on removing Edges: 105s
+Refresh edges.
+There are 30949601 edge(s).
+Add edges to the graph: 1219938 arc(s) deleted, 2439876 arc(s) added.
+Refresh edge: 1219938 edge(s) added.
+3191687 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 32169539 edge(s) existed.
+After compacting, 32169539 edge(s) left.
+Time spent on refreshing edges: 216s.
+
+There are 4703619 contig(s) longer than 100, sum up 703284530 bp, with average length 149.
+The longest length is 7570 bp, contig N50 is 138 bp, contig N90 is 101 bp.
+Time spent on this round: 55m.
+
+
+***************************
+Iteration 48, kmer: 73
+Edge number: 32169539
+Construct 73mer graph.
+Construct new kmer hash.
+627591 edge(s) deleted in length of 0.
+28994119 new kmer(s).
+30914357 edge(s) updated to 73mer edge.
+Time spent on building hash graph: 492s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 79s,
+ chopping reads to kmers: 448s,
+ searching kmers in hash: 1662s,
+ parsing reads: 36s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+18 unreliable arc(s) deleted.
+Time spent on adding arcs: 2260s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 23s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+2135 weak inner edge(s) destroyed in cycle 1.
+6 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+4270 dead arc(s) removed.
+181 inner edge(s) with coverage lower than or equal to 1 destroyed.
+569 dead arc(s) removed.
+334952 edge(s) concatenated in cycle 1.
+105 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+26573534 edge(s) in the graph.
+Before compacting, 32169539 edge(s) existed.
+After compacting, 30239599 edge(s) left.
+Time spent on removing Edges: 99s
+Refresh edges.
+There are 30239599 edge(s).
+Add edges to the graph: 1113832 arc(s) deleted, 2227664 arc(s) added.
+Refresh edge: 1113832 edge(s) added.
+3060075 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 31353431 edge(s) existed.
+After compacting, 31353431 edge(s) left.
+Time spent on refreshing edges: 197s.
+
+There are 4818158 contig(s) longer than 100, sum up 719287215 bp, with average length 149.
+The longest length is 7570 bp, contig N50 is 138 bp, contig N90 is 101 bp.
+Time spent on this round: 52m.
+
+
+***************************
+Iteration 49, kmer: 74
+Edge number: 31353431
+Construct 74mer graph.
+Construct new kmer hash.
+602135 edge(s) deleted in length of 0.
+28327514 new kmer(s).
+30149161 edge(s) updated to 74mer edge.
+Time spent on building hash graph: 467s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 75s,
+ chopping reads to kmers: 464s,
+ searching kmers in hash: 1578s,
+ parsing reads: 33s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+22 unreliable arc(s) deleted.
+Time spent on adding arcs: 2183s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 22s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+1901 weak inner edge(s) destroyed in cycle 1.
+5 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+3806 dead arc(s) removed.
+181 inner edge(s) with coverage lower than or equal to 1 destroyed.
+587 dead arc(s) removed.
+327036 edge(s) concatenated in cycle 1.
+102 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+26016762 edge(s) in the graph.
+Before compacting, 31353431 edge(s) existed.
+After compacting, 29490711 edge(s) left.
+Time spent on removing Edges: 96s
+Refresh edges.
+There are 29490711 edge(s).
+Add edges to the graph: 1053760 arc(s) deleted, 2107520 arc(s) added.
+Refresh edge: 1053760 edge(s) added.
+2930309 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 30544471 edge(s) existed.
+After compacting, 30544471 edge(s) left.
+Time spent on refreshing edges: 187s.
+
+There are 4928752 contig(s) longer than 100, sum up 734833589 bp, with average length 149.
+The longest length is 7570 bp, contig N50 is 138 bp, contig N90 is 101 bp.
+Time spent on this round: 50m.
+
+
+***************************
+Iteration 50, kmer: 75
+Edge number: 30544471
+Construct 75mer graph.
+Construct new kmer hash.
+586517 edge(s) deleted in length of 0.
+27655560 new kmer(s).
+29371441 edge(s) updated to 75mer edge.
+Time spent on building hash graph: 456s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 77s,
+ chopping reads to kmers: 449s,
+ searching kmers in hash: 1504s,
+ parsing reads: 32s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+18 unreliable arc(s) deleted.
+Time spent on adding arcs: 2094s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 20s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+1735 weak inner edge(s) destroyed in cycle 1.
+9 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+3473 dead arc(s) removed.
+132 inner edge(s) with coverage lower than or equal to 1 destroyed.
+420 dead arc(s) removed.
+327538 edge(s) concatenated in cycle 1.
+137 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+25448136 edge(s) in the graph.
+Before compacting, 30544471 edge(s) existed.
+After compacting, 28712339 edge(s) left.
+Time spent on removing Edges: 93s
+Refresh edges.
+There are 28712339 edge(s).
+Add edges to the graph: 1020548 arc(s) deleted, 2041096 arc(s) added.
+Refresh edge: 1020548 edge(s) added.
+2780200 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 29732887 edge(s) existed.
+After compacting, 29732887 edge(s) left.
+Time spent on refreshing edges: 178s.
+
+There are 5040022 contig(s) longer than 100, sum up 750426498 bp, with average length 148.
+The longest length is 7570 bp, contig N50 is 138 bp, contig N90 is 101 bp.
+Time spent on this round: 48m.
+
+
+***************************
+Iteration 51, kmer: 76
+Edge number: 29732887
+Construct 76mer graph.
+Construct new kmer hash.
+544430 edge(s) deleted in length of 0.
+26986239 new kmer(s).
+28644027 edge(s) updated to 76mer edge.
+Time spent on building hash graph: 447s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 74s,
+ chopping reads to kmers: 458s,
+ searching kmers in hash: 1440s,
+ parsing reads: 30s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+20 unreliable arc(s) deleted.
+Time spent on adding arcs: 2033s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 20s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+1603 weak inner edge(s) destroyed in cycle 1.
+4 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+3206 dead arc(s) removed.
+126 inner edge(s) with coverage lower than or equal to 1 destroyed.
+397 dead arc(s) removed.
+307504 edge(s) concatenated in cycle 1.
+100 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+24871242 edge(s) in the graph.
+Before compacting, 29732887 edge(s) existed.
+After compacting, 28025353 edge(s) left.
+Time spent on removing Edges: 88s
+Refresh edges.
+There are 28025353 edge(s).
+Add edges to the graph: 922948 arc(s) deleted, 1845896 arc(s) added.
+Refresh edge: 922948 edge(s) added.
+2660154 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 28948301 edge(s) existed.
+After compacting, 28948301 edge(s) left.
+Time spent on refreshing edges: 169s.
+
+There are 5151864 contig(s) longer than 100, sum up 765918431 bp, with average length 148.
+The longest length is 7570 bp, contig N50 is 138 bp, contig N90 is 101 bp.
+Time spent on this round: 47m.
+
+
+***************************
+Iteration 52, kmer: 77
+Edge number: 28948301
+Construct 77mer graph.
+Construct new kmer hash.
+528359 edge(s) deleted in length of 0.
+26323784 new kmer(s).
+27891585 edge(s) updated to 77mer edge.
+Time spent on building hash graph: 435s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 75s,
+ chopping reads to kmers: 439s,
+ searching kmers in hash: 1356s,
+ parsing reads: 26s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+28 unreliable arc(s) deleted.
+Time spent on adding arcs: 1927s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 17s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+1432 weak inner edge(s) destroyed in cycle 1.
+3 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+2865 dead arc(s) removed.
+118 inner edge(s) with coverage lower than or equal to 1 destroyed.
+380 dead arc(s) removed.
+294718 edge(s) concatenated in cycle 1.
+107 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+24317278 edge(s) in the graph.
+Before compacting, 28948301 edge(s) existed.
+After compacting, 27298829 edge(s) left.
+Time spent on removing Edges: 78s
+Refresh edges.
+There are 27298829 edge(s).
+Add edges to the graph: 868304 arc(s) deleted, 1736608 arc(s) added.
+Refresh edge: 868304 edge(s) added.
+2526820 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 28167133 edge(s) existed.
+After compacting, 28167133 edge(s) left.
+Time spent on refreshing edges: 163s.
+
+There are 5265206 contig(s) longer than 100, sum up 781433747 bp, with average length 148.
+The longest length is 7570 bp, contig N50 is 137 bp, contig N90 is 101 bp.
+Time spent on this round: 45m.
+
+
+***************************
+Iteration 53, kmer: 78
+Edge number: 28167133
+Construct 78mer graph.
+Construct new kmer hash.
+515253 edge(s) deleted in length of 0.
+25665190 new kmer(s).
+27136627 edge(s) updated to 78mer edge.
+Time spent on building hash graph: 390s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 70s,
+ chopping reads to kmers: 426s,
+ searching kmers in hash: 2152s,
+ parsing reads: 23s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+24 unreliable arc(s) deleted.
+Time spent on adding arcs: 2701s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 14s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+1351 weak inner edge(s) destroyed in cycle 1.
+2 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+2700 dead arc(s) removed.
+90 inner edge(s) with coverage lower than or equal to 1 destroyed.
+290 dead arc(s) removed.
+294322 edge(s) concatenated in cycle 1.
+103 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+23753080 edge(s) in the graph.
+Before compacting, 28167133 edge(s) existed.
+After compacting, 26544891 edge(s) left.
+Time spent on removing Edges: 69s
+Refresh edges.
+There are 26544891 edge(s).
+Add edges to the graph: 836978 arc(s) deleted, 1673956 arc(s) added.
+Refresh edge: 836978 edge(s) added.
+2390511 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 27381869 edge(s) existed.
+After compacting, 27381869 edge(s) left.
+Time spent on refreshing edges: 146s.
+
+There are 5378301 contig(s) longer than 100, sum up 796894892 bp, with average length 148.
+The longest length is 7570 bp, contig N50 is 137 bp, contig N90 is 101 bp.
+Time spent on this round: 56m.
+
+
+***************************
+Iteration 54, kmer: 79
+Edge number: 27381869
+Construct 79mer graph.
+Construct new kmer hash.
+478289 edge(s) deleted in length of 0.
+25018403 new kmer(s).
+26425293 edge(s) updated to 79mer edge.
+Time spent on building hash graph: 377s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 75s,
+ chopping reads to kmers: 406s,
+ searching kmers in hash: 1649s,
+ parsing reads: 22s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+20 unreliable arc(s) deleted.
+Time spent on adding arcs: 2182s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 14s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+1220 weak inner edge(s) destroyed in cycle 1.
+1 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+2436 dead arc(s) removed.
+99 inner edge(s) with coverage lower than or equal to 1 destroyed.
+316 dead arc(s) removed.
+279461 edge(s) concatenated in cycle 1.
+123 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+23197430 edge(s) in the graph.
+Before compacting, 27381869 edge(s) existed.
+After compacting, 25863485 edge(s) left.
+Time spent on removing Edges: 66s
+Refresh edges.
+There are 25863485 edge(s).
+Add edges to the graph: 755532 arc(s) deleted, 1511064 arc(s) added.
+Refresh edge: 755532 edge(s) added.
+2268348 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 26619017 edge(s) existed.
+After compacting, 26619017 edge(s) left.
+Time spent on refreshing edges: 143s.
+
+There are 5490240 contig(s) longer than 100, sum up 812114399 bp, with average length 147.
+The longest length is 7570 bp, contig N50 is 137 bp, contig N90 is 101 bp.
+Time spent on this round: 47m.
+
+
+***************************
+Iteration 55, kmer: 80
+Edge number: 26619017
+Construct 80mer graph.
+Construct new kmer hash.
+453743 edge(s) deleted in length of 0.
+24385865 new kmer(s).
+25711531 edge(s) updated to 80mer edge.
+Time spent on building hash graph: 365s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 75s,
+ chopping reads to kmers: 422s,
+ searching kmers in hash: 1740s,
+ parsing reads: 21s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+30 unreliable arc(s) deleted.
+Time spent on adding arcs: 2288s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 13s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+1207 weak inner edge(s) destroyed in cycle 1.
+2 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+2415 dead arc(s) removed.
+81 inner edge(s) with coverage lower than or equal to 1 destroyed.
+262 dead arc(s) removed.
+269353 edge(s) concatenated in cycle 1.
+129 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+22659798 edge(s) in the graph.
+Before compacting, 26619017 edge(s) existed.
+After compacting, 25169987 edge(s) left.
+Time spent on removing Edges: 63s
+Refresh edges.
+There are 25169987 edge(s).
+Add edges to the graph: 702786 arc(s) deleted, 1405572 arc(s) added.
+Refresh edge: 702786 edge(s) added.
+2157428 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 25872773 edge(s) existed.
+After compacting, 25872773 edge(s) left.
+Time spent on refreshing edges: 134s.
+
+There are 5600520 contig(s) longer than 100, sum up 827066042 bp, with average length 147.
+The longest length is 7570 bp, contig N50 is 137 bp, contig N90 is 101 bp.
+Time spent on this round: 48m.
+
+
+***************************
+Iteration 56, kmer: 81
+Edge number: 25872773
+Construct 81mer graph.
+Construct new kmer hash.
+438752 edge(s) deleted in length of 0.
+23757001 new kmer(s).
+24995270 edge(s) updated to 81mer edge.
+Time spent on building hash graph: 356s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 75s,
+ chopping reads to kmers: 403s,
+ searching kmers in hash: 1563s,
+ parsing reads: 19s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+24 unreliable arc(s) deleted.
+Time spent on adding arcs: 2090s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 12s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+1094 weak inner edge(s) destroyed in cycle 1.
+5 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+2191 dead arc(s) removed.
+64 inner edge(s) with coverage lower than or equal to 1 destroyed.
+208 dead arc(s) removed.
+267604 edge(s) concatenated in cycle 1.
+116 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+22119122 edge(s) in the graph.
+Before compacting, 25872773 edge(s) existed.
+After compacting, 24457504 edge(s) left.
+Time spent on removing Edges: 61s
+Refresh edges.
+There are 24457504 edge(s).
+Add edges to the graph: 665514 arc(s) deleted, 1331028 arc(s) added.
+Refresh edge: 665514 edge(s) added.
+2023264 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 25123018 edge(s) existed.
+After compacting, 25123018 edge(s) left.
+Time spent on refreshing edges: 128s.
+
+There are 5709249 contig(s) longer than 100, sum up 841796729 bp, with average length 147.
+The longest length is 7570 bp, contig N50 is 136 bp, contig N90 is 101 bp.
+Time spent on this round: 45m.
+
+
+***************************
+Iteration 57, kmer: 82
+Edge number: 25123018
+Construct 82mer graph.
+Construct new kmer hash.
+405057 edge(s) deleted in length of 0.
+23138086 new kmer(s).
+24312904 edge(s) updated to 82mer edge.
+Time spent on building hash graph: 346s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 77s,
+ chopping reads to kmers: 410s,
+ searching kmers in hash: 1409s,
+ parsing reads: 19s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+16 unreliable arc(s) deleted.
+Time spent on adding arcs: 1944s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 12s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+992 weak inner edge(s) destroyed in cycle 1.
+1 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+1984 dead arc(s) removed.
+67 inner edge(s) with coverage lower than or equal to 1 destroyed.
+212 dead arc(s) removed.
+253543 edge(s) concatenated in cycle 1.
+108 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+21587008 edge(s) in the graph.
+Before compacting, 25123018 edge(s) existed.
+After compacting, 23803482 edge(s) left.
+Time spent on removing Edges: 57s
+Refresh edges.
+There are 23803482 edge(s).
+Add edges to the graph: 594318 arc(s) deleted, 1188636 arc(s) added.
+Refresh edge: 594318 edge(s) added.
+1908363 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 24397800 edge(s) existed.
+After compacting, 24397800 edge(s) left.
+Time spent on refreshing edges: 118s.
+
+There are 5816588 contig(s) longer than 100, sum up 856248252 bp, with average length 147.
+The longest length is 7570 bp, contig N50 is 136 bp, contig N90 is 101 bp.
+Time spent on this round: 42m.
+
+
+***************************
+Iteration 58, kmer: 83
+Edge number: 24397800
+Construct 83mer graph.
+Construct new kmer hash.
+382616 edge(s) deleted in length of 0.
+22533441 new kmer(s).
+23632571 edge(s) updated to 83mer edge.
+Time spent on building hash graph: 337s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 72s,
+ chopping reads to kmers: 393s,
+ searching kmers in hash: 1275s,
+ parsing reads: 17s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+18 unreliable arc(s) deleted.
+Time spent on adding arcs: 1786s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 11s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+949 weak inner edge(s) destroyed in cycle 1.
+2 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+1897 dead arc(s) removed.
+66 inner edge(s) with coverage lower than or equal to 1 destroyed.
+216 dead arc(s) removed.
+243833 edge(s) concatenated in cycle 1.
+103 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+21071276 edge(s) in the graph.
+Before compacting, 24397800 edge(s) existed.
+After compacting, 23142665 edge(s) left.
+Time spent on removing Edges: 55s
+Refresh edges.
+There are 23142665 edge(s).
+Add edges to the graph: 546478 arc(s) deleted, 1092956 arc(s) added.
+Refresh edge: 546478 edge(s) added.
+1796108 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 23689143 edge(s) existed.
+After compacting, 23689143 edge(s) left.
+Time spent on refreshing edges: 111s.
+
+There are 5922039 contig(s) longer than 100, sum up 870392286 bp, with average length 146.
+The longest length is 7720 bp, contig N50 is 136 bp, contig N90 is 101 bp.
+Time spent on this round: 39m.
+
+
+***************************
+Iteration 59, kmer: 84
+Edge number: 23689143
+Construct 84mer graph.
+Construct new kmer hash.
+366504 edge(s) deleted in length of 0.
+21933523 new kmer(s).
+22956135 edge(s) updated to 84mer edge.
+Time spent on building hash graph: 327s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 74s,
+ chopping reads to kmers: 385s,
+ searching kmers in hash: 1153s,
+ parsing reads: 16s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+22 unreliable arc(s) deleted.
+Time spent on adding arcs: 1657s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 11s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+851 weak inner edge(s) destroyed in cycle 1.
+1 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+1700 dead arc(s) removed.
+45 inner edge(s) with coverage lower than or equal to 1 destroyed.
+149 dead arc(s) removed.
+241038 edge(s) concatenated in cycle 1.
+121 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+20550568 edge(s) in the graph.
+Before compacting, 23689143 edge(s) existed.
+After compacting, 22472023 edge(s) left.
+Time spent on removing Edges: 53s
+Refresh edges.
+There are 22472023 edge(s).
+Add edges to the graph: 511846 arc(s) deleted, 1023692 arc(s) added.
+Refresh edge: 511846 edge(s) added.
+1666445 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 22983869 edge(s) existed.
+After compacting, 22983869 edge(s) left.
+Time spent on refreshing edges: 103s.
+
+There are 6027199 contig(s) longer than 100, sum up 884421657 bp, with average length 146.
+The longest length is 7720 bp, contig N50 is 136 bp, contig N90 is 101 bp.
+Time spent on this round: 36m.
+
+
+***************************
+Iteration 60, kmer: 85
+Edge number: 22983869
+Construct 85mer graph.
+Construct new kmer hash.
+339374 edge(s) deleted in length of 0.
+21342403 new kmer(s).
+22305122 edge(s) updated to 85mer edge.
+Time spent on building hash graph: 319s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 78s,
+ chopping reads to kmers: 333s,
+ searching kmers in hash: 937s,
+ parsing reads: 15s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+8 unreliable arc(s) deleted.
+Time spent on adding arcs: 1392s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 10s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+786 weak inner edge(s) destroyed in cycle 1.
+1 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+1571 dead arc(s) removed.
+38 inner edge(s) with coverage lower than or equal to 1 destroyed.
+123 dead arc(s) removed.
+228182 edge(s) concatenated in cycle 1.
+112 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+20039276 edge(s) in the graph.
+Before compacting, 22983869 edge(s) existed.
+After compacting, 21846884 edge(s) left.
+Time spent on removing Edges: 50s
+Refresh edges.
+There are 21846884 edge(s).
+Add edges to the graph: 457526 arc(s) deleted, 915052 arc(s) added.
+Refresh edge: 457526 edge(s) added.
+1560393 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 22304410 edge(s) existed.
+After compacting, 22304410 edge(s) left.
+Time spent on refreshing edges: 97s.
+
+There are 6127861 contig(s) longer than 100, sum up 897859216 bp, with average length 146.
+The longest length is 8827 bp, contig N50 is 135 bp, contig N90 is 101 bp.
+Time spent on this round: 32m.
+
+
+***************************
+Iteration 61, kmer: 86
+Edge number: 22304410
+Construct 86mer graph.
+Construct new kmer hash.
+320721 edge(s) deleted in length of 0.
+20766258 new kmer(s).
+21662968 edge(s) updated to 86mer edge.
+Time spent on building hash graph: 310s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 76s,
+ chopping reads to kmers: 345s,
+ searching kmers in hash: 942s,
+ parsing reads: 13s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+10 unreliable arc(s) deleted.
+Time spent on adding arcs: 1406s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 9s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+748 weak inner edge(s) destroyed in cycle 1.
+2 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+1497 dead arc(s) removed.
+30 inner edge(s) with coverage lower than or equal to 1 destroyed.
+99 dead arc(s) removed.
+224936 edge(s) concatenated in cycle 1.
+124 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+19534376 edge(s) in the graph.
+Before compacting, 22304410 edge(s) existed.
+After compacting, 21211288 edge(s) left.
+Time spent on removing Edges: 47s
+Refresh edges.
+There are 21211288 edge(s).
+Add edges to the graph: 412992 arc(s) deleted, 825984 arc(s) added.
+Refresh edge: 412992 edge(s) added.
+1449914 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 21624280 edge(s) existed.
+After compacting, 21624280 edge(s) left.
+Time spent on refreshing edges: 88s.
+
+There are 6224895 contig(s) longer than 100, sum up 910829582 bp, with average length 146.
+The longest length is 8828 bp, contig N50 is 135 bp, contig N90 is 101 bp.
+Time spent on this round: 32m.
+
+
+***************************
+Iteration 62, kmer: 87
+Edge number: 21624280
+Construct 87mer graph.
+Construct new kmer hash.
+304434 edge(s) deleted in length of 0.
+20188757 new kmer(s).
+21015414 edge(s) updated to 87mer edge.
+Time spent on building hash graph: 301s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 73s,
+ chopping reads to kmers: 328s,
+ searching kmers in hash: 855s,
+ parsing reads: 13s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+18 unreliable arc(s) deleted.
+Time spent on adding arcs: 1298s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 9s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+617 weak inner edge(s) destroyed in cycle 1.
+0 weak inner edge(s) destroyed in cycle 2.
+1233 dead arc(s) removed.
+30 inner edge(s) with coverage lower than or equal to 1 destroyed.
+99 dead arc(s) removed.
+215333 edge(s) concatenated in cycle 1.
+130 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+19039822 edge(s) in the graph.
+Before compacting, 21624280 edge(s) existed.
+After compacting, 20583194 edge(s) left.
+Time spent on removing Edges: 43s
+Refresh edges.
+There are 20583194 edge(s).
+Add edges to the graph: 382410 arc(s) deleted, 764820 arc(s) added.
+Refresh edge: 382410 edge(s) added.
+1333519 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 20965604 edge(s) existed.
+After compacting, 20965604 edge(s) left.
+Time spent on refreshing edges: 82s.
+
+There are 6319510 contig(s) longer than 100, sum up 923414889 bp, with average length 146.
+The longest length is 8829 bp, contig N50 is 135 bp, contig N90 is 101 bp.
+Time spent on this round: 29m.
+
+
+***************************
+Iteration 63, kmer: 88
+Edge number: 20965604
+Construct 88mer graph.
+Construct new kmer hash.
+281166 edge(s) deleted in length of 0.
+19632408 new kmer(s).
+20403272 edge(s) updated to 88mer edge.
+Time spent on building hash graph: 293s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 75s,
+ chopping reads to kmers: 305s,
+ searching kmers in hash: 773s,
+ parsing reads: 11s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+18 unreliable arc(s) deleted.
+Time spent on adding arcs: 1194s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 10s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+614 weak inner edge(s) destroyed in cycle 1.
+1 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+1228 dead arc(s) removed.
+28 inner edge(s) with coverage lower than or equal to 1 destroyed.
+89 dead arc(s) removed.
+206811 edge(s) concatenated in cycle 1.
+139 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+18553554 edge(s) in the graph.
+Before compacting, 20965604 edge(s) existed.
+After compacting, 19988086 edge(s) left.
+Time spent on removing Edges: 39s
+Refresh edges.
+There are 19988086 edge(s).
+Add edges to the graph: 334260 arc(s) deleted, 668520 arc(s) added.
+Refresh edge: 334260 edge(s) added.
+1233709 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 20322346 edge(s) existed.
+After compacting, 20322346 edge(s) left.
+Time spent on refreshing edges: 76s.
+
+There are 6411103 contig(s) longer than 100, sum up 935546569 bp, with average length 145.
+The longest length is 8830 bp, contig N50 is 135 bp, contig N90 is 101 bp.
+Time spent on this round: 27m.
+
+
+***************************
+Iteration 64, kmer: 89
+Edge number: 20322346
+Construct 89mer graph.
+Construct new kmer hash.
+261906 edge(s) deleted in length of 0.
+19086013 new kmer(s).
+19798536 edge(s) updated to 89mer edge.
+Time spent on building hash graph: 286s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 80s,
+ chopping reads to kmers: 259s,
+ searching kmers in hash: 629s,
+ parsing reads: 11s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+14 unreliable arc(s) deleted.
+Time spent on adding arcs: 1009s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 10s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+563 weak inner edge(s) destroyed in cycle 1.
+0 weak inner edge(s) destroyed in cycle 2.
+1122 dead arc(s) removed.
+13 inner edge(s) with coverage lower than or equal to 1 destroyed.
+44 dead arc(s) removed.
+199239 edge(s) concatenated in cycle 1.
+117 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+18077110 edge(s) in the graph.
+Before compacting, 20322346 edge(s) existed.
+After compacting, 19398672 edge(s) left.
+Time spent on removing Edges: 36s
+Refresh edges.
+There are 19398672 edge(s).
+Add edges to the graph: 295456 arc(s) deleted, 590912 arc(s) added.
+Refresh edge: 295456 edge(s) added.
+1129205 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 19694128 edge(s) existed.
+After compacting, 19694128 edge(s) left.
+Time spent on refreshing edges: 70s.
+
+There are 6497438 contig(s) longer than 100, sum up 947008709 bp, with average length 145.
+The longest length is 8831 bp, contig N50 is 134 bp, contig N90 is 101 bp.
+Time spent on this round: 24m.
+
+
+***************************
+Iteration 65, kmer: 90
+Edge number: 19694128
+Construct 90mer graph.
+Construct new kmer hash.
+249162 edge(s) deleted in length of 0.
+18545822 new kmer(s).
+19195804 edge(s) updated to 90mer edge.
+Time spent on building hash graph: 276s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 75s,
+ chopping reads to kmers: 272s,
+ searching kmers in hash: 620s,
+ parsing reads: 10s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+26 unreliable arc(s) deleted.
+Time spent on adding arcs: 1008s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 6s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+523 weak inner edge(s) destroyed in cycle 1.
+1 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+1046 dead arc(s) removed.
+12 inner edge(s) with coverage lower than or equal to 1 destroyed.
+35 dead arc(s) removed.
+193147 edge(s) concatenated in cycle 1.
+107 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+17607076 edge(s) in the graph.
+Before compacting, 19694128 edge(s) existed.
+After compacting, 18808224 edge(s) left.
+Time spent on removing Edges: 38s
+Refresh edges.
+There are 18808224 edge(s).
+Add edges to the graph: 268064 arc(s) deleted, 536128 arc(s) added.
+Refresh edge: 268064 edge(s) added.
+1023648 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 19076288 edge(s) existed.
+After compacting, 19076288 edge(s) left.
+Time spent on refreshing edges: 65s.
+
+There are 6578315 contig(s) longer than 100, sum up 957782110 bp, with average length 145.
+The longest length is 10021 bp, contig N50 is 134 bp, contig N90 is 101 bp.
+Time spent on this round: 24m.
+
+
+***************************
+Iteration 66, kmer: 91
+Edge number: 19076288
+Construct 91mer graph.
+Construct new kmer hash.
+228185 edge(s) deleted in length of 0.
+18018905 new kmer(s).
+18619919 edge(s) updated to 91mer edge.
+Time spent on building hash graph: 269s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 75s,
+ chopping reads to kmers: 247s,
+ searching kmers in hash: 557s,
+ parsing reads: 9s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+22 unreliable arc(s) deleted.
+Time spent on adding arcs: 919s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 6s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+475 weak inner edge(s) destroyed in cycle 1.
+2 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+950 dead arc(s) removed.
+12 inner edge(s) with coverage lower than or equal to 1 destroyed.
+40 dead arc(s) removed.
+185569 edge(s) concatenated in cycle 1.
+141 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+17141614 edge(s) in the graph.
+Before compacting, 19076288 edge(s) existed.
+After compacting, 18247521 edge(s) left.
+Time spent on removing Edges: 34s
+Refresh edges.
+There are 18247521 edge(s).
+Add edges to the graph: 225912 arc(s) deleted, 451824 arc(s) added.
+Refresh edge: 225912 edge(s) added.
+927728 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 18473433 edge(s) existed.
+After compacting, 18473433 edge(s) left.
+Time spent on refreshing edges: 60s.
+
+There are 6653754 contig(s) longer than 100, sum up 967846253 bp, with average length 145.
+The longest length is 10021 bp, contig N50 is 134 bp, contig N90 is 101 bp.
+Time spent on this round: 22m.
+
+
+***************************
+Iteration 67, kmer: 92
+Edge number: 18473433
+Construct 92mer graph.
+Construct new kmer hash.
+212732 edge(s) deleted in length of 0.
+17500858 new kmer(s).
+18047969 edge(s) updated to 92mer edge.
+Time spent on building hash graph: 260s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 77s,
+ chopping reads to kmers: 238s,
+ searching kmers in hash: 498s,
+ parsing reads: 8s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+12 unreliable arc(s) deleted.
+Time spent on adding arcs: 854s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 5s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+468 weak inner edge(s) destroyed in cycle 1.
+1 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+937 dead arc(s) removed.
+8 inner edge(s) with coverage lower than or equal to 1 destroyed.
+25 dead arc(s) removed.
+178608 edge(s) concatenated in cycle 1.
+156 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+16687452 edge(s) in the graph.
+Before compacting, 18473433 edge(s) existed.
+After compacting, 17689487 edge(s) left.
+Time spent on removing Edges: 34s
+Refresh edges.
+There are 17689487 edge(s).
+Add edges to the graph: 195894 arc(s) deleted, 391788 arc(s) added.
+Refresh edge: 195894 edge(s) added.
+832818 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 17885381 edge(s) existed.
+After compacting, 17885381 edge(s) left.
+Time spent on refreshing edges: 55s.
+
+There are 6722775 contig(s) longer than 100, sum up 977100205 bp, with average length 145.
+The longest length is 10021 bp, contig N50 is 134 bp, contig N90 is 101 bp.
+Time spent on this round: 21m.
+
+
+***************************
+Iteration 68, kmer: 93
+Edge number: 17885381
+Construct 93mer graph.
+Construct new kmer hash.
+199958 edge(s) deleted in length of 0.
+16991433 new kmer(s).
+17485472 edge(s) updated to 93mer edge.
+Time spent on building hash graph: 253s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 73s,
+ chopping reads to kmers: 221s,
+ searching kmers in hash: 439s,
+ parsing reads: 7s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+26 unreliable arc(s) deleted.
+Time spent on adding arcs: 775s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 5s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+402 weak inner edge(s) destroyed in cycle 1.
+0 weak inner edge(s) destroyed in cycle 2.
+802 dead arc(s) removed.
+4 inner edge(s) with coverage lower than or equal to 1 destroyed.
+13 dead arc(s) removed.
+173151 edge(s) concatenated in cycle 1.
+168 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+16239232 edge(s) in the graph.
+Before compacting, 17885381 edge(s) existed.
+After compacting, 17138022 edge(s) left.
+Time spent on removing Edges: 30s
+Refresh edges.
+There are 17138022 edge(s).
+Add edges to the graph: 170388 arc(s) deleted, 340776 arc(s) added.
+Refresh edge: 170388 edge(s) added.
+731406 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 17308410 edge(s) existed.
+After compacting, 17308410 edge(s) left.
+Time spent on refreshing edges: 47s.
+
+There are 6783347 contig(s) longer than 100, sum up 985335934 bp, with average length 145.
+The longest length is 10021 bp, contig N50 is 134 bp, contig N90 is 101 bp.
+Time spent on this round: 19m.
+
+
+***************************
+Iteration 69, kmer: 94
+Edge number: 17308410
+Construct 94mer graph.
+Construct new kmer hash.
+182634 edge(s) deleted in length of 0.
+16493855 new kmer(s).
+16943142 edge(s) updated to 94mer edge.
+Time spent on building hash graph: 246s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 77s,
+ chopping reads to kmers: 212s,
+ searching kmers in hash: 378s,
+ parsing reads: 6s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+18 unreliable arc(s) deleted.
+Time spent on adding arcs: 710s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 4s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+365 weak inner edge(s) destroyed in cycle 1.
+0 weak inner edge(s) destroyed in cycle 2.
+730 dead arc(s) removed.
+4 inner edge(s) with coverage lower than or equal to 1 destroyed.
+15 dead arc(s) removed.
+165864 edge(s) concatenated in cycle 1.
+156 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+15798942 edge(s) in the graph.
+Before compacting, 17308410 edge(s) existed.
+After compacting, 16610364 edge(s) left.
+Time spent on removing Edges: 28s
+Refresh edges.
+There are 16610364 edge(s).
+Add edges to the graph: 138132 arc(s) deleted, 276264 arc(s) added.
+Refresh edge: 138132 edge(s) added.
+644739 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 16748496 edge(s) existed.
+After compacting, 16748496 edge(s) left.
+Time spent on refreshing edges: 42s.
+
+There are 6846013 contig(s) longer than 100, sum up 993586636 bp, with average length 145.
+The longest length is 10021 bp, contig N50 is 133 bp, contig N90 is 101 bp.
+Time spent on this round: 18m.
+
+
+***************************
+Iteration 70, kmer: 95
+Edge number: 16748496
+Construct 95mer graph.
+Construct new kmer hash.
+169991 edge(s) deleted in length of 0.
+16002759 new kmer(s).
+16408516 edge(s) updated to 95mer edge.
+Time spent on building hash graph: 237s.
+
+Add arcs to graph.
+In file: sample.config, max seq len 101, max name len 256.
+8 thread(s) initialized.
+88954479 read(s) processed.
+Time spent on:
+ importing reads: 72s,
+ chopping reads to kmers: 192s,
+ searching kmers in hash: 326s,
+ parsing reads: 5s.
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+0 dead arc(s) removed.
+28 unreliable arc(s) deleted.
+Time spent on adding arcs: 635s.
+Sort arcs.
+Arcs sorted.
+Time spent on sorting arcs: 4s.
+
+Remove weak edges and low coverage edges.
+Start to destroy weak inner edges.
+340 weak inner edge(s) destroyed in cycle 1.
+1 weak inner edge(s) destroyed in cycle 2.
+0 weak inner edge(s) destroyed in cycle 3.
+681 dead arc(s) removed.
+4 inner edge(s) with coverage lower than or equal to 1 destroyed.
+12 dead arc(s) removed.
+159081 edge(s) concatenated in cycle 1.
+221 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+15361768 edge(s) in the graph.
+Before compacting, 16748496 edge(s) existed.
+After compacting, 16089222 edge(s) left.
+Time spent on removing Edges: 27s
+Cut tips of the graph.
+
+Strict: 0, cutoff length: 50.
+706315 tips cut in cycle 1.
+36085 tips cut in cycle 2.
+10761 tips cut in cycle 3.
+4540 tips cut in cycle 4.
+2209 tips cut in cycle 5.
+1161 tips cut in cycle 6.
+713 tips cut in cycle 7.
+419 tips cut in cycle 8.
+266 tips cut in cycle 9.
+155 tips cut in cycle 10.
+113 tips cut in cycle 11.
+86 tips cut in cycle 12.
+53 tips cut in cycle 13.
+30 tips cut in cycle 14.
+13 tips cut in cycle 15.
+9 tips cut in cycle 16.
+7 tips cut in cycle 17.
+10 tips cut in cycle 18.
+7 tips cut in cycle 19.
+8 tips cut in cycle 20.
+3 tips cut in cycle 21.
+1 tips cut in cycle 22.
+0 tips cut in cycle 23.
+687467 dead arc(s) removed.
+404026 edge(s) concatenated in cycle 1.
+16835 edge(s) concatenated in cycle 2.
+31 edge(s) concatenated in cycle 3.
+0 edge(s) concatenated in cycle 4.
+13406988 edge(s) in the graph.
+Before compacting, 16089222 edge(s) existed.
+After compacting, 13721510 edge(s) left.
+Time spent on cutting tips: 96s.
+Refresh edges.
+There are 13721510 edge(s).
+Add edges to the graph: 25462 arc(s) deleted, 50924 arc(s) added.
+Refresh edge: 25462 edge(s) added.
+52071 dead arc(s) removed.
+263282 edge(s) in length of 0, 56576 arc(s) added.
+240700 none-palindrome edge(s) swapped, 0 palindrome edge(s) processed.
+Before compacting, 13746972 edge(s) existed.
+After compacting, 13483690 edge(s) left.
+Time spent on refreshing edges: 22s.
+
+There are 6227704 contig(s) longer than 100, sum up 927679429 bp, with average length 148.
+The longest length is 10021 bp, contig N50 is 138 bp, contig N90 is 101 bp.
+Time spent on this round: 17m.
+
+Iteration finished.
+Time spent on iteration: 5874m.
+
+Start to pinch bubbles, cutoff 0.100000, MAX NODE NUM 3, MAX DIFF NUM 2.
+6266101 start points, 513583 dheap nodes.
+67471 pair(s) found, 7626 pair of path(s) compared, 6772 pair(s) merged.
+Sequence comparison failed:
+ Path crossing deleted edge                         0
+ Length difference of two paths greater than two    460
+ Mismatch score greater than cutoff (2)             24
+ Mismatch score ratio greater than cutoff (0.1)     0
+ Path length shorter than (Kmer-1)                  370
+DFibHeap: 3561 node(s) allocated.
+13151 edge(s) concatenated in cycle 1.
+140 edge(s) concatenated in cycle 2.
+0 edge(s) concatenated in cycle 3.
+Time spent on pinching bubbles: 19s.
+
+There are 6208729 contig(s) longer than 100, sum up 925228745 bp, with average length 149.
+The longest length is 10021 bp, contig N50 is 138 bp,contig N90 is 101 bp.
+6721767 contig(s) longer than 96 output.
+
+Time spent on constructing contig: 5979m.
+
+
+********************
+Map
+********************
+
+Parameters: map -s sample.config -g barley_multikmer -K 25 
+
+Kmer size: 95.
+Contig length cutoff: 97.
+
+6721767 contig(s), maximum sequence length 10021, minimum sequence length 96, maximum name length 10.
+Time spent on parsing contigs file: 6s.
+8 thread(s) initialized.
+Time spent on hashing contigs: 663s.
+342462426 node(s) allocated, 343062954 kmer(s) in contigs, 343062954 kmer(s) processed.
+Time spent on graph construction: 670s.
+
+Time spent on aligning long reads: 0s.
+
+In file: sample.config, max seq len 101, max name len 256
+8 thread(s) initialized.
+13483690 edge(s) in the graph.
+Import reads from file:
+ /tsl/data/extReads/rallapag/barley/mnd_exome_PRJEB5319/wildtype_pool/ERR430660_1.fastq.gz
+Import reads from file:
+ /tsl/data/extReads/rallapag/barley/mnd_exome_PRJEB5319/wildtype_pool/ERR430660_2.fastq.gz
+Current insert size is 250, map_len is 32.
+--- 100000000th reads.
+
+Total reads         139494014
+Reads in gaps       20079902
+Ratio               14.4%
+Reads on contigs    104162807
+Ratio               74.7%
+1 pe insert size, the largest boundary is 139494014.
+
+LIB(s) information:
+ [LIB] 0, avg_ins 250, reverse 0.
+Time spent on aligning reads: 2404s.
+
+Overall time spent on alignment: 51m.
+
+
+********************
+Scaff
+********************
+
+Parameters: scaff -g barley_multikmer -F 
+
+Files for scaffold construction are OK.
+
+There are 1 grad(s), 139494014 read(s), max read len 101.
+Kmer size: 95
+There are 13483690 edge(s) in edge file.
+Mask contigs with coverage lower than 1.6 or higher than 32.0, and strict length 0.
+Average contig coverage is 16, 290294 contig(s) masked.
+Mask contigs shorter than 97, 11996074 contig(s) masked.
+1378814 arc(s) loaded, average weight is 2.
+6721767 contig(s) loaded.
+Done loading updated edges.
+Time spent on loading updated edges: 76s.
+
+*****************************************************
+Start to load paired-end reads information.
+
+For insert size: 250
+ Total PE links                      43665380
+ Normal PE links on same contig      28574292
+ Incorrect oriented PE links         17
+ PE links of too small insert size   1704854
+ PE links of too large insert size   0
+ Correct PE links                    13385126
+ Accumulated connections             8441996
+Use contigs longer than 250 to estimate insert size: 
+ PE links               25711457
+ Average insert size    222
+ SD                     52
+4220998 new connections.
+
+All paired-end reads information loaded.
+Time spent on loading paired-end reads information: 180s.
+
+*****************************************************
+Start to construct scaffolds.
+
+***************************
+For insert size: 250
+ Total PE links                4220997
+ PE links to masked contigs    4073841
+ On same scaffold PE links     0
+Cutoff of PE links to make a reliable connection: 3
+ Active connections    294312
+ Weak connections      161292
+ Weak ratio            54.8%
+10 circles removed.
+Start to remove transitive connection.
+Total contigs                         13483690
+Masked contigs                        12286408
+Remained contigs                      1197282
+None-outgoing-connection contigs      1074356 (89.732910%)
+Single-outgoing-connection contigs    113624
+Multi-outgoing-connection contigs     645
+Cycle 1
+ Two-outgoing-connection contigs     8657
+ Potential transitive connections    34
+ Transitive connections              29
+ Transitive ratio                    0.3%
+Cycle 2
+ Two-outgoing-connection contigs     8620
+ Potential transitive connections    5
+ Transitive connections              0
+ Transitive ratio                    0.0%
+Start to linearize sub-graph.
+ Picked sub-graphs          8519
+ Connection-conflict        0
+ Significant overlapping    7046
+ Eligible                   0
+ Bubble structures          22
+Mask repeats:
+ Puzzles           5536
+ Masked contigs    5509
+Start to remove transitive connection.
+Total contigs                         13483690
+Masked contigs                        12297470
+Remained contigs                      1186220
+None-outgoing-connection contigs      1080216 (91.063713%)
+Single-outgoing-connection contigs    105993
+Multi-outgoing-connection contigs     0
+Cycle 1
+ Two-outgoing-connection contigs     11
+ Potential transitive connections    0
+ Transitive connections              0
+ Transitive ratio                    0.0%
+Start to linearize sub-graph.
+ Picked sub-graphs          9
+ Connection-conflict        0
+ Significant overlapping    5
+ Eligible                   0
+ Bubble structures          0
+Non-strict linearization.
+Start to linearize sub-graph.
+ Picked sub-graphs          5
+ Connection-conflict        0
+ Significant overlapping    2
+ Eligible                   0
+ Bubble structures          0
+Start to mask puzzles.
+ Masked contigs      2
+ Remained puzzles    0
+Freezing done.
+
+Recover contigs.
+ Total recovered contigs    287
+ Single-route cases         285
+ Multi-route cases          17
+
+All links loaded.
+Time spent on constructing scaffolds: 32s.
+
+The final rank
+
+*******************************
+ Scaffold number                  41555
+ In-scaffold contig number        6208715
+ Total scaffold length            30684804
+ Average scaffold length          738
+ Filled gap number                11204
+ Longest scaffold                 15704
+ Scaffold and singleton number    6155468
+ Scaffold and singleton length    341444180
+ Average length                   55
+ N50                              138
+ N90                              26
+ Weak points                      0
+
+*******************************
+
+Start to load reads for gap filling. 50 length discrepancy is allowed.
+...
+Loaded 20079902 reads from barley_multikmer.readInGap.
+8 thread(s) initialized.
+1000 scaffolds processed.
+2000 scaffolds processed.
+3000 scaffolds processed.
+4000 scaffolds processed.
+5000 scaffolds processed.
+6000 scaffolds processed.
+7000 scaffolds processed.
+8000 scaffolds processed.
+9000 scaffolds processed.
+10000 scaffolds processed.
+11000 scaffolds processed.
+12000 scaffolds processed.
+13000 scaffolds processed.
+14000 scaffolds processed.
+15000 scaffolds processed.
+16000 scaffolds processed.
+17000 scaffolds processed.
+18000 scaffolds processed.
+19000 scaffolds processed.
+20000 scaffolds processed.
+21000 scaffolds processed.
+22000 scaffolds processed.
+23000 scaffolds processed.
+24000 scaffolds processed.
+25000 scaffolds processed.
+26000 scaffolds processed.
+27000 scaffolds processed.
+28000 scaffolds processed.
+29000 scaffolds processed.
+30000 scaffolds processed.
+31000 scaffolds processed.
+32000 scaffolds processed.
+33000 scaffolds processed.
+34000 scaffolds processed.
+35000 scaffolds processed.
+36000 scaffolds processed.
+37000 scaffolds processed.
+38000 scaffolds processed.
+39000 scaffolds processed.
+40000 scaffolds processed.
+41000 scaffolds processed.
+
+Done with 41555 scaffolds, 12297 gaps finished, 42090 gaps overall.
+Threads processed 41555 scaffolds.
+
+Overall time spent on constructing scaffolds: 1605m.
+Time for the whole pipeline: 7916m.

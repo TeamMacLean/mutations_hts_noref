@@ -1,0 +1,316 @@
+/tsl/software/testing/quast/4.0/src/quast-4.0/quast.py --memory-efficient  -e  -s  -R /usr/users/sl/rallapag/blastsets/TAIR10/bwa-index/TAIR10_gDNA.fas -G /usr/users/sl/rallapag/blastsets/TAIR10/TAIR10_GFF3_genes.gff -m 0 -t 16 -o compare_quast_assembly mir159_multikmer.scafSeq scaffolds_mir159_multikmer_300bp.fa
+
+Version: 4.0, build 19.04.2016 14:51
+
+System information:
+  OS: Linux-3.10.0-327.18.2.el7.x86_64-x86_64-with-centos-7.2.1511-Core (linux_64)
+  Python version: 2.7.11
+  CPUs number: 32
+
+Started: 2016-06-10 09:25:16
+
+Logging to /tsl/scratch/rallapag/assemblies/arabidopsis/allen_data/compare_quast_assembly/quast.log
+
+Main parameters: 
+  Threads: 16, scaffolds: true, eukaryotic: true, ambiguity: one, threshold for extensive misassembly size: 1000
+
+Reference:
+  /usr/users/sl/rallapag/blastsets/TAIR10/bwa-index/TAIR10_gDNA.fas ==> TAIR10_gDNA
+
+Contigs:
+  1    breaking scaffolds into contigs:
+  2    breaking scaffolds into contigs:
+  1  mir159_multikmer.scafSeq ==> mir159_multikmer.scafSeq
+  1      287909 scaffolds (mir159_multikmer.scafSeq) were broken into 293962 contigs (mir159_multikmer.scafSeq broken)
+  2  scaffolds_mir159_multikmer_300bp.fa ==> scaffolds_mir159_multikmer_300bp
+  2      18267 scaffolds (scaffolds_mir159_multikmer_300bp) were broken into 24320 contigs (scaffolds_mir159_multikmer_300bp broken)
+
+2016-06-10 09:27:48
+Running Basic statistics processor...
+  Reference genome:
+    TAIR10_gDNA.fas, Reference length = 119667750, Reference GC % = 36.06
+  Contig files: 
+    1  mir159_multikmer.scafSeq
+    2  scaffolds_mir159_multikmer_300bp
+    3  mir159_multikmer.scafSeq broken
+    4  scaffolds_mir159_multikmer_300bp broken
+  Calculating N50 and L50...
+    1  mir159_multikmer.scafSeq, N50 = 13865, L50 = 2712, Total length = 151871645, GC % = 37.10, # N's per 100 kbp =  222.18
+    2  scaffolds_mir159_multikmer_300bp, N50 = 20323, L50 = 1690, Total length = 117607777, GC % = 36.01, # N's per 100 kbp =  286.91
+    3  mir159_multikmer.scafSeq broken, N50 = 12715, L50 = 2916, Total length = 151542929, GC % = 37.10, # N's per 100 kbp =  5.75
+    4  scaffolds_mir159_multikmer_300bp broken, N50 = 18820, L50 = 1808, Total length = 117279061, GC % = 36.01, # N's per 100 kbp =  7.43
+  Drawing Nx plot...
+    saved to /tsl/scratch/rallapag/assemblies/arabidopsis/allen_data/compare_quast_assembly/basic_stats/Nx_plot.pdf
+  Drawing NGx plot...
+    saved to /tsl/scratch/rallapag/assemblies/arabidopsis/allen_data/compare_quast_assembly/basic_stats/NGx_plot.pdf
+  Drawing cumulative plot...
+    saved to /tsl/scratch/rallapag/assemblies/arabidopsis/allen_data/compare_quast_assembly/basic_stats/cumulative_plot.pdf
+  Drawing GC content plot...
+    saved to /tsl/scratch/rallapag/assemblies/arabidopsis/allen_data/compare_quast_assembly/basic_stats/GC_content_plot.pdf
+Done.
+
+2016-06-10 09:29:23
+Running Contig analyzer...
+  1  mir159_multikmer.scafSeq
+  1  Logging to files /tsl/scratch/rallapag/assemblies/arabidopsis/allen_data/compare_quast_assembly/contigs_reports/contigs_report_mir159_multikmer.scafSeq.stdout and contigs_report_mir159_multikmer.scafSeq.stderr...
+  1  Running Nucmer
+  1  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/mir159_multikmer.scafSeq_part_1.fas \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_1.fas compare_quast_assembly/quast_corrected_input/mir159_multikmer.scafSeq \
+     >> compare_quast_assembly/contigs_reports/contigs_report_mir159_multikmer.scafSeq.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_mir159_multikmer.scafSeq.stderr_part1
+  1  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/mir159_multikmer.scafSeq_part_2.fas \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_2.fas compare_quast_assembly/quast_corrected_input/mir159_multikmer.scafSeq \
+     >> compare_quast_assembly/contigs_reports/contigs_report_mir159_multikmer.scafSeq.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_mir159_multikmer.scafSeq.stderr_part2
+  1  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/mir159_multikmer.scafSeq_part_3.fas \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_3.fas compare_quast_assembly/quast_corrected_input/mir159_multikmer.scafSeq \
+     >> compare_quast_assembly/contigs_reports/contigs_report_mir159_multikmer.scafSeq.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_mir159_multikmer.scafSeq.stderr_part3
+  1  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/mir159_multikmer.scafSeq_part_4.fas \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_4.fas compare_quast_assembly/quast_corrected_input/mir159_multikmer.scafSeq \
+     >> compare_quast_assembly/contigs_reports/contigs_report_mir159_multikmer.scafSeq.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_mir159_multikmer.scafSeq.stderr_part4
+  1  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/mir159_multikmer.scafSeq_part_5.fas \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_5.fas compare_quast_assembly/quast_corrected_input/mir159_multikmer.scafSeq \
+     >> compare_quast_assembly/contigs_reports/contigs_report_mir159_multikmer.scafSeq.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_mir159_multikmer.scafSeq.stderr_part5
+  1  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/mir159_multikmer.scafSeq_part_6.fas \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_6.fas compare_quast_assembly/quast_corrected_input/mir159_multikmer.scafSeq \
+     >> compare_quast_assembly/contigs_reports/contigs_report_mir159_multikmer.scafSeq.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_mir159_multikmer.scafSeq.stderr_part6
+  1  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/delta-filter \
+     -i 95 -l 0 compare_quast_assembly/contigs_reports/nucmer_output/mir159_multikmer.scafSeq.delta \
+     > compare_quast_assembly/contigs_reports/nucmer_output/mir159_multikmer.scafSeq.fdelta \
+     2> compare_quast_assembly/contigs_reports/contigs_report_mir159_multikmer.scafSeq.stderr
+  1  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/show-coords \
+     compare_quast_assembly/contigs_reports/nucmer_output/mir159_multikmer.scafSeq.delta \
+     > compare_quast_assembly/contigs_reports/nucmer_output/mir159_multikmer.scafSeq.coords_tmp \
+     2> compare_quast_assembly/contigs_reports/contigs_report_mir159_multikmer.scafSeq.stderr
+  1  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/show-snps \
+     -S -T -H compare_quast_assembly/contigs_reports/nucmer_output/mir159_multikmer.scafSeq.delta \
+     < compare_quast_assembly/contigs_reports/nucmer_output/mir159_multikmer.scafSeq.coords.headless \
+     > compare_quast_assembly/contigs_reports/nucmer_output/mir159_multikmer.scafSeq.all_snps \
+     2> compare_quast_assembly/contigs_reports/contigs_report_mir159_multikmer.scafSeq.stderr
+  1  Alignments: compare_quast_assembly/contigs_reports/alignments_mir159_multikmer.scafSeq.tsv
+  1  Analysis is finished.
+
+  2  scaffolds_mir159_multikmer_300bp
+  2  Logging to files /tsl/scratch/rallapag/assemblies/arabidopsis/allen_data/compare_quast_assembly/contigs_reports/contigs_report_scaffolds_mir159_multikmer_300bp.stdout and contigs_report_scaffolds_mir159_multikmer_300bp.stderr...
+  2  Running Nucmer
+  2  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_mir159_multikmer_300bp_part_1.fas \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_1.fas compare_quast_assembly/quast_corrected_input/scaffolds_mir159_multikmer_300bp.fa \
+     >> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_mir159_multikmer_300bp.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_mir159_multikmer_300bp.stderr_part1
+  2  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_mir159_multikmer_300bp_part_2.fas \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_2.fas compare_quast_assembly/quast_corrected_input/scaffolds_mir159_multikmer_300bp.fa \
+     >> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_mir159_multikmer_300bp.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_mir159_multikmer_300bp.stderr_part2
+  2  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_mir159_multikmer_300bp_part_3.fas \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_3.fas compare_quast_assembly/quast_corrected_input/scaffolds_mir159_multikmer_300bp.fa \
+     >> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_mir159_multikmer_300bp.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_mir159_multikmer_300bp.stderr_part3
+  2  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_mir159_multikmer_300bp_part_4.fas \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_4.fas compare_quast_assembly/quast_corrected_input/scaffolds_mir159_multikmer_300bp.fa \
+     >> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_mir159_multikmer_300bp.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_mir159_multikmer_300bp.stderr_part4
+  2  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_mir159_multikmer_300bp_part_5.fas \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_5.fas compare_quast_assembly/quast_corrected_input/scaffolds_mir159_multikmer_300bp.fa \
+     >> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_mir159_multikmer_300bp.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_mir159_multikmer_300bp.stderr_part5
+  2  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_mir159_multikmer_300bp_part_6.fas \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_6.fas compare_quast_assembly/quast_corrected_input/scaffolds_mir159_multikmer_300bp.fa \
+     >> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_mir159_multikmer_300bp.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_mir159_multikmer_300bp.stderr_part6
+  2  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/delta-filter \
+     -i 95 -l 0 compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_mir159_multikmer_300bp.delta \
+     > compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_mir159_multikmer_300bp.fdelta \
+     2> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_mir159_multikmer_300bp.stderr
+  2  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/show-coords \
+     compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_mir159_multikmer_300bp.delta \
+     > compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_mir159_multikmer_300bp.coords_tmp \
+     2> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_mir159_multikmer_300bp.stderr
+  2  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/show-snps \
+     -S -T -H compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_mir159_multikmer_300bp.delta \
+     < compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_mir159_multikmer_300bp.coords.headless \
+     > compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_mir159_multikmer_300bp.all_snps \
+     2> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_mir159_multikmer_300bp.stderr
+  2  Alignments: compare_quast_assembly/contigs_reports/alignments_scaffolds_mir159_multikmer_300bp.tsv
+  2  Analysis is finished.
+
+  3  mir159_multikmer.scafSeq_broken
+  3  Logging to files /tsl/scratch/rallapag/assemblies/arabidopsis/allen_data/compare_quast_assembly/contigs_reports/contigs_report_mir159_multikmer.scafSeq_broken.stdout and contigs_report_mir159_multikmer.scafSeq_broken.stderr...
+  3  Running Nucmer
+  3  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/mir159_multikmer.scafSeq_broken_part_1.fas \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_1.fas compare_quast_assembly/quast_corrected_input/mir159_multikmer_broken \
+     >> compare_quast_assembly/contigs_reports/contigs_report_mir159_multikmer.scafSeq_broken.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_mir159_multikmer.scafSeq_broken.stderr_part1
+  3  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/mir159_multikmer.scafSeq_broken_part_2.fas \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_2.fas compare_quast_assembly/quast_corrected_input/mir159_multikmer_broken \
+     >> compare_quast_assembly/contigs_reports/contigs_report_mir159_multikmer.scafSeq_broken.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_mir159_multikmer.scafSeq_broken.stderr_part2
+  3  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/mir159_multikmer.scafSeq_broken_part_3.fas \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_3.fas compare_quast_assembly/quast_corrected_input/mir159_multikmer_broken \
+     >> compare_quast_assembly/contigs_reports/contigs_report_mir159_multikmer.scafSeq_broken.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_mir159_multikmer.scafSeq_broken.stderr_part3
+  3  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/mir159_multikmer.scafSeq_broken_part_4.fas \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_4.fas compare_quast_assembly/quast_corrected_input/mir159_multikmer_broken \
+     >> compare_quast_assembly/contigs_reports/contigs_report_mir159_multikmer.scafSeq_broken.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_mir159_multikmer.scafSeq_broken.stderr_part4
+  3  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/mir159_multikmer.scafSeq_broken_part_5.fas \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_5.fas compare_quast_assembly/quast_corrected_input/mir159_multikmer_broken \
+     >> compare_quast_assembly/contigs_reports/contigs_report_mir159_multikmer.scafSeq_broken.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_mir159_multikmer.scafSeq_broken.stderr_part5
+  3  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/mir159_multikmer.scafSeq_broken_part_6.fas \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_6.fas compare_quast_assembly/quast_corrected_input/mir159_multikmer_broken \
+     >> compare_quast_assembly/contigs_reports/contigs_report_mir159_multikmer.scafSeq_broken.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_mir159_multikmer.scafSeq_broken.stderr_part6
+  3  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/delta-filter \
+     -i 95 -l 0 compare_quast_assembly/contigs_reports/nucmer_output/mir159_multikmer.scafSeq_broken.delta \
+     > compare_quast_assembly/contigs_reports/nucmer_output/mir159_multikmer.scafSeq_broken.fdelta \
+     2> compare_quast_assembly/contigs_reports/contigs_report_mir159_multikmer.scafSeq_broken.stderr
+  3  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/show-coords \
+     compare_quast_assembly/contigs_reports/nucmer_output/mir159_multikmer.scafSeq_broken.delta \
+     > compare_quast_assembly/contigs_reports/nucmer_output/mir159_multikmer.scafSeq_broken.coords_tmp \
+     2> compare_quast_assembly/contigs_reports/contigs_report_mir159_multikmer.scafSeq_broken.stderr
+  3  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/show-snps \
+     -S -T -H compare_quast_assembly/contigs_reports/nucmer_output/mir159_multikmer.scafSeq_broken.delta \
+     < compare_quast_assembly/contigs_reports/nucmer_output/mir159_multikmer.scafSeq_broken.coords.headless \
+     > compare_quast_assembly/contigs_reports/nucmer_output/mir159_multikmer.scafSeq_broken.all_snps \
+     2> compare_quast_assembly/contigs_reports/contigs_report_mir159_multikmer.scafSeq_broken.stderr
+  3  Alignments: compare_quast_assembly/contigs_reports/alignments_mir159_multikmer.scafSeq_broken.tsv
+  3  Analysis is finished.
+
+  4  scaffolds_mir159_multikmer_300bp_broken
+  4  Logging to files /tsl/scratch/rallapag/assemblies/arabidopsis/allen_data/compare_quast_assembly/contigs_reports/contigs_report_scaffolds_mir159_multikmer_300bp_broken.stdout and contigs_report_scaffolds_mir159_multikmer_300bp_broken.stderr...
+  4  Running Nucmer
+  4  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_mir159_multikmer_300bp_broken_part_1.fas \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_1.fas compare_quast_assembly/quast_corrected_input/scaffolds_mir159_multikmer_300bp_broken.fa \
+     >> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_mir159_multikmer_300bp_broken.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_mir159_multikmer_300bp_broken.stderr_part1
+  4  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_mir159_multikmer_300bp_broken_part_2.fas \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_2.fas compare_quast_assembly/quast_corrected_input/scaffolds_mir159_multikmer_300bp_broken.fa \
+     >> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_mir159_multikmer_300bp_broken.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_mir159_multikmer_300bp_broken.stderr_part2
+  4  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_mir159_multikmer_300bp_broken_part_3.fas \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_3.fas compare_quast_assembly/quast_corrected_input/scaffolds_mir159_multikmer_300bp_broken.fa \
+     >> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_mir159_multikmer_300bp_broken.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_mir159_multikmer_300bp_broken.stderr_part3
+  4  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_mir159_multikmer_300bp_broken_part_4.fas \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_4.fas compare_quast_assembly/quast_corrected_input/scaffolds_mir159_multikmer_300bp_broken.fa \
+     >> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_mir159_multikmer_300bp_broken.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_mir159_multikmer_300bp_broken.stderr_part4
+  4  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_mir159_multikmer_300bp_broken_part_5.fas \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_5.fas compare_quast_assembly/quast_corrected_input/scaffolds_mir159_multikmer_300bp_broken.fa \
+     >> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_mir159_multikmer_300bp_broken.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_mir159_multikmer_300bp_broken.stderr_part5
+  4  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/nucmer -c \
+     65 -l 65 --maxmatch -p compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_mir159_multikmer_300bp_broken_part_6.fas \
+     compare_quast_assembly/quast_corrected_input/split_ref/part_6.fas compare_quast_assembly/quast_corrected_input/scaffolds_mir159_multikmer_300bp_broken.fa \
+     >> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_mir159_multikmer_300bp_broken.stdout \
+     2>> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_mir159_multikmer_300bp_broken.stderr_part6
+  4  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/delta-filter \
+     -i 95 -l 0 compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_mir159_multikmer_300bp_broken.delta \
+     > compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_mir159_multikmer_300bp_broken.fdelta \
+     2> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_mir159_multikmer_300bp_broken.stderr
+  4  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/show-coords \
+     compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_mir159_multikmer_300bp_broken.delta \
+     > compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_mir159_multikmer_300bp_broken.coords_tmp \
+     2> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_mir159_multikmer_300bp_broken.stderr
+  4  /tsl/software/testing/quast/4.0/src/quast-4.0/libs/MUMmer3.23-linux/show-snps \
+     -S -T -H compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_mir159_multikmer_300bp_broken.delta \
+     < compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_mir159_multikmer_300bp_broken.coords.headless \
+     > compare_quast_assembly/contigs_reports/nucmer_output/scaffolds_mir159_multikmer_300bp_broken.all_snps \
+     2> compare_quast_assembly/contigs_reports/contigs_report_scaffolds_mir159_multikmer_300bp_broken.stderr
+  4  Alignments: compare_quast_assembly/contigs_reports/alignments_scaffolds_mir159_multikmer_300bp_broken.tsv
+  4  Analysis is finished.
+
+  Creating total report...
+    saved to /tsl/scratch/rallapag/assemblies/arabidopsis/allen_data/compare_quast_assembly/contigs_reports/misassemblies_report.txt, misassemblies_report.tsv, and misassemblies_report.tex
+  Transposed version of total report...
+    saved to /tsl/scratch/rallapag/assemblies/arabidopsis/allen_data/compare_quast_assembly/contigs_reports/transposed_report_misassemblies.txt, transposed_report_misassemblies.tsv, and transposed_report_misassemblies.tex
+  Creating total report...
+    saved to /tsl/scratch/rallapag/assemblies/arabidopsis/allen_data/compare_quast_assembly/contigs_reports/unaligned_report.txt, unaligned_report.tsv, and unaligned_report.tex
+  Drawing misassemblies by types plot...
+    saved to /tsl/scratch/rallapag/assemblies/arabidopsis/allen_data/compare_quast_assembly/contigs_reports/misassemblies_plot.pdf
+Done.
+
+2016-06-10 18:27:23
+Running NA-NGA calculation...
+  1  mir159_multikmer.scafSeq, Largest alignment = 149263, NA50 = 13285, NGA50 = 19219, LA50 = 2800, LGA50 = 1791
+  2  scaffolds_mir159_multikmer_300bp, Largest alignment = 149263, NA50 = 19674, NGA50 = 19219, LA50 = 1738, LGA50 = 1791
+  3  mir159_multikmer.scafSeq broken, Largest alignment = 149263, NA50 = 12275, NGA50 = 17839, LA50 = 2991, LGA50 = 1917
+  4  scaffolds_mir159_multikmer_300bp broken, Largest alignment = 149263, NA50 = 18248, NGA50 = 17839, LA50 = 1851, LGA50 = 1917
+  Drawing cumulative plot...
+    saved to /tsl/scratch/rallapag/assemblies/arabidopsis/allen_data/compare_quast_assembly/aligned_stats/cumulative_plot.pdf
+  Drawing NAx plot...
+    saved to /tsl/scratch/rallapag/assemblies/arabidopsis/allen_data/compare_quast_assembly/aligned_stats/NAx_plot.pdf
+  Drawing NGAx plot...
+    saved to /tsl/scratch/rallapag/assemblies/arabidopsis/allen_data/compare_quast_assembly/aligned_stats/NGAx_plot.pdf
+Done.
+
+2016-06-10 18:27:51
+Running Genome analyzer...
+  Loaded 28775 genes
+  NOTICE: No file with operons provided. Use the -O option if you want to specify it.
+  1  mir159_multikmer.scafSeq
+  2  scaffolds_mir159_multikmer_300bp
+  3  mir159_multikmer.scafSeq_broken
+  4  scaffolds_mir159_multikmer_300bp_broken
+  2  Analysis is finished.
+  4  Analysis is finished.
+  1  Analysis is finished.
+  3  Analysis is finished.
+  Drawing genes cumulative plot...
+    saved to /tsl/scratch/rallapag/assemblies/arabidopsis/allen_data/compare_quast_assembly/genome_stats/genes_cumulative_plot.pdf
+  Drawing # complete genes histogram...
+    saved to /tsl/scratch/rallapag/assemblies/arabidopsis/allen_data/compare_quast_assembly/genome_stats/complete_genes_histogram.pdf
+  Drawing Genome fraction, % histogram...
+    saved to /tsl/scratch/rallapag/assemblies/arabidopsis/allen_data/compare_quast_assembly/genome_stats/genome_fraction_histogram.pdf
+Done.
+
+NOTICE: Genes are not predicted by default. Use --gene-finding option to enable it.
+
+2016-06-10 19:13:07
+Creating large visual summaries...
+This may take a while: press Ctrl-C to skip this step..
+  1 of 2: Creating Icarus viewers...
+  2 of 2: Creating PDF with all tables and plots...
+Done
+
+2016-06-10 19:24:37
+RESULTS:
+  Text versions of total report are saved to /tsl/scratch/rallapag/assemblies/arabidopsis/allen_data/compare_quast_assembly/report.txt, report.tsv, and report.tex
+  Text versions of transposed total report are saved to /tsl/scratch/rallapag/assemblies/arabidopsis/allen_data/compare_quast_assembly/transposed_report.txt, transposed_report.tsv, and transposed_report.tex
+  HTML version (interactive tables and plots) saved to /tsl/scratch/rallapag/assemblies/arabidopsis/allen_data/compare_quast_assembly/report.html
+  PDF version (tables and plots) is saved to /tsl/scratch/rallapag/assemblies/arabidopsis/allen_data/compare_quast_assembly/report.pdf
+  Icarus (contig browser) is saved to /tsl/scratch/rallapag/assemblies/arabidopsis/allen_data/compare_quast_assembly/icarus.html
+  Log saved to /tsl/scratch/rallapag/assemblies/arabidopsis/allen_data/compare_quast_assembly/quast.log
+
+Finished: 2016-06-10 19:24:40
+Elapsed time: 9:59:23.965548
+NOTICEs: 2; WARNINGs: 0; non-fatal ERRORs: 0
+
+Thank you for using QUAST!

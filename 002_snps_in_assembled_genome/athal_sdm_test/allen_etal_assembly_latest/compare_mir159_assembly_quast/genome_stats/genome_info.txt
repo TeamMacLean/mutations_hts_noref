@@ -1,0 +1,24 @@
+genes loaded: 28775
+reference chromosomes:
+	ChrC_CHROMOSOME_dumped_from_ADB__Jun_20_09_14_54__last_updated__2005-06-03 (total length: 154478 bp, maximal covered length: 128367 bp)
+	Chr3_CHROMOSOME_dumped_from_ADB__Jun_20_09_14_54__last_updated__2009-02-02 (total length: 23459830 bp, maximal covered length: 23038830 bp)
+	Chr4_CHROMOSOME_dumped_from_ADB__Jun_20_09_14_54__last_updated__2009-02-02 (total length: 18585056 bp, maximal covered length: 18212437 bp)
+	Chr5_CHROMOSOME_dumped_from_ADB__Jun_20_09_14_54__last_updated__2009-02-02 (total length: 26975502 bp, maximal covered length: 26357542 bp)
+	Chr1_CHROMOSOME_dumped_from_ADB__Jun_20_09_14_53__last_updated__2009-02-02 (total length: 30427671 bp, maximal covered length: 29501845 bp)
+	ChrM_CHROMOSOME_dumped_from_ADB__Jun_20_09_14_54__last_updated__2005-06-03 (total length: 366924 bp, maximal covered length: 165974 bp)
+	Chr2_CHROMOSOME_dumped_from_ADB__Jun_20_09_14_54__last_updated__2009-02-02 (total length: 19698289 bp, maximal covered length: 19394228 bp)
+
+total genome size: 119667750
+
+gap min size: 50
+partial gene/operon min size: 100
+
+
+
+assembly                 | genome    | duplication | gaps      | genes     | partial   | operons   | partial   |
+                         | fraction  | ratio       | number    |           | genes     |           | operons   |
+================================================================================================================
+mir159_multikmer         | 97.54038% | 1.17929     | 7628      | 26090     | 2525      | -         | -         |
+scaffolds_mir159_multikm | 95.94801% | 1.01710     | 9720      | 26040     | 2441      | -         | -         |
+mir159_multikmer_broken  | 97.60292% | 1.17593     | 7484      | 25081     | 3442      | -         | -         |
+scaffolds_mir159_multikm | 96.00196% | 1.01388     | 9848      | 25015     | 3352      | -         | -         |

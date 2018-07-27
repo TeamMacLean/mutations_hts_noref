@@ -1,0 +1,49 @@
+Assembly                           mir159_multikmer.scafSeq  scaffolds_mir159_multikmer_300bp  mir159_multikmer.scafSeq broken  scaffolds_mir159_multikmer_300bp broken
+# contigs (>= 0 bp)                287909                    18267                             293962                           24320                                  
+# contigs (>= 1000 bp)             10737                     10737                             10966                            10966                                  
+# contigs (>= 5000 bp)             5636                      5636                              5733                             5733                                   
+# contigs (>= 10000 bp)            3646                      3646                              3632                             3632                                   
+# contigs (>= 25000 bp)            1221                      1221                              1149                             1149                                   
+# contigs (>= 50000 bp)            210                       210                               177                              177                                    
+Total length (>= 0 bp)             151871645                 117607777                         151542929                        117279061                              
+Total length (>= 1000 bp)          113538632                 113538632                         111727104                        111727104                              
+Total length (>= 5000 bp)          101355878                 101355878                         98999047                         98999047                               
+Total length (>= 10000 bp)         87002244                  87002244                          83876142                         83876142                               
+Total length (>= 25000 bp)         48249496                  48249496                          44384722                         44384722                               
+Total length (>= 50000 bp)         13949494                  13949494                          11730559                         11730559                               
+# contigs                          287909                    18267                             293962                           24320                                  
+Largest contig                     149281                    149281                            149281                           149281                                 
+Total length                       151871645                 117607777                         151542929                        117279061                              
+Reference length                   119667750                 119667750                         119667750                        119667750                              
+GC (%)                             37.10                     36.01                             37.10                            36.01                                  
+Reference GC (%)                   36.06                     36.06                             36.06                            36.06                                  
+N50                                13865                     20323                             12715                            18820                                  
+NG50                               19924                     19924                             18291                            18291                                  
+N75                                919                       9607                              618                              8655                                   
+NG75                               9106                      9106                              8015                             8015                                   
+L50                                2712                      1690                              2916                             1808                                   
+LG50                               1741                      1741                              1873                             1873                                   
+L75                                11119                     3769                              13428                            4071                                   
+LG75                               3934                      3934                              4287                             4287                                   
+# misassemblies                    783                       577                               535                              329                                    
+# misassembled contigs             701                       495                               516                              310                                    
+Misassembled contigs length        3641097                   3605819                           2138604                          2103326                                
+# local misassemblies              3018                      2934                              2630                             2546                                   
+# scaffold gap size misassemblies  3945                      3945                              -                                -                                      
+# unaligned contigs                117580 + 5312 part        831 + 782 part                    118266 + 5222 part               1517 + 692 part                        
+Unaligned length                   14272496                  875063                            14242230                         844797                                 
+Genome fraction (%)                97.540                    95.948                            97.603                           96.002                                 
+Duplication ratio                  1.179                     1.017                             1.176                            1.014                                  
+# N's per 100 kbp                  222.18                    286.91                            5.75                             7.43                                   
+# mismatches per 100 kbp           19.03                     16.98                             16.98                            14.70                                  
+# indels per 100 kbp               6.82                      6.73                              6.17                             6.04                                   
+# genes                            26090 + 2525 part         26040 + 2441 part                 25081 + 3442 part                25015 + 3352 part                      
+Largest alignment                  149263                    149263                            149263                           149263                                 
+NA50                               13285                     19674                             12275                            18248                                  
+NGA50                              19219                     19219                             17839                            17839                                  
+NA75                               521                       9102                              417                              8207                                   
+NGA75                              8519                      8519                              7667                             7667                                   
+LA50                               2800                      1738                              2991                             1851                                   
+LGA50                              1791                      1791                              1917                             1917                                   
+LA75                               13399                     3909                              15783                            4192                                   
+LGA75                              4084                      4084                              4418                             4418                                   

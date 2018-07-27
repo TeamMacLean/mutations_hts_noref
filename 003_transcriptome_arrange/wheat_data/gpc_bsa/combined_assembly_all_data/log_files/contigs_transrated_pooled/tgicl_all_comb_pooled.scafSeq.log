@@ -1,0 +1,19 @@
+>>> --- Initialization [all_comb_pooled.scafSeq] started at Jan 28 13:05:34 2016
+tgicl running options: 
+tgicl all_comb_pooled.scafSeq -p 99 -l 50 -v 100
+ Standard log file: tgicl_all_comb_pooled.scafSeq.log
+ Error log file:    err_tgicl_all_comb_pooled.scafSeq.log
+ Using 1 CPUs for clustering and assembly
+ Path is : /usr/users/sl/rallapag/programs/tgicl_linux/bin:/usr/users/sl/rallapag/programs/tgicl_linux:/usr/users/sl/rallapag/lib:/tgac/common/lsf/9.1.1/linux2.6-glibc2.3-x86_64/etc:/tgac/common/lsf/9.1.1/linux2.6-glibc2.3-x86_64/bin:/usr/users/sl/rallapag/lib:/tsl/software/testing/bin/core/../..//libpng/1.6.1/x86_64/bin:/tsl/software/testing/bin/core/../..//R/3.1.0/x86_64/bin:/tsl/software/testing/bin/core/../..//ruby/2.0.0/x86_64/bin:/tsl/software/testing/bin/core/../..//fish/2.2.0/x86_64/bin:/tsl/software/testing/bin/core/../..//python/2.7.4/x86_64/bin:/tsl/software/production/bin/core/../..//hpccore/5/x86_64/bin:/tsl/software/testing/bin/core/../..//nano/2.2.6/x86_64/bin:/usr/users/sl/rallapag/lib:/tgac/common/lsf/9.1.1/linux2.6-glibc2.3-x86_64/etc:/tgac/common/lsf/9.1.1/linux2.6-glibc2.3-x86_64/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/gold/usr/local/gold-2.2/bin:/tsl/software/production/bin:/tsl/software/production/libraries/bin:/tsl/software/testing/bin:/tsl/software/testing/libraries/bin:/opt/gold/usr/local/gold-2.2/bin:/opt/gold/usr/local/gold-2.2/bin 
+-= Rebuilding all_comb_pooled.scafSeq indices =-
+>>> --- clustering [all_comb_pooled.scafSeq] started at Jan 28 13:05:47 2016
+  Launching distributed clustering: 
+ psx -p 1  -n 1000 -i all_comb_pooled.scafSeq -d cluster -C '/tsl/scratch/rallapag/assemblies/wheat_trans/all/contigs/transrate_results/good_contigs/scaffolding/tgicl/all_comb_pooled.scafSeq:99:100:50:' -c '/usr/users/sl/rallapag/programs/tgicl_linux/bin/tgicl_cluster.psx'
+<<< --- clustering [all_comb_pooled.scafSeq] finished at Jan 28 13:21:43 2016
+Running transitive closure command: gzip -cd all_comb_pooled.scafSeq_cl_tabhits_*.Z | tclust PID=99 OVL=50 OVHANG=100 -o all_comb_pooled.scafSeq_cl_clusters 
+
+The clusters are stored in file 'all_comb_pooled.scafSeq_cl_clusters'.
+
+>>> --- ASSEMBLE [all_comb_pooled.scafSeq] started at Jan 28 13:21:50 2016
+<<< --- ASSEMBLE [all_comb_pooled.scafSeq] finished at Jan 28 16:20:57 2016
+*** tgicl [all_comb_pooled.scafSeq] finished ***

@@ -1,0 +1,59 @@
+[ INFO] 2016-01-29 11:56:34 : Loading assembly: /tsl/scratch/rallapag/assemblies/wheat_trans/all/compare_transrate/transrate_results/cd_hit_selection/scaffolding/tgicl/transrate/all_comb_scafs_tgicl_sel.fa
+[ INFO] 2016-01-29 11:56:58 : Analysing assembly: /tsl/scratch/rallapag/assemblies/wheat_trans/all/compare_transrate/transrate_results/cd_hit_selection/scaffolding/tgicl/transrate/all_comb_scafs_tgicl_sel.fa
+[ INFO] 2016-01-29 11:56:58 : Results will be saved in /tsl/scratch/rallapag/assemblies/wheat_trans/all/compare_transrate/transrate_results/cd_hit_selection/scaffolding/tgicl/transrate/transrate_results/all_comb_scafs_tgicl_sel
+[ INFO] 2016-01-29 11:56:58 : Calculating contig metrics...
+[ INFO] 2016-01-29 11:57:26 : Contig metrics:
+[ INFO] 2016-01-29 11:57:26 : -----------------------------------
+[ INFO] 2016-01-29 11:57:26 : n seqs                       110934
+[ INFO] 2016-01-29 11:57:26 : smallest                        200
+[ INFO] 2016-01-29 11:57:26 : largest                       14797
+[ INFO] 2016-01-29 11:57:26 : n bases                    85294562
+[ INFO] 2016-01-29 11:57:26 : mean len                     768.88
+[ INFO] 2016-01-29 11:57:26 : n under 200                       0
+[ INFO] 2016-01-29 11:57:26 : n over 1k                     25703
+[ INFO] 2016-01-29 11:57:26 : n over 10k                       14
+[ INFO] 2016-01-29 11:57:26 : n with orf                    30403
+[ INFO] 2016-01-29 11:57:26 : mean orf percent              58.16
+[ INFO] 2016-01-29 11:57:26 : n90                             330
+[ INFO] 2016-01-29 11:57:26 : n70                             659
+[ INFO] 2016-01-29 11:57:26 : n50                            1132
+[ INFO] 2016-01-29 11:57:26 : n30                            1786
+[ INFO] 2016-01-29 11:57:26 : n10                            3107
+[ INFO] 2016-01-29 11:57:26 : gc                             0.48
+[ INFO] 2016-01-29 11:57:26 : gc skew                       -0.01
+[ INFO] 2016-01-29 11:57:26 : at skew                         0.0
+[ INFO] 2016-01-29 11:57:26 : cpg ratio                      1.86
+[ INFO] 2016-01-29 11:57:26 : bases n                      600402
+[ INFO] 2016-01-29 11:57:26 : proportion n                   0.01
+[ INFO] 2016-01-29 11:57:26 : linguistic complexity          0.15
+[ INFO] 2016-01-29 11:57:26 : Contig metrics done in 28 seconds
+[ INFO] 2016-01-29 11:57:26 : Calculating read diagnostics...
+[ INFO] 2016-01-29 19:40:56 : Read mapping metrics:
+[ INFO] 2016-01-29 19:40:56 : -----------------------------------
+[ INFO] 2016-01-29 19:40:56 : fragments                 142954550
+[ INFO] 2016-01-29 19:40:56 : fragments mapped          131026100
+[ INFO] 2016-01-29 19:40:56 : p fragments mapped             0.92
+[ INFO] 2016-01-29 19:40:56 : good mappings             109414622
+[ INFO] 2016-01-29 19:40:56 : p good mapping                 0.77
+[ INFO] 2016-01-29 19:40:56 : bad mappings               21611478
+[ INFO] 2016-01-29 19:40:56 : potential bridges             66731
+[ INFO] 2016-01-29 19:40:56 : bases uncovered             1399823
+[ INFO] 2016-01-29 19:40:56 : p bases uncovered              0.02
+[ INFO] 2016-01-29 19:40:56 : contigs uncovbase             45104
+[ INFO] 2016-01-29 19:40:56 : p contigs uncovbase            0.41
+[ INFO] 2016-01-29 19:40:56 : contigs uncovered               971
+[ INFO] 2016-01-29 19:40:56 : p contigs uncovered            0.01
+[ INFO] 2016-01-29 19:40:56 : contigs lowcovered              997
+[ INFO] 2016-01-29 19:40:56 : p contigs lowcovered           0.01
+[ INFO] 2016-01-29 19:40:56 : contigs segmented              8794
+[ INFO] 2016-01-29 19:40:56 : p contigs segmented            0.08
+[ INFO] 2016-01-29 19:40:56 : Read metrics done in 27810 seconds
+[ INFO] 2016-01-29 19:40:56 : No reference provided, skipping comparative diagnostics
+[ INFO] 2016-01-29 19:40:57 : TRANSRATE ASSEMBLY SCORE     0.3702
+[ INFO] 2016-01-29 19:40:57 : -----------------------------------
+[ INFO] 2016-01-29 19:40:57 : TRANSRATE OPTIMAL SCORE      0.3818
+[ INFO] 2016-01-29 19:40:57 : TRANSRATE OPTIMAL CUTOFF     0.0213
+[ INFO] 2016-01-29 19:40:57 : good contigs                 110028
+[ INFO] 2016-01-29 19:40:57 : p good contigs                 0.99
+[ INFO] 2016-01-29 19:40:57 : Writing contig metrics for each contig to /tsl/scratch/rallapag/assemblies/wheat_trans/all/compare_transrate/transrate_results/cd_hit_selection/scaffolding/tgicl/transrate/transrate_results/all_comb_scafs_tgicl_sel/contigs.csv
+[ INFO] 2016-01-29 19:42:08 : Writing analysis results to assemblies.csv

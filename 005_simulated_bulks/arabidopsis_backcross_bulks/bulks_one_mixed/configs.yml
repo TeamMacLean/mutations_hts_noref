@@ -1,0 +1,64 @@
+# specify the names of input files
+# markers as vcf file (both homozygous and heterozygous variants are used)
+in_vcf: 'snps.vcf'
+
+# recombination positions and probabilities/weights
+xovers: 'crossovers.txt'
+
+# combined chromsomal sequences for arabidopsis were pooled from following link
+# ftp://ftp.arabidopsis.org/home/tair/Sequences/whole_chromosomes/
+in_fasta: 'TAIR10_gDNA.fas'
+
+# option to generate recombinant bulks fasta files with markers/variants
+# set this either true or false
+generate_seqs: true
+
+# progeny number is number of individuals to generate from F2
+# bulk number is number of individuals to pool for wt and mutant bulks
+# use one of progeny or bulk_num, if both were given bulk_num is used
+# if only progeny number is given then number of individuals
+# carrying murtation will be used as the number to pool
+# progeny: 48
+bulk_num: 30
+
+# number of bulk population to simulate
+# default it will be one
+pop_num: 20
+
+# percent mis-phenotyping or sampling error fraction
+error_frac: 0.02
+
+# way of mis-phenotyping or sampling error (two ways)
+# swap = swapping wt and mutant between bulks
+# replace = replacing mutant with a wt in mutant bulk only
+error_type: 'replace'
+
+# mutation position
+mutation:
+  Chr3: 1405085
+
+# chromosome number and details
+# for each chromosome, length must be included
+# shape and rate are optional, if not provided will be calculated
+chrs:
+  Chr1:
+    :len: 30427671
+    :shape: 2.50865081752102
+    :rate: 1.47078817359057
+  Chr2:
+    :len: 19698289
+    :shape: 1.54709784939559
+    :rate: 1.39342241831905
+  Chr3:
+    :len: 23459830
+    :shape: 1.84384180876518
+    :rate: 1.37450025744314
+  Chr4:
+    :len: 18585056
+    :shape: 1.64579513413549
+    :rate: 1.41126184469062
+  Chr5:
+    :len: 26975502
+    :shape: 2.20830508080888
+    :rate: 1.42284254157339
+

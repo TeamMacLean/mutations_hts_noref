@@ -1,6 +1,13 @@
 #encoding: utf-8
 require 'bio'
 
+if ARGV.empty?
+  puts "usage: ruby fasta_pooled_changename.rb fasta_file_extension length_cutoff
+  sequence of selected lenght and above will be kept
+  example: ruby fasta_pooled_changename.rb contig 100"
+  exit
+end
+
 name_part = ARGV[0].chomp
 len_cutoff = ARGV[1].chomp.to_i
 fastafiles = Dir.glob("*.#{name_part}").select {|f| File.file? f}

@@ -36,7 +36,7 @@ melted <- melt(tenkb, id.vars = "position")
 ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
   facet_grid(variable ~ ., scales = "free") +
   scale_y_sqrt() + labs(y=NULL, main="genome in 100 KB fragment chunks") + mytheme +
-  geom_vline(xintercept = as.numeric(51531045), size=0.5)
+  geom_vline(xintercept = c(464124043, 1092466826, 1656894700, 2201062926, 2762474612, 3301229648), size=0.5)
 
 ```
 
@@ -55,7 +55,7 @@ melted <- melt(tenkb, id.vars = "position")
 ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
   facet_grid(variable ~ ., scales = "free") +
   scale_y_sqrt() + labs(y=NULL, main="genome in 500 KB fragment chunks") + mytheme +
-  geom_vline(xintercept = as.numeric(51531045), size=0.5)
+  geom_vline(xintercept = c(464124043, 1092466826, 1656894700, 2201062926, 2762474612, 3301229648), size=0.5)
 
 ```
 
@@ -74,7 +74,7 @@ melted <- melt(tenkb, id.vars = "position")
 ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
   facet_grid(variable ~ ., scales = "free") +
   scale_y_sqrt() + labs(y=NULL, main="genome in 1 MB fragment chunks") + mytheme +
-  geom_vline(xintercept = as.numeric(51531045), size=0.5)
+  geom_vline(xintercept = c(464124043, 1092466826, 1656894700, 2201062926, 2762474612, 3301229648), size=0.5)
 
 ```
 
@@ -93,7 +93,7 @@ melted <- melt(tenkb, id.vars = "position")
 ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
   facet_grid(variable ~ ., scales = "free") +
   scale_y_sqrt() + labs(y=NULL, main="genome in 5 MB fragment chunks") + mytheme +
-  geom_vline(xintercept = as.numeric(51531045), size=0.5)
+  geom_vline(xintercept = c(464124043, 1092466826, 1656894700, 2201062926, 2762474612, 3301229648), size=0.5)
 
 ```
 
@@ -112,7 +112,7 @@ melted <- melt(tenkb, id.vars = "position")
 ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour="#E69F00", fill="#E69F00") +
   facet_grid(variable ~ ., scales = "free") +
   scale_y_sqrt() + labs(y=NULL, main="genome in 10 MB fragment chunks") + mytheme +
-  geom_vline(xintercept = as.numeric(51531045), size=0.5)
+  geom_vline(xintercept = c(464124043, 1092466826, 1656894700, 2201062926, 2762474612, 3301229648), size=0.5)
 
 ```
 
@@ -128,7 +128,8 @@ ggplot(data=melted, aes(x=position, y=value)) + geom_bar(stat="identity", colour
 infile <- read.delim(file="varposn-genome-filtered_mnd_samtools_varscan_variants.vcf.txt", header = TRUE)
 ggplot(data=infile, aes(x=position, colour=type)) + geom_density(adjust=1/10) +
   geom_vline(xintercept = as.numeric(51531045), size=0.5) +
-  scale_y_sqrt() + labs(y=NULL, main="genome wide snp density") + mytheme + theme(legend.position=c(0.9,0.9))
+  scale_y_sqrt() + labs(y=NULL, main="genome wide snp density") + mytheme + theme(legend.position=c(0.9,0.9)) +
+  geom_vline(xintercept = c(464124043, 1092466826, 1656894700, 2201062926, 2762474612, 3301229648), size=0.5)
 
 ```
 

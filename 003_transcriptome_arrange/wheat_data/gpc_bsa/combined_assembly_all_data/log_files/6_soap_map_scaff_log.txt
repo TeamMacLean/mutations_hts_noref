@@ -1,0 +1,124 @@
+
+The version 1.03: released on July 19th, 2013
+
+K = 25
+contig len cutoff: 27
+
+there're 288036 contigs in file: all_combined, max seq len 7607, min seq len 100, max name len 10
+time spent on parse contigs file 3s
+64 thread created
+time spent on hash reads: 181s
+79601299 nodes allocated, 112577062 kmer in reads, 112577062 kmer processed
+time spent on De bruijn graph construction: 184s
+
+In file: sample.config, max seq len 120, max name len 256
+
+64 thread created
+576070 edges in graph
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045179_2.fq.gz
+current insert size 200, map_len 32
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045180_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045181_2.fq.gz
+--- 100000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045182_2.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR045183_2.fq.gz
+--- 200000000th reads
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_1.fq.gz
+read from file:
+ /tsl/scratch/rallapag/assemblies/wheat_trans/all/pr_ERR063461_2.fq.gz
+Output 38097878 out of 285996286 (13.3)% reads in gaps
+157597411 out of 285996286 (55.1)% reads mapped to contigs
+1 pe insert size, the largest boundary is 285996286
+
+[LIB] 0, avg_ins 200, reverse 0 
+time spent on mapping reads: 2656s
+
+overall time for alignment: 47m
+
+
+The version 1.03: released on July 19th, 2013
+
+there're 1 grads, 285996286 reads, max read len 120
+K = 25
+there're 576070 edge in edge file
+0 arcs loaded
+input 288036 contigs
+done loading updated edges
+time spent on loading edges 11s
+
+for insert size: 200
+Total_PE_link	Same_contig_right	Same_contig_wrong	Minus_dis_PE	Plus_dis_PE	Correct_PE	Accumulate_connect
+62546901	53430449	396278	7180823	0	1525917	162376
+Using contigs longer than 200 to estimate insert size: 
+Pair_num	SD	insert_size
+52166833	SD=73, 81188 new connections
+all PEs attached
+time spent on loading pair end info 247s
+
+
+0 link to masked contigs, 0 links on a single scaff
+Insert size 200: 81187 links input
+Cutoff for number of pairs to make a reliable connection: 3
+all links loaded
+time spent on creating scaffolds 1s
+
+mask the short contigs, which are shorter than 100
+230212 links built by the informations of single read
+107104 weak connections(<3) removed (there were 168626 active cnnects))
+134 simple loops found and removed in graph
+Begin to linearize the graph
+Delete the unnecessary connections : 11+0
+Remove the error connections
+0 complex loops found and removed in graph
+The second time to linearize the graph 
+Delete the unnecessary connections : 11+0
+Divided into 233273 loci by the connections
+
+There are 19145 locis, which contain more than 2 contigs
+The loci can be classified to four kinds:
+LINEAR:16574
+FORK:1822
+BUBBLE:95
+COMPLEX:654
+time spent on creating transcriptome 144s
+Processed 1000 scaffolds
+Processed 2000 scaffolds
+Processed 3000 scaffolds
+Processed 4000 scaffolds
+Processed 5000 scaffolds
+Processed 6000 scaffolds
+Processed 7000 scaffolds
+Processed 8000 scaffolds
+Processed 9000 scaffolds
+Processed 10000 scaffolds
+Processed 11000 scaffolds
+Processed 12000 scaffolds
+Processed 13000 scaffolds
+Processed 14000 scaffolds
+Processed 15000 scaffolds
+Processed 16000 scaffolds
+Processed 17000 scaffolds
+Processed 18000 scaffolds
+Processed 19000 scaffolds
+Processed 20000 scaffolds
+Processed 21000 scaffolds
+Processed 22000 scaffolds
+Processed 23000 scaffolds
+Done with 23678 scaffolds, 0 gaps finished, 28191 gaps overall
+time elapsed: 6m

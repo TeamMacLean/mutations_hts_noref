@@ -62,7 +62,7 @@ fastqc report for reports for trimmed reads is [available here](./gpc_bsa/fastqc
 
 similary fastqc reports for high and low GPC bulks are available at the following links with sub-direcotries for libraries made with 250bp and 400bp insert
 
-[high GPC bulk](./gpc_bsa/fastqc_reports/highgpc_bulk)
+[high GPC bulk](./gpc_bsa/fastqc_reports/highgpc_bulk)		
 [low GPC bulk](./gpc_bsa/fastqc_reports/lowgpc_bulk)
 
 #### transcriptome assembly
@@ -70,13 +70,13 @@ similary fastqc reports for high and low GPC bulks are available at the followin
 assembly using soapdenovo_trans (ver 1.03) and trinity
 
 soapdenovo_trans assembly was carried out using at different k-mer lengths, while trinity assembly carried out using 25 kmer
-soap sample config and shell script to run multiple k-mer assemblies are at following links
-[soap-trans_kmer_iter.sh](./assembly_params/soap-trans_kmer_iter.sh)
+soap sample config and shell script to run multiple k-mer assemblies are at following links		
+[soap-trans\_kmer\_iter.sh](./assembly_params/soap-trans_kmer_iter.sh)		
 [sample.config](./assembly_params/sample.config)
 
-assmebly log for trinity for both parents are available at following links
-[trinity_log_langdon.txt](./assembly_params/trinity_log_langdon.txt)
-[trinity_log_rsl65.txt](./assembly_params/trinity_log_rsl65.txt)
+assmebly log for trinity for both parents are available at following links		
+[trinity\_log\_langdon.txt](./assembly_params/trinity_log_langdon.txt)		
+[trinity\_log\_rsl65.txt](./assembly_params/trinity_log_rsl65.txt)
 
 Assemblies were compared using transrate software using the same reads used for assembly
 
